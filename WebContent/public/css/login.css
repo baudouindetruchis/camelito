@@ -60,15 +60,45 @@ fieldset.ref{
 	text-align:center;
 }
 
+h6 {
+  position: relative;
+  text-align: center;
+}
+
 .center_div, .right_div {
   padding: 20px;
+  position: relative;
 }
 
 .animated_img {
   width : 300px;
+  z-index: 2;
+  opacity: 100%;
+}
+
+.behind_center {
+  position: relative;
+  z-index: -1;
+  top: -450px;
+  padding-left: 10px;
+  text-align: center;
 }
 
 .animated_img:hover {
-  transform: translate(0,-110%);
-  transition: .3s;
+  opacity: 0;
+  transition: .2s;
+}
+
+.marque {
+  width: 90px;
+  padding-left: 20px;
+}
+
+.icon {
+  width: 30px;
+  margin: 3px;
+}
+
+.isep {
+  width: 60px;
 }
