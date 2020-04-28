@@ -1,0 +1,26 @@
+#ordersDiv, #cartDiv{
+}
+.art{
+	float: left;
+	size: 10%;
+}
+.comm{
+	float: left;
+	size: 5%;
+}
+.quant{
+	float: left;
+	size: 5%;	
+}
+.prix{
+	float: left;
+	size: 5%;
+}
+.sup{
+	float: left;
+	size: 5%;
+}
+.mod{
+	float: left;
+	size: 5%;
+}
