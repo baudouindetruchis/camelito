@@ -79,7 +79,7 @@ h6 {
 .behind_center {
   position: relative;
   z-index: -1;
-  top: -400px;
+  top: -450px;
   padding-left: 10px;
   text-align: center;
 }
