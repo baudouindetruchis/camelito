@@ -59,3 +59,16 @@ fieldset.ref{
 	background-color: transparent;
 	text-align:center;
 }
+
+.center_div, .right_div {
+  padding: 20px;
+}
+
+.animated_img {
+  width : 300px;
+}
+
+.animated_img:hover {
+  transform: translate(0,-110%);
+  transition: .3s;
+}
