@@ -1,52 +1,71 @@
-<html>
-<head><meta http-equiv=Content-Type content="text/html; charset=UTF-8">
-<style type="text/css">
-<!--
-span.cls_002{font-family:Times,serif;font-size:8.1px;color:rgb(181,120,34);font-weight:normal;font-style:normal;text-decoration: none}
-div.cls_002{font-family:Times,serif;font-size:8.1px;color:rgb(181,120,34);font-weight:normal;font-style:normal;text-decoration: none}
--->
-</style>
-<script type="text/javascript" src="/jsgraphics.js"></script>
+<!DOCTYPE html>
+<html lang="fr">
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous">
+</script>
+
+ <script> 
+    $(function(){
+    	$("#includedHeader").load("header_sample.html"); 
+    });
+</script> 
+
+<link rel="stylesheet" type="text/css" href="../public/css/scoreStyle.css">
+<link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
+
+<head>
+	<title>Camelito Score</title>
 </head>
+
 <body>
-<div style="position:absolute;left:50%;margin-left:-421px;top:0px;width:842px;height:595px;border-style:outset;overflow:hidden">
-<div style="position:absolute;left:0px;top:0px">
-<img src="back/background1.jpg" width=842 height=595></div>
-
-<div style="position:absolute;left:29%;top:15.39px" class="class1"><span class="cls_002"> <FONT size="5pt"> La course aux Camelicoins </FONT></span></div>
-
-<div style="position:absolute;left:110px;top:55.39px" class="class1"><span class="cls_002">I</span></div>
-<div style="position:absolute;left:25%;top:55.39px" class="class1"><span class="cls_002">Client lambda A</span></div>
-<div style="position:absolute;left:55%;top:55.39px" class="class1"><span class="cls_002">350 CC</span></div>
-
-<div style="position:absolute;left:110px;top:93.44px" class="class1"><span class="cls_002">II</span></div>
-<div style="position:absolute;left:25%;top:93.44px" class="class1"><span class="cls_002">George Washington</span></div>
-<div style="position:absolute;left:55%;top:93.44px" class="class1"><span class="cls_002">666 CC</span></div>
-
-<div style="position:absolute;left:110px;top:127.76px" class="class1"><span class="cls_002">III</span></div>
-<div style="position:absolute;left:25%;top:127.76px" class="class1"><span class="cls_002">Vous</span></div>
-<div style="position:absolute;left:55%;top:127.76px" class="class1"><span class="cls_002">42 CC</span></div>
-
-<div style="position:absolute;left:110px;top:166.30px" class="class1"><span class="cls_002">IV</span></div>
-
-<div style="position:absolute;left:110px;top:203.47px" class="class1"><span class="cls_002">V</span></div>
-
-<div style="position:absolute;left:110px;top:237.80px" class="class1"><span class="cls_002">VI</span></div>
-
-<div style="position:absolute;left:110px;top:273.79px" class="class1"><span class="cls_002">VII</span></div>
-
-<div style="position:absolute;left:216.32px;top:318.49px" class="class1"><span class="cls_002">votre score</span></div>
-
-
-
-<div style="position:absolute;left:408px;top:340px"> <img src="image/chammeau.png"> </div>
-<div style="position:absolute;left:400px;top:320px" class="class1"><span class="cls_002">Chameau dynamique !</span></div>
-
-
-</div>
-
-
-
-
+	<div id="includedHeader"></div>
+	<div id="title">
+		<h1 style="font-size: 2vw">Course au camelicoins</h1>
+	</div>
+	<div id="scoreTab">
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col" style="width: 5%">Classement</th>
+	      <th scope="col" style="width: 10%">Pseudo</th>
+	      <th scope="col" style="width: 5%">Score</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th scope="row">I</th>
+	      <td>BobB</td>
+	      <td>742</td>
+	    </tr>
+	    <tr>
+	      <th scope="row">II</th>
+	      <td>Valerie</td>
+	      <td>600</td>
+	    </tr>
+	    <tr>
+	      <th scope="row">III</th>
+	      <td>BarnaB</td>
+	      <td>555</td>
+	    </tr>
+	  </tbody>
+	</table>
+	</div>
+	<div id="yourScore">
+		<h1 style="font-size: 2vw">Ton score : </h1>
+		<p>442</p>
+	</div>
+	<div id="race">
+		<img class="camel" alt="previous" src="../public/images/chammeau.png">
+		<img class="camel" alt="you" src="../public/images/chammeau.png">
+		<img class="camel" alt="next" src="../public/images/chammeau.png">
+	</div>
+	
 </body>
-</html>
