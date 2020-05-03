@@ -1,17 +1,22 @@
 package servlet;
 
-import java.beans.Statement;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import obj.User;
 
 /**
  * Servlet implementation class connexion
@@ -35,29 +40,58 @@ public class connexion extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		 String dbName = "jdbc:postgresql://localhost:5432/camelitoLocal";
-         String dbDriver = "org.postgresql.Driver";
-         String userName = "postgres";
-         String password = "123"; 
+		
+		List<User> result = new ArrayList<>();
 
-         try{
-         try {
-			Class.forName(dbDriver);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-         Connection con = DriverManager.getConnection(dbName, userName, password);
-         System.out.println("Got Connection");
-         java.sql.Statement statement = con.createStatement();
-         String sql = "select * from login";
-         ResultSet rs = statement.executeQuery(sql);
-         while (rs.next()) {
-             System.out.println(rs.getString("uname"));
-         }
-         }catch(SQLException e){
+        String SQL_SELECT = "Select * from USER";
+
+        // auto close connection and preparedStatement
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://127.0.0.1:5432/camelitoLocal", "postgres", "123");
+            PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+        	System.out.println(resultSet);
+        	
+        	ResultSetMetaData rsmd = resultSet.getMetaData();
+        	int columnsNumber = rsmd.getColumnCount();
+        	while (resultSet.next()) {
+            	System.out.println("a");
+        	    for (int i = 1; i <= columnsNumber; i++) {
+        	        if (i > 1) System.out.print(",  ");
+        	        String columnValue = resultSet.getString(i);
+        	        System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                	System.out.println("b");
+        	    }
+        	    System.out.println("");
+        	}
+        	
+//            while (resultSet.next()) {
+//            	int id = resultSet.getInt("id");
+//            	String user_name = resultSet.getString("user_name");
+//            	String mail = resultSet.getString("Mail");
+//            	int type  = resultSet.getInt("Type");
+//            	String password = resultSet.getString("Password");
+//            	boolean status = resultSet.getBoolean("Status");
+//            	
+//            	User obj = new User();
+//                obj.setId(id);
+//                obj.setMail(mail);
+//                obj.setPassword(password);
+//                obj.setStatus(status);
+//                obj.setType(type);
+//                obj.setUser_name(user_name);
+//
+//                result.add(obj);
+//
+//            }
+//            result.forEach(x -> System.out.println(x));
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
             e.printStackTrace();
-         }
+        }
+
 		
 	}
 
