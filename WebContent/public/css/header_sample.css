@@ -28,8 +28,9 @@ nav a{
 
 /* Image with its text settings */
 
-img {
+.logo {
   height: 45px;
+  width: auto;
 }
 
 .mainicon {
