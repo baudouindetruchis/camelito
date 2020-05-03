@@ -32,19 +32,24 @@
 				</form>
 
 				<div class="form-popup" id="myForm">
-				  <form action="/action_page.php" class="form-container">
+					<form action="/action_page.php" class="form-container">
 						<img src="https://lh3.googleusercontent.com/proxy/rEyvARXpQlApk13rYq6iBXF0xNFC3R3sxiwCsRpE6FV8d7HavcdGTboyb_6SBK-kWJSC7t86dLUWFUJmlINrGmNopeJpmbokzw1LOM5CLwayIITKAg" onclick="closeForm()" alt="close" class="close_button">
-				    <h1>Inscription</h1>
+						<h1>Inscription</h1>
 						<br>
 
-				    <input type="lastname" placeholder="Nom" name="lastname" required class="field">
+						<input type="lastname" placeholder="Nom" name="lastname" required class="field">
 						<input type="firstname" placeholder="Prenom" name="firstname" required class="field">
 						<input type="email" placeholder="Adresse email" name="email" required class="field">
 						<input type="password" placeholder="Mot de passe" name="mot de passe" required class="field">
 						<input type="password" placeholder="Vérification du mot de passe" name="mot de passe" required class="field">
 						<br>
-				    <button type="submit" class="btnn">Valider</button>
-				  </form>
+						<div class="radio_but">
+							<input type="radio" id="client" name="categorie" value="Client"> Client
+							<input type="radio" id="commercant" name="categorie" value="Commerçant"> Commerçant
+						</div>
+						<br>
+						<button type="submit" class="btnn">Valider</button>
+					</form>
 				</div>
 
 			</div>
@@ -70,6 +75,10 @@
 
 			<div class="right_div">
 				<img src="../public/images/hands.jpg" class="animated_img">
+				<div class="behind_right">
+					<h6>Notre équipe</h6>
+					<img class="equipe" src="../public/images/equipe.png">
+				</div>
 			</div>
 
 		</div>
