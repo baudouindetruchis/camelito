@@ -22,12 +22,13 @@
 						<h1>Camelito</h1>
 					</fieldset>
 
-					<input class="form-control" type="text" name="userName" placeholder="User Name" /></br>
-					<input class="form-control" type="password" name="password" placeholder="Mot de passe" /></br>
+					<input class="form-control" type="text" name="userName" placeholder="User Name" required/></br>
+					<input class="form-control" type="password" name="password" placeholder="Mot de passe" required /></br>
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color:black" onclick="openForm()">S'inscrire</a><br>
-						<a href="#" style="color:black">Mot de passe oublié</a>
+						<a href="#" style="color:black">Mot de passe oubli�</a>
+						
 					</fieldset>
 				</form>
 
@@ -45,7 +46,7 @@
 						<br>
 						<div class="radio_but">
 							<input type="radio" id="client" name="categorie" value="Client"> Client
-							<input type="radio" id="commercant" name="categorie" value="Commerçant"> Commerçant
+							<input type="radio" id="commercant" name="categorie" value="Commerçant"> Commer�ant
 						</div>
 						<br>
 						<button type="submit" class="btnn">Valider</button>

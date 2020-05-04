@@ -46,39 +46,50 @@ public class ConnexionForm extends HttpServlet {
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 		String user = "postgres";
 		String psw = "123";
+		String page = "./view/index.jsp";
 
         HttpSession session=request.getSession();
         
 		try (Connection con = DriverManager.getConnection(url, user, psw);
-                PreparedStatement pst = con.prepareStatement("SELECT * FROM public.\"User\" WHERE user_name LIKE '"+userName+"'");
+                PreparedStatement pst = con.prepareStatement("SELECT * FROM public.\"User\" WHERE user_name LIKE '"+userName+"' AND password LIKE '"+pwd+"'");
                 ResultSet rs = pst.executeQuery()) {
+			
+			if(rs==null) {
+				System.out.println("Pas de mdp");
+				
+			}else {
+				System.out.println("c'est rentre ici lol");
+				List<User> result = new ArrayList<>();
+				User connectedUser;
+	            while (rs.next()) {            	
+	            	int id = rs.getInt("id");
+	            	String user_name = rs.getString("user_name");
+	            	String mail = rs.getString("Mail");
+	            	int type  = rs.getInt("Type");
+	            	String password = rs.getString("Password");
+	            	boolean status = rs.getBoolean("Status");
+	            	
+	            	User obj = new User();
+	                obj.setId(id);
+	                obj.setMail(mail);
+	                obj.setPassword(password);
+	                obj.setStatus(status);
+	                obj.setType(type);
+	                obj.setUser_name(user_name);
 
-			List<User> result = new ArrayList<>();
-			User connectedUser;
-            while (rs.next()) {            	
-            	int id = rs.getInt("id");
-            	String user_name = rs.getString("user_name");
-            	String mail = rs.getString("Mail");
-            	int type  = rs.getInt("Type");
-            	String password = rs.getString("Password");
-            	boolean status = rs.getBoolean("Status");
-            	
-            	User obj = new User();
-                obj.setId(id);
-                obj.setMail(mail);
-                obj.setPassword(password);
-                obj.setStatus(status);
-                obj.setType(type);
-                obj.setUser_name(user_name);
+	                result.add(obj);
+	                page = "./view/profil.jsp";
 
-                result.add(obj);
-
-            }
-//            result.forEach(x -> System.out.println(x.toString()));
-            connectedUser=result.get(0);
-            session.setAttribute("user",connectedUser);  
-            session.setAttribute("mail",connectedUser.getMail());
-            session.setAttribute("userName",connectedUser.getUser_name());
+	            }
+	            connectedUser=result.get(0);
+	            session.setAttribute("user",connectedUser);  
+	            session.setAttribute("mail",connectedUser.getMail());
+	            session.setAttribute("userName",connectedUser.getUser_name());
+	            
+	            session.setAttribute("msg", "Hello world");  
+			  	
+			}
+			
             
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -88,8 +99,7 @@ public class ConnexionForm extends HttpServlet {
 
 		//if request is not from HttpServletRequest, you should do a typecast before
 		  //save message in session
-		  session.setAttribute("msg", "Hello world");  
-		  response.sendRedirect("./view/profil.jsp");		
+		response.sendRedirect(page);
 		
 	}
 
