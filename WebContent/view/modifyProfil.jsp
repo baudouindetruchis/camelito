@@ -11,7 +11,7 @@
 <head>
 	<title>Camelito modifier profil</title>
 	<script src="jquery-3.4.1.min.js"></script>
-	<link rel="import" href="header_sample.html">
+	<link rel="import" href="header_sample.jsp">
 </head>
 
 
