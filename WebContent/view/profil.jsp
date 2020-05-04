@@ -5,28 +5,29 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
 <link rel="stylesheet" type="text/css" href="../public/css/profilStyle.css">
 
+<script> 
+    $(function(){
+    	
+      	$("#includedContent").load("header_sample.html"); 
+    });
+    </script>
 <head>
-	<title>Camelito modifier profil</title>
-	<script src="jquery-3.4.1.min.js"></script>
-	<link rel="import" href="header_sample.html">
+	<title>Camelito mon profil</title>
+	
 </head>
 
 
 
-
-
 <body>
+<div id="includedContent"></div>
+<h1 style="font-size:4vw"> Mon profil : </h1>
 
-<h1 style="font-size:4vw"> Modifier mon profil : </h1>
-  
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
       <form>
-      
       
        <div  class="form-group row">
     <label for="name" class="col-form-label">Nom : </label>
@@ -36,7 +37,7 @@
   </div>
   
   <div class="form-group row">
-    <label for="surname" class="col-form-label">Prénom : </label>
+    <label for="surname" class="col-form-label">Prenom : </label>
     <div class="col-sm-7">
       <p class="form-control-plaintext" id="surname"> Bob</p>
     </div>
@@ -45,16 +46,18 @@
   <div class="form-group row">
     <label for="pseudo" class="col-form-label">Pseudo : </label>
     <div class="col-sm-7">
-      <input type="text"  class="editable form-control-plaintext" id="pseudo" value="Bobidet">
+      <input type="text" readonly class=" editable form-control-plaintext" id="pseudo" value='<%=session.getAttribute("userName")%>'>
     </div>
   </div>
+      
   
   <div class="form-group row">
     <label for="mail" class="col-form-label">Addresse mail : </label>
     <div class="col-sm-7">
-      <input type="email" class="editable form-control-plaintext" id="mail" value="bob.bidet@isep.fr">
+      <input type="email" readonly class="editable form-control-plaintext" id="mail" value='<%=session.getAttribute("mail")%>'>
     </div>
   </div>
+      <c:out value="${sessionScope.mail}" />
   
     <div class="form-group row">
     <label for="mode" class="col-form-label">Mode client : </label>
@@ -64,11 +67,9 @@
 </label>
   </div>
   
-  <input class="btn btn-basic" type="submit"  value="Valider" />
+  <input class="btn btn-basic" type="submit"  value="Modifier" />
 	
     </form>
-      
-    
 
       </div>
       

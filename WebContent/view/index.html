@@ -22,7 +22,7 @@
 						<h1>Camelito</h1>
 					</fieldset>
 
-					<input class="form-control" type="email" name="email" placeholder="Adresse email" /></br>
+					<input class="form-control" type="text" name="userName" placeholder="User Name" /></br>
 					<input class="form-control" type="password" name="password" placeholder="Mot de passe" /></br>
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
