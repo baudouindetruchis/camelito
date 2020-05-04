@@ -10,7 +10,7 @@
 <script> 
     $(function(){
     	
-      	$("#includedContent").load("header_sample.html"); 
+      	$("#includedContent").load("header_sample.jsp"); 
     });
     </script>
 <head>
