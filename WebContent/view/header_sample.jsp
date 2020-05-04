@@ -26,22 +26,22 @@
 		
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="nav-link" href="profil.html">Profil</a>
+				<a class="nav-link" href="profil.jsp">Profil</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="shopping.html">Shopping</a>
+				<a class="nav-link" href="shopping.jsp">Shopping</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="panier.html">Panier</a>
+				<a class="nav-link" href="panier.jsp">Panier</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="score.html">Classement</a>
+				<a class="nav-link" href="score.jsp">Classement</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="contact.html">Contact</a>
+				<a class="nav-link" href="contact.jsp">Contact</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="index.html">Quitter</a>
+				<a class="nav-link" href="<%=request.getContextPath()%>/Deconnexion">Quitter</a>
 			</li>
 		</ul>
 		</div>

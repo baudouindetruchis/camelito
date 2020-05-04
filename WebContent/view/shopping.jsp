@@ -13,7 +13,7 @@
 
 <script> 
     $(function(){
-    	$("#includedHeader").load("header_sample.html"); 
+    	$("#includedHeader").load("header_sample.jsp"); 
     });
 </script> 
 

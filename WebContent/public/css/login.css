@@ -11,7 +11,7 @@ h1{
 	text-align: center;
 }
 
-input[type=password], input[type=email], input[type=lastname], input[type=firstname]{
+input[type=password], input[type=email], input[type=text], input[type=lastname], input[type=firstname]{
 	border: 1px solid;
 	background-color: #f1d8b6;
 	color:black;
