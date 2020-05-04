@@ -27,7 +27,7 @@
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color:black" onclick="openForm()">S'inscrire</a><br>
-						<a href="#" style="color:black">Mot de passe oublié</a>
+						<a href="#" style="color:black">Mot de passe oublié </a>
 						
 					</fieldset>
 				</form>
@@ -38,15 +38,17 @@
 						<h1>Inscription</h1>
 						<br>
 
+						<input type="pseudo" placeholder="Pseudo" name="pseudo" required class="field">
 						<input type="lastname" placeholder="Nom" name="lastname" required class="field">
 						<input type="firstname" placeholder="Prenom" name="firstname" required class="field">
 						<input type="email" placeholder="Adresse email" name="email" required class="field">
-						<input type="password" placeholder="Mot de passe" name="mot de passe" required class="field">
-						<input type="password" placeholder="VÃ©rification du mot de passe" name="mot de passe" required class="field">
+						<input type="password" placeholder="Mot de passe" name="password" required class="field">
+						<input type="year" placeholder="year" name="year" required class="field">
+						<input type="password" placeholder="Vérification du mot de passe" name="secondPassword" required class="field">
 						<br>
 						<div class="radio_but">
 							<input type="radio" id="client" name="categorie" value="Client"> Client
-							<input type="radio" id="commercant" name="categorie" value="CommerÃ§ant"> Commerçant
+							<input type="radio" id="commercant" name="categorie" value="Commercant"> Commerçant
 						</div>
 						<br>
 						<button type="submit" class="btnn">Valider</button>

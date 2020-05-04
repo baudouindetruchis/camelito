@@ -21,6 +21,8 @@
 
 
 <body>
+<!--<jsp:include page="/profilForm" /> -->
+	
 <div id="includedContent"></div>
 <h1 style="font-size:4vw"> Mon profil : </h1>
 
@@ -39,7 +41,7 @@
   <div class="form-group row">
     <label for="surname" class="col-form-label">Prenom : </label>
     <div class="col-sm-7">
-      <p class="form-control-plaintext" id="surname"> Bob</p>
+      <p class="form-control-plaintext" id="surname">Bob</p>
     </div>
   </div>
   

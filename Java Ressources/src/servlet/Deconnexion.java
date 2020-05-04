@@ -30,6 +30,7 @@ public class Deconnexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
+		session.getAttribute("userName");
 		session.invalidate();
 		response.sendRedirect("./view/index.jsp");
 	}
