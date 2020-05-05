@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -36,7 +37,6 @@
 	<table class="table table-striped">
 	  <thead>
 	    <tr>
-	      <th scope="col">#</th>
 	      <th scope="col">Article</th>
 	      <th scope="col">Commerçant</th>
 	      <th scope="col">Quant.</th>
@@ -46,26 +46,17 @@
 	    </tr>
 	  </thead>
 	  <tbody>
+	  <c:forEach var="artc" items="${sessionScope.panierList}">
+		  <tr>
+		  	<td><c:out value="${artc.id}"/></td>
+		  	<td><c:out value="${artc.id}"/></td>
+		  	<td><c:out value="${artc.name}"/></td>
+		  	<td><c:out value="${artc.name}"/></td>
+	        <td><button>Supp</button></td>
+	        <td><button>Modif</button></td>
+	   	  </tr>
+	  </c:forEach>
 	    <tr>
-	      <th scope="row">1</th>
-	      <td>Pasta box</td>
-	      <td>Monop</td>
-	      <td>1</td>
-	      <td>3€</td>
-	      <td><button>Supp</button></td>
-	      <td><button>Modif</button></td>
-	    </tr>
-	    <tr>
-	      <th scope="row">2</th>
-	      <td>Pizza chervre</td>
-	      <td>Monop</td>
-	      <td>2</td>
-	      <td>4€</td>
-	      <td><button>Supp</button></td>
-	      <td><button>Modif</button></td>
-	    </tr>
-	    <tr>
-	      <th></th>
 	      <td></td>
 	      <td></td>
 	      <td>Total</td>
