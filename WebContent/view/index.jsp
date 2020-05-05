@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+<%@page contentType="text/html; charset=UTF-8" %>
 
 <head>
 	<title>Camelito - Login</title>
@@ -27,7 +28,7 @@
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color:black" onclick="openForm()">S'inscrire</a><br>
-						<a href="#" style="color:black">Mot de passe oubli�</a>
+						<a href="#" style="color:black">Mot de passe oublié</a>
 						
 					</fieldset>
 				</form>
@@ -46,7 +47,7 @@
 						<br>
 						<div class="radio_but">
 							<input type="radio" id="client" name="categorie" value="Client"> Client
-							<input type="radio" id="commercant" name="categorie" value="Commerçant"> Commer�ant
+							<input type="radio" id="commercant" name="categorie" value="Commerçant"> Commerçant
 						</div>
 						<br>
 						<button type="submit" class="btnn">Valider</button>
