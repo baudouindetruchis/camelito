@@ -34,14 +34,14 @@
        <div  class="form-group row">
     <label for="name" class="col-form-label">Nom : </label>
     <div class="col-sm-6">
-      <p class="form-control-plaintext" id="name"> Bidet</p>
+      <p class="form-control-plaintext" id="name"><%=session.getAttribute("lName")%></p>
     </div>
   </div>
   
   <div class="form-group row">
     <label for="surname" class="col-form-label">Prenom : </label>
     <div class="col-sm-7">
-      <p class="form-control-plaintext" id="surname">Bob</p>
+      <p class="form-control-plaintext" id="surname"><%=session.getAttribute("fName")%></p>
     </div>
   </div>
   
