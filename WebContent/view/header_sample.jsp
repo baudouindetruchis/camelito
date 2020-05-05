@@ -1,8 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Header sample</title>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -28,6 +28,18 @@
 			<li class="nav-item">
 				<a class="nav-link" href="profil.jsp">Profil</a>
 			</li>
+			
+			<c:choose>
+			    <c:when test="${session.getAttribute('type')=='1'}">
+			        type1
+			    </c:when>  
+			    <c:when test="${session.getAttribute('type')=='2'}">
+			        type1
+			    </c:when>    
+			    <c:otherwise>
+			        other
+			    </c:otherwise>
+			</c:choose>
 			<li class="nav-item">
 				<a class="nav-link" href="shopping.jsp">Shopping</a>
 			</li>
