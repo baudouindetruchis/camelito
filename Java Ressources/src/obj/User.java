@@ -1,5 +1,8 @@
 package obj;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 	int id;
 	String user_name;
@@ -7,6 +10,43 @@ public class User {
 	int type;
 	String password;
 	boolean status;
+	
+	String first_name;
+	String last_name;
+	int score;
+	List<Integer> list_success = new ArrayList<Integer>();
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public List<Integer> getList_success() {
+		return list_success;
+	}
+
+	public void add_a_success(int new_success) {
+		this.list_success.add(new_success);
+	}
 
 	public int getId() {
 		return id;
