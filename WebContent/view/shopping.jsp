@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mon Shopping</title>
+<title>Camelito - Shopping</title>
 
 <meta charset="UTF-8">
 <%@page contentType="text/html; charset=UTF-8" %>
@@ -18,14 +18,6 @@
     });
 </script> 
 
-<!-- THOUGHTS ABOUT THIS DESIGN -->
-<!-- Some things are not well designed, such as the h2 with "Produits disponibles" 
-that uses absolute positioning (which means it will not be shown at the same position
-depending on the resolution of the screen / browser for the user), and also we need to find a way to adapt the images 
-to this format, the simplest way would be to process images before using to make them all the
-same size.
-Is this design easy to interact with for the database / back ?
- -->
 </head>
 <body>
 	<div id="includedHeader"></div>

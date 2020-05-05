@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+<%@page contentType="text/html; charset=UTF-8" %>
 
 <head>
 	<title>Camelito - Login</title>
@@ -67,7 +68,7 @@
 					<img class="marque" src="https://www.vectorsland.com/imgd/l25301-boulangerie-leveneur-logo-60344.png">
 					<br>
 					<br>
-					<h6>IntÃ©ressÃ© par nos services ?</h6>
+					<h6>Intéressé par nos services ?</h6>
 					<br>
 					<img src="https://i0.wp.com/www.ucaubenas.com/wp-content/uploads/email-logo.png?fit=256%2C256" class="icon"> camelito.illico@presto.fr <br>
 					<img src="https://i.ya-webdesign.com/images/telephone-icon-png-6.png" class="icon"> 06 77 88 77 88 <br> <br>
@@ -79,7 +80,7 @@
 			<div class="right_div">
 				<img src="../public/images/hands.jpg" class="animated_img">
 				<div class="behind_right">
-					<h6>Notre Ã©quipe</h6>
+					<h6>Notre équipe</h6>
 					<img class="equipe" src="../public/images/equipe.png">
 				</div>
 			</div>
