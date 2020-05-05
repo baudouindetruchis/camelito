@@ -51,7 +51,7 @@ public class ConnexionForm extends HttpServlet {
         
         try (Connection con = DriverManager.getConnection(url, user, psw))
         {
-        	PreparedStatement pst = con.prepareStatement("SELECT * FROM public.\"User\" WHERE user_name LIKE '"+userName+"' AND password LIKE '"+pwd+"'");
+        	PreparedStatement pst = con.prepareStatement("SELECT * FROM public.users WHERE user_name LIKE '"+userName+"' AND password LIKE '"+pwd+"'");
         	ResultSet rs = pst.executeQuery();
 			
 			if(rs==null) {
@@ -65,10 +65,10 @@ public class ConnexionForm extends HttpServlet {
 	            while (rs.next()) {            	
 	            	int id = rs.getInt("id");
 	            	String user_name = rs.getString("user_name");
-	            	String mail = rs.getString("Mail");
-	            	int type  = rs.getInt("Type");
-	            	String password = rs.getString("Password");
-	            	boolean status = rs.getBoolean("Status");
+	            	String mail = rs.getString("mail");
+	            	int type  = rs.getInt("type");
+	            	String password = rs.getString("password");
+	            	boolean status = rs.getBoolean("status");
 	            	
 	            	User obj = new User();
 	                obj.setId(id);
@@ -87,8 +87,7 @@ public class ConnexionForm extends HttpServlet {
 	            session.setAttribute("user_id",connectedUser.getId());  
 	            session.setAttribute("mail",connectedUser.getMail());
 	            session.setAttribute("userName",connectedUser.getUser_name());
-	            
-	            session.setAttribute("msg", "Hello world");  
+	            //TODO get user details
 			  	
 			}
 			
