@@ -16,21 +16,21 @@
     });
     </script>
 <head>
-	<title>Camelito mon profil</title>
+	<title>Camelito - Profil</title>
 	
 </head>
 
 
 
 <body>
-<!--<jsp:include page="/profilForm" /> -->
+<%-- <jsp:include page="/profilForm" /> --%>
 	
 <div id="includedContent"></div>
 
 <div class="container">
-<h2>Mon profil</h2>
   <div class="row">
     <div class="col-sm-6">
+    <h2>Mon profil</h2>
       <form>
       
        <div  class="form-group row">
@@ -50,7 +50,7 @@
   <div class="form-group row">
     <label for="pseudo" class="col-form-label">Pseudo : </label>
     <div class="col-sm-7">
-      <input type="text" readonly class=" editable form-control-plaintext" id="pseudo" value='<%=session.getAttribute("userName")%>'>
+      <p class="form-control-plaintext" id="pseudo"><%=session.getAttribute("userName")%></p>
     </div>
   </div>
       
@@ -58,7 +58,7 @@
   <div class="form-group row">
     <label for="mail" class="col-form-label">Adresse mail : </label>
     <div class="col-sm-7">
-      <input type="email" readonly class="editable form-control-plaintext" id="mail" value='<%=session.getAttribute("mail")%>'>
+      <p class="form-control-plaintext" id="mail"><%=session.getAttribute("mail")%></p>
     </div>
   </div>
       <c:out value="${sessionScope.mail}" />
@@ -77,11 +77,13 @@
 
       </div>
       
+     
     <div  class="col-sm-6">	
+    <h2 class="success">Mes réussites</h2>
 	<fieldset>
 	<img  class="profil img-responsive" src="../public/images/Add_User.png" alt="Add User" width="25%" height="120"/>
 	</fieldset> 
-	<p class="success">Réussite : </p>
+	<!-- <p class="success">Réussite : </p> -->
 	<div class="form-group row">
     <img class="img-responsive"  src="../public/images/pieces.png" alt="Pile de piece" width="15%" height="17%"/>
     <p class="col-form-label">10€ d'économisés</p>

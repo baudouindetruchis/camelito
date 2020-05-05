@@ -3,7 +3,6 @@
 .container {
 	width: 100%;
 	margin-top: 5%;
-	letter-spacing: 1px;
 }
 
 .container h2 {
@@ -13,6 +12,9 @@
 	font-size: 24px;
 	padding: 8px;
 	height: 40px;
+}
+.container .success {
+	width: 210px;
 }
 
 
@@ -27,18 +29,19 @@ img.profil{
 	height: 80px;
 }
 
-p.success{
-	font-weight: bold;
+.edit {
+	background-image: url(../images/edit.png);
+	background-repeat: no-repeat;
+	background-size: 15px,15px;
+	background-position: right;
 }
 
 input.editable{
-position: relative;
-background-image: url(../images/edit.png);
-background-repeat: no-repeat;
-background-size: 15px,15px;
-background-position: right;
-
+	position: relative;
+	left:0px;
+	right:0px;
 }
+
 input.btn{	
 	background-image: linear-gradient(#e0a85d,#b47623);
 	border-radius: 10px;
@@ -50,6 +53,7 @@ input.btn{
 	font-size:2vw;
 	margin-top:7%;
 	margin-left:25%;
+	margin-bottom: 10%;
 }
 
 /*switch*/
@@ -117,4 +121,33 @@ input:checked + .slider:before {
 .img-responsive {
 	position: relative;
 	align-content: center;
+}
+
+@media (min-width: 576px) and (max-width:767px) {
+	.edit {
+	width: 230px;
+	}
+	.col-form-label {
+	margin-right: 80px;
+	}
+	.noedit {
+	margin-right: 0px;
+	}
+}
+@media (min-width: 768px) and (max-width:991px) {
+	.edit {
+	width: 307px;
+	}
+}
+
+@media (min-width: 992px) and (max-width:1199px) {
+	.edit {
+	width: 397px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.edit {
+	width: 480px;
+	}
 }
