@@ -69,7 +69,7 @@ public class InscriptionForm extends HttpServlet {
         
         try (Connection con = DriverManager.getConnection(url, user, psw))
         {
-        	PreparedStatement getLastID = con.prepareStatement("SELECT id FROM public.\"User\" ");
+        	PreparedStatement getLastID = con.prepareStatement("SELECT id FROM public.users ");
         	
         	ResultSet rsID = getLastID.executeQuery();
 							
@@ -84,7 +84,7 @@ public class InscriptionForm extends HttpServlet {
 	        System.out.println(secondPassword);
 	        System.out.println(password==secondPassword);
 	        if(password.contentEquals(secondPassword)) {
-	        	PreparedStatement addUser = con.prepareStatement("INSERT INTO public.\"User\" VALUES('"+
+	        	PreparedStatement addUser = con.prepareStatement("INSERT INTO public.users VALUES('"+
 		            	id+"','"+pseudo+"','"+email+"','"+type+"','"+password+"'," + true+")");
 		       addUser.execute();
 		        
