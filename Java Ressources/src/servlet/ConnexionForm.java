@@ -41,7 +41,6 @@ public class ConnexionForm extends HttpServlet {
 		
 		String userName = request.getParameter("userName");
 		String pwd = request.getParameter("password");
-		System.out.println("username : "+userName+"   pwd : "+pwd);
 		
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 		String user = "postgres";
@@ -50,24 +49,26 @@ public class ConnexionForm extends HttpServlet {
 
         HttpSession session=request.getSession();
         
-		try (Connection con = DriverManager.getConnection(url, user, psw);
-                PreparedStatement pst = con.prepareStatement("SELECT * FROM public.\"User\" WHERE user_name LIKE '"+userName+"' AND password LIKE '"+pwd+"'");
-                ResultSet rs = pst.executeQuery()) {
+        try (Connection con = DriverManager.getConnection(url, user, psw))
+        {
+        	PreparedStatement pst = con.prepareStatement("SELECT * FROM public.users WHERE user_name LIKE '"+userName+"' AND password LIKE '"+pwd+"'");
+        	ResultSet rs = pst.executeQuery();
 			
 			if(rs==null) {
-				System.out.println("Pas de mdp");
+				/*
+				 * Error of connection
+				 */
 				
 			}else {
-				System.out.println("c'est rentre ici lol");
 				List<User> result = new ArrayList<>();
 				User connectedUser;
 	            while (rs.next()) {            	
 	            	int id = rs.getInt("id");
 	            	String user_name = rs.getString("user_name");
-	            	String mail = rs.getString("Mail");
-	            	int type  = rs.getInt("Type");
-	            	String password = rs.getString("Password");
-	            	boolean status = rs.getBoolean("Status");
+	            	String mail = rs.getString("mail");
+	            	int type  = rs.getInt("type");
+	            	String password = rs.getString("password");
+	            	boolean status = rs.getBoolean("status");
 	            	
 	            	User obj = new User();
 	                obj.setId(id);
@@ -83,10 +84,10 @@ public class ConnexionForm extends HttpServlet {
 	            }
 	            connectedUser=result.get(0);
 	            session.setAttribute("user",connectedUser);  
+	            session.setAttribute("user_id",connectedUser.getId());  
 	            session.setAttribute("mail",connectedUser.getMail());
 	            session.setAttribute("userName",connectedUser.getUser_name());
-	            
-	            session.setAttribute("msg", "Hello world");  
+	            //TODO get user details
 			  	
 			}
 			

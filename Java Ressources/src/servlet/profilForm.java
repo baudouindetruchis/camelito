@@ -14,20 +14,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import obj.User;
 
 /**
- * Servlet implementation class connexion
+ * Servlet implementation class profilForm
  */
-@WebServlet(name = "connexion", urlPatterns = { "/connexion" })
-public class connexion extends HttpServlet {
+@WebServlet("/profilForm")
+public class profilForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public connexion() {
+    public profilForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,45 +37,51 @@ public class connexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+				
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 		String user = "postgres";
 		String psw = "123";
-		try (Connection con = DriverManager.getConnection(url, user, psw);
-                PreparedStatement pst = con.prepareStatement("SELECT * FROM public.\"User\"");
-                ResultSet rs = pst.executeQuery()) {
+		String page = "./view/index.jsp";
 
-			List<User> result = new ArrayList<>();
-		
-            while (rs.next()) {            	
-            	int id = rs.getInt("id");
-            	String user_name = rs.getString("user_name");
-            	String mail = rs.getString("Mail");
-            	int type  = rs.getInt("Type");
-            	String password = rs.getString("Password");
-            	boolean status = rs.getBoolean("Status");
-            	
-            	User obj = new User();
-                obj.setId(id);
-                obj.setMail(mail);
-                obj.setPassword(password);
-                obj.setStatus(status);
-                obj.setType(type);
-                obj.setUser_name(user_name);
-
-                result.add(obj);
-
-            }
-            result.forEach(x -> System.out.println(x.toString()));
-
+        HttpSession session=request.getSession(false);
+        String name = (String) session.getAttribute("userName");
+        System.out.println(name);
+        
+        
+		/*
+        try (Connection con = DriverManager.getConnection(url, user, psw))
+                 {
+			
+           
+            System.out.println(id);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM public.\"Detail\" WHERE id_User LIKE '"+id+"'");
+            ResultSet rs = pst.executeQuery();
+            
+            
+			if(rs==null) {
+				
+				
+			}else {
+				
+	            while (rs.next()) {            	
+	            	
+	            }
+	             
+			  	
+			}
+			
+            
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
+		//if request is not from HttpServletRequest, you should do a typecast before
+		  //save message in session
 		
+		
+	
 	}
 
 	/**
