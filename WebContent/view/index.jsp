@@ -27,7 +27,7 @@
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color:black" onclick="openForm()">S'inscrire</a><br>
-						<a href="#" style="color:black">Mot de passe oubli� </a>
+						<a href="#" style="color:black">Mot de passe oublié </a>
 						
 					</fieldset>
 				</form>
@@ -44,11 +44,11 @@
 						<input type="email" placeholder="Adresse email" name="email" required class="field">
 						<input type="password" placeholder="Mot de passe" name="password" required class="field">
 						<input type="year" placeholder="year" name="year" required class="field">
-						<input type="password" placeholder="V�rification du mot de passe" name="secondPassword" required class="field">
+						<input type="password" placeholder="Vérification du mot de passe" name="secondPassword" required class="field">
 						<br>
 						<div class="radio_but">
 							<input type="radio" id="client" name="categorie" value="Client"> Client
-							<input type="radio" id="commercant" name="categorie" value="Commercant"> Commer�ant
+							<input type="radio" id="commercant" name="categorie" value="Commercant"> Commerçant
 						</div>
 						<br>
 						<button type="submit" class="btnn">Valider</button>
@@ -67,7 +67,7 @@
 					<img class="marque" src="https://www.vectorsland.com/imgd/l25301-boulangerie-leveneur-logo-60344.png">
 					<br>
 					<br>
-					<h6>Intéressé par nos services ?</h6>
+					<h6>IntÃ©ressÃ© par nos services ?</h6>
 					<br>
 					<img src="https://i0.wp.com/www.ucaubenas.com/wp-content/uploads/email-logo.png?fit=256%2C256" class="icon"> camelito.illico@presto.fr <br>
 					<img src="https://i.ya-webdesign.com/images/telephone-icon-png-6.png" class="icon"> 06 77 88 77 88 <br> <br>
@@ -79,7 +79,7 @@
 			<div class="right_div">
 				<img src="../public/images/hands.jpg" class="animated_img">
 				<div class="behind_right">
-					<h6>Notre équipe</h6>
+					<h6>Notre Ã©quipe</h6>
 					<img class="equipe" src="../public/images/equipe.png">
 				</div>
 			</div>

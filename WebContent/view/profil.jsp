@@ -79,10 +79,10 @@
 	<fieldset>
 	<img  class="profil img-responsive" src="../public/images/Add_User.png" alt="Add User" width="25%" height="120"/>
 	</fieldset> 
-	<p class="success">Réussite : </p>
+	<p class="success">RÃ©ussite : </p>
 	<div class="form-group row">
     <img class="img-responsive"  src="../public/images/pieces.png" alt="Pile de piece" width="15%" height="17%"/>
-    <p class="col-form-label">10€ d'économisés</p>
+    <p class="col-form-label">10â‚¬ d'Ã©conomisÃ©s</p>
   	</div>
 	<div class="form-group row">
     <img class="img-responsive"  src="../public/images/podium.png" alt="Podium" width="15%" height="17%"/>
@@ -90,7 +90,7 @@
   	</div>
   	<div class="form-group row">
     <img class="img-responsive"  src="../public/images/medaille.png" alt="medaille" width="10%" height="10%"/>
-    <p class="col-form-label">400 points cumulés</p>
+    <p class="col-form-label">400 points cumulÃ©s</p>
   	</div>
 	
 	
