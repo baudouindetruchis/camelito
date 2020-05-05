@@ -71,20 +71,20 @@ public class InscriptionForm extends HttpServlet {
 		try (Connection con = DriverManager.getConnection(url, user, psw)) {
 			
 			//if the two password match
-			System.out.println(password);
-			System.out.println(secondPassword);
-			System.out.println(password == secondPassword);
 			if (password.contentEquals(secondPassword)) { 
 				//add a user to the bdd based on form value
 				PreparedStatement addUser = con.prepareStatement("INSERT INTO public.users(user_name, mail, type, password) "
 						+ "VALUES('"+ pseudo + "','" + email + "'," + type + ",'" + password + "')");
 				addUser.execute();
-				
 				//get auto generated id
 				PreparedStatement getId = con.prepareStatement("SELECT MAX(ID) AS id FROM public.users LIMIT 1");
 				ResultSet rs = getId.executeQuery();
 				rs.next();
 				int id = rs.getInt("id");
+				//add a details to the bdd based on form value
+				PreparedStatement addDetail = con.prepareStatement("INSERT INTO public.details(id_user, last_name, first_name)"
+						+ "VALUES("+ id + ",'" + lastname + "','" + firstname + "')");
+				addDetail.execute(); //TODO if client/asso init score and list				
 				
 				// create the object user
 				User obj = new User();
@@ -93,12 +93,16 @@ public class InscriptionForm extends HttpServlet {
 				obj.setPassword(password);
 				obj.setType(type);
 				obj.setUser_name(pseudo);
+				obj.setFirst_name(firstname);
+				obj.setLast_name(lastname);
 
 				//add all value to the 
 				session.setAttribute("user", obj);
 				session.setAttribute("user_id", obj.getId());
 				session.setAttribute("mail", obj.getMail());
 				session.setAttribute("userName", obj.getUser_name());
+				session.setAttribute("fName", obj.getFirst_name());
+				session.setAttribute("lName", obj.getLast_name());
 
 				//finaly load the profil page
 				page = "./view/profil.jsp";
