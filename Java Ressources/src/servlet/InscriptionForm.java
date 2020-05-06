@@ -6,7 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -42,7 +44,6 @@ public class InscriptionForm extends HttpServlet {
 		//get values from the form request
 		String lastname = request.getParameter("lastname");
 		String firstname = request.getParameter("firstname");
-		String year = request.getParameter("year");
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -60,6 +61,21 @@ public class InscriptionForm extends HttpServlet {
 			type = 3;
 
 		}
+		
+		String promotion =request.getParameter("year");
+		int year = 0;
+		LocalDate currentdate = LocalDate.now();
+		int currentYear = currentdate.getYear();
+		switch (promotion){
+		
+			case "3": year = currentYear + 3;
+			case "4": year = currentYear + 2;
+			case "5": year = currentYear + 1;
+			
+			case "1": year = currentYear + 5;
+			
+			case "2": year = currentYear + 4;
+}
 
 		//connect to the bdd
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
@@ -82,8 +98,8 @@ public class InscriptionForm extends HttpServlet {
 				rs.next();
 				int id = rs.getInt("id");
 				//add a details to the bdd based on form value
-				PreparedStatement addDetail = con.prepareStatement("INSERT INTO public.details(id_user, last_name, first_name)"
-						+ "VALUES("+ id + ",'" + lastname + "','" + firstname + "')");
+				PreparedStatement addDetail = con.prepareStatement("INSERT INTO public.details(id_user, last_name, first_name, promotion)"
+						+ "VALUES("+ id + ",'" + lastname + "','" + firstname +"','"+ year+ "')");
 				addDetail.execute(); //TODO if client/asso init score and list				
 				
 				// create the object user
@@ -92,15 +108,16 @@ public class InscriptionForm extends HttpServlet {
 				obj.setMail(email);
 				obj.setPassword(password);
 				obj.setType(type);
-				obj.setUser_name(pseudo);
+				obj.setPseudo(pseudo);
 				obj.setFirst_name(firstname);
 				obj.setLast_name(lastname);
+				obj.setPromotion(year);
 
 				//add all value to the 
 				session.setAttribute("user", obj);
 				session.setAttribute("user_id", obj.getId());
 				session.setAttribute("mail", obj.getMail());
-				session.setAttribute("userName", obj.getUser_name());
+				session.setAttribute("userName", obj.getPseudo());
 				session.setAttribute("fName", obj.getFirst_name());
 				session.setAttribute("lName", obj.getLast_name());
 

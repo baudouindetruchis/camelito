@@ -5,7 +5,7 @@ import java.util.List;
 
 public class User {
 	int id;
-	String user_name;
+	String pseudo;
 	String mail;
 	int type;
 	String password;
@@ -14,6 +14,16 @@ public class User {
 	String first_name;
 	String last_name;
 	int score;
+	int promotion;
+	
+	public int getPromotion() {
+		return promotion;
+	}
+
+	public void setPromotion(int promotion) {
+		this.promotion = promotion;
+	}
+
 	List<Integer> list_success = new ArrayList<Integer>();
 
 	public String getFirst_name() {
@@ -56,12 +66,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getPseudo() {
+		return pseudo;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 
 	public String getMail() {
@@ -97,7 +107,7 @@ public class User {
 	}
 
 	public String toString() {
-		return "id:" + id + " user_name:" + user_name + " mail:" + mail + " type:" + type + " password:" + password
+		return "id:" + id + " user_name:" + pseudo + " mail:" + mail + " type:" + type + " password:" + password
 				+ " status:" + status;
 	}
 }

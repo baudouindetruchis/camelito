@@ -78,14 +78,14 @@ public class ConnexionForm extends HttpServlet {
 	            	String firstname = res.getString("first_name");
 	            	String lastname = res.getString("last_name");
 	            	
-	            	//create coresponding user object
+	            	//create corresponding user object
 	            	User obj = new User();
 	                obj.setId(id);
 	                obj.setMail(mail);
 	                obj.setPassword(password);
 	                obj.setStatus(status);
 	                obj.setType(type);
-	                obj.setUser_name(user_name);
+	                obj.setPseudo(user_name);
 					obj.setFirst_name(firstname);
 					obj.setLast_name(lastname);
 
@@ -96,9 +96,9 @@ public class ConnexionForm extends HttpServlet {
 	            //set session attribute
 	            session.setAttribute("user",connectedUser);  
 	            session.setAttribute("user_id",connectedUser.getId());  
-	            session.setAttribute("mail",connectedUser.getMail());  
+	           // session.setAttribute("mail",connectedUser.getMail());  
 	            session.setAttribute("type",connectedUser.getType());
-	            session.setAttribute("userName",connectedUser.getUser_name());
+	            session.setAttribute("userName",connectedUser.getPseudo());
 	            //user details
 				session.setAttribute("fName", connectedUser.getFirst_name());
 				session.setAttribute("lName", connectedUser.getLast_name());
