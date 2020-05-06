@@ -30,7 +30,9 @@
 	<div id="includedHeader"></div>
 	<div id="ordersDiv">
 		<h1 style="font-size: 2vw">Mes commandes :</h1>
-		<button>N°2504</button>
+		<c:forEach var="comm" items="${sessionScope.commandeList}">
+			<button>NÂ°<c:out value="${comm}"/></button>
+	  	</c:forEach>
 	</div>
 	<div id="cartDiv">
 	<h1 style="font-size: 2vw">Mon panier :</h1>
@@ -38,9 +40,10 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">Article</th>
-	      <th scope="col">Commerçant</th>
+	      <th scope="col">CommerÃ§ant</th>
 	      <th scope="col">Quant.</th>
 	      <th scope="col">Prix</th>
+	      <th scope="col">  </th>
 	      <th scope="col">  </th>
 	      <th scope="col">  </th>
 	    </tr>
@@ -48,19 +51,20 @@
 	  <tbody>
 	  <c:forEach var="artc" items="${sessionScope.panierList}">
 		  <tr>
-		  	<td><c:out value="${artc.id}"/></td>
-		  	<td><c:out value="${artc.id}"/></td>
 		  	<td><c:out value="${artc.name}"/></td>
-		  	<td><c:out value="${artc.name}"/></td>
+		  	<td><c:out value="${artc.magasin}"/></td>
+		  	<td><c:out value="${artc.quantity}"/></td>
+		  	<td><c:out value="${artc.selling_price}"/></td>
+	        <td><button>-1</button></td>
+	        <td><button>+1</button></td>
 	        <td><button>Supp</button></td>
-	        <td><button>Modif</button></td>
 	   	  </tr>
 	  </c:forEach>
 	    <tr>
 	      <td></td>
 	      <td></td>
 	      <td>Total</td>
-	      <td>7€</td>
+		  	<td><c:out value="${sessionScope.total_price}"/>â‚¬</td>
 	      <td></td>
 	      <td></td>
 	    </tr>

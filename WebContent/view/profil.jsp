@@ -93,17 +93,10 @@
     <p class="col-form-label">400 points cumulés</p>
   	</div>
 	
-	
-	
-   
   </div>
 </div>
 </div>
-    
-    
-  
-	
-	
+
 </body>
 
 </html>

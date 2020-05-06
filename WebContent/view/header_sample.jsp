@@ -34,7 +34,7 @@
 						<a class="nav-link" href="shopping.jsp">Shopping</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="panier.jsp">Panier</a>
+						<a class="nav-link" href="../LoadPanier">Panier</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="score.jsp">Classement</a>
