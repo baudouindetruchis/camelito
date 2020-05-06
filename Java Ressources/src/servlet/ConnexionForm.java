@@ -51,7 +51,7 @@ public class ConnexionForm extends HttpServlet {
         
         try (Connection con = DriverManager.getConnection(url, user, psw))
         {
-        	PreparedStatement pst = con.prepareStatement("SELECT * FROM public.\"User\" WHERE user_name LIKE '"+userName+"' AND password LIKE '"+pwd+"'");
+        	PreparedStatement pst = con.prepareStatement("SELECT * FROM public.users WHERE user_name LIKE '"+userName+"' AND password LIKE '"+pwd+"'");
         	ResultSet rs = pst.executeQuery();
 			
 			if(rs==null) {
@@ -62,14 +62,23 @@ public class ConnexionForm extends HttpServlet {
 			}else {
 				List<User> result = new ArrayList<>();
 				User connectedUser;
-	            while (rs.next()) {            	
+	            while (rs.next()) {     
+	            	//get value from bdd
 	            	int id = rs.getInt("id");
 	            	String user_name = rs.getString("user_name");
-	            	String mail = rs.getString("Mail");
-	            	int type  = rs.getInt("Type");
-	            	String password = rs.getString("Password");
-	            	boolean status = rs.getBoolean("Status");
+	            	String mail = rs.getString("mail");
+	            	int type  = rs.getInt("type");
+	            	String password = rs.getString("password");
+	            	boolean status = rs.getBoolean("status");
 	            	
+	            	//get details
+					PreparedStatement getDetails = con.prepareStatement("SELECT * FROM public.details WHERE id_user = "+id+" LIMIT 1");
+					ResultSet res = getDetails.executeQuery();
+					res.next();
+	            	String firstname = res.getString("first_name");
+	            	String lastname = res.getString("last_name");
+	            	
+	            	//create coresponding user object
 	            	User obj = new User();
 	                obj.setId(id);
 	                obj.setMail(mail);
@@ -77,19 +86,25 @@ public class ConnexionForm extends HttpServlet {
 	                obj.setStatus(status);
 	                obj.setType(type);
 	                obj.setUser_name(user_name);
+					obj.setFirst_name(firstname);
+					obj.setLast_name(lastname);
 
 	                result.add(obj);
-	                page = "./view/profil.jsp";
 
 	            }
 	            connectedUser=result.get(0);
+	            //set session attribute
 	            session.setAttribute("user",connectedUser);  
 	            session.setAttribute("user_id",connectedUser.getId());  
-	            session.setAttribute("mail",connectedUser.getMail());
+	            session.setAttribute("mail",connectedUser.getMail());  
+	            session.setAttribute("type",connectedUser.getType());
 	            session.setAttribute("userName",connectedUser.getUser_name());
-	            
-	            session.setAttribute("msg", "Hello world");  
-			  	
+	            //user details
+				session.setAttribute("fName", connectedUser.getFirst_name());
+				session.setAttribute("lName", connectedUser.getLast_name());
+
+				//load page
+                page = "./view/profil.jsp";
 			}
 			
             

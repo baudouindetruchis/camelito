@@ -1,36 +1,47 @@
-body{
-	margin-top:100px;
-	margin-left:10%;
-	background-image: linear-gradient(white,#fdf8f0,#fcf3e4, #f3daba);
-	background-attachment: fixed;
-	font-size:2vw;
+
+
+.container {
+	width: 100%;
+	margin-top: 5%;
 }
 
-h1{
-	margin-bottom:4%;
+.container h2 {
+	background: #764e17;
+	color: #fff;
+	width: 175px;
+	font-size: 24px;
+	padding: 8px;
+	height: 40px;
+}
+.container .success {
+	width: 210px;
 }
 
 
 label{
 	font-weight: bold;
+	border-bottom: 2px solid #764e17;	
 }
 
 img.profil{
 	margin-left:25%;
+	width: auto;
+	height: 80px;
 }
 
-p.success{
-	font-weight: bold;
+.edit {
+	background-image: url(../images/edit.png);
+	background-repeat: no-repeat;
+	background-size: 15px,15px;
+	background-position: right;
 }
 
 input.editable{
-
-background-image: url(../images/edit.png);
- background-repeat: no-repeat;
-background-size: 15px,15px;
-background-position: right;
-
+	position: relative;
+	left:0px;
+	right:0px;
 }
+
 input.btn{	
 	background-image: linear-gradient(#e0a85d,#b47623);
 	border-radius: 10px;
@@ -42,6 +53,7 @@ input.btn{
 	font-size:2vw;
 	margin-top:7%;
 	margin-left:25%;
+	margin-bottom: 10%;
 }
 
 /*switch*/
@@ -51,7 +63,7 @@ input.btn{
   width: 60px;
   height: 34px;
   margin-left:10px;
-  margin-top:2%;
+  border-bottom: 0px;
 }
 
 /* Hide default HTML checkbox */
@@ -69,7 +81,7 @@ input.btn{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #000000;
+  background-color: #c0c0c0;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -99,9 +111,43 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 25px;
 }
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.img-responsive {
+	position: relative;
+	align-content: center;
+}
+
+@media (min-width: 576px) and (max-width:767px) {
+	.edit {
+	width: 230px;
+	}
+	.col-form-label {
+	margin-right: 80px;
+	}
+	.noedit {
+	margin-right: 0px;
+	}
+}
+@media (min-width: 768px) and (max-width:991px) {
+	.edit {
+	width: 307px;
+	}
+}
+
+@media (min-width: 992px) and (max-width:1199px) {
+	.edit {
+	width: 397px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.edit {
+	width: 480px;
+	}
 }

@@ -124,15 +124,15 @@ h6 {
 	border-radius: 20px;
 }
 
-.close_button{
+.close_button {
 	position: absolute;
 	width: 30px;
 	right: 3%;
 }
 
 .close_button:hover {
-  opacity: 70%;
-  transition: .1s;
+	opacity: 70%;
+	transition: .1s;
 	transform: translate(0,1px);
 }
 
