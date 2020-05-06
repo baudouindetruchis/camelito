@@ -40,7 +40,7 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">Article</th>
-	      <th scope="col">Commerçant</th>
+	      <th scope="col">Commercant</th>
 	      <th scope="col">Quant.</th>
 	      <th scope="col">Prix</th>
 	      <th scope="col">  </th>

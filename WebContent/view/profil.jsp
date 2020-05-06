@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="fr">
 <meta charset="UTF-8">
@@ -33,24 +34,28 @@
     <h2>Mon profil</h2>
       <form>
       
+      
+      <c:set var = "usr" scope = "session" value = "${sessionScope.user}"/>
+          
+      
        <div  class="form-group row">
     <label for="name" class="col-form-label">Nom : </label>
     <div class="col-sm-6">
-      <p class="form-control-plaintext" id="name"><%=session.getAttribute("lName")%></p>
+      <p class="form-control-plaintext" id="name"><c:out value="${usr.last_name}"/></p>
     </div>
   </div>
   
   <div class="form-group row">
     <label for="surname" class="col-form-label">Prénom : </label>
     <div class="col-sm-7">
-      <p class="form-control-plaintext" id="surname"><%=session.getAttribute("fName")%></p>
+      <p class="form-control-plaintext" id="surname"><c:out value="${usr.first_name}"/></p>
     </div>
   </div>
   
   <div class="form-group row">
     <label for="pseudo" class="col-form-label">Pseudo : </label>
     <div class="col-sm-7">
-      <p class="form-control-plaintext" id="pseudo"><%=session.getAttribute("userName")%></p>
+      <p class="form-control-plaintext" id="pseudo"><c:out value="${usr.pseudo}"/></p>
     </div>
   </div>
       
@@ -58,11 +63,12 @@
   <div class="form-group row">
     <label for="mail" class="col-form-label">Adresse mail : </label>
     <div class="col-sm-7">
-      <p class="form-control-plaintext" id="mail"><%=session.getAttribute("mail")%></p>
+      <p class="form-control-plaintext" id="mail"><c:out value="${usr.mail}"/></p>
     </div>
   </div>
-      <c:out value="${sessionScope.mail}" />
-  
+      <c:choose>
+      
+  <c:when test="${sessionScope.type=='2'}">
     <div class="form-group row">
 	    <label for="mode" class="col-form-label">Mode client : </label>
 	   	<label class="switch">
@@ -70,6 +76,17 @@
 	  	<span class="slider round"></span>
 		</label>
   	</div>
+  	</c:when> 
+  	
+  	<c:when test="${sessionScope.type=='1'}">
+	  	 <div class="form-group row">
+	    <label for="Promo" class="col-form-label">Promotion : </label>
+	    <div class="col-sm-7">
+	      <p class="form-control-plaintext" id="promo"><c:out value="${usr.promotion}"/></p>
+	    </div>
+	  </div>
+  	</c:when> 
+  	</c:choose>
   
   <input class="btn btn-basic" type="submit"  value="Modifier" />
 	

@@ -24,7 +24,10 @@
 					</fieldset>
 
 					<input class="form-control" type="text" name="userName" placeholder="User Name" required/></br>
-					<input class="form-control" type="password" name="password" placeholder="Mot de passe" required /></br>
+					<input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe" required /></br>
+					
+					<input type="checkbox" id="pswVisible" name="pswVisible" onclick="showPassword()"> Afficher le mot de passe
+					
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color:black" onclick="openForm()">S'inscrire</a><br>
@@ -43,13 +46,30 @@
 						<input type="lastname" placeholder="Nom" name="lastname" required class="field">
 						<input type="firstname" placeholder="Prenom" name="firstname" required class="field">
 						<input type="email" placeholder="Adresse email" name="email" required class="field">
-						<input type="password" placeholder="Mot de passe" name="password" required class="field">
-						<input type="year" placeholder="year" name="year" required class="field">
+	
+						<label for="year">Promotion : </label>
+							<select type="number" id="year" name="year" required class="field">
+								<option > Choisir</option>					
+								<option value=3>A1</option>
+								<option value=4>A2</option>
+								<option value=5>A3</option>
+								<option value=1>P1</option>
+								<option value=2>P2</option>
+								<option value=1>I1</option>
+								<option value=2>I2</option>
+								<option value=0>Autre</option>
+							</select>
+					
+						<input type="password" placeholder="Mot de passe" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+						title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères"required class="field">
+						
 						<input type="password" placeholder="Vérification du mot de passe" name="secondPassword" required class="field">
+						
 						<br>
 						<div class="radio_but">
-							<input type="radio" id="client" name="categorie" value="Client"> Client
-							<input type="radio" id="commercant" name="categorie" value="Commercant"> Commerçant
+							<input type="radio" id="client" name="categorie" value="Client"required> Client
+							<input type="radio" id="commercant" name="categorie" value="Commercant"required> Commerçant
+							<input type="radio" id="asso" name="categorie" value="Asso"required> Association
 						</div>
 						<br>
 						<button type="submit" class="btnn">Valider</button>
@@ -87,6 +107,9 @@
 
 		</div>
 	</div>
+	
+
+	
 </body>
 
 </html>
