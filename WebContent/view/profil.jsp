@@ -96,7 +96,6 @@
     <img class="img-responsive"  src="../public/images/medaille.png" alt="medaille" width="10%" height="10%"/>
     <p class="col-form-label">400 points cumulés</p>
   	</div>
-
   </div>
 </div>
 </div>

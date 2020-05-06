@@ -28,30 +28,38 @@
 			<li class="nav-item">
 				<a class="nav-link" href="profil.jsp">Profil</a>
 			</li>
-			
 			<c:choose>
-			    <c:when test="${session.getAttribute('type')=='1'}">
-			        type1
+			    <c:when test="${sessionScope.type=='1'}">
+					<li class="nav-item">
+						<a class="nav-link" href="shopping.jsp">Shopping</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../LoadPanier">Panier</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="score.jsp">Classement</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="contact.jsp">Contact</a>
+					</li>
 			    </c:when>  
-			    <c:when test="${session.getAttribute('type')=='2'}">
-			        type1
-			    </c:when>    
-			    <c:otherwise>
-			        other
-			    </c:otherwise>
+			    <c:when test="${sessionScope.type=='2'}">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Eleves</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Magasins</a>
+					</li>
+			    </c:when>  
+			    <c:when test="${sessionScope.type=='3'}">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Stock</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Messagerie</a>
+					</li>
+			    </c:when>  
 			</c:choose>
-			<li class="nav-item">
-				<a class="nav-link" href="shopping.jsp">Shopping</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="panier.jsp">Panier</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="score.jsp">Classement</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="contact.jsp">Contact</a>
-			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="<%=request.getContextPath()%>/Deconnexion">Quitter</a>
 			</li>

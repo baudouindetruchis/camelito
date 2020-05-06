@@ -96,7 +96,8 @@ public class ConnexionForm extends HttpServlet {
 	            //set session attribute
 	            session.setAttribute("user",connectedUser);  
 	            session.setAttribute("user_id",connectedUser.getId());  
-	            session.setAttribute("mail",connectedUser.getMail());
+	            session.setAttribute("mail",connectedUser.getMail());  
+	            session.setAttribute("type",connectedUser.getType());
 	            session.setAttribute("userName",connectedUser.getUser_name());
 	            //user details
 				session.setAttribute("fName", connectedUser.getFirst_name());
