@@ -1,5 +1,3 @@
-
-
 .container {
 	width: 100%;
 	margin-top: 5%;
@@ -29,20 +27,7 @@ img.profil{
 	height: 80px;
 }
 
-.edit {
-	background-image: url(../images/edit.png);
-	background-repeat: no-repeat;
-	background-size: 15px,15px;
-	background-position: right;
-}
-
-input.editable{
-	position: relative;
-	left:0px;
-	right:0px;
-}
-
-input.btn{	
+input[type= button]{	
 	background-image: linear-gradient(#e0a85d,#b47623);
 	border-radius: 10px;
 	border: 1px solid #b47623;
@@ -52,8 +37,6 @@ input.btn{
 	font-weight: bold;
 	font-size:2vw;
 	margin-top:7%;
-	margin-left:25%;
-	margin-bottom: 10%;
 }
 
 /*switch*/

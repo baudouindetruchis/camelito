@@ -92,6 +92,7 @@ public class ConnexionForm extends HttpServlet {
     					res.next();
     	            	String firstname = res.getString("first_name");
     	            	String lastname = res.getString("last_name");
+    	            	int promotion = res.getInt("promotion");
     	            	
     	            	//create corresponding user object
     	            	User obj = new User();
@@ -103,6 +104,7 @@ public class ConnexionForm extends HttpServlet {
     	                obj.setPseudo(user_name);
     					obj.setFirst_name(firstname);
     					obj.setLast_name(lastname);
+    					obj.setPromotion(promotion);
 
     	                result.add(obj);
 
@@ -110,13 +112,8 @@ public class ConnexionForm extends HttpServlet {
     	            connectedUser=result.get(0);
     	            //set session attribute
     	            session.setAttribute("user",connectedUser);  
-    	            session.setAttribute("user_id",connectedUser.getId());  
-    	           // session.setAttribute("mail",connectedUser.getMail());  
+    	           
     	            session.setAttribute("type",connectedUser.getType());
-    	            session.setAttribute("userName",connectedUser.getPseudo());
-    	            //user details
-    				session.setAttribute("fName", connectedUser.getFirst_name());
-    				session.setAttribute("lName", connectedUser.getLast_name());
 
     				//load page
                     page = "./view/profil.jsp";

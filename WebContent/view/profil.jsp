@@ -55,7 +55,7 @@
   <div class="form-group row">
     <label for="pseudo" class="col-form-label">Pseudo : </label>
     <div class="col-sm-7">
-      <p class="form-control-plaintext" id="pseudo"><c:out value="${usr.pseudo}"/></p>
+      <input type="text"  class="form-control-plaintext" id="pseudo" value="${usr.pseudo}" disabled>
     </div>
   </div>
       
@@ -63,7 +63,7 @@
   <div class="form-group row">
     <label for="mail" class="col-form-label">Adresse mail : </label>
     <div class="col-sm-7">
-      <p class="form-control-plaintext" id="mail"><c:out value="${usr.mail}"/></p>
+    <input type="text"  class="form-control-plaintext" id="mail" value="${usr.mail}" disabled>
     </div>
   </div>
       <c:choose>
@@ -78,17 +78,19 @@
   	</div>
   	</c:when> 
   	
-  	<c:when test="${sessionScope.type=='1' && usr.promotion!=0}">
+  	<c:when test="${sessionScope.type=='1'}">
 	  	 <div class="form-group row">
 	    <label for="Promo" class="col-form-label">Promotion : </label>
 	    <div class="col-sm-7">
-	      <p class="form-control-plaintext" id="promo"><c:out value="${usr.promotion}"/></p>
+	      <input type="text"  class="form-control-plaintext" id="promo" value="${usr.promotion}" disabled>
 	    </div>
 	  </div>
   	</c:when> 
   	</c:choose>
   
-  <input class="btn btn-basic" type="submit"  value="Modifier" />
+  <input class="btn" type="button" value="Modifier" onclick="changePage()" />
+  <input class="btn" id="btnSaveChange"  value="SaveChange" hidden/>
+
 	
     </form>
 
@@ -116,6 +118,28 @@
   </div>
 </div>
 </div>
+
+<script>
+ function changePage() {
+	 btnSaveChange
+
+	var x = document.getElementById("pseudo").disabled;
+	if(x){
+		document.getElementById("pseudo").disabled=false;
+		document.getElementById("mail").disabled=false;
+		document.getElementById("promo").disabled=false;
+		document.getElementById("btnSaveChange").hidden = false;
+	}else{
+		document.getElementById("pseudo").disabled=true;
+		document.getElementById("mail").disabled=true;
+		document.getElementById("promo").disabled=true;
+		document.getElementById("btnSaveChange").hidden = true;
+	}
+	
+	
+}
+
+</script>
 
 </body>
 
