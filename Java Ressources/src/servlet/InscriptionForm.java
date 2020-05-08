@@ -55,10 +55,13 @@ public class InscriptionForm extends HttpServlet {
 		switch (categorie) {
 		case "Client":
 			type = 1;
+			break;
 		case "Asso":
 			type = 2;
+			break;
 		case "Commercant":
 			type = 3;
+			break;
 
 		}
 		
@@ -66,15 +69,26 @@ public class InscriptionForm extends HttpServlet {
 		int year = 0;
 		LocalDate currentdate = LocalDate.now();
 		int currentYear = currentdate.getYear();
+		int currentMonth =currentdate.getMonthValue();
+		int delta = 0;
+		if(currentMonth<=7)  delta = 1;
 		switch (promotion){
 		
-			case "3": year = currentYear + 3;
-			case "4": year = currentYear + 2;
-			case "5": year = currentYear + 1;
-			
-			case "1": year = currentYear + 5;
-			
-			case "2": year = currentYear + 4;
+			case "3":
+				year = currentYear + 3 - delta;
+				break;
+			case "4": 
+				year = currentYear + 2 - delta;
+				break;
+			case "5": 
+				year = currentYear + 1 - delta;
+				break;			
+			case "1":
+				year = currentYear + 5 - delta;
+				break;			
+			case "2":
+				year = currentYear + 4 - delta;
+				break;
 }
 
 		//connect to the bdd
@@ -87,7 +101,9 @@ public class InscriptionForm extends HttpServlet {
 		try (Connection con = DriverManager.getConnection(url, user, psw)) {
 			
 			//if the two password match
-			if (password.contentEquals(secondPassword)) { 
+			if (password.contentEquals(secondPassword)) {
+				password = BCrypt.hashPassword(password);
+				
 				//add a user to the bdd based on form value
 				PreparedStatement addUser = con.prepareStatement("INSERT INTO public.users(user_name, mail, type, password) "
 						+ "VALUES('"+ pseudo + "','" + email + "'," + type + ",'" + password + "')");
@@ -120,6 +136,7 @@ public class InscriptionForm extends HttpServlet {
 				session.setAttribute("userName", obj.getPseudo());
 				session.setAttribute("fName", obj.getFirst_name());
 				session.setAttribute("lName", obj.getLast_name());
+				session.setAttribute("type",obj.getType());
 
 				//finaly load the profil page
 				page = "./view/profil.jsp";

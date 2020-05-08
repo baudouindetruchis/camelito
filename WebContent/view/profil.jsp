@@ -78,7 +78,7 @@
   	</div>
   	</c:when> 
   	
-  	<c:when test="${sessionScope.type=='1'}">
+  	<c:when test="${sessionScope.type=='1' && usr.promotion!=0}">
 	  	 <div class="form-group row">
 	    <label for="Promo" class="col-form-label">Promotion : </label>
 	    <div class="col-sm-7">
