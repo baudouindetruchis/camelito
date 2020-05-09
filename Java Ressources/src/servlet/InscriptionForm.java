@@ -131,12 +131,9 @@ public class InscriptionForm extends HttpServlet {
 
 				//add all value to the 
 				session.setAttribute("user", obj);
-				session.setAttribute("user_id", obj.getId());
-				session.setAttribute("mail", obj.getMail());
-				session.setAttribute("userName", obj.getPseudo());
-				session.setAttribute("fName", obj.getFirst_name());
-				session.setAttribute("lName", obj.getLast_name());
 				session.setAttribute("type",obj.getType());
+				session.setAttribute("promo",obj.getPromotion());
+				session.setAttribute("id",obj.getId());
 
 				//finaly load the profil page
 				page = "./view/profil.jsp";
