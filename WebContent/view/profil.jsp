@@ -16,25 +16,23 @@
       	$("#includedContent").load("header_sample.jsp"); 
     });
     </script>
+    
+    
 <head>
 	<title>Camelito - Profil</title>
+	<script src="../public/js/profil.js"></script>
 	
 </head>
 
-
-
-<body>
-<%-- <jsp:include page="/profilForm" /> --%>
-	
+<body>	
 <div id="includedContent"></div>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
     <h2>Mon profil</h2>
-      <form>
-      
-      
+      <form action="../ModifyProfilForm">
+ 
       <c:set var = "usr" scope = "session" value = "${sessionScope.user}"/>
           
       
@@ -55,16 +53,19 @@
   <div class="form-group row">
     <label for="pseudo" class="col-form-label">Pseudo : </label>
     <div class="col-sm-7">
-      <input type="text"  class="form-control-plaintext" id="pseudo" value="${usr.pseudo}" disabled>
+      <input type="text" class="form-control-plaintext" name="pseudo" id="pseudo" value="${usr.pseudo}" disabled  required>				
+      
     </div>
+   <input class="form-control-plaintext" type="text" name="newPseudo" id="newPseudo" placeholder="newPseudo" hidden/></br>
   </div>
       
   
   <div class="form-group row">
     <label for="mail" class="col-form-label">Adresse mail : </label>
     <div class="col-sm-7">
-    <input type="text"  class="form-control-plaintext" id="mail" value="${usr.mail}" disabled>
+    <input type="email" class="form-control-plaintext" id="mail" value="${usr.mail}" disabled>
     </div>
+    <input class="form-control-plaintext" type="text" name="newEmail" id="newEmail" placeholder="newEmail" hidden/></br>
   </div>
       <c:choose>
       
@@ -78,24 +79,51 @@
   	</div>
   	</c:when> 
   	
-  	<c:when test="${sessionScope.type=='1'}">
+  	<c:when test="${sessionScope.type=='1' }">
+  	<c:choose>
+  	<c:when test="${sessionScope.promo=='0'}">
 	  	 <div class="form-group row">
 	    <label for="Promo" class="col-form-label">Promotion : </label>
 	    <div class="col-sm-7">
+	    
+	      <input type="text"  class="form-control-plaintext" id="promo" value="Pas concerné" disabled >
+	    </div>
+	    </div>
+	  </c:when>
+	  
+	  <c:otherwise>
+	   <div class="form-group row">
+	    <label for="Promo" class="col-form-label">Promotion : </label>
+	    <div class="col-sm-7">
+	    
 	      <input type="text"  class="form-control-plaintext" id="promo" value="${usr.promotion}" disabled>
 	    </div>
-	  </div>
+	    </div>
+	  
+	  </c:otherwise> 
+	  </c:choose>
+	   <input class="form-control-plaintext" type="number" name="newPromo" id="newPromo" placeholder="Entrez votre année d'optention du diplôme" hidden/></br>
+	 
   	</c:when> 
   	</c:choose>
+  	<div class="form-group row" id="Mdp" hidden>
+	  	<label for="oldPassword" class="col-form-label" >Ancien mot de passe : </label>
+	  	<input class="form-control-plaintext"  type="password" placeholder="Ancien Mot de passe" name="oldPassword" >
+	  	<label for="newPassword" class="col-form-label" >Nouveau mot de passe : </label>
+	  	<input class="form-control-plaintext"  type="password" placeholder="Nouveau mot de passe" name="newPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+				title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères" >
+		<label for="secondPassword" class="col-form-label">Nouveau mot de passe : </label>
+		<input class="form-control-plaintext" type="password" placeholder="Vérification du mot de passe" name="secondPassword" >
+  	</div>
+  	
+  	
   
-  <input class="btn" type="button" value="Modifier" onclick="changePage()" />
-  <input class="btn" id="btnSaveChange"  value="SaveChange" hidden/>
+  <input class="btn"  type="submit" id="btnSaveChange"  value="Save Changes"  onclick="saveChange()" hidden/>
+  <input class="btn" type="button" value="Modifier"  id="btnGoToEdit" onclick="goToEdit()" />
 
-	
     </form>
 
       </div>
-      
      
     <div  class="col-sm-6">	
     <h2 class="success">Mes réussites</h2>
@@ -119,27 +147,9 @@
 </div>
 </div>
 
-<script>
- function changePage() {
-	 btnSaveChange
+ 
 
-	var x = document.getElementById("pseudo").disabled;
-	if(x){
-		document.getElementById("pseudo").disabled=false;
-		document.getElementById("mail").disabled=false;
-		document.getElementById("promo").disabled=false;
-		document.getElementById("btnSaveChange").hidden = false;
-	}else{
-		document.getElementById("pseudo").disabled=true;
-		document.getElementById("mail").disabled=true;
-		document.getElementById("promo").disabled=true;
-		document.getElementById("btnSaveChange").hidden = true;
-	}
-	
-	
-}
 
-</script>
 
 </body>
 

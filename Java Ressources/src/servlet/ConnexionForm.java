@@ -112,7 +112,8 @@ public class ConnexionForm extends HttpServlet {
     	            connectedUser=result.get(0);
     	            //set session attribute
     	            session.setAttribute("user",connectedUser);  
-    	           
+    	            session.setAttribute("id",connectedUser.getId());
+    	            session.setAttribute("promo",connectedUser.getPromotion());
     	            session.setAttribute("type",connectedUser.getType());
 
     				//load page

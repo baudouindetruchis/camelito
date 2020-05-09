@@ -27,7 +27,7 @@ img.profil{
 	height: 80px;
 }
 
-input[type= button]{	
+input[type= button], input[type=submit]{	
 	background-image: linear-gradient(#e0a85d,#b47623);
 	border-radius: 10px;
 	border: 1px solid #b47623;
@@ -134,3 +134,9 @@ input:checked + .slider:before {
 	width: 480px;
 	}
 }
+
+
+
+
+
+
