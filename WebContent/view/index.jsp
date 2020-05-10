@@ -8,8 +8,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../public/css/login.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 	
 	
 	<link rel="icon" href="../public/images/logo_noback.png">
@@ -29,7 +27,7 @@
 
 					<input class="form-control" type="text" name="userName" placeholder="User Name" required/></br>
 					<input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe" required /></br>	
-					<input type="checkbox" id="pswVisible" name="pswVisible" onclick="showPassword('password')"> Afficher le mot de passe
+					<input type="checkbox" id="pswVisible" name="pswVisible" onclick="showPassword()"> Afficher le mot de passe
 					
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
@@ -66,7 +64,7 @@
 						<input  id="passwordInsc" type="password" placeholder="Mot de passe" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
 						title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères"required class="field">
 						<input id="passwordInsc" type="password" placeholder="Vérification du mot de passe" name="secondPassword" required class="field">
-						<input type="checkbox" id="pswVisible" name="pswVisible" onclick="showPassword('passwordInsc')"> Afficher les mots de passe
+						<input type="checkbox" id="pswVisible2" name="pswVisible2" onclick="showPasswordInscr()"> Afficher les mots de passe
 						<br>
 						<div class="radio_but">
 							<input type="radio" id="client" name="categorie" value="Client"required> Client
