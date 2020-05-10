@@ -17,17 +17,11 @@
     $(function(){
     	$("#includedHeader").load("header_sample.jsp"); 
     });
-    function btnCommClick(i) {
-    	console.log("comm"+i);
-    }
-    function btnLessClick(i) {
-    	console.log("less"+i);
-    }
-    function btnMoreClick(i) {
-    	console.log("less"+i);
-    }
-    function btnSuppClick(i) {
-    	console.log("less"+i);
+    function btnTabClick() {
+//     	$("#test").load(document.getElementById("myTable").innerHtml);
+//     	document.getElementById("test").innerHTML =document.getElementById("cartDiv").innerHTML
+		$('#cartDiv').load()
+    	console.log('refresh-')
     }
 </script> 
 
@@ -39,6 +33,7 @@
 </head>
 
 <body>
+	<div id="test"></div>
 	<div id="includedHeader"></div>
 	<div id="ordersDiv">
 		<h1 style="font-size: 2vw">Mes commandes :</h1>
@@ -48,7 +43,7 @@
 	</div>
 	<div id="cartDiv">
 	<h1 style="font-size: 2vw">Mon panier :</h1>
-	<table class="table table-striped">
+	<table id='myTable' class="table table-striped">
 	  <thead>
 	    <tr>
 	      <th scope="col">Article</th>
@@ -67,9 +62,9 @@
 		  	<td><c:out value="${artc.magasin}"/></td>
 		  	<td><c:out value="${artc.quantity}"/></td>
 		  	<td><c:out value="${artc.selling_price}"/></td>
-	        <td><a class="nav-link" href="../PanierClick?id=${artc.id}&act=less">-1</a></td>
-	        <td><a class="nav-link" href="../PanierClick?id=${artc.id}&act=more">+1</a></td>
-	        <td><a class="nav-link" href="../PanierClick?id=${artc.id}&act=supp">Supp</a></td>
+	        <td><a class="nav-link" onClick="btnTabClick()" href="../PanierClick?id=${artc.id}&act=less">-1</a></td>
+	        <td><a class="nav-link" onClick="btnTabClick()" href="../PanierClick?id=${artc.id}&act=more">+1</a></td>
+	        <td><a class="nav-link" onClick="btnTabClick()" href="../PanierClick?id=${artc.id}&act=supp">Supp</a></td>
 	   	  </tr>
 	  </c:forEach>
 	    <tr>

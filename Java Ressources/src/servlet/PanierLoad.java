@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import obj.Article;
+import obj.User;
 
 /**
  * Servlet implementation class LoadPanier
@@ -41,12 +42,13 @@ public class PanierLoad extends HttpServlet {
 			throws ServletException, IOException {
 
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
-		String user = "postgres";
+		String userBdd = "postgres";
 		String psw = "123";
 //		String page = "./view/index.jsp";
 		HttpSession session = request.getSession();
-		int user_id = (int) session.getAttribute("user_id");
-		try (Connection con = DriverManager.getConnection(url, user, psw)) {
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(url, userBdd, psw)) {
+			int user_id = user.getId();
 			//complete the part "mes commandes"
 			PreparedStatement getCommandes = con
 					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = true");
