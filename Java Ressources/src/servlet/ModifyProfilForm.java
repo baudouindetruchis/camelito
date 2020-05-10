@@ -58,7 +58,7 @@ public class ModifyProfilForm extends HttpServlet {
 					PreparedStatement editMail = con.prepareStatement("UPDATE public.users SET mail = '"+ email +"' WHERE id = '"+id+"'" );																	
 					PreparedStatement verifPseudoUnicity = con.prepareStatement("SELECT * FROM public.users WHERE user_name ='"+ pseudo+ "'");
 					
-					if(!pseudo.isBlank()) {
+					if(!pseudo.isEmpty()&& !(pseudo== null)) {
 						ResultSet rsPseudo = verifPseudoUnicity.executeQuery();
 						if(!rsPseudo.next()) {
 							User obj = (User) session.getAttribute("user");
@@ -74,7 +74,7 @@ public class ModifyProfilForm extends HttpServlet {
 					}
 					
 					if((int) session.getAttribute("type")==1) {
-						if(!promotion.isBlank()) {
+						if(!promotion.isEmpty()&& !(promotion== null)) {
 							try {
 								promotionInt = Integer.parseInt(promotion);
 								PreparedStatement editPromo = con.prepareStatement("UPDATE public.details SET promotion = '"+ promotionInt +"'  WHERE id_user = '"+id+"'");
@@ -98,7 +98,7 @@ public class ModifyProfilForm extends HttpServlet {
 					String newPwd = request.getParameter("newPassword");
 					String secondPwd = request.getParameter("secondPassword");
 					
-					if(!pwd.isBlank()) {
+					if(!pwd.isEmpty()&& !(pwd== null)) {
 						
 						PreparedStatement pswCheck = con.prepareStatement("SELECT password FROM public.users WHERE id = '"+id+"'");
 						
