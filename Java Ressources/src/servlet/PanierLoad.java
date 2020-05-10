@@ -21,14 +21,14 @@ import obj.Article;
 /**
  * Servlet implementation class LoadPanier
  */
-@WebServlet("/LoadPanier")
-public class LoadPanier extends HttpServlet {
+@WebServlet("/PanierLoad")
+public class PanierLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoadPanier() {
+	public PanierLoad() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

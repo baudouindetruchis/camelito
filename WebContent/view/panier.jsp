@@ -17,6 +17,18 @@
     $(function(){
     	$("#includedHeader").load("header_sample.jsp"); 
     });
+    function btnCommClick(i) {
+    	console.log("comm"+i);
+    }
+    function btnLessClick(i) {
+    	console.log("less"+i);
+    }
+    function btnMoreClick(i) {
+    	console.log("less"+i);
+    }
+    function btnSuppClick(i) {
+    	console.log("less"+i);
+    }
 </script> 
 
 <link rel="stylesheet" type="text/css" href="../public/css/panierStyle.css">
@@ -31,7 +43,7 @@
 	<div id="ordersDiv">
 		<h1 style="font-size: 2vw">Mes commandes :</h1>
 		<c:forEach var="comm" items="${sessionScope.commandeList}">
-			<button>N°<c:out value="${comm}"/></button>
+			<a class="nav-link" href="../PanierClick?id=${comm}&act=comm">N°<c:out value="${comm}"/></a>
 	  	</c:forEach>
 	</div>
 	<div id="cartDiv">
@@ -55,9 +67,9 @@
 		  	<td><c:out value="${artc.magasin}"/></td>
 		  	<td><c:out value="${artc.quantity}"/></td>
 		  	<td><c:out value="${artc.selling_price}"/></td>
-	        <td><button>-1</button></td>
-	        <td><button>+1</button></td>
-	        <td><button>Supp</button></td>
+	        <td><a class="nav-link" href="../PanierClick?id=${artc.id}&act=less">-1</a></td>
+	        <td><a class="nav-link" href="../PanierClick?id=${artc.id}&act=more">+1</a></td>
+	        <td><a class="nav-link" href="../PanierClick?id=${artc.id}&act=supp">Supp</a></td>
 	   	  </tr>
 	  </c:forEach>
 	    <tr>
