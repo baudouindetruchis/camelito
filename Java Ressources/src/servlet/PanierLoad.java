@@ -26,6 +26,10 @@ import obj.User;
 public class PanierLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
+	private static final String USER_BDD = "postgres";
+	private static final String PSW = "123";
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -41,13 +45,9 @@ public class PanierLoad extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
-		String userBdd = "postgres";
-		String psw = "123";
-//		String page = "./view/index.jsp";
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		try (Connection con = DriverManager.getConnection(url, userBdd, psw)) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 			//complete the part "mes commandes"
 			PreparedStatement getCommandes = con

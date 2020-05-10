@@ -23,8 +23,7 @@
     		    act: act
     		  },
     		  success: function(response) {
-    		    	$("#cartDiv").load("panierTable.jsp"); 
-    		    	console.log('refresh-')
+    		    	$("#cartDiv").load("panierTable.jsp");
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error
@@ -40,8 +39,21 @@
     		    act: 'comm'
     		  },
     		  success: function(response) {
-    		    	$("#cartDiv").load("panierTable.jsp"); 
-    		    	console.log('refresh-')
+    		  },
+    		  error: function(xhr) {
+    		    //Do Something to handle error
+    		  }
+    		});
+    }
+    function btnActClick(act) { 
+    	$.ajax({
+    		  url: "../PanierClick",
+    		  type: "get", //send it through get method
+    		  data: { 
+    		    act: act
+    		  },
+    		  success: function(response) {
+    			  location.reload();
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error
@@ -67,8 +79,8 @@
 	</div>
 	<div id="cartDiv"></div>	
 	<div id="fin">
-		<button>Annuler</button>
-		<button>Payer</button>
+		<button onClick="btnActClick('ann')">Annuler</button>
+		<button onClick="btnActClick('pay')">Payer</button>
 	</div>
 	
 </body>

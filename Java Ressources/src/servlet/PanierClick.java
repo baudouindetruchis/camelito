@@ -29,6 +29,10 @@ import obj.User;
 public class PanierClick extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
+	private static final String USER_BDD = "postgres";
+	private static final String PSW = "123";
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -47,25 +51,21 @@ public class PanierClick extends HttpServlet {
 		String action = request.getParameter("act");
 		String page = "./view/panier.jsp";
 
-		switch (action) {
-		case "comm":
-//			actionMore(request);
-			break;
-		case "ann":
-//			actionMore(request);
-			break;
-		case "pay":
-//			actionMore(request);
-			break;
+		HttpSession session = request.getSession();
 
-		default:
-			break;
-		}
 		switch (action) {
 		case "comm":
+//			actionMore(request);
+			break;
 		case "ann":
+			actionAnnul(request);
+			session.removeAttribute("panierList");
+			session.removeAttribute("total_price");
+			break;
 		case "pay":
-			response.sendRedirect(page);
+			actionPay(request);
+			session.removeAttribute("panierList");
+			session.removeAttribute("total_price");
 			break;
 		case "less":
 		case "more":
@@ -88,8 +88,6 @@ public class PanierClick extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("post");
 		doGet(request, response);
 	}
 
@@ -97,13 +95,10 @@ public class PanierClick extends HttpServlet {
 		int idToChange = (int) Integer.parseInt(request.getParameter("id"));
 		String action = request.getParameter("act");
 
-		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
-		String userBdd = "postgres";
-		String psw = "123";
 //		String page = "./view/index.jsp";
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		try (Connection con = DriverManager.getConnection(url, userBdd, psw)) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 			// there should only be one cart by user whith a false status
 			PreparedStatement getCart = con
@@ -136,11 +131,10 @@ public class PanierClick extends HttpServlet {
 						System.out.println("unkonwn action in actionTab in panier click");
 						break;
 					}
-					
+
 					String strList = listToString(list_id_quantities);
-					PreparedStatement editQuantity = con.prepareStatement(
-							"UPDATE public.carts SET liste_quantities = '" + strList
-									+ "' WHERE id_user = " + user_id + " AND status = false");
+					PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET liste_quantities = '"
+							+ strList + "' WHERE id_user = " + user_id + " AND status = false");
 					editQuantity.execute();
 
 					if (list_id_articles.length == list_id_quantities.length) {
@@ -202,15 +196,46 @@ public class PanierClick extends HttpServlet {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
+	private void actionPay(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			int user_id = user.getId();
+
+			PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET status = true"
+					+ " WHERE id_user = " + user_id + " AND status = false");
+			editQuantity.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	private void actionAnnul(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			int user_id = user.getId();
+
+			PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET liste_quantities = {}"
+					+ " WHERE id_user = " + user_id + " AND status = false");
+			editQuantity.execute();
+			editQuantity = con.prepareStatement("UPDATE public.carts SET list_articles = {}"
+					+ " WHERE id_user = " + user_id + " AND status = false");
+			editQuantity.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private String listToString(Integer[] l) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
-		for(Integer itm : l) {
+		for (Integer itm : l) {
 			sb.append(itm);
 			sb.append(", ");
 		}
