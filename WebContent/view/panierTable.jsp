@@ -31,8 +31,8 @@
 		  	<td><c:out value="${artc.quantity}"/></td>
 		  	<td><c:out value="${artc.selling_price}"/></td>
 	        <td><button onClick="btnTabClick(${artc.id}, 'less')">-1</button></td>
-	        <td><button onClick="btnTabClick(${artc.id}, 'less')">+1</button></td>
-	        <td><button onClick="btnTabClick(${artc.id}, 'less')">Supp</button></td>
+	        <td><button onClick="btnTabClick(${artc.id}, 'more')">+1</button></td>
+	        <td><button onClick="btnTabClick(${artc.id}, 'supp')">Supp</button></td>
 	   	  </tr>
 	  </c:forEach>
 	    <tr>

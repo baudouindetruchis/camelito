@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.postgresql.jdbc.PgArray;
 
 import obj.Article;
 import obj.User;
@@ -42,17 +45,33 @@ public class PanierClick extends HttpServlet {
 			throws ServletException, IOException {
 
 		String action = request.getParameter("act");
-		int id = Integer.parseInt(request.getParameter("id"));
+		String page = "./view/panier.jsp";
 
 		switch (action) {
 		case "comm":
+//			actionMore(request);
+			break;
+		case "ann":
+//			actionMore(request);
+			break;
+		case "pay":
+//			actionMore(request);
+			break;
 
+		default:
+			break;
+		}
+		switch (action) {
+		case "comm":
+		case "ann":
+		case "pay":
+			response.sendRedirect(page);
 			break;
 		case "less":
 		case "more":
 		case "supp":
-			
-			doStuf(request);
+			actionTab(request);
+			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			break;
 
 		default:
@@ -60,8 +79,7 @@ public class PanierClick extends HttpServlet {
 			break;
 		}
 
-		System.out.println(action + " " + id);
-		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+		System.out.println(action);
 	}
 
 	/**
@@ -75,7 +93,9 @@ public class PanierClick extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void doStuf(HttpServletRequest request) {
+	private void actionTab(HttpServletRequest request) {
+		int idToChange = (int) Integer.parseInt(request.getParameter("id"));
+		String action = request.getParameter("act");
 
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 		String userBdd = "postgres";
@@ -99,6 +119,30 @@ public class PanierClick extends HttpServlet {
 				if (array_id_articles instanceof Integer[] && array_quantities instanceof Integer[]) {
 					Integer[] list_id_articles = (Integer[]) array_id_articles;
 					Integer[] list_id_quantities = (Integer[]) array_quantities;
+
+					int idToChangeLocation = Arrays.asList(list_id_articles).indexOf(idToChange);
+					switch (action) {
+					case "less":
+						list_id_quantities[idToChangeLocation] = list_id_quantities[idToChangeLocation] - 1;
+						break;
+					case "more":
+						list_id_quantities[idToChangeLocation] = list_id_quantities[idToChangeLocation] + 1;
+						break;
+					case "supp":
+						list_id_quantities[idToChangeLocation] = 0;
+						break;
+
+					default:
+						System.out.println("unkonwn action in actionTab in panier click");
+						break;
+					}
+					
+					String strList = listToString(list_id_quantities);
+					PreparedStatement editQuantity = con.prepareStatement(
+							"UPDATE public.carts SET liste_quantities = '" + strList
+									+ "' WHERE id_user = " + user_id + " AND status = false");
+					editQuantity.execute();
+
 					if (list_id_articles.length == list_id_quantities.length) {
 						// pour chaque articles de la liste
 						List<Article> cart = new ArrayList<>();
@@ -116,7 +160,7 @@ public class PanierClick extends HttpServlet {
 
 							// SQL to connect to an article
 							PreparedStatement pstArticle = con
-									.prepareStatement("SELECT * FROM public.articles WHERE id = " + (id_article+1));
+									.prepareStatement("SELECT * FROM public.articles WHERE id = " + id_article);
 							ResultSet rsArticle = pstArticle.executeQuery();
 							rsArticle.next();
 
@@ -161,6 +205,18 @@ public class PanierClick extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private String listToString(Integer[] l) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{");
+		for(Integer itm : l) {
+			sb.append(itm);
+			sb.append(", ");
+		}
+		sb.setLength(sb.length() - 2);
+		sb.append("}");
+		return sb.toString();
 	}
 
 }

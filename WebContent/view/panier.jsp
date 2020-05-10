@@ -31,6 +31,23 @@
     		  }
     		});
     }
+    function btnCommClick(id) { 
+    	$.ajax({
+    		  url: "../PanierClick",
+    		  type: "get", //send it through get method
+    		  data: { 
+    		    id:id , 
+    		    act: 'comm'
+    		  },
+    		  success: function(response) {
+    		    	$("#cartDiv").load("panierTable.jsp"); 
+    		    	console.log('refresh-')
+    		  },
+    		  error: function(xhr) {
+    		    //Do Something to handle error
+    		  }
+    		});
+    }
 </script> 
 
 <link rel="stylesheet" type="text/css" href="../public/css/panierStyle.css">
@@ -45,7 +62,7 @@
 	<div id="ordersDiv">
 		<h1 style="font-size: 2vw">Mes commandes :</h1>
 		<c:forEach var="comm" items="${sessionScope.commandeList}">
-			<button onClick="btnTabClick(${comm})">N°<c:out value="${comm}"/></button>
+			<button onClick="btnCommClick(${comm})">N°<c:out value="${comm}"/></button>
 	  	</c:forEach>
 	</div>
 	<div id="cartDiv"></div>	
