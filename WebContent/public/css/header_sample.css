@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-body{ font-family: 'Montserrat', sans-serif; }
+
+body {
+	font-family: 'Montserrat', sans-serif;
+}
 
 /* Navbar content settings */
 .navbar-nav {
@@ -8,38 +11,36 @@ body{ font-family: 'Montserrat', sans-serif; }
 	border-bottom: 2px solid #764e17;
 }
 
-nav a{
-	color:#b67823;
+nav a {
+	color: #b67823;
 	font-weight: bold;
 }
 
-.nav-link:hover {color: #764e17;}
+.nav-link:hover {
+	color: #764e17;
+}
 
 /* Navbar's hamburger button color settings */
-
 .navbar-toggler {
-    border-color: rgb(182,120,35);
+	border-color: rgb(182, 120, 35);
 }
 
 .navbar-toggler-icon {
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(182,120,35, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+	background-image:
+		url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(182,120,35, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
-
 /* Image with its text settings */
-
 .logo {
-  height: 45px;
-  width: auto;
+	height: 45px;
+	width: auto;
 }
 
 .mainicon {
-	color:#b67823;
+	color: #b67823;
 	font-weight: bold;
 	padding-right: 20px;
-	padding-top: 10px; /* in order to be not too close of the hamburger button 
+	padding-top: 10px;
+	/* in order to be not too close of the hamburger button 
 						when in mobile view */
 }
-
-
-
