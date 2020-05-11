@@ -13,6 +13,7 @@
     $(function(){
     	$("#includedHeader").load("header_sample.jsp"); 
     	$("#cartDiv").load("panierTable.jsp"); 
+    	$("#ordersDiv").load("panierComm.jsp");
     });
     function btnTabClick(id, act) { 
     	$.ajax({
@@ -53,7 +54,8 @@
     		    act: act
     		  },
     		  success: function(response) {
-    			  location.reload();
+  		    	$("#cartDiv").load("panierTable.jsp");
+		    	$("#ordersDiv").load("panierComm.jsp");
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error
@@ -71,12 +73,7 @@
 
 <body>
 	<div id="includedHeader"></div>
-	<div id="ordersDiv">
-		<h1 style="font-size: 2vw">Mes commandes :</h1>
-		<c:forEach var="comm" items="${sessionScope.commandeList}">
-			<button onClick="btnCommClick(${comm})">N°<c:out value="${comm}"/></button>
-	  	</c:forEach>
-	</div>
+	<div id="ordersDiv"></div>
 	<div id="cartDiv"></div>	
 	<div id="fin">
 		<button onClick="btnActClick('ann')">Annuler</button>

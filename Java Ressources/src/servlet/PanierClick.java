@@ -49,7 +49,6 @@ public class PanierClick extends HttpServlet {
 			throws ServletException, IOException {
 
 		String action = request.getParameter("act");
-		String page = "./view/panier.jsp";
 
 		HttpSession session = request.getSession();
 
@@ -59,13 +58,9 @@ public class PanierClick extends HttpServlet {
 			break;
 		case "ann":
 			actionAnnul(request);
-			session.removeAttribute("panierList");
-			session.removeAttribute("total_price");
 			break;
 		case "pay":
 			actionPay(request);
-			session.removeAttribute("panierList");
-			session.removeAttribute("total_price");
 			break;
 		case "less":
 		case "more":
@@ -80,6 +75,18 @@ public class PanierClick extends HttpServlet {
 		}
 
 		System.out.println(action);
+		switch (action) {
+		case "comm":
+//			actionMore(request);
+			break;
+		case "ann":
+		case "pay":
+			session.removeAttribute("panierList");
+			session.removeAttribute("total_price");
+			break;
+		default:
+			break;
+		}
 	}
 
 	/**
@@ -209,7 +216,7 @@ public class PanierClick extends HttpServlet {
 			PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET status = true"
 					+ " WHERE id_user = " + user_id + " AND status = false");
 			editQuantity.execute();
-
+			updateCommList(user_id, session, con); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -220,10 +227,10 @@ public class PanierClick extends HttpServlet {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 
-			PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET liste_quantities = {}"
+			PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET liste_quantities = null"
 					+ " WHERE id_user = " + user_id + " AND status = false");
 			editQuantity.execute();
-			editQuantity = con.prepareStatement("UPDATE public.carts SET list_articles = {}"
+			editQuantity = con.prepareStatement("UPDATE public.carts SET list_id_articles = null"
 					+ " WHERE id_user = " + user_id + " AND status = false");
 			editQuantity.execute();
 
@@ -242,6 +249,31 @@ public class PanierClick extends HttpServlet {
 		sb.setLength(sb.length() - 2);
 		sb.append("}");
 		return sb.toString();
+	}
+	
+	private void updateCommList(int user_id, HttpSession session, Connection con) {
+		 
+		//complete the part "mes commandes"
+		try {
+			PreparedStatement getCommandes = con
+					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = true");
+			ResultSet commandes = getCommandes.executeQuery();
+			if (commandes == null) {
+				System.out.println("Erreur de connexion (commandes=null)");
+			} else {
+				List<Integer> listCommandes = new ArrayList<>();
+				int id;
+				while(commandes.next()) {
+					id = commandes.getInt("id");
+					listCommandes.add(id);
+				}
+				session.setAttribute("commandeList", listCommandes);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
