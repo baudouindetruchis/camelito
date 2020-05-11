@@ -6,10 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import obj.User;
+import JavaFunction.ConnectionFunctions;
 
 /**
  * Servlet implementation class InscriptionForm
@@ -42,54 +38,19 @@ public class InscriptionForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//get values from the form request
+		String inscrPswMsg ="";
+		String inscrPseudoMsg ="";
 		String lastname = request.getParameter("lastname");
 		String firstname = request.getParameter("firstname");
-
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String secondPassword = request.getParameter("secondPassword");
-
 		String pseudo = request.getParameter("pseudo");
 		String categorie = request.getParameter("categorie");
-		int type = 0;
-		switch (categorie) {
-		case "Client":
-			type = 1;
-			break;
-		case "Asso":
-			type = 2;
-			break;
-		case "Commercant":
-			type = 3;
-			break;
-
-		}
 		
+		int type = ConnectionFunctions.getType(categorie);
 		String promotion =request.getParameter("year");
-		int year = 0;
-		LocalDate currentdate = LocalDate.now();
-		int currentYear = currentdate.getYear();
-		int currentMonth =currentdate.getMonthValue();
-		int delta = 0;
-		if(currentMonth<=7)  delta = 1;
-		switch (promotion){
-		
-			case "3":
-				year = currentYear + 3 - delta;
-				break;
-			case "4": 
-				year = currentYear + 2 - delta;
-				break;
-			case "5": 
-				year = currentYear + 1 - delta;
-				break;			
-			case "1":
-				year = currentYear + 5 - delta;
-				break;			
-			case "2":
-				year = currentYear + 4 - delta;
-				break;
-}
+		int year = ConnectionFunctions.getPromo( promotion);
 
 		//connect to the bdd
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
@@ -99,58 +60,57 @@ public class InscriptionForm extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		try (Connection con = DriverManager.getConnection(url, user, psw)) {
+			PreparedStatement verifPseudoUnicity = con.prepareStatement("SELECT * FROM public.users WHERE user_name ='"+ pseudo+ "'");
 			
-			//if the two password match
-			if (password.contentEquals(secondPassword)) {
-				password = BCrypt.hashPassword(password);
-				
-				//add a user to the bdd based on form value
-				PreparedStatement addUser = con.prepareStatement("INSERT INTO public.users(user_name, mail, type, password) "
-						+ "VALUES('"+ pseudo + "','" + email + "'," + type + ",'" + password + "')");
-				addUser.execute();
-				//get auto generated id
-				PreparedStatement getId = con.prepareStatement("SELECT MAX(ID) AS id FROM public.users LIMIT 1");
-				ResultSet rs = getId.executeQuery();
-				rs.next();
-				int id = rs.getInt("id");
-				//add a details to the bdd based on form value
-				PreparedStatement addDetail = con.prepareStatement("INSERT INTO public.details(id_user, last_name, first_name, promotion)"
-						+ "VALUES("+ id + ",'" + lastname + "','" + firstname +"','"+ year+ "')");
-				addDetail.execute(); //TODO if client/asso init score and list				
-				
-				// create the object user
-				User obj = new User();
-				obj.setId(id);
-				obj.setMail(email);
-				obj.setPassword(password);
-				obj.setType(type);
-				obj.setPseudo(pseudo);
-				obj.setFirst_name(firstname);
-				obj.setLast_name(lastname);
-				obj.setPromotion(year);
-
-				//add all value to the 
-				session.setAttribute("user", obj);
-				session.setAttribute("type",obj.getType());
-				session.setAttribute("promo",obj.getPromotion());
-				session.setAttribute("id",obj.getId());
-
-				//finaly load the profil page
-				page = "./view/profil.jsp";
-				
-			} else {
-				System.out.println("erreur sur les mdp");
-			}
+			ResultSet rsPseudo = verifPseudoUnicity.executeQuery();
+					
+			
+			if(rsPseudo.next()) {
+				inscrPseudoMsg = "Pseudo dejà utilisé";
+			}else {
+				inscrPseudoMsg ="";
+				//if the two password match
+				if (password.contentEquals(secondPassword)) {
+					password = BCrypt.hashPassword(password);
+					
+					//add a user to the bdd based on form value
+					PreparedStatement addUser = con.prepareStatement("INSERT INTO public.users(user_name, mail, type, password) "
+							+ "VALUES('"+ pseudo + "','" + email + "'," + type + ",'" + password + "')");
+					addUser.execute();
+					//get auto generated id
+					PreparedStatement getId = con.prepareStatement("SELECT MAX(ID) AS id FROM public.users LIMIT 1");
+					ResultSet rs = getId.executeQuery();
+					rs.next();
+					int id = rs.getInt("id");
+					//add a details to the bdd based on form value
+					PreparedStatement addDetail = con.prepareStatement("INSERT INTO public.details(id_user, last_name, first_name, promotion)"
+							+ "VALUES("+ id + ",'" + lastname + "','" + firstname +"','"+ year+ "')");
+					addDetail.execute(); 				
+					
+					// create the object user and initialize session attributes
+					ConnectionFunctions.connect(request, id, email, type, pseudo, firstname, lastname, year);
+					
+					page = "./view/profil.jsp";
+					
+				} else {
+					
+					inscrPswMsg = "Erreur sur les mots de passe";	
+				}
+			}	
+			
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		// if request is not from HttpServletRequest, you should do a typecast before
-		// save message in session
+		
+		
+		session.setAttribute("inscrPswMsg",inscrPswMsg );
+		session.setAttribute("inscrPseudoMsg",inscrPseudoMsg );
+		
+		 
+		//response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 		response.sendRedirect(page);
-
 	}
 
 	/**
@@ -162,5 +122,8 @@ public class InscriptionForm extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	
+	
 
 }

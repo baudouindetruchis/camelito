@@ -115,18 +115,25 @@
 											<input type="text" class="form-control-plaintext" id="promo"
 												value="${usr.promotion}" disabled>
 										</div>
-										<input class="form-control-plaintext" type="number"
-											name="newPromo" id="newPromo"
-											placeholder="Entrez votre année d'optention du diplôme"
-											hidden /></br>
+										
 
 									</div>
 
-								</c:otherwise>
+								</c:otherwise>								
 							</c:choose>
 
 						</c:when>
 					</c:choose>
+					
+					
+					<div>
+					<input class="form-control" type="number"
+											name="newPromo" id="newPromo"
+											placeholder="Entrez votre année d'optention du diplôme"
+											hidden /></br>
+								
+					</div>
+					
 					<div class="form-group row" id="Mdp" hidden>
 						<label for="oldPassword" class="col-form-label">Ancien mot
 							de passe : </label> <input class="form-control" type="password"
