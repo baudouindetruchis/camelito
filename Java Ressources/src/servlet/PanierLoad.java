@@ -17,18 +17,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import obj.Article;
+import obj.User;
 
 /**
  * Servlet implementation class LoadPanier
  */
-@WebServlet("/LoadPanier")
-public class LoadPanier extends HttpServlet {
+@WebServlet("/PanierLoad")
+public class PanierLoad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
+	private static final String USER_BDD = "postgres";
+	private static final String PSW = "123";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoadPanier() {
+	public PanierLoad() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,13 +45,10 @@ public class LoadPanier extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
-		String user = "postgres";
-		String psw = "123";
-//		String page = "./view/index.jsp";
 		HttpSession session = request.getSession();
-		int user_id = (int) session.getAttribute("user_id");
-		try (Connection con = DriverManager.getConnection(url, user, psw)) {
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			int user_id = user.getId();
 			//complete the part "mes commandes"
 			PreparedStatement getCommandes = con
 					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = true");

@@ -4,19 +4,64 @@
 
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous">
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 </script>
 
  <script> 
     $(function(){
     	$("#includedHeader").load("header_sample.jsp"); 
+    	$("#cartDiv").load("panierTable.jsp"); 
+    	$("#ordersDiv").load("panierComm.jsp");
     });
+    function btnTabClick(id, act) { 
+    	$.ajax({
+    		  url: "../PanierClick",
+    		  type: "get", //send it through get method
+    		  data: { 
+    		    id:id , 
+    		    act: act
+    		  },
+    		  success: function(response) {
+    		    	$("#cartDiv").load("panierTable.jsp");
+    		  },
+    		  error: function(xhr) {
+    		    //Do Something to handle error
+    		  }
+    		});
+    }
+    function btnCommClick(id) { 
+    	$.ajax({
+    		  url: "../PanierClick",
+    		  type: "get", //send it through get method
+    		  data: { 
+    		    id:id , 
+    		    act: 'comm'
+    		  },
+    		  success: function(response) {
+    		  },
+    		  error: function(xhr) {
+    		    //Do Something to handle error
+    		  }
+    		});
+    }
+    function btnActClick(act) { 
+    	$.ajax({
+    		  url: "../PanierClick",
+    		  type: "get", //send it through get method
+    		  data: { 
+    		    act: act
+    		  },
+    		  success: function(response) {
+  		    	$("#cartDiv").load("panierTable.jsp");
+		    	$("#ordersDiv").load("panierComm.jsp");
+    		  },
+    		  error: function(xhr) {
+    		    //Do Something to handle error
+    		  }
+    		});
+    }
 </script> 
 
 <link rel="stylesheet" type="text/css" href="../public/css/panierStyle.css">
@@ -28,53 +73,11 @@
 
 <body>
 	<div id="includedHeader"></div>
-	<div id="ordersDiv">
-		<h1 style="font-size: 2vw">Mes commandes :</h1>
-		<c:forEach var="comm" items="${sessionScope.commandeList}">
-			<button>N°<c:out value="${comm}"/></button>
-	  	</c:forEach>
-	</div>
-	<div id="cartDiv">
-	<h1 style="font-size: 2vw">Mon panier :</h1>
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th scope="col">Article</th>
-	      <th scope="col">Commercant</th>
-	      <th scope="col">Quant.</th>
-	      <th scope="col">Prix</th>
-	      <th scope="col">  </th>
-	      <th scope="col">  </th>
-	      <th scope="col">  </th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  <c:forEach var="artc" items="${sessionScope.panierList}">
-		  <tr>
-		  	<td><c:out value="${artc.name}"/></td>
-		  	<td><c:out value="${artc.magasin}"/></td>
-		  	<td><c:out value="${artc.quantity}"/></td>
-		  	<td><c:out value="${artc.selling_price}"/></td>
-	        <td><button>-1</button></td>
-	        <td><button>+1</button></td>
-	        <td><button>Supp</button></td>
-	   	  </tr>
-	  </c:forEach>
-	    <tr>
-	      <td></td>
-	      <td></td>
-	      <td>Total</td>
-		  	<td><c:out value="${sessionScope.total_price}"/>€</td>
-	      <td></td>
-	      <td></td>
-	    </tr>
-	  </tbody>
-	</table>
-	
+	<div id="ordersDiv"></div>
+	<div id="cartDiv"></div>	
 	<div id="fin">
-		<button>Annuler</button>
-		<button>Payer</button>
-	</div>
+		<button onClick="btnActClick('ann')">Annuler</button>
+		<button onClick="btnActClick('pay')">Payer</button>
 	</div>
 	
 </body>
