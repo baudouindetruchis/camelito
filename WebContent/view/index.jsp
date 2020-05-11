@@ -7,6 +7,7 @@
 	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
 	<link rel="stylesheet" type="text/css" href="../public/css/login.css">
 	
 	
@@ -27,8 +28,12 @@
 
 					<input class="form-control" type="text" name="userName" placeholder="User Name" required/></br>
 					<input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe" required /></br>	
-					<input type="checkbox" id="pswVisible" name="pswVisible" onclick="showPassword()"> Afficher le mot de passe
-					
+					<div class="form-check">
+					    <input type="checkbox" class="form-check-input" id="pswVisible" name="pswVisible" onclick="showPassword()">
+					    <label class="form-check-label" for="exampleCheck1">Afficher le mot de passe</label>
+					</div>
+<!-- 					<input type="checkbox" id="pswVisible" name="pswVisible" onclick="showPassword()"> Afficher le mot de passe
+ -->					
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color:black" onclick="openForm()">S'inscrire</a><br>
@@ -39,7 +44,7 @@
 
 				<div class="form-popup" id="myForm">
 					<form action="../InscriptionForm" class="form-container" name="inscription">
-						<img src="https://lh3.googleusercontent.com/proxy/rEyvARXpQlApk13rYq6iBXF0xNFC3R3sxiwCsRpE6FV8d7HavcdGTboyb_6SBK-kWJSC7t86dLUWFUJmlINrGmNopeJpmbokzw1LOM5CLwayIITKAg" onclick="closeForm()" alt="close" class="close_button">
+						<img src="../public/images/times.png" onclick="closeForm()" alt="close" class="close_button">
 						<h1>Inscription</h1>
 						<br>
 
@@ -61,11 +66,16 @@
 								<option value=0>Autre</option>
 							</select>
 					
-						<input  id="passwordInsc" type="password" placeholder="Mot de passe" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-						title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères"required class="field">
-						<input id="passwordInsc" type="password" placeholder="Vérification du mot de passe" name="secondPassword" required class="field">
-						<input type="checkbox" id="pswVisible2" name="pswVisible2" onclick="showPasswordInscr()"> Afficher les mots de passe
-						<br>
+						<input id="passwordInsc1" type="password" placeholder="Mot de passe" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+						title="Le mot de passe doit contenir au moins un chiffre, une majuscule et une minuscule, il doit aussi avoir au moins 8 caractères"required class="field">
+						<input id="passwordInsc2" type="password" placeholder="Vérification du mot de passe" name="secondPassword" required class="field">
+						<div class="form-check2">
+						    <input type="checkbox" class="form-check-input" id="pswVisible2" name="pswVisible2" onclick="showPasswordInscr()">
+						    <label class="form-check-label" for="exampleCheck1">Afficher les mots de passes</label>
+						</div>
+						
+<!-- 						<input type="checkbox" id="pswVisible2" name="pswVisible2" onclick="showPasswordInscr()"> Afficher les mots de passes
+ -->						<br>
 						<div class="radio_but">
 							<input type="radio" id="client" name="categorie" value="Client"required> Client
 							<input type="radio" id="commercant" name="categorie" value="Commercant"required> Commerçant

@@ -15,12 +15,19 @@ function showPassword() {
 	  }
 	}
 
+
 function showPasswordInscr() {
-	  var x = document.getElementById("passwordInsc");
+	  var x = document.getElementById("passwordInsc1");
+	  var y = document.getElementById("passwordInsc2");
 	  if (x.type === "password") {
 	    x.type = "text";
 	  } else {
 	    x.type = "password";
+	  }
+	  if (y.type === "password") {
+	    y.type = "text";
+	  } else {
+	    y.type = "password";
 	  }
 	}
 
