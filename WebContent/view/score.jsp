@@ -57,11 +57,6 @@ ResultSet resultSet = null;
 %>
 
 
-	
-	
-
-
-
 	<div id="includedHeader"></div>
 	<div id="title">
 		<h1 style="font-size: 2vw">Course au camelicoins</h1>
@@ -71,7 +66,7 @@ ResultSet resultSet = null;
 	<table class="table table-striped">
 	  <thead>
 	    <tr>
-<th scope="col" style="width: 5%"> Classement </th>
+<th scope="col" style="width: 5%"> Prénom </th>
 <th scope="col" style="width: 10%"> Nom </th>
 <th scope="col" style="width: 5%"> Score </th>
 	    </tr>
@@ -86,7 +81,7 @@ ResultSet resultSet = null;
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
-String sql ="SELECT * FROM details WHERE score IS NOT NULL";
+String sql ="SELECT * FROM details WHERE score IS NOT NULL ORDER BY score";
 
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
