@@ -64,12 +64,6 @@ public class ShoppingListFunctions {
 					List<Integer> list_id_articles = new ArrayList<Integer>(Arrays.asList(tmp_list_id_articles));
 					List<Integer> list_quantities = new ArrayList<Integer>(Arrays.asList(tmp_list_id_quantities));
 
-<<<<<<< HEAD
-					System.out.println("action:"+action + " user:" + user_id + " art:" + id_article);
-					System.out.println("list_id_articles : " + listToString(list_id_articles));
-					System.out.println("list_quantities : " + listToString(list_quantities));
-=======
->>>>>>> master
 					//recupère l'endroit dans la liste de l'artique selectionné
 					int idToChangeLocation = list_id_articles.indexOf(id_article);
 					if (idToChangeLocation == -1) {
@@ -121,13 +115,6 @@ public class ShoppingListFunctions {
 							list_quantities.set(idToChangeLocation, pastVal);							
 						}
 					}
-<<<<<<< HEAD
-					
-					System.out.println("action:"+action + " user:" + user_id + " art:" + id_article);
-					System.out.println("list_id_articles : " + listToString(list_id_articles));
-					System.out.println("list_quantities : " + listToString(list_quantities));
-=======
->>>>>>> master
 
 					//maj de la bdd avec les nouvelle valeur
 					String str_list_quantities = listToString(list_quantities);
