@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.postgresql.util.PSQLException;
+
 import obj.Article;
 import obj.User;
 
@@ -59,7 +61,7 @@ public class ShoppingClick extends HttpServlet {
 	}
 
 	private void actionTab(HttpServletRequest request) {
-		int id_article = (int) Integer.parseInt(request.getParameter("id"));
+		Integer id_article = Integer.parseInt(request.getParameter("id"));
 		String action = request.getParameter("act");
 
 		HttpSession session = request.getSession();
@@ -67,53 +69,76 @@ public class ShoppingClick extends HttpServlet {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 			// there should only be one cart by user whith a false status
-			System.out.println("a");
 			PreparedStatement getCart = con
 					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
 			ResultSet theCart = getCart.executeQuery();
-			System.out.println("b");
 			if (theCart == null) {
 				System.out.println("Erreur de connexion (cart=null)");
 			} else {
 				theCart.next();
-				System.out.println("c");
-				Object array_id_articles = theCart.getArray("list_id_articles").getArray();
-				Object array_quantities = theCart.getArray("liste_quantities").getArray();
+				Object array_id_articles;
+				Object array_quantities;
+				boolean is_new_cart = false;
+				try {
+					array_id_articles = theCart.getArray("list_id_articles").getArray();
+					array_quantities = theCart.getArray("liste_quantities").getArray();
+				} catch (PSQLException e) {
+					array_id_articles = new Integer[0];
+					array_quantities = new Integer[0];
+					is_new_cart = true;
+				}
 
 				if (array_id_articles instanceof Integer[] && array_quantities instanceof Integer[]) {
+					Integer[] tmp_list_id_articles = (Integer[]) array_id_articles;
+					Integer[] tmp_list_id_quantities = (Integer[]) array_quantities;
 
-					System.out.println("d");
-					@SuppressWarnings("unchecked")
-					List<Integer> list_id_articles = (List<Integer>)(Object) Arrays.asList(array_id_articles);
-					@SuppressWarnings("unchecked")
-					List<Integer> list_quantities = (List<Integer>)(Object) Arrays.asList(array_quantities);
+					List<Integer> list_id_articles = new ArrayList<Integer>(Arrays.asList(tmp_list_id_articles));
+					List<Integer> list_quantities = new ArrayList<Integer>(Arrays.asList(tmp_list_id_quantities));
 
+					System.out.println("id article : " + id_article);
+					System.out.println("list_id_articles : " + listToString(list_id_articles));
+					System.out.println("list_quantities : " + listToString(list_quantities));
 					int idToChangeLocation = list_id_articles.indexOf(id_article);
-					if(idToChangeLocation==-1) {
+					if (idToChangeLocation == -1) {
+						System.out.println("add to list");
 						list_id_articles.add(id_article);
-						idToChangeLocation= list_id_articles.indexOf(id_article);
+						list_quantities.add(0);
+						idToChangeLocation = list_id_articles.indexOf(id_article);
 					}
+					int newVal;
 					switch (action) {
 					case "less":
-						list_quantities.set(idToChangeLocation, (list_quantities.get(idToChangeLocation) - 1));
+						newVal = (list_quantities.get(idToChangeLocation) - 1);
+						list_quantities.set(idToChangeLocation, newVal);
 						break;
 					case "more":
-						list_quantities.set(idToChangeLocation, (list_quantities.get(idToChangeLocation) - 1));
+						newVal = (list_quantities.get(idToChangeLocation) + 1);
+						list_quantities.set(idToChangeLocation, newVal);
 						break;
-
 					default:
 						System.out.println("unkonwn action in actionTab in panier click");
 						break;
 					}
-					System.out.println(action+" "+user_id+" "+id_article);
-					String strList = listToString(list_quantities);
-					PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET liste_quantities = '"
-							+ strList + "' WHERE id_user = " + user_id + " AND status = false");
-					editQuantity.execute();
-					strList = listToString(list_id_articles);
-					editQuantity = con.prepareStatement("UPDATE public.carts SET list_id_article = '"
-							+ strList + "' WHERE id_user = " + user_id + " AND status = false");
-					editQuantity.execute();
+					System.out.println(action + " " + user_id + " " + id_article);
+					System.out.println("list_id_articles : " + listToString(list_id_articles));
+					System.out.println("list_quantities : " + listToString(list_quantities));
+
+					String str_list_quantities = listToString(list_quantities);
+					String str_list_id_articles = listToString(list_id_articles);
+					PreparedStatement editQuantity;
+					if (!is_new_cart) {
+						editQuantity = con.prepareStatement("UPDATE public.carts SET liste_quantities = '"
+								+ str_list_quantities + "' WHERE id_user = " + user_id + " AND status = false");
+						editQuantity.execute();
+						editQuantity = con.prepareStatement("UPDATE public.carts SET list_id_articles = '"
+								+ str_list_id_articles + "' WHERE id_user = " + user_id + " AND status = false");
+						editQuantity.execute();
+					} else {
+						editQuantity = con.prepareStatement(
+								"INSERT INTO carts(id_user, list_id_articles, liste_quantities) VALUES(" + user_id
+										+ ", '" + str_list_id_articles + "', '" + str_list_quantities + "')");
+						editQuantity.execute();
+					}
 
 					if (list_id_articles.size() == list_quantities.size()) {
 						// pour chaque articles de la liste
@@ -162,7 +187,7 @@ public class ShoppingClick extends HttpServlet {
 						}
 						// set session attribute
 						System.out.println(lArt.toString());
-						session.setAttribute("articleList", lArt);		
+						session.setAttribute("articleList", lArt);
 					} else {
 						System.out.println("Pas autant d'articles que de quantités");
 					}
@@ -175,18 +200,20 @@ public class ShoppingClick extends HttpServlet {
 		}
 	}
 
-
-	private String listToString(List<Integer>l) {
+	private String listToString(List<Integer> l) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("{");
-		for (Integer itm : l) {
-			sb.append(itm);
-			sb.append(", ");
+		if (l.size() == 0) {
+			sb.append("{}");
+		} else {
+			sb.append("{");
+			for (Integer itm : l) {
+				sb.append(itm);
+				sb.append(", ");
+			}
+			sb.setLength(sb.length() - 2);
+			sb.append("}");
 		}
-		sb.setLength(sb.length() - 2);
-		sb.append("}");
 		return sb.toString();
 	}
-
 
 }
