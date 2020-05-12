@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="fr">
 <%@page contentType="text/html; charset=UTF-8" %>
@@ -20,6 +21,7 @@
 		<div class="row">
 			<div class="col-sm-4">
 				<form action="../ConnexionForm">
+				<c:set var="connectionMsg" scope="session" value="${sessionScope.connectionMsg}" />
 
 					<fieldset class="ref">
 						<img class="img-responsive" src="../public/images/logo_camelito_marron.png" alt="Logo Camelito" width="120" height="120" />
@@ -27,13 +29,15 @@
 					</fieldset>
 
 					<input class="form-control" type="text" name="userName" placeholder="User Name" required/></br>
-					<input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe" required /></br>	
+					<input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe" required /></br>
+					<a style="color:red"><c:out value="${connectionMsg}"/></a><br>	
 					<div class="form-check">
+				
 					    <input type="checkbox" class="form-check-input" id="pswVisible" name="pswVisible" onclick="showPassword()">
 					    <label class="form-check-label" for="exampleCheck1">Afficher le mot de passe</label>
+					    
 					</div>
-<!-- 					<input type="checkbox" id="pswVisible" name="pswVisible" onclick="showPassword()"> Afficher le mot de passe
- -->					
+ 				
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color:black" onclick="openForm()">S'inscrire</a><br>
@@ -47,8 +51,9 @@
 						<img src="../public/images/times.png" onclick="closeForm()" alt="close" class="close_button">
 						<h1>Inscription</h1>
 						<br>
-
-						<input type="pseudo" placeholder="Pseudo" name="pseudo" required class="field">
+						
+						<br><a style="color:red"><c:out value="${sessionScope.inscrPseudoMsg}"/></a><br>
+						<input type="pseudo" placeholder="Pseudo" name="pseudo" required class="field">					
 						<input type="lastname" placeholder="Nom" name="lastname" required class="field">
 						<input type="firstname" placeholder="Prenom" name="firstname" required class="field">
 						<input type="email" placeholder="Adresse email" name="email" required class="field">
@@ -69,13 +74,12 @@
 						<input id="passwordInsc1" type="password" placeholder="Mot de passe" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
 						title="Le mot de passe doit contenir au moins un chiffre, une majuscule et une minuscule, il doit aussi avoir au moins 8 caractères"required class="field">
 						<input id="passwordInsc2" type="password" placeholder="Vérification du mot de passe" name="secondPassword" required class="field">
+						<br><a style="color:red"><c:out value="${sessionScope.inscrPswMsg}"/></a><br>	
 						<div class="form-check2">
 						    <input type="checkbox" class="form-check-input" id="pswVisible2" name="pswVisible2" onclick="showPasswordInscr()">
 						    <label class="form-check-label" for="exampleCheck1">Afficher les mots de passes</label>
 						</div>
-						
-<!-- 						<input type="checkbox" id="pswVisible2" name="pswVisible2" onclick="showPasswordInscr()"> Afficher les mots de passes
- -->						<br>
+							<br>
 						<div class="radio_but">
 							<input type="radio" id="client" name="categorie" value="Client"required> Client
 							<input type="radio" id="commercant" name="categorie" value="Commercant"required> Commerçant
