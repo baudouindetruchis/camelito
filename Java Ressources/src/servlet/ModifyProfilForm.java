@@ -49,7 +49,7 @@ public class ModifyProfilForm extends HttpServlet {
 				String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 				String user = "postgres";
 				String psw = "123";
-				String page = "./view/score.jsp";
+				String page = "./view/profil.jsp";
 
 				HttpSession session = request.getSession();
 				try (Connection con = DriverManager.getConnection(url, user, psw)) {

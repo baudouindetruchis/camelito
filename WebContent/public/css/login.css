@@ -119,7 +119,7 @@ h6 {
 .form-popup {
  	display: none;
  	position: fixed;
-	top: 5%;
+	top: 25%;
 	left: 33%;
 	margin: 0 auto;
  	border: 4px solid #b67823;
