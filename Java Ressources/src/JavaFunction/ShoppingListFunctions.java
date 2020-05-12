@@ -179,7 +179,7 @@ public class ShoppingListFunctions {
 
 							// create coresponding article object
 							anArticle = new Article();
-							anArticle.setId(id_article);
+							anArticle.setId(id_art);
 							anArticle.setName(name);
 							anArticle.setMagasin(store);
 							anArticle.setStock(stock);
