@@ -88,10 +88,7 @@ public class InscriptionForm extends HttpServlet {
 					addDetail.execute(); 				
 					
 					// create the object user and initialize session attributes
-					
-					ConnectionFunctions.connect(request, id, email, type, pseudo, firstname, lastname, year, 0, "","");
-					
-					
+					ConnectionFunctions.connect(request, id, email, type, pseudo, firstname, lastname, year);
 					
 					page = "./view/profil.jsp";
 					

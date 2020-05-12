@@ -19,14 +19,19 @@
 <link rel="stylesheet" type="text/css"
 	href="../public/css/pageStyle.css">
 
+<script>
+	$(function() {
+		$("#includedContent").load("header_sample.jsp");
+	});
+</script>
+
 
 <head>
 <title>Camelito - Profil</title>
 <script src="../public/js/profil.js"></script>
-<script src="../public/js/header.js"></script>
 </head>
 
-<body onload="includeOtherPart()">
+<body>
 	<div id="includedContent"></div>
 
 	<div class="container">
@@ -37,12 +42,7 @@
 
 					<c:set var="usr" scope="session" value="${sessionScope.user}" />
 
-				<fieldset>
-					<img class="profil img-responsive"
-						src="../public/images/Add_User.png" alt="Add User" width="25%"
-						height="120" />
-				</fieldset>
-				
+
 					<div class="form-group row">
 						<label for="name" class="col-form-label">Nom : </label>
 						<div class="col-sm-7">
@@ -65,7 +65,7 @@
 						<label for="pseudo" class="col-form-label">Pseudo : </label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control-plaintext" name="pseudo"
-								id="pseudo" value="${usr.pseudo}" disabled>
+								id="pseudo" value="${usr.pseudo}" disabled required>
 						</div>
 						<input class="form-control" type="text" name="newPseudo"
 							id="newPseudo" placeholder="newPseudo" hidden /></br>
@@ -127,8 +127,11 @@
 					
 					
 					<div>
-					<input class="form-control" type="number" name="newPromo" id="newPromo"placeholder="Année de diplôme, 0 si non concerné" hidden /></br>
-							
+					<input class="form-control" type="number"
+											name="newPromo" id="newPromo"
+											placeholder="Entrez votre année d'optention du diplôme"
+											hidden /></br>
+								
 					</div>
 					
 					<div class="form-group row" id="Mdp" hidden>
@@ -145,28 +148,43 @@
 							placeholder="Vérification du mot de passe" name="secondPassword">
 					</div>
 
+
+
 					<input class="btn-primary btn-responsive" type="submit"
 						id="btnSaveChange" value="Save Changes" onclick="saveChange()"
 						hidden /> <input class="btn-primary btn-responsive" type="button"
 						value="Modifier" id="btnGoToEdit" onclick="goToEdit()" />
 
 				</form>
-			</div>
-
-			<c:choose> 
-				<c:when test="${sessionScope.type=='3'}">
-					<div id="includeStore" class="col-sm-6"></div>
-				</c:when>
-				
-				<c:when test="${sessionScope.type=='1'}">
-					<div id="includeReussite" class="col-sm-6"></div>
-				</c:when>
-			</c:choose>
-				
 
 			</div>
-			
+
+			<div class="col-sm-6">
+				<h2 class="success">Mes réussites</h2>
+				<fieldset>
+					<img class="profil img-responsive"
+						src="../public/images/Add_User.png" alt="Add User" width="25%"
+						height="120" />
+				</fieldset>
+				<!-- <p class="success">Réussite : </p> -->
+				<div class="form-group row">
+					<img class="img-responsive" src="../public/images/pieces.png"
+						alt="Pile de piece" width="15%" height="17%" />
+					<p class="col-form-label">10€ d'économisés</p>
+				</div>
+				<div class="form-group row">
+					<img class="img-responsive" src="../public/images/podium.png"
+						alt="Podium" width="15%" height="17%" />
+					<p class="col-form-label">Concours en groupe</p>
+				</div>
+				<div class="form-group row">
+					<img class="img-responsive" src="../public/images/medaille.png"
+						alt="medaille" width="10%" height="10%" />
+					<p class="col-form-label">400 points cumulés</p>
+				</div>
 			</div>
+		</div>
+	</div>
 
 
 

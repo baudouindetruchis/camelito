@@ -3,10 +3,6 @@
 body {
 	font-family: 'Montserrat', sans-serif;
 }
-.col-md-12 {
-	padding-left: 0 !important;
-    padding-right: 0 !important;
-}
 
 /* Navbar content settings */
 .navbar-nav {

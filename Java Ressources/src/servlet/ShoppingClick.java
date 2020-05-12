@@ -7,21 +7,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import JavaFunction.ShoppingListFunctions;
 
 /**
  * Servlet implementation class PanierClick
  */
-@WebServlet("/PanierClick")
-public class PanierClick extends HttpServlet {
+@WebServlet("/ShoppingClick")
+public class ShoppingClick extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public PanierClick() {
+	public ShoppingClick() {
 		super();
 	}
 
@@ -31,44 +30,8 @@ public class PanierClick extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String action = request.getParameter("act");
-		String msg="";
-
-		HttpSession session = request.getSession(false);
-
-		switch (action) {
-		case "comm":
-//			actionMore(request);
-			break;
-		case "ann":
-			ShoppingListFunctions.actionAnnul(request);
-			break;
-		case "pay":
-			ShoppingListFunctions.actionPay(request);
-			break;
-		case "less":
-		case "more":
-		case "supp":
-			msg =ShoppingListFunctions.modifQuantity(request);
-			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
-			break;
-
-		default:
-			System.out.println("unkonwn action in doGet panier click");
-			break;
-		}
-
-		System.out.println(action);
-		switch (action) {
-		case "ann":
-		case "pay":
-			session.removeAttribute("panierList");
-			session.removeAttribute("total_price");
-			break;
-		default:
-			break;
-		}
+		ShoppingListFunctions.modifQuantity(request);
+		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 
 	/**
@@ -79,5 +42,6 @@ public class PanierClick extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 
 }
