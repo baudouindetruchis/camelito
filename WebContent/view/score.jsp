@@ -72,7 +72,7 @@ ResultSet resultSet = null;
 	  <thead>
 	    <tr>
 <th scope="col" style="width: 5%"> Classement </th>
-<th scope="col" style="width: 10%"> Identifiant (temp) </th>
+<th scope="col" style="width: 10%"> Nom </th>
 <th scope="col" style="width: 5%"> Score </th>
 	    </tr>
 	  </thead>
@@ -86,7 +86,7 @@ ResultSet resultSet = null;
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
-String sql ="SELECT * FROM score";
+String sql ="SELECT * FROM details WHERE score IS NOT NULL";
 
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
@@ -94,9 +94,9 @@ while(resultSet.next()){
 <tr bgcolor="#DEB887">
 
 
-<td><%=resultSet.getString("classement") %></td>
-<td><%=resultSet.getString("id") %></td>
-<td><%=resultSet.getString("point") %></td>
+<td><%=resultSet.getString("last_name") %></td>
+<td><%=resultSet.getString("first_name") %></td>
+<td><%=resultSet.getString("score") %></td>
 
 </tr>
 
@@ -135,7 +135,8 @@ e.printStackTrace();
 <%  
 //int id_session = Integer.parseInt(request.getParameter("userId"));
 int id_session = 1;
-String sql_solo ="SELECT * FROM score WHERE id_user = id_user";
+String sql_solo ="SELECT score FROM details WHERE (id_user = 1) AND (score IS NOT NULL)";
+resultSet = null;
 resultSet = statement.executeQuery(sql_solo);
 while(resultSet.next()){
 %>
@@ -143,9 +144,8 @@ while(resultSet.next()){
 
 		<p>
 
-<td><%=resultSet.getString("classement") %></td>
-<td><%=resultSet.getString("id") %></td>
-<td><%=resultSet.getString("point") %></td>
+
+<td><%=resultSet.getString("score") %></td>
 
 		</p>
 		
