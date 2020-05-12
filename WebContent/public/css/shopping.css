@@ -98,6 +98,22 @@ img {
  */
 }
 
+.overlay .quantity {
+	display: inline-block;
+	margin-right: 50px;
+}
+
+.overlay .col-form-label {
+	padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    margin-bottom: 0;
+    background-color: brown;
+    border-radius: 60px;
+    height: 35px;
+    width: 35px;
+    color: white;
+}
+
 .overlay .btn-secondary {
 	background: transparent !important;
 	border: none !important;
@@ -116,6 +132,13 @@ img {
 		margin: 5%;
 		margin-bottom: 50%;
 	}
+	.overlay .col-form-label {
+		height: 91px;
+	    width: 91px;
+	    font-size: 50px;
+		margin-left: 7px;
+		margin-top: -36px;
+	}
 }
 
 @media ( min-width : 768px) and (max-width:991px) {
@@ -133,6 +156,9 @@ img {
 	.overlay {
 		width: 1px;
 	}
+	.overlay .col-form-label {
+		font-size: 14px;
+	}
 }
 
 @media ( min-width : 992px) and (max-width:1199px) {
@@ -141,6 +167,12 @@ img {
 	}
 	.overlay .fa {
 		margin-bottom: 30%;
+	}
+	.overlay .col-form-label {
+		height: 40px;
+	    width: 40px;	
+	    margin-bottom: 7px;
+	    margin-left: 3px;
 	}
 }
 
@@ -153,6 +185,13 @@ img {
 		width: 40px;
 		font-size: 23px;
 		padding: 9px;
+		margin: 5%;
+		margin-bottom: 50%;
+	}
+	.overlay .col-form-label {
+		height: 45px;
+	    width: 45px;
+	    font-size: 20px;
 		margin: 5%;
 		margin-bottom: 50%;
 	}
