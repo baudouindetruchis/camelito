@@ -17,7 +17,7 @@
     	$("#cartDiv").load("panierTable.jsp"); 
     	$("#ordersDiv").load("panierComm.jsp");
     });
-    function btnTabClick(id, act) { 
+    function btnTabClick(id, act) {
     	$.ajax({
     		  url: "../PanierClick",
     		  type: "get", //send it through get method
