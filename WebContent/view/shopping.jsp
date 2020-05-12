@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,22 @@
     $(function(){
     	$("#includedHeader").load("header_sample.jsp"); 
     });
+    function btnActClick(id, act) { 
+    	$.ajax({
+    		  url: "../ShoppingClick",
+    		  type: "get", //send it through get method
+    		  data: { 
+    		    id:id , 
+    		    act: act
+    		  },
+    		  success: function(response) {
+    		    	$("#cartDiv").load("panierTable.jsp");
+    		  },
+    		  error: function(xhr) {
+    		    //Do Something to handle error
+    		  }
+    		});
+    }
 </script> 
 
 </head>
@@ -25,174 +42,25 @@
 	<h2>Produits disponibles</h2>
 	<div class="row">
 	
-	<!-- First item -->
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>
+	<c:forEach var="artc" items="${sessionScope.articleList}">
+		<div class="col-md-3">
+		<div class="product-top">
+		<img src="../public/images/Dandan-Mian.jpg">
+			<div class="overlay">
+			<!-- Get the icons from "fontawesome.com/icons" -->
+			<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
+			<button type="button" class="btn btn-secondary" onClick="btnActClick(${artc.id}, 'more')" title="Add">+</button>
+			<button type="button" class="btn btn-secondary" onClick="btnActClick(${artc.id}, 'less')" title="Less">-</button>
+			</div>
 		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
+			<div class="product-bottom text-center">		  	
+			<h5><c:out value="${artc.magasin}"/></h5>
+			<h3><c:out value="${artc.name}"/></h3>
+			<h5 class="prix"><c:out value="${artc.selling_price}"/>€</h5>
+			</div>
 		</div>
-	</div>
+	</c:forEach>
 	
-	<!-- Second item -->
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>	
-		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
-		</div>
-	</div>
-	
-	<!-- Third item -->
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>	
-		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
-		</div>
-	</div>
-	
-	<!-- Forth item -->
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>	
-		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
-		</div>
-	</div>
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>
-		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
-		</div>
-	</div>
-	
-	<!-- Second item -->
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>	
-		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
-		</div>
-	</div>
-	
-	<!-- Third item -->
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>	
-		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
-		</div>
-	</div>
-	
-	<!-- Forth item -->
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>	
-		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
-		</div>
-	</div>
-	
-	<div class="col-md-3">
-	<div class="product-top">
-	<img src="../public/images/Dandan-Mian.jpg">
-		<div class="overlay">
-		<!-- Get the icons from "fontawesome.com/icons" -->
-		<button type="button" class="btn btn-secondary" title="Add to favorite"><i class="fa fa-heart"></i></button>
-		<button type="button" class="btn btn-secondary" title="Add to cart"><i class="fa fa-shopping-cart"></i></button>
-		</div>
-	</div>
-	
-		<div class="product-bottom text-center">
-		<h5>Monoprix</h5>
-		<h3>Nouilles du Sichuan instantanées</h3>
-		<h5 class="prix">3€50</h5>
-		</div>
-	</div>
-	
-	</div>
 	</div>
 </body>
 </html>
