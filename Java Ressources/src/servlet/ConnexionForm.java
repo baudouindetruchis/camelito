@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -85,8 +86,36 @@ public class ConnexionForm extends HttpServlet {
 	            	       	String firstname = res.getString("first_name");
 	            	       	String lastname = res.getString("last_name");
 	            	       	int promotion = res.getInt("promotion");
-	            	           	            	       	
-	            	       	ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion);
+	            	       	int score = res.getInt("score");
+	            	       	
+	            	       	
+	            	       	PreparedStatement getSucces = con.prepareStatement("SELECT list_id_success FROM public.details WHERE id_user = " + id );
+	            			ResultSet succes = getSucces.executeQuery();
+	            			if (succes == null) {
+	            				System.out.println("Erreur de connexion (succes=null)");
+	            			} else {
+	            				
+	            				succes.next();		
+	            				List<String> successNamesTab = new ArrayList<String>(); 
+	            				Object array_id_success =   succes.getArray("list_id_success").getArray();
+	            				Integer[] list_id_success = (Integer[]) array_id_success;
+	            			
+	            				int id_succes=0;
+             				
+	            				for(int i =0; i<  list_id_success.length;i++) {
+	            					id_succes =  list_id_success[i];
+	            					PreparedStatement getSuccesName = con.prepareStatement("SELECT success_name FROM public.success WHERE id = " + id_succes );
+	            					ResultSet succesName = getSuccesName.executeQuery();
+	            					while(succesName.next()) {
+	            						successNamesTab.add(succesName.getString("success_name"));
+	            					}	
+	            				}
+	            				session.setAttribute("succesList", successNamesTab);
+	            				
+	            				
+	            			}
+     	            	       	
+	            	       	ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, score);
 	                     	
             				//load page
                             page = "./view/profil.jsp";			

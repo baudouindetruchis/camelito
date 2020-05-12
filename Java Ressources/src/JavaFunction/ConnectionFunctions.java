@@ -11,7 +11,7 @@ import obj.User;
 public class ConnectionFunctions {
 	
 	
-	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year   ) {
+	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year, int score   ) {
 		HttpSession session = request.getSession(false);
 		
 		User obj = new User();
@@ -22,6 +22,7 @@ public class ConnectionFunctions {
 		obj.setFirst_name(firstName);
 		obj.setLast_name(lastName); 
 		obj.setPromotion(year);
+		obj.setScore(score);
 
 		//add all value to the 
 		session.setAttribute("user", obj);
