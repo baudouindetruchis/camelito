@@ -39,7 +39,7 @@
 							<li class="nav-item"><a class="nav-link" href="../ShoppingLoad">Shopping</a>
 							</li>
 							<li class="nav-item"><a class="nav-link"
-								href="../LoadPanier">Panier</a></li>
+								href="../PanierLoad">Panier</a></li>
 							<li class="nav-item"><a class="nav-link" href="score.jsp">Classement</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>

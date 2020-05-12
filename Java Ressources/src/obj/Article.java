@@ -9,6 +9,25 @@ public class Article {
 	float selling_price;
 	float real_price;
 	int quantity;
+	int stock;
+	String img_link;
+
+
+	public String getImg() {
+		return img_link;
+	}
+
+	public void setImg(String img) {
+		this.img_link = img;
+	}
+
+	public int getStrock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 
 	public int getId() {
 		return id;
