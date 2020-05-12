@@ -14,8 +14,6 @@ public class ConnectionFunctions {
 	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year   ) {
 		HttpSession session = request.getSession(false);
 		
-		System.out.println(email);
-		
 		User obj = new User();
 		obj.setId(id);
 		obj.setMail(email);

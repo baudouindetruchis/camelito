@@ -65,7 +65,7 @@
 						<label for="pseudo" class="col-form-label">Pseudo : </label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control-plaintext" name="pseudo"
-								id="pseudo" value="${usr.pseudo}" disabled required>
+								id="pseudo" value="${usr.pseudo}" disabled>
 						</div>
 						<input class="form-control" type="text" name="newPseudo"
 							id="newPseudo" placeholder="newPseudo" hidden /></br>
@@ -127,11 +127,8 @@
 					
 					
 					<div>
-					<input class="form-control" type="number"
-											name="newPromo" id="newPromo"
-											placeholder="Entrez votre année d'optention du diplôme"
-											hidden /></br>
-								
+					<input class="form-control" type="number" name="newPromo" id="newPromo"placeholder="Année de diplôme, 0 si non concerné" hidden /></br>
+							
 					</div>
 					
 					<div class="form-group row" id="Mdp" hidden>

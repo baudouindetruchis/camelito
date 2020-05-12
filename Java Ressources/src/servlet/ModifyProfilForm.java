@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import JavaFunction.modifyProfilFunctions;
 import obj.User;
 
 /**
@@ -67,7 +68,7 @@ public class ModifyProfilForm extends HttpServlet {
 						}
 					}
 
-					if(verifyEmail( email)) {
+					if(modifyProfilFunctions.verifyEmail( email)) {
 						editMail.execute();	
 						User obj = (User) session.getAttribute("user");
 						obj.setMail(email);
@@ -78,7 +79,8 @@ public class ModifyProfilForm extends HttpServlet {
 							try {
 								promotionInt = Integer.parseInt(promotion);
 								PreparedStatement editPromo = con.prepareStatement("UPDATE public.details SET promotion = '"+ promotionInt +"'  WHERE id_user = '"+id+"'");
-								if(verifyPromo(promotionInt)) {
+																	
+								 if(modifyProfilFunctions.verifyPromo(promotionInt) || (promotionInt == 0)) {
 									User obj = (User) session.getAttribute("user");
 									editPromo.execute();
 									obj.setPromotion(promotionInt);	
@@ -91,8 +93,7 @@ public class ModifyProfilForm extends HttpServlet {
 						}
 					}
 									
-					
-					
+				
 					
 					String pwd = request.getParameter("oldPassword");
 					String newPwd = request.getParameter("newPassword");
@@ -135,26 +136,6 @@ public class ModifyProfilForm extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public static boolean verifyEmail(String email) {
-		
-		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
-                "[a-zA-Z0-9_+&*-]+)*@" + 
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
-                "A-Z]{2,7}$"; 
-                  
-		Pattern pat = Pattern.compile(emailRegex); 
-		if (email == null) return false; 
-		else return pat.matcher(email).matches();	
-	}
-	
-	public static boolean verifyPromo(int promo) {
-		
-		LocalDate currentdate = LocalDate.now();
-		int currentYear = currentdate.getYear();
-		if ((promo>currentYear+5) || (promo<currentYear)) return false;
-		else return true;
-	
-		}
 	
 	
 	}

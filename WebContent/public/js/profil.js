@@ -8,6 +8,7 @@ function goToEdit() {
 		document.getElementById("Mdp").hidden = false;
 		if(value!=null){
 			document.getElementById("newPromo").hidden = false;
+			document.getElementById("info").hidden = false;
 		}
 
 }
@@ -22,6 +23,7 @@ function goToEdit() {
 	document.getElementById("Mdp").hidden = true;
 	if(value!=null){
 		document.getElementById("newPromo").hidden = true;
+		document.getElementById("info").hidden = true;
 	}
 		
 
