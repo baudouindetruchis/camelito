@@ -34,7 +34,7 @@ public class PanierClick extends HttpServlet {
 
 		String action = request.getParameter("act");
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 
 		switch (action) {
 		case "comm":

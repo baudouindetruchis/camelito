@@ -154,7 +154,7 @@ public class ShoppingListFunctions {
 						}
 						// set session attribute
 						System.out.println(lArt.toString());
-						session.setAttribute("articleList", lArt);
+						session.setAttribute("panierList", lArt);
 					} else {
 						System.out.println("Pas autant d'articles que de quantités");
 					}
@@ -199,7 +199,7 @@ public class ShoppingListFunctions {
 		}
 	}
 	public static void actionAnnul(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
