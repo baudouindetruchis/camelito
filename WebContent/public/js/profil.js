@@ -1,3 +1,28 @@
+function includeOtherPart()  {
+	$("#includeReussite").load("mesReussites.jsp");
+	$("#includeStore").load("monMagasin.jsp");
+	includeHeader();
+}
+
+
+function editStore(){
+	
+	var value = document.getElementById("btnSaveChangeStore").hidden;
+	if(value == true){
+		document.getElementById("btnSaveChangeStore").hidden = false;
+		document.getElementById("btnEditStore").hidden = true;
+		document.getElementById("newName").hidden = false;
+		document.getElementById("newAddress").hidden = false;
+	}else{
+		document.getElementById("btnSaveChangeStore").hidden = true;
+		document.getElementById("btnEditStore").hidden = false;
+		document.getElementById("newName").hidden = true;
+		document.getElementById("newAddress").hidden = true;
+	}
+	
+}
+
+
 function goToEdit() {
 	var value = document.getElementById("promo");
 	

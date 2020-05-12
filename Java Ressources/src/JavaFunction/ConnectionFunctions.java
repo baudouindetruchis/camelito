@@ -4,14 +4,12 @@ import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-
 import obj.User;
 
 public class ConnectionFunctions {
 	
 	
-	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year, int score   ) {
+	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year, int score, String storeName, String address   ) {
 		HttpSession session = request.getSession(false);
 		
 		User obj = new User();
@@ -25,10 +23,28 @@ public class ConnectionFunctions {
 		obj.setScore(score);
 
 		//add all value to the 
-		session.setAttribute("user", obj);
+		
 		session.setAttribute("type",obj.getType());
 		session.setAttribute("promo",obj.getPromotion());
 		session.setAttribute("id",obj.getId());
+		
+		if(obj.getType() == 1 || obj.getType() == 2) {
+			session.setAttribute("user", obj);
+		}
+		else {
+			connectAsComm(  request,  storeName,  address,  obj   ) ;
+				
+		}
+		
+	}
+	
+	public static void connectAsComm( HttpServletRequest request, String storeName, String address, User obj   ) {
+		HttpSession session = request.getSession(false);
+		
+		obj.setAddress(address);
+		obj.setStoreName(storeName);
+		//add all value to the 
+		session.setAttribute("user", obj);
 		
 	}
 	
