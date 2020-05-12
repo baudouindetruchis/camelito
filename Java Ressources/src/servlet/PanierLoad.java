@@ -35,6 +35,7 @@ public class PanierLoad extends HttpServlet {
 	 */
 	public PanierLoad() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -44,7 +45,7 @@ public class PanierLoad extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
@@ -145,7 +146,7 @@ public class PanierLoad extends HttpServlet {
 		}
 
 		// load page
-		String page = "./view/panier.jsp";
+		String page = "./view/panier.jsp";// TODO
 		response.sendRedirect(page);
 	}
 
@@ -155,6 +156,7 @@ public class PanierLoad extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
