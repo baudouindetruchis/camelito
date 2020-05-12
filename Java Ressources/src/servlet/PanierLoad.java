@@ -35,7 +35,6 @@ public class PanierLoad extends HttpServlet {
 	 */
 	public PanierLoad() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -146,7 +145,7 @@ public class PanierLoad extends HttpServlet {
 		}
 
 		// load page
-		String page = "./view/panier.jsp";// TODO
+		String page = "./view/panier.jsp";
 		response.sendRedirect(page);
 	}
 
@@ -156,7 +155,6 @@ public class PanierLoad extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
