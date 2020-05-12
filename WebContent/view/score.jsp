@@ -1,4 +1,8 @@
 <%@ page import="java.sql.*" %>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -28,99 +32,80 @@
 </head>
 
 <body>
+
+	    
+
+
+<%
+//int id_session = Integer.parseInt(request.getParameter("userId"));
+
+String driverName = "org.postgresql.Driver";
+String connectionUrl = "jdbc:postgresql://127.0.0.1:5432/";
+String dbName = "camelitoLocal";
+String userId = "postgres";
+String password = "123";
+
+try {
+Class.forName(driverName);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+
+Connection connection = null;
+Statement statement = null;
+ResultSet resultSet = null;
+%>
+
+
 	<div id="includedHeader"></div>
 	<div id="title">
 		<h1 style="font-size: 2vw">Course au camelicoins</h1>
-		
-	
-		
 	</div>
+
 	<div id="scoreTab">
 	<table class="table table-striped">
 	  <thead>
 	    <tr>
-	      <th scope="col" style="width: 5%">Classement</th>
-	      <th scope="col" style="width: 10%">Pseudo</th>
-	      <th scope="col" style="width: 5%">Score</th>
+<th scope="col" style="width: 5%"> Prénom </th>
+<th scope="col" style="width: 10%"> Nom </th>
+<th scope="col" style="width: 5%"> Score </th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <tr>
-	    
-	<FORM NAME="form1" ACTION="collecte.jsp" METHOD="POST">    
-<%
 
-int current = 1;
-if(request.getParameter("hidden") != null) {
-    current = Integer.parseInt(request.getParameter("hidden"));
+
+
+</tr>
+<%
+try{ 
+connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+statement=connection.createStatement();
+String sql ="SELECT * FROM details WHERE score IS NOT NULL ORDER BY score";
+
+resultSet = statement.executeQuery(sql);
+while(resultSet.next()){
+%>
+<tr bgcolor="#DEB887">
+
+
+<td><%=resultSet.getString("last_name") %></td>
+<td><%=resultSet.getString("first_name") %></td>
+<td><%=resultSet.getString("score") %></td>
+
+</tr>
+
+<% 
 }
 
-//time to connect to bdd
-String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
-String user = "postgres";
-String psw = "123";
-
-
-	Connection con = DriverManager.getConnection(url, user, psw);
-	Statement st;
-	ResultSet rst;
-	
-	
-	st = con.createStatement();
-	rst=st.executeQuery("SELECT * FROM score");
-	
-	
-    Statement statement = con.createStatement(
-            ResultSet.TYPE_SCROLL_INSENSITIVE,
-            ResultSet.CONCUR_READ_ONLY);
-	
-	
-	while(rst.next()) {
-		System.out.print(rst.getInt("id")+"\t");
-		System.out.print(rst.getInt("point")+"\t");
-		System.out.println();
-	}
-	
-	
-    ResultSet resultset = 
-            statement.executeQuery("SELECT * FROM score"); 
-
-        if(current < 1){
-            current = 1;
-        }
-
-        resultset.last();
-        int rows = resultset.getRow();
-        if(current <= rows){
-            resultset.absolute(current);
-        } 
-				
-
+} catch (Exception e) {
+e.printStackTrace();
+}
 %>
-            <TABLE BORDER="1">
-                <TR>
-                    <TH>id</TH>
-                    <TH>score</TH>
-
-                </TR>
-                <TR>
-                    <TD> <%= resultset.getString(1) %> </TD>
-                    <TD> <%= resultset.getString(2) %> </TD>
-                </TR>
-            </TABLE>
-            <BR>
-            <INPUT TYPE="HIDDEN" NAME="hidden" VALUE="<%= current %>">
-            <INPUT TYPE="BUTTON" VALUE="Suivant" ONCLICK="moveNext()">
-            <INPUT TYPE="BUTTON" VALUE="Précédent" ONCLICK="movePrevious()">
-        </FORM>
 
 
+<tr>
 
-
-		  <form action="../Score">
-
-      	  <c:set var = "usr" scope = "session" value = "${sessionScope.getScore}"/>
-      	  
 	      <th scope="row">I</th>
 	      <td>BobB</td>
 	      <td>742</td>
@@ -140,7 +125,32 @@ String psw = "123";
 	</div>
 	<div id="yourScore">
 		<h1 style="font-size: 2vw">Ton score : </h1>
-		<p>442</p>
+		
+		
+<%  
+//int id_session = Integer.parseInt(request.getParameter("userId"));
+int id_session = 1;
+String sql_solo ="SELECT score FROM details WHERE (id_user = 1) AND (score IS NOT NULL)";
+resultSet = null;
+resultSet = statement.executeQuery(sql_solo);
+while(resultSet.next()){
+%>
+
+
+		<p>
+
+
+<td><%=resultSet.getString("score") %></td>
+
+		</p>
+		
+<% 
+}
+
+%>	
+	 
+		
+		
 	</div>
 	<div id="race">
 		<img class="camel" alt="previous" src="../public/images/chammeau.png">
@@ -148,23 +158,5 @@ String psw = "123";
 		<img class="camel" alt="next" src="../public/images/chammeau.png">
 	</div>
 	
-        <SCRIPT LANGUAGE="JavaScript">
-            <!--
-            function moveNext()
-            {
-                var counter = 0
-                counter = parseInt(document.form1.hidden.value) + 1
-                document.form1.hidden.value = counter
-                form1.submit()
-            }    
-            function movePrevious()
-            {
-                var counter = 0
-                counter = parseInt(document.form1.hidden.value) - 1
-                document.form1.hidden.value = counter
-                form1.submit()
-            }    
-            // --> 
-        </SCRIPT>
 	
 </body>
