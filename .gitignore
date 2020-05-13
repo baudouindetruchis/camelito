@@ -35,3 +35,4 @@ hs_err_pid*
 /bin/
 .project
 .settings/org.eclipse.core.resources.prefs
+/build/
