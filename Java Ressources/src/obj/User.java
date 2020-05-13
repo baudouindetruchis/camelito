@@ -16,6 +16,26 @@ public class User {
 	int score;
 	int promotion;
 	
+	
+	String address;
+	String storeName;
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getStoreName() {
+		return storeName;
+	}
+
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+
 	public int getPromotion() {
 		return promotion;
 	}
@@ -70,8 +90,8 @@ public class User {
 		return pseudo;
 	}
 
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
+	public void setPseudo(String user_name) {
+		this.pseudo = user_name;
 	}
 
 	public String getMail() {
