@@ -33,8 +33,9 @@ public class PanierClick extends HttpServlet {
 			throws ServletException, IOException {
 
 		String action = request.getParameter("act");
+		String msg="";
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 
 		switch (action) {
 		case "comm":
@@ -49,7 +50,7 @@ public class PanierClick extends HttpServlet {
 		case "less":
 		case "more":
 		case "supp":
-			ShoppingListFunctions.modifQuantity(request);
+			msg =ShoppingListFunctions.modifQuantity(request);
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			break;
 

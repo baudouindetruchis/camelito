@@ -23,10 +23,14 @@ public class ShoppingListFunctions {
 	private static final String USER_BDD = "postgres";
 	private static final String PSW = "123";
 
-	public static void modifQuantity(HttpServletRequest request) {
+	public static String modifQuantity(HttpServletRequest request) {
 		Integer id_article = Integer.parseInt(request.getParameter("id"));
 		String action = request.getParameter("act");
+		
+		// msg permet de retrouner des info via la reponse html
+		String msg = ""; 
 
+		//connection a la bdd
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
@@ -38,6 +42,7 @@ public class ShoppingListFunctions {
 			if (theCart == null) {
 				System.out.println("Erreur de connexion (cart=null)");
 			} else {
+				//recuperation de la liste de course en cours
 				theCart.next();
 				Object array_id_articles;
 				Object array_quantities;
@@ -46,50 +51,72 @@ public class ShoppingListFunctions {
 					array_id_articles = theCart.getArray("list_id_articles").getArray();
 					array_quantities = theCart.getArray("liste_quantities").getArray();
 				} catch (PSQLException e) {
+					//initialisation si liste null
 					array_id_articles = new Integer[0];
 					array_quantities = new Integer[0];
 					is_new_cart = true;
 				}
 
 				if (array_id_articles instanceof Integer[] && array_quantities instanceof Integer[]) {
+					//passage au format liste java plutot que sql
 					Integer[] tmp_list_id_articles = (Integer[]) array_id_articles;
 					Integer[] tmp_list_id_quantities = (Integer[]) array_quantities;
-
 					List<Integer> list_id_articles = new ArrayList<Integer>(Arrays.asList(tmp_list_id_articles));
 					List<Integer> list_quantities = new ArrayList<Integer>(Arrays.asList(tmp_list_id_quantities));
 
-					System.out.println("id article : " + id_article);
-					System.out.println("list_id_articles : " + listToString(list_id_articles));
-					System.out.println("list_quantities : " + listToString(list_quantities));
+					//recupère l'endroit dans la liste de l'artique selectionné
 					int idToChangeLocation = list_id_articles.indexOf(id_article);
 					if (idToChangeLocation == -1) {
-						System.out.println("add to list");
+						//ou le rajoute s'il n'est pas present dans la bdd
 						list_id_articles.add(id_article);
 						list_quantities.add(0);
 						idToChangeLocation = list_id_articles.indexOf(id_article);
 					}
-					int newVal;
+					//calcul la nouvelle valeur
+					int newVal = 0;
+					int pastVal = list_quantities.get(idToChangeLocation);
 					switch (action) {
 					case "less":
-						newVal = (list_quantities.get(idToChangeLocation) - 1);
+						newVal = (pastVal - 1);
 						list_quantities.set(idToChangeLocation, newVal);
 						break;
 					case "more":
-						newVal = (list_quantities.get(idToChangeLocation) + 1);
+						newVal = (pastVal + 1);
 						list_quantities.set(idToChangeLocation, newVal);
 						break;
 					case "supp":
-						newVal = 0 ;
-						list_quantities.set(idToChangeLocation, newVal);
 						break;
 					default:
 						System.out.println("unkonwn action in actionTab in panier click");
 						break;
 					}
-					System.out.println(action + " " + user_id + " " + id_article);
-					System.out.println("list_id_articles : " + listToString(list_id_articles));
-					System.out.println("list_quantities : " + listToString(list_quantities));
+					//et update la liste
+					list_quantities.set(idToChangeLocation, newVal);
+					
+					if(newVal==0) {
+						list_quantities.remove(idToChangeLocation);
+						list_id_articles.remove(idToChangeLocation);
+						msg="article suprimé de votre liste";
+					} else if(newVal==-1) {
+						list_quantities.remove(idToChangeLocation);
+						list_id_articles.remove(idToChangeLocation);
+						msg="impossible d'avoir des quatité negative";
+					} else {
+						msg="le stock disponible est malhersment limite";
+						// SQL to connect to the article
+						PreparedStatement pstArticle = con
+								.prepareStatement("SELECT * FROM public.articles WHERE id = " + id_article);
+						ResultSet rsArticle = pstArticle.executeQuery();
+						rsArticle.next();
+						// get stock of the article
+						int theStock = rsArticle.getInt("available");
+						//si quantité supp au stock alors impossible on retourne en arrière
+						if(theStock<newVal) {
+							list_quantities.set(idToChangeLocation, pastVal);							
+						}
+					}
 
+					//maj de la bdd avec les nouvelle valeur
 					String str_list_quantities = listToString(list_quantities);
 					String str_list_id_articles = listToString(list_id_articles);
 					PreparedStatement editQuantity;
@@ -116,6 +143,7 @@ public class ShoppingListFunctions {
 						String name;
 						int id_store;
 						int price;
+						int stock;
 						String store;
 						for (int i = 0; i < list_id_articles.size(); i++) {
 							id_art = list_id_articles.get(i);
@@ -131,6 +159,7 @@ public class ShoppingListFunctions {
 							name = rsArticle.getString("name");
 							id_store = rsArticle.getInt("id_store");
 							price = rsArticle.getInt("selling_price");
+							stock = rsArticle.getInt("available");
 
 							// SQL to connect to a store
 							PreparedStatement pstStore = con
@@ -143,9 +172,10 @@ public class ShoppingListFunctions {
 
 							// create coresponding article object
 							anArticle = new Article();
-							anArticle.setId(id_article);
+							anArticle.setId(id_art);
 							anArticle.setName(name);
 							anArticle.setMagasin(store);
+							anArticle.setStock(stock);
 							anArticle.setQuantity(quantity_article);
 							anArticle.setSelling_price(price);
 
@@ -153,8 +183,7 @@ public class ShoppingListFunctions {
 							lArt.add(anArticle);
 						}
 						// set session attribute
-						System.out.println(lArt.toString());
-						session.setAttribute("articleList", lArt);
+						session.setAttribute("panierList", lArt);
 					} else {
 						System.out.println("Pas autant d'articles que de quantités");
 					}
@@ -165,6 +194,7 @@ public class ShoppingListFunctions {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return msg;
 	}
 
 	private static String listToString(List<Integer> l) {
@@ -199,7 +229,7 @@ public class ShoppingListFunctions {
 		}
 	}
 	public static void actionAnnul(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();

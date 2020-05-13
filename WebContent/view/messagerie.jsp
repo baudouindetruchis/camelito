@@ -3,73 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>messagerie</title>
-    <style type="text/css">
-        .talk_con{
-            width:600px;
-            height:520px;
-            border:1px solid #666;
-            margin:50px auto 0;
-            background:#f9f9f9;
-        }
-        .talk_show{
-            width:580px;
-            height:420px;
-            border:1px solid #666;
-            background:#fff;
-            margin:10px auto 0;
-            overflow:auto;
-        }
-        .talk_short_input{
-        	width:580px;
-            margin:10px auto 0;
-        }
-        .talk_input{
-            width:580px;
-            margin:10px auto 0;
-        }
-        .whotalk{
-            width:80px;
-            height:30px;
-            float:left;
-            outline:none;
-        }
-        .talk_word{
-            width:420px;
-            height:26px;
-            padding:0px;
-            float:left;
-            margin-left:0px;
-            outline:none;
-            text-indent:10px;
-        }        
-        .talk_sub{
-            width:80px;
-            height:30px;
-            float:left;
-            margin-left:10px;
-        }
-        .atalk{
-           margin:10px; 
-        }
-        .atalk span{
-            display:inline-block;
-            background:#0181cc;
-            border-radius:10px;
-            color:#fff;
-            padding:5px 10px;
-        }
-        .btalk{
-            margin:10px;
-            text-align:right;
-        }
-        .btalk span{
-            display:inline-block;
-            background:#ef8201;
-            border-radius:10px;
-            color:#fff;
-            padding:5px 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../public/css/messagerie.css">
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<link rel="stylesheet" 
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+	<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous">
+	</script>
+
+ <script> 
+    $(function(){
+    	$("#includedHeader").load("header_sample.jsp"); 
+    });
+</script>   
     <script type="text/javascript">
 
         window.onload = function(){
@@ -121,6 +71,7 @@
     </script>
 </head>
 <body>
+	<div id="includedHeader"></div>
     <div class="talk_con">
         <div class="talk_show" id="words">
             <div class="atalk"><span id="asay">A：Bonjour</span></div>

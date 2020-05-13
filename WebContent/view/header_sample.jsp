@@ -52,9 +52,9 @@
 							</li>
 						</c:when>
 						<c:when test="${sessionScope.type=='3'}">
-							<li class="nav-item"><a class="nav-link" href="#">Stock</a>
+							<li class="nav-item"><a class="nav-link" href="../StockLoad">Stock</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="#">Messagerie</a>
+							<li class="nav-item"><a class="nav-link" href="../MessageLoad">Messagerie</a>
 							</li>
 						</c:when>
 					</c:choose>

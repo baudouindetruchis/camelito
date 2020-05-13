@@ -21,7 +21,7 @@ public class Article {
 		this.img_link = img;
 	}
 
-	public int getStrock() {
+	public int getStock() {
 		return stock;
 	}
 

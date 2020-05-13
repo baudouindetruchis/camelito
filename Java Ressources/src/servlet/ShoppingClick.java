@@ -30,7 +30,6 @@ public class ShoppingClick extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("blob");
 		ShoppingListFunctions.modifQuantity(request);
 		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
