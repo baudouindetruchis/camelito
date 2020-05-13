@@ -15,7 +15,6 @@
     	$("#articlesDiv").load("stockArticles.jsp"); 
     });
     
-
     function changeForm() {
       var checkBox = document.getElementById("formCheck");
       var formAdd = document.getElementById("formAdd");
@@ -27,6 +26,23 @@
     	  formModif.hidden=false;
     	  formAdd.hidden=true;
       }
+    }
+    
+    function fillForm(id, name, description, real_price, selling_price, stock){
+    	var modId           = document.getElementById("modId");
+    	var modName         = document.getElementById("modName");
+    	var modDescription  = document.getElementById("modDescription");
+    	var modRealPrice    = document.getElementById("modRealPrice");
+    	var modSellingPrice = document.getElementById("modSellingPrice");
+    	var modStock        = document.getElementById("modStock");
+    	modId.value = id;
+    	modName.value = name;
+    	modDescription.value = description;
+    	modRealPrice.value = real_price;
+    	modSellingPrice.value = selling_price;
+        modStock.value = stock;
+        formModif.hidden=false;
+  	  	formAdd.hidden=true;
     }
     
 </script> 
@@ -44,27 +60,27 @@
 	<div id="articlesDiv"></div>
 	<div id="addArticlDiv">
 		<div class="form-group row">
-			<label for="mode" class="col-form-label">Ajouter/modifier un article : </label>
+			<label for="mode" class="col-form-label">Ajouter/Modifier un article : </label>
 			<label class="switch"> 
 				<input type="checkbox" id="formCheck" onchange="changeForm()" checked>
 				<span class="slider round"></span>
 			</label>
 		</div>
 		<form id="formAdd" action="../StockForm" class="form-container" name="">
-			<input type="name" placeholder="Name" name="name" required class="field">					
-			<input type="description" placeholder="Description" name="description" required class="field">
-			<input type="real_price" placeholder="Real price" name="real_price" required class="field">
-			<input type="selling_price" placeholder="Selling price" name="selling_price" required class="field">
-			<input type="quantity" placeholder="Quantity available" name="quantity" required class="field">
+			<input type="text" placeholder="Name" name="name" required class="field">					
+			<input type="text" placeholder="Description" name="description" class="field">
+			<input type="number" placeholder="Real price" name="real_price" required class="field" step="0.01">
+			<input type="number" placeholder="Selling price" name="selling_price" required class="field" step="0.01">
+  			<input type="number" name="stock" min="0" max="99" required>
 			<input type="submit" value="Ajouter">
 		</form>
 		<form id="formModif" action="../StockForm" class="form-container" name="" hidden=true>
-			<input type="id" placeholder="Id" name="id" required class="field">	
-			<input type="name" placeholder="Name" name="name" required class="field">					
-			<input type="description" placeholder="Description" name="description" required class="field">
-			<input type="real_price" placeholder="Real price" name="real_price" required class="field">
-			<input type="selling_price" placeholder="Selling price" name="selling_price" required class="field">
-			<input type="quantity" placeholder="Quantity available" name="quantity" required class="field">
+			<input id="modId" type="number" placeholder="Id" name="id" required class="field">	
+			<input id="modName" type="text" placeholder="Name" name="name" required class="field">					
+			<input id="modDescription" type="text" placeholder="Description" name="description" class="field">
+			<input id="modRealPrice" type="number" placeholder="Real price" name="real_price" required class="field" step="0.01">
+			<input id="modSellingPrice" type="number" placeholder="Selling price" name="selling_price" required class="field" step="0.01">
+  			<input type="number" id="modStock" name="stock" min="0" max="99" required>
 			<input type="submit" name="modif" value="Modifer">
 			<input type="submit" name="supp" value="Supprimer">
 		</form>
