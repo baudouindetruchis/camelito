@@ -53,3 +53,12 @@ fieldset.ref{
 	background-color: transparent;
 	text-align:center;
 }
+
+p {
+	font-size:14px;
+}
+
+.peremption {
+	width: 400px;
+	margin: 10px;
+}
