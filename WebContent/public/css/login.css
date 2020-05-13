@@ -1,75 +1,73 @@
-
-body{
-	font-size: small;
+body {
+  font-size: small;
 }
 
-h1{
-	color:#b47623;
-	text-align: center;
+h1 {
+  color: #b47623;
+  text-align: center;
 }
 
 .form-check {
-	padding-bottom: 25px;
+  padding-bottom: 25px;
 }
 
 .form-check2 {
-	padding-left: 30px;
-	padding-top: 10px;
+  padding-left: 30px;
+  padding-top: 10px;
 }
 
-label{
-	margin-left:80px;
-	margin-top: 3px;
-}
-input[type=password], input[type=email], input[type=text], input[type=lastname], input[type=firstname], select[type=year], input[type=pseudo]{
-	border: 1px solid #764e17;
-	background-color: #f1d8b6;
-	color:black;
-	border-radius: 10px;
+label {
+  margin-left: 80px;
+  margin-top: 3px;
 }
 
-input[type=submit]{
-	background-color: #b47623;
-	border-radius: 10px;
-	border: 1px solid #764e17;
-	color:black;
+input[type=password], input[type=email], input[type=text], input[type=lastname], input[type=firstname], select[type=year], input[type=pseudo] {
+  border: 1px solid #764e17;
+  background-color: #f1d8b6;
+  color: black;
+  border-radius: 10px;
 }
 
+input[type=submit] {
+  background-color: #b47623;
+  border-radius: 10px;
+  border: 1px solid #764e17;
+  color: black;
+}
 
-input{
-	border: 1px solid #764e17;
-	border-radius: 10px;
-	width: 75%;
-	text-align: center;
-	font-weight: bold;
+input {
+  border: 1px solid #764e17;
+  border-radius: 10px;
+  width: 75%;
+  text-align: center;
+  font-weight: bold;
 }
 
 fieldset {
-	border: 1px solid transparent #764e17;
-	margin: 0;
-	xmin-width: 0;
-	padding: 10px;
-	border-radius:15px;
-	background-color:#f1d8b6;
-	padding-left:10px;
-	margin-top:10px;
-
+  border: 1px solid transparent #764e17;
+  margin: 0;
+  xmin-width: 0;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #f1d8b6;
+  padding-left: 10px;
+  margin-top: 10px;
 }
 
-legend{
-	font-size:14px;
-	font-weight:bold;
-	margin-bottom: 0px;
-	width: auto;
-	border: 1px solid #764e17;
-	border-radius: 10px;
-	padding: 5px 5px 5px 10px;
-	background-color: white;
+legend {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  width: auto;
+  border: 1px solid #764e17;
+  border-radius: 10px;
+  padding: 5px 5px 5px 10px;
+  background-color: white;
 }
 
-fieldset.ref{
-	background-color: transparent;
-	text-align:center;
+fieldset.ref {
+  background-color: transparent;
+  text-align: center;
 }
 
 h6 {
@@ -83,7 +81,7 @@ h6 {
 }
 
 .animated_img {
-  width : 300px;
+  width: 300px;
   z-index: 2;
   opacity: 100%;
 }
@@ -117,84 +115,82 @@ h6 {
 
 /* The popup form - hidden by default */
 .form-popup {
- 	display: none;
- 	position: fixed;
-	top: 5%;
-	left: 33%;
-	margin: 0 auto;
- 	border: 4px solid #b67823;
-  	z-index: 9;
-	border-radius: 27px;
-
+  display: none;
+  position: fixed;
+  top: 5%;
+  left: 33%;
+  margin: 0 auto;
+  border: 4px solid #b67823;
+  z-index: 9;
+  border-radius: 27px;
 }
 
 /* Add styles to the form container */
 .form-container {
-	max-width: 400px;
-	padding: 10px;
+  max-width: 400px;
+  padding: 10px;
   /*background-color: white; */
-	background-image: linear-gradient(white,#fdf8f0,#fcf3e4, #f3daba);
-	background-attachment: fixed;
-	border-radius: 20px;
+  background-image: linear-gradient(white, #fdf8f0, #fcf3e4, #f3daba);
+  background-attachment: fixed;
+  border-radius: 20px;
 }
 
 .close_button {
-	position: absolute;
-	width: 20px;
-	height: auto;
-	right: 3%;
+  position: absolute;
+  width: 20px;
+  height: auto;
+  right: 3%;
 }
 
 .close_button:hover {
-	opacity: 70%;
-	transition: .1s;
-	transform: translate(0,1px);
+  opacity: 70%;
+  transition: .1s;
+  transform: translate(0, 1px);
 }
 
 .field {
-	padding: 3px;
-	margin: 3px;
-	margin-left: 45px;
+  padding: 3px;
+  margin: 3px;
+  margin-left: 45px;
 }
 
 .btnn {
-	background-color: #b47623;
-	border-radius: 10px;
-	border: 1px solid #764e17;
-	color:black;
-	padding: 5px;
-	width: 80px;
-	text-align: center;
-	margin-left: 150px;
-	margin-top: 5px;
+  background-color: #b47623;
+  border-radius: 10px;
+  border: 1px solid #764e17;
+  color: black;
+  padding: 5px;
+  width: 80px;
+  text-align: center;
+  margin-left: 150px;
+  margin-top: 5px;
 }
 
-input[type=radio],[type=checkbox]{
-	text-align: center;
-	padding: 10px;
-	margin-left: 15px;
-	width: 30px;
-	height: 15px;
-	display: inline-block;
-
+input[type=radio], [type=checkbox] {
+  text-align: center;
+  padding: 10px;
+  margin-left: 15px;
+  width: 30px;
+  height: 15px;
+  display: inline-block;
 }
 
 .equipe {
-	width: 235px;
+  width: 235px;
 }
 
 .behind_right {
-	position: relative;
+  position: relative;
   z-index: -1;
   top: -450px;
-	right: 0px;
+  right: 0px;
   padding-left: 10px;
   text-align: center;
 }
 
 /* The message box is shown when the user clicks on the password field */
 #message {
-  display:none;
+  display: none;
   background: #f1f1f1;
   color: #000;
   position: relative;
@@ -228,9 +224,7 @@ input[type=radio],[type=checkbox]{
   left: -35px;
   content: "&#10006;";
 }
-  
-  
+
 @media (min-width: 576px) and (max-width:1199px) {
-	/* Faire en sorte que les 2 images + pavés cachés soient responsive et adapté à tout format mobile/phablette/tablette -> Mettre les deux images sur la meme ligne en dessous = taille du form connexion*/
+  /* Faire en sorte que les 2 images + pavï¿½s cachï¿½s soient responsive et adaptï¿½ ï¿½ tout format mobile/phablette/tablette -> Mettre les deux images sur la meme ligne en dessous = taille du form connexion*/
 }
-  
