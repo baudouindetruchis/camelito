@@ -15,6 +15,12 @@
     	$("#articlesDiv").load("stockArticles.jsp"); 
     });
     
+    function stockUpdate(id){
+    	var inputStock = document.getElementById("stock-"+id);
+    	var newStock = inputStock.value;
+    	console.log(id+" change to "+newStock);
+    }
+    
     function changeForm() {
       var checkBox = document.getElementById("formCheck");
       var formAdd = document.getElementById("formAdd");

@@ -33,14 +33,15 @@
 		  	<td><c:out value="${artc.description}"/></td>
 		  	<td><c:out value="${artc.real_price}"/></td>
 		  	<td><c:out value="${artc.selling_price}"/></td>
-		  	<td><c:out value="${artc.stock}"/></td>
-	        <td><button onClick="btnTabClick(${artc.id}, 'less')">-1</button></td>
-	        <td><button onClick="btnTabClick(${artc.id}, 'more')">+1</button></td>
-	        <td><button onClick="fillForm(${artc.id}, '${artc.name}', '${artc.description}', 
+		  	<td><form>
+		  		<input id="stock-${artc.id}" type="number"  min="0" max="99" step="1" placeholder="Stock" value="${artc.stock}" onchange="stockUpdate(${artc.id})" class="field">
+		  	</form></td>
+			<td><button onClick="fillForm(${artc.id}, '${artc.name}', '${artc.description}', 
 	        	${artc.real_price}, ${artc.selling_price}, ${artc.stock})">Modif</button></td>
 	   	  </tr>
 	  </c:forEach>
 	  </tbody>
 	</table>
+	
 		
 </body>
