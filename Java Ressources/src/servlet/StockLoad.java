@@ -35,7 +35,6 @@ public class StockLoad extends HttpServlet {
      */
     public StockLoad() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
