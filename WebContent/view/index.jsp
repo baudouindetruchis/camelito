@@ -24,7 +24,9 @@
 				<c:set var="connectionMsg" scope="session" value="${sessionScope.connectionMsg}" />
 
 					<fieldset class="ref">
+						<a href="index.jsp">
 						<img class="img-responsive" src="../public/images/logo_camelito_marron.png" alt="Logo Camelito" width="120" height="120" />
+						</a>
 						<h1>Camelito</h1>
 					</fieldset>
 
@@ -41,7 +43,8 @@
 					<input class="btn btn-basic btn-block" type="submit" value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color:black" onclick="openForm()">S'inscrire</a><br>
-						<a href="#" style="color:black">Mot de passe oublié </a>
+						<a href="#" style="color:black">Mot de passe oublié </a><br>
+						<a href="faq.jsp" style="color:black">FAQ</a>
 						
 					</fieldset>
 				</form>

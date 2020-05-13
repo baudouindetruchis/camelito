@@ -58,7 +58,15 @@ p {
 	font-size:14px;
 }
 
+a {
+	font-size: 12px;
+}
+
+.img_centered {
+	text-align:center;
+}
+
 .peremption {
-	width: 400px;
-	margin: 10px;
+	width: 500px;
+	margin: 0px;
 }

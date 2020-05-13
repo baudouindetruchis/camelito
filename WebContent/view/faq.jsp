@@ -21,7 +21,9 @@
       <form>
       
       <fieldset class= "ref">
+      <a href="index.jsp">
     <img class="img-responsive" src="../public/images/logo_camelito_marron.png" alt="Logo Camelito" width="120" height="120"/>
+    </a>
     <h1>Camelito</h1>
      </fieldset>
     
@@ -60,7 +62,8 @@
 	<fieldset>
 	<legend>La date de péremption d’un aliment étant passée est ce que je peux encore le consommer ?</legend>
 	<p>Les dates de péremption sont là à titre indicatif. La plupart des aliments restent bon à la consommation plusieurs jours/mois après. Pour savoir combien de temps il est encore consommable vous pouvez vous référer à la grille suivante :</p>
-	<img class="peremption" src="../public/images/date_peremption.png" alt="Grille peremption" />
+	<div class="img_centered"><img class="peremption" src="../public/images/date_peremption.png" alt="Grille peremption" /></div>
+	
 	</fieldset> 
 	
    
