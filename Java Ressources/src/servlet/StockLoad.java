@@ -47,7 +47,6 @@ public class StockLoad extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
-			System.out.println(user_id);
 			
 			PreparedStatement getStore = con
 					.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
