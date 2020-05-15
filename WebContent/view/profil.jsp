@@ -24,23 +24,28 @@
 <title>Camelito - Profil</title>
 <script src="../public/js/profil.js"></script>
 <script src="../public/js/header.js"></script>
+
 </head>
 
 <body onload="includeOtherPart()">
+
+
 	<div id="includedContent"></div>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
+			<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
 				<h2>Mon profil</h2>
-				<form action="../ModifyProfilForm">
+				<form action="../ModifyProfilForm" >
 
 					<c:set var="usr" scope="session" value="${sessionScope.user}" />
 
 				<fieldset>
 					<img class="profil img-responsive"
+					<c:set var="user" scope="session" value="${sessionScope.user}" />
 						src="../public/images/Add_User.png" alt="Add User" width="25%"
-						height="120" />
+						height="120"/>
 				</fieldset>
 				
 					<div class="form-group row">

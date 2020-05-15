@@ -1,7 +1,8 @@
 function includeOtherPart()  {
 	$("#includeReussite").load("mesReussites.jsp");
 	$("#includeStore").load("monMagasin.jsp");
-	includeHeader();
+
+	includeHeaderAndCheckUser();
 }
 
 
