@@ -8,71 +8,44 @@
 <link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
 
 <head>
-	<title>Camelito</title>
+					
+<meta charset="UTF-8">
+<%@page contentType="text/html; charset=UTF-8"%>
 </head>
 
 <body>
-  
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <form>
-      
-      <fieldset class= "ref">
-    <img class="img-responsive" src="../public/images/logo_camelito_marron.png" alt="Logo Camelito" width="120" height="120"/>
-    <h1>Camelito</h1>
-     </fieldset>
-    
-      <input class="form-control" type="text" name="pseudo" placeholder="Pseudo"/></br>
-      <input class="form-control" type="text" name="password" placeholder="Mot de passe"/></br>
-      <input class="btn btn-basic btn-block" type="submit"  value="Se connecter" />
-	 <fieldset class= "ref">
-	<a  href="#" style="color:black">S'inscrire</a><br>
-	<a  href="#" style="color:black" >Mot de passe oubli�</a>
-   </fieldset>
-    </form>
-    
-    
-    
-    
-      </div>
-    <div class="col-sm-8">
-      
-    
-      <fieldset>
-	<legend>Petite question :</legend>
-	<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-	 incididunt ut labore et dolore magna aliqua..</p>
-	</fieldset> 
-	
-	
-	<fieldset>
-	<legend>Question un peu plus longue :</legend>
-	<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-	 incididunt ut labore et dolore magna aliqua..</p>
-	</fieldset> 
-	
-	<fieldset>
-	<legend>Question :</legend>
-	<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-	 incididunt ut labore et dolore magna aliqua..</p>
-	</fieldset> 
-	
-	<fieldset>
-	<legend>Question vraiment plus longue car ca fait styl�</legend>
-	<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-	 incididunt ut labore et dolore magna aliqua..</p>
-	</fieldset> 
-	
-   
-  </div>
-</div>
-</div>
-    
-    
-  
-	
-	
-</body>
 
+
+<div class="center_div">
+
+<div class="col-sm-8">
+
+	<fieldset>
+		<legend>A qui est destiné la plateforme ?</legend>
+		<p>A nos chers Isépiens voulant profiter de bonnes affaires tout en réduisant le gaspillage alimentaire.</p>
+	</fieldset>
+
+	<fieldset>
+		<legend>Je suis marchand et je voudrais écouler mes invendus. Comment participer ?</legend>
+		<p>Rien de plus simple ! Créez un compte marchand puis renseignez les informations sur vos invendus. Un livreur passera le lendemain les récupérer.</p>
+	</fieldset>
+
+	<fieldset>
+		<legend>Je ne trouve pas la date de péremption sur certains emballages. Comment avoir cette information ?</legend>
+		<p>Chaque marchand référence les dates de péremption que vous pouvez consulter sur la page commandes. Tout nos produits sont livrés avant leur date de péremption.</p>
+	</fieldset>
+
+	<fieldset>
+		<legend>La date de péremption d’un aliment étant passée est ce que je peux encore le consommer ?</legend>
+		<p>Les dates de péremption sont là à titre indicatif. La plupart des aliments restent bon à la consommation plusieurs jours/mois après. Pour savoir combien de temps il est encore consommable vous pouvez vous référer à la grille suivante :</p>
+		<div class="img_centered"><img class="peremption" src="../public/images/date_peremption.png" alt="Grille peremption"/></div>
+	</fieldset>
+
+</div>
+</div>
+							
+									
+						
+
+</body>
 </html>

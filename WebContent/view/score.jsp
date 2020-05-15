@@ -17,11 +17,6 @@
 	crossorigin="anonymous">
 </script>
 
- <script> 
-    $(function(){
-    	$("#includedHeader").load("header_sample.jsp"); 
-    });
-</script> 
 
 <link rel="stylesheet" type="text/css" href="../public/css/scoreStyle.css">
 <link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
@@ -29,9 +24,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="test/html; charset=UTF-8">
 	<title>Camelito Score</title>
+	<script src="../public/js/header.js"></script>
 </head>
 
-<body>
+<body onload="includeHeaderAndCheckUser()">
+
+<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
 
 	    
 
