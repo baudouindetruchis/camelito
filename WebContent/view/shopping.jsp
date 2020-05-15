@@ -19,9 +19,7 @@
 	href="../public/css/pageStyle.css">
 
 <script> 
-    $(function(){
-    	$("#includedHeader").load("header_sample.jsp"); 
-    });
+   
     function btnActClick(id, act) { 
     	$.ajax({
     		  url: "../ShoppingClick",
@@ -39,9 +37,10 @@
     		});
     }
 </script>
-
+<script src="../public/js/header.js"></script>
 </head>
-<body>
+<body onload="includeHeaderAndCheckUser()">
+<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
 	<div id="includedHeader"></div>
 	<div class="container">
 		<h2>Produits disponibles</h2>

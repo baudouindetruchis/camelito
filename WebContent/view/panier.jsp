@@ -69,9 +69,11 @@
 
 <head>
 	<title>Camelito Panier</title>
+	<script src="../public/js/header.js"></script>
 </head>
 
-<body>
+<body onload="includeHeaderAndCheckUser()">
+<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
 	<div id="includedHeader"></div>
 	<div id="ordersDiv"></div>
 	<div id="cartDiv"></div>	

@@ -30,7 +30,7 @@
 <body onload="includeOtherPart()">
 
 
-	<div id="includedContent"></div>
+	<div id="includedHeader"></div>
 
 	<div class="container">
 		<div class="row">
