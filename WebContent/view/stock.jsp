@@ -22,11 +22,11 @@
   		  url: "../StockClick",
   		  type: "get", //send it through get method
   		  data: { 
-  		    id:id , 
+  		    id:id, 
   		    newStock: newStock
   		  },
   		  success: function(response) {
-  			$("#articlesDiv").load("stockArticles.jsp");
+      			$("#articlesDiv").load("stockArticles.jsp");
   		  },
   		  error: function(xhr) {
   		    //Do Something to handle error
