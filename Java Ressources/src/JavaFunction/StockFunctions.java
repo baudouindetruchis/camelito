@@ -16,6 +16,41 @@ public class StockFunctions {
 	private static final String USER_BDD = "postgres";
 	private static final String PSW = "123";
 	
+	
+	public static void updateBddStock(int newVal, int id_article) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			// there should only be one cart by user whith a false status
+			PreparedStatement getArticle = con
+					.prepareStatement("SELECT * FROM public.articles WHERE id = " + id_article);
+			ResultSet theArticle = getArticle.executeQuery();
+			if (theArticle == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+				// recuperation de la liste de course en cours
+				theArticle.next();
+				
+				newVal=secureNewVal(newVal);
+				
+				PreparedStatement editStock = con.prepareStatement(
+						"UPDATE public.articles SET available = " + newVal + " WHERE id = " + id_article);
+				editStock.execute();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static int secureNewVal(int val) {
+		int newVal = val;
+		if (newVal > 99) {
+			newVal = 99;
+		} else if (newVal < 0) {
+			newVal = 0;
+		}
+		return newVal;
+	}
+	
 	public static List<Article> getStockList(int user_id){
 		List<Article> stockList = new ArrayList<Article>();
 		

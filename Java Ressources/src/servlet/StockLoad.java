@@ -32,11 +32,12 @@ public class StockLoad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		//get session and attribute
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
 		int user_id = user.getId();
 		
+		//set session atribute
 		List<Article> stockList = StockFunctions.getStockList(user_id);
 		session.setAttribute("stockList", stockList);
 		
