@@ -15,8 +15,32 @@ public class StockFunctions {
 	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 	private static final String USER_BDD = "postgres";
 	private static final String PSW = "123";
-	
-	
+
+	public static void addArticle(int user_id, String description, float real_price, float selling_price, int stock,
+			String name) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+
+			// SQL to connect to a store
+			PreparedStatement pstStore = con
+					.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
+			ResultSet reStore = pstStore.executeQuery();
+			reStore.next();
+
+			// get data on the article
+			int id_store = reStore.getInt("id");
+			
+			// add the new article
+			PreparedStatement editQuantity = con.prepareStatement(
+					"INSERT INTO articles(id_store, description, initial_price, selling_price, available, name)" + "VALUES("
+							+ id_store + ", '" + description + "', " + real_price + ", " + selling_price + ", " + stock
+							+ ", '" + name + "')");
+			editQuantity.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public static void updateBddStock(int newVal, int id_article) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			// there should only be one cart by user whith a false status
@@ -28,9 +52,9 @@ public class StockFunctions {
 			} else {
 				// recuperation de la liste de course en cours
 				theArticle.next();
-				
-				newVal=secureNewVal(newVal);
-				
+
+				newVal = secureNewVal(newVal);
+
 				PreparedStatement editStock = con.prepareStatement(
 						"UPDATE public.articles SET available = " + newVal + " WHERE id = " + id_article);
 				editStock.execute();
@@ -40,7 +64,7 @@ public class StockFunctions {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static int secureNewVal(int val) {
 		int newVal = val;
 		if (newVal > 99) {
@@ -50,14 +74,13 @@ public class StockFunctions {
 		}
 		return newVal;
 	}
-	
-	public static List<Article> getStockList(int user_id){
+
+	public static List<Article> getStockList(int user_id) {
 		List<Article> stockList = new ArrayList<Article>();
-		
+
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			
-			PreparedStatement getStore = con
-					.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
+
+			PreparedStatement getStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
 			ResultSet theStore = getStore.executeQuery();
 			if (theStore == null) {
 				System.out.println("Erreur de connexion (commandes=null)");
@@ -69,24 +92,24 @@ public class StockFunctions {
 						.prepareStatement("SELECT * FROM public.articles WHERE id_store = " + id_store);
 				ResultSet rsArticle = getArticles.executeQuery();
 				Article anArticle;
-				
+
 				String description;
 				int id;
 				String name;
 				float real_price;
 				float selling_price;
 				int stock;
-				
-				while(rsArticle.next()){
-					//get data
+
+				while (rsArticle.next()) {
+					// get data
 					description = rsArticle.getString("description");
 					id = rsArticle.getInt("id");
 					name = rsArticle.getString("name");
 					real_price = rsArticle.getFloat("initial_price");
-					selling_price= rsArticle.getFloat("selling_price");
+					selling_price = rsArticle.getFloat("selling_price");
 					stock = rsArticle.getInt("available");
-					
-					//init object
+
+					// init object
 					anArticle = new Article();
 					anArticle.setDescription(description);
 					anArticle.setId(id);
@@ -95,8 +118,8 @@ public class StockFunctions {
 					anArticle.setReal_price(real_price);
 					anArticle.setSelling_price(selling_price);
 					anArticle.setStock(stock);
-					
-					stockList.add(anArticle);					
+
+					stockList.add(anArticle);
 				}
 			}
 		} catch (SQLException e) {
@@ -105,5 +128,5 @@ public class StockFunctions {
 			e.printStackTrace();
 		}
 		return stockList;
-	}	
+	}
 }
