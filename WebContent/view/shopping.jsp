@@ -19,29 +19,14 @@
 	href="../public/css/pageStyle.css">
 
 <script> 
-    $(function(){
-    	$("#includedHeader").load("header_sample.jsp"); 
-    });
-    function btnActClick(id, act) { 
-    	$.ajax({
-    		  url: "../ShoppingClick",
-    		  type: "get", //send it through get method
-    		  data: { 
-    		    id:id , 
-    		    act: act
-    		  },
-    		  success: function(response) {
-    		    	$("#cartDiv").load("panierTable.jsp");
-    		  },
-    		  error: function(xhr) {
-    		    //Do Something to handle error
-    		  }
-    		});
-    }
+   
+    
 </script>
-
+<script src="../public/js/header.js"></script>
+<script src="../public/js/shopping.js"></script>
 </head>
-<body>
+<body onload="includeHeaderAndCheckUser()">
+<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
 	<div id="includedHeader"></div>
 	<div class="container">
 		<h2>Produits disponibles</h2>

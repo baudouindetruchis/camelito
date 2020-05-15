@@ -1,3 +1,12 @@
+function includeOtherPartOnLoad()  {
+	$("#includeCamelitoInfo").load("presentationCamelito.jsp");
+}
+
+function includeFAQ()  {
+	document.getElementById("includeCamelitoInfo").hidden = true;
+	$("#includeFAQ").load("faq.jsp");
+}
+
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }

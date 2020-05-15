@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css"
 	href="../public/css/header_sample.css">
 
+
 </head>
 <body>
 	<div class="col-md-12">
@@ -29,8 +30,8 @@
 					<img class="logo" src="../public/images/logo_camelito_marron.png"><span
 						class="align-middle"> Camelito </span>
 				</div>
-
-
+			
+				
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="profil.jsp">Profil</a>
 					</li>

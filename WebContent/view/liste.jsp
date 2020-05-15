@@ -23,10 +23,12 @@
 }
 
 </style>
+<script src="../public/js/header.js"></script>
 </head>
-<body>
-
+<body onload="includeHeaderAndCheckUser()">
+<div id="includedHeader"></div>
 <div class="container">
+<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
    <div class="row">
       <div class="col-xs-6 col-sm-3">
          <div class="listbox">
@@ -71,6 +73,6 @@
          </div>
       </div>
 </div>
-
+</div>
 </body>
 </html>
