@@ -8,6 +8,12 @@
 	float: left;
 	size: 5%;
 }
+
+.btnComm {
+	background-color: sandybrown;
+    border-radius: 60px;
+}
+
 .quant{
 	float: left;
 	size: 5%;	
