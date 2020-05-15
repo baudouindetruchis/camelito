@@ -12,7 +12,8 @@
  <script> 
     $(function(){
     	$("#includedHeader").load("header_sample.jsp"); 
-    	$("#articlesDiv").load("stockArticles.jsp"); 
+    	$("#articlesDiv").load("stockArticles.jsp");  
+    	$("#divFormModif").load("stockFormModif.jsp"); 
     });
     
     function stockUpdate(id){
@@ -26,7 +27,8 @@
   		    newStock: newStock
   		  },
   		  success: function(response) {
-      			$("#articlesDiv").load("stockArticles.jsp");
+    			$("#articlesDiv").load("stockArticles.jsp");
+    	    	$("#divFormModif").load("stockFormModif.jsp");
   		  },
   		  error: function(xhr) {
   		    //Do Something to handle error
@@ -49,19 +51,19 @@
     
     function fillForm(id, name, description, real_price, selling_price, stock){
     	var modId           = document.getElementById("modId");
-    	var modName         = document.getElementById("modName");
     	var modDescription  = document.getElementById("modDescription");
     	var modRealPrice    = document.getElementById("modRealPrice");
     	var modSellingPrice = document.getElementById("modSellingPrice");
     	var modStock        = document.getElementById("modStock");
     	modId.value = id;
-    	modName.innerHtml = name;
     	modDescription.value = description;
     	modRealPrice.value = real_price;
     	modSellingPrice.value = selling_price;
         modStock.value = stock;
-        formModif.hidden=false;
-  	  	formAdd.hidden=true;
+
+        var checkBox = document.getElementById("formCheck");
+        checkBox.checked = false;
+        changeForm();
     }
     
 </script> 
@@ -91,21 +93,8 @@
 			<input type="number" placeholder="Real price" name="real_price" required class="field" step="0.01">
 			<input type="number" placeholder="Selling price" name="selling_price" required class="field" step="0.01">
   			<input type="number" name="stock" min="0" max="99" required>
-			<input type="submit" value="Ajouter">
+			<input type="submit" name="act" value="Ajouter">
 		</form>
-		<form id="formModif" action="../StockForm" class="form-container" name="" hidden=true>
-			<select id="modId" name="idArticle" required>
-				<option disabled selected> -- select an option -- </option>
-	  			<c:forEach var="artc" items="${sessionScope.stockList}">
-			      <option value="${artc.id}">${artc.id} - ${artc.name}</option>
-			    </c:forEach>
-			</select>				
-			<input id="modDescription" type="text" placeholder="Description" name="description" class="field">
-			<input id="modRealPrice" type="number" placeholder="Real price" name="real_price" required class="field" step="0.01">
-			<input id="modSellingPrice" type="number" placeholder="Selling price" name="selling_price" required class="field" step="0.01">
-  			<input type="number" id="modStock" name="stock" min="0" max="99" required>
-			<input type="submit" name="modif" value="Modifer">
-			<input type="submit" name="supp" value="Supprimer">
-		</form>
+		<div id="divFormModif"></div>
 	</div>
 </body>
