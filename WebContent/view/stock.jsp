@@ -55,7 +55,7 @@
     	var modSellingPrice = document.getElementById("modSellingPrice");
     	var modStock        = document.getElementById("modStock");
     	modId.value = id;
-    	modName.value = name;
+    	modName.innerHtml = name;
     	modDescription.value = description;
     	modRealPrice.value = real_price;
     	modSellingPrice.value = selling_price;
@@ -94,8 +94,12 @@
 			<input type="submit" value="Ajouter">
 		</form>
 		<form id="formModif" action="../StockForm" class="form-container" name="" hidden=true>
-			<input id="modId" type="number" placeholder="Id" name="id" required class="field">	
-			<input id="modName" type="text" placeholder="Name" name="name" required class="field">					
+			<select id="modId" name="idArticle" required>
+				<option disabled selected> -- select an option -- </option>
+	  			<c:forEach var="artc" items="${sessionScope.stockList}">
+			      <option value="${artc.id}">${artc.id} - ${artc.name}</option>
+			    </c:forEach>
+			</select>				
 			<input id="modDescription" type="text" placeholder="Description" name="description" class="field">
 			<input id="modRealPrice" type="number" placeholder="Real price" name="real_price" required class="field" step="0.01">
 			<input id="modSellingPrice" type="number" placeholder="Selling price" name="selling_price" required class="field" step="0.01">
