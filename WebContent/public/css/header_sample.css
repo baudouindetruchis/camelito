@@ -20,14 +20,16 @@ nav a {
 	color: #764e17;
 }
 
+
+
 /* Navbar's hamburger button color settings */
 .navbar-toggler {
-	border-color: rgb(182, 120, 35);
+	border-color: rgb(182, 120, 35) !important;
 }
 
 .navbar-toggler-icon {
 	background-image:
-		url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(182,120,35, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+		url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(182,120,35, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
 }
 
 /* Image with its text settings */
@@ -41,6 +43,16 @@ nav a {
 	font-weight: bold;
 	padding-right: 20px;
 	padding-top: 10px;
-	/* in order to be not too close of the hamburger button 
+	/* in order to not be too close of the hamburger button 
 						when in mobile view */
+}
+
+@media (min-width: 768px) .col-md-12 {
+	padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
 }
