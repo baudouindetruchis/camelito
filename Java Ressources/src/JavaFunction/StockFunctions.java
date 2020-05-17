@@ -40,6 +40,16 @@ public class StockFunctions {
 		}
 
 	}
+	public static void suppArticle(int id_art) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			PreparedStatement pst = con
+					.prepareStatement("DELETE FROM public.articles WHERE id="+id_art);
+			pst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	public static void updateBddStock(int newVal, int id_article) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
