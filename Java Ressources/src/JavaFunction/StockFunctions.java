@@ -21,34 +21,43 @@ public class StockFunctions {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 
 			// SQL to connect to a store
-			PreparedStatement pstStore = con
-					.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
+			PreparedStatement pstStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
 			ResultSet reStore = pstStore.executeQuery();
 			reStore.next();
 
 			// get data on the article
 			int id_store = reStore.getInt("id");
-			
+
 			// add the new article
 			PreparedStatement editQuantity = con.prepareStatement(
-					"INSERT INTO articles(id_store, description, initial_price, selling_price, available, name)" + "VALUES("
-							+ id_store + ", '" + description + "', " + real_price + ", " + selling_price + ", " + stock
-							+ ", '" + name + "')");
+					"INSERT INTO articles(id_store, description, initial_price, selling_price, available, name)"
+							+ "VALUES(" + id_store + ", '" + description + "', " + real_price + ", " + selling_price
+							+ ", " + stock + ", '" + name + "')");
 			editQuantity.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
+
 	public static void suppArticle(int id_art) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			PreparedStatement pst = con
-					.prepareStatement("DELETE FROM public.articles WHERE id="+id_art);
+			PreparedStatement pst = con.prepareStatement("DELETE FROM public.articles WHERE id=" + id_art);
 			pst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
 
+	public static void modifArticle(int idArticle, String description, float real_price, float selling_price,
+			int stock) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			PreparedStatement pst = con.prepareStatement("UPDATE public.articles SET description ='" + description
+					+ "', initial_price=" + real_price + ", selling_price=" + selling_price + ", available="+stock+" WHERE id=" + idArticle);
+			pst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void updateBddStock(int newVal, int id_article) {

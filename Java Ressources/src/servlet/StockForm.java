@@ -63,6 +63,7 @@ public class StockForm extends HttpServlet {
 			StockFunctions.addArticle(user_id, description, real_price, selling_price, stock, name);			
 			break;
 		case "Modifer":
+			StockFunctions.modifArticle(idArticle, description, real_price, selling_price, stock);	
 			break;
 		case "Supprimer":
 			StockFunctions.suppArticle(idArticle);
