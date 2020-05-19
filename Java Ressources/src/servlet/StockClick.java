@@ -35,6 +35,7 @@ public class StockClick extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//get session atribute
+		String sqlOrder = request.getParameter("sqlOrder");
 		String newValStr = request.getParameter("newStock");
 		String id_articleStr = request.getParameter("id");
 
@@ -58,7 +59,7 @@ public class StockClick extends HttpServlet {
 		}
 		
 		//update session data
-		List<Article> stockList = StockFunctions.getStockList(user_id);
+		List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
 		session.setAttribute("stockList", stockList);
 		
 		// don't reload the whole page

@@ -26,7 +26,6 @@ public class StockForm extends HttpServlet {
 	 */
 	public StockForm() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -46,6 +45,7 @@ public class StockForm extends HttpServlet {
 		String sp = request.getParameter("selling_price");
 		String ida = request.getParameter("idArticle");
 		String s = request.getParameter("stock");
+		String sqlOrder = request.getParameter("sqlOrder");
 		
 		// get value or default 
 		String description = d==null ? "" : d;
@@ -76,7 +76,7 @@ public class StockForm extends HttpServlet {
 		}
 
 		// update session data
-		List<Article> stockList = StockFunctions.getStockList(user_id);
+		List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
 		session.setAttribute("stockList", stockList);
 
 		// load page
@@ -90,7 +90,6 @@ public class StockForm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

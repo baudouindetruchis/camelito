@@ -16,12 +16,14 @@
 <body>
 	<div class="form-row stockFilter">
 		<div class="form-group col-md-4">
-			<label for="trierId">Trier vos produits</label> 
+			<label for="trierId">Trier vos produits</label>
 			<select id="trierId" class="form-control" name="trierId" required>
-				<option disabled selected>-- Choisissez une option --</option>
-				<c:forEach var="artc" items="">
-					<option value=""></option>
-				</c:forEach>
+				<option value="ORDER BY id ASC" selected>Id croissant</option>
+				<option value="ORDER BY id DESC" selected>Id decroissant</option>
+				<option value="ORDER BY name ASC" selected>Name croissant</option>
+				<option value="ORDER BY name DESC" selected>Name decroissant</option>
+				<option value="ORDER BY available ASC" selected>Stock croissant</option>
+				<option value="ORDER BY available DESC" selected>Stock decroissant</option>
 			</select>
 		</div>
 		<div class="form-group col-md-5"></div>
