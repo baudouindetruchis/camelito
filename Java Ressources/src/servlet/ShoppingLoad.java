@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import obj.Article;
-import obj.User;
 
 /**
  * Servlet implementation class ShoppingLoad
@@ -46,7 +45,7 @@ public class ShoppingLoad extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
-		User user = (User) session.getAttribute("user");
+//		User user = (User) session.getAttribute("user");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 
 			PreparedStatement getStock = con

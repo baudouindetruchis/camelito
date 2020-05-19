@@ -5,21 +5,20 @@
 <title>Header sample</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="../public/css/header_sample.css">
+<link rel="stylesheet" type="text/css" href="../public/css/header_sample.css">
+
 
 </head>
 <body>
-	<div class="col-md-12">
+	<div class="col-md-12 nopadding">
 		<nav class="navbar navbar-expand-md bg-light sticky-top">
 
 			<button class="navbar-toggler" data-toggle="collapse"
-				data-target="#collapse_target">
+				data-target="#collapse_target"> 
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
@@ -29,8 +28,8 @@
 					<img class="logo" src="../public/images/logo_camelito_marron.png"><span
 						class="align-middle"> Camelito </span>
 				</div>
-
-
+			
+				
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="profil.jsp">Profil</a>
 					</li>
