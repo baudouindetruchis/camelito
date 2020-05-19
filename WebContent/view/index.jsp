@@ -33,7 +33,7 @@
 
 					<fieldset class="ref">
 						<a href="index.jsp"> <img class="img-responsive"
-							src="../public/images/logo_camelito_marron.png"
+							src="../public/images/logo_noback.png"
 							alt="Logo Camelito" width="120" height="120" />
 						</a>
 						<h1>Camelito</h1>
