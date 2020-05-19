@@ -1,9 +1,11 @@
 function includeOtherPartOnLoad()  {
 	$("#includeCamelitoInfo").load("presentationCamelito.jsp");
+	$("#includeCamelitoPrez").load("equipeCamelito.jsp");
 }
 
 function includeFAQ()  {
 	document.getElementById("includeCamelitoInfo").hidden = true;
+	document.getElementById("includeCamelitoPrez").hidden = true;
 	$("#includeFAQ").load("faq.jsp");
 }
 

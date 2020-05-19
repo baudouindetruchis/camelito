@@ -228,3 +228,7 @@ input[type=radio], [type=checkbox] {
 @media (min-width: 576px) and (max-width:1199px) {
   /* Faire en sorte que les 2 images + pav�s cach�s soient responsive et adapt� � tout format mobile/phablette/tablette -> Mettre les deux images sur la meme ligne en dessous = taille du form connexion*/
 }
+
+.labelito {
+	font-size: 14px;
+}

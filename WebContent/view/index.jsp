@@ -23,7 +23,6 @@
 </head>
 
 <body onload="includeOtherPartOnLoad()">
-	<div class="container">
 		<div class="row">
 			<div class="col-sm-4">
 
@@ -48,7 +47,7 @@
 
 						<input type="checkbox" class="form-check-input" id="pswVisible"
 							name="pswVisible" onclick="showPassword()"> <label
-							class="form-check-label" for="exampleCheck1">Afficher le
+							class="labelito" for="exampleCheck1">Afficher le
 							mot de passe</label>
 
 					</div>
@@ -119,11 +118,11 @@
 			</div>
 
 
-			<div id="includeCamelitoInfo"></div>
-			<div id="includeFAQ"></div>
+			<div id="includeCamelitoInfo" class="col-sm-4"></div>
+			<div id="includeCamelitoPrez" class="col-sm-4"></div>
+			<div id="includeFAQ" class="col-sm-8"></div>
 
 		</div>
-	</div>
 
 </body>
 
