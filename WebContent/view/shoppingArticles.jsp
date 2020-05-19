@@ -21,12 +21,13 @@
 			<div class="overlay">
 				<!-- Get the icons from "fontawesome.com/icons" -->
 				<div class="favorite">
-		<button type="button" class="btn btn-secondary"
+					<button type="button" class="btn btn-secondary"
 						title="Add to favorite">
 						<i class="fa fa-heart"></i>
 					</button>
+					<c:out value="${artc.description}"/>
 				</div>
-
+				
 				<table class="quantity">
 					<tr>
 						<td><button type="button" class="btn btn-secondary"
@@ -48,6 +49,7 @@
 			</h5>
 			<h3>
 				<c:out value="${artc.name}" />
+				<c:if test="${artc.quantity}!=0"> (<c:out value="${artc.quantity}"/>)</c:if>
 			</h3>
 			<h5 class="prix">
 				<c:out value="${artc.selling_price}" />
