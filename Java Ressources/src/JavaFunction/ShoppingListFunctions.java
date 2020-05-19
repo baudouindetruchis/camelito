@@ -227,7 +227,7 @@ public class ShoppingListFunctions {
 				e.printStackTrace();
 			}
 	}
-
+	
 	public static void updateCommList(HttpSession session, Connection con, int user_id ) {
 		try {
 			// complete the part "mes commandes"
@@ -267,12 +267,33 @@ public class ShoppingListFunctions {
 		User user = (User) session.getAttribute("user");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
-
 			PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET status = true"
 					+ " WHERE id_user = " + user_id + " AND status = false");
 			editQuantity.execute();
 
 //			updateCommList(user_id, session, con); 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public static void updateScore(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+
+		float tPrice = (float) session.getAttribute("total_price");
+		@SuppressWarnings("unchecked")
+		List<Article> list = (List<Article>) session.getAttribute("panierList");
+		int nombreArticle = list.size();
+		int scoreCommande = (int) Math.round(3+Math.sqrt(tPrice)+2*Math.sqrt(nombreArticle));
+		
+		user.increaseScore(scoreCommande);
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			int user_id = user.getId();
+			int newScore = user.getScore();
+			PreparedStatement editScore = con.prepareStatement("UPDATE public.details SET score = "+newScore
+					+ " WHERE id_user = " + user_id );
+			editScore.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

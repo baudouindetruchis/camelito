@@ -46,6 +46,7 @@ public class PanierClick extends HttpServlet {
 			break;
 		case "pay":
 			ShoppingListFunctions.actionPay(request);
+			ShoppingListFunctions.updateScore(session);
 			break;
 		case "less":
 		case "more":
