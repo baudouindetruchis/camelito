@@ -51,7 +51,7 @@ public class StockForm extends HttpServlet {
 		String description = d==null ? "" : d;
 		float real_price = rp.matches("[0-9]*\\.?[0-9]+") ? Float.parseFloat(rp) : (float) 0.0;
 		float selling_price = sp.matches("[0-9]*\\.?[0-9]+") ? Float.parseFloat(sp) : (float) 0.0;
-		int stock = s.matches("[0-9]*") ? Integer.parseInt(s) : 0;
+		int stock = s.matches("[0-9].*") ? Integer.parseInt(s) : 0;
 		int idArticle;
 		
 		//choose function based on 
