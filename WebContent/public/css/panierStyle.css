@@ -1,13 +1,186 @@
-#ordersDiv, #cartDiv{
+body {
+	font-family: 'Montserrat', sans-serif; 
 }
+
 .art{
 	float: left;
 	size: 10%;
 }
+
+.container {
+	width: 100%;
+	margin-top: 5%;
+}
+
+.container h2 {
+	background: #764e17;
+	color: #fff;
+	width: 300px;
+	font-size:24px;
+	padding: 8px;
+	height: 40px;
+	text-align: center;
+}
+
+/* Partie panierComm */
+
 .comm{
 	float: left;
 	size: 5%;
 }
+
+.btnComm {
+	background-color: sandybrown !important;
+    border-radius: 60px !important;
+    color: white !important;
+    margin-top: 5px;
+}
+
+.btnComm:hover {
+	background-color: #764e17 !important;
+}
+
+.noborder {
+	border: 0px !important;
+}
+
+.headpopup {
+	background-color: antiquewhite;
+    border-bottom: none !important;
+	margin-bottom: 0px;
+	padding-bottom: 5px;
+}
+
+.totalpopup {
+	background-color: antiquewhite;
+    border-bottom: 1px solid #764e17;
+}
+
+.contentpopup {
+	background-color: antiquewhite;
+	border-radius: 10px;
+    text-align: center;
+}
+
+.magasinpopup {
+	border-bottom: 2px solid #764e17;
+	font-size: 20px;
+}
+
+.mb-5 {
+	margin-bottom: 2rem !important;
+}
+
+/* Fin partie panierComm */
+
+/* Début partie panierTable */
+
+#cartDiv {
+	text-align: center;
+}
+
+.table {
+	margin-top: 15px;
+}
+
+.btnTable {
+	background-color: sandybrown;
+    color: white !important;
+}
+
+.btnTable:hover {
+	background-color: #764e17 !important;
+}
+
+.table {
+	border-left: 2px solid #764e17;
+    border-right: 2px solid #764e17;
+    border-top: none !important;
+}
+
+.table thead th {
+	border-bottom: 5px solid antiquewhite;
+}
+
+.table tbody td {
+	padding: 0.5rem;
+	border-bottom: 5px solid antiquewhite;
+}
+
+.table td, .table th {
+	border-top: 0px !important;
+}
+
+.totalTable {
+	background-color: burlywood;
+}
+
+/* Bouton du bas : fin */
+
+#fin {
+	text-align:center;
+	margin-left: 66px;
+}
+
+.btnFinAnnuler {
+	background-color: #764e17;
+    color: white !important;
+}
+.btnFinPayer {
+	background-color: #764e17;
+    color: white !important;
+    margin-left: 50px;
+}
+
+.btnFinAnnuler:hover {
+	background-color: brown !important;
+}
+
+.btnFinPayer:hover {
+	background-color: yellowgreen !important;
+}
+
+.messageAnnulerPayer {
+    font-size: 1.2rem;
+}
+
+.btnNon {
+	background-color: #764e17;
+    color: white !important;
+    margin-bottom: 0 !important;
+}
+.btnOui {
+	background-color: #764e17;
+    color: white !important;
+    margin-left: 50px;
+    margin-bottom: 0 !important;
+}
+
+.btnNon:hover {
+	background-color: yellowgreen !important;
+}
+
+.btnOui:hover {
+	background-color: brown !important;
+}
+
+.popupConfirm {
+	text-align: center;
+	margin-bottom: 0 !important;
+}
+
+.headpopupPayer {
+	border-top-left-radius: 0; 
+	border-top-right-radius: 0;
+	border-radius: .3rem;
+	background-color: antiquewhite;
+    border: none !important;
+	margin-bottom: 0px;
+	padding-bottom: 5px;
+}
+
+/* C'était là avant et j'ai pas cherché à savoir ce que c'était #oops */
+
 .quant{
 	float: left;
 	size: 5%;	
