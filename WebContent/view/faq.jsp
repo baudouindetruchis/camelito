@@ -18,7 +18,6 @@
 
 <div class="center_div">
 
-<div class="col-sm-8">
 
 	<fieldset>
 		<legend>A qui est destiné la plateforme ?</legend>
@@ -41,9 +40,7 @@
 		<div class="img_centered"><img class="peremption" src="../public/images/date_peremption.png" alt="Grille peremption"/></div>
 	</fieldset>
 
-</div>
-</div>
-							
+</div>					
 									
 						
 
