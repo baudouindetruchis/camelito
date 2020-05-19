@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import obj.Article;
+import obj.ClientCommand;
 import obj.User;
 
 /**
@@ -57,8 +58,17 @@ public class PanierLoad extends HttpServlet {
 			} else {
 				List<Integer> listCommandes = new ArrayList<>();
 				int id;
+				float totalPrice;
+				ClientCommand aClientCommand;
 				while(commandes.next()) {
 					id = commandes.getInt("id");
+					id = commandes.getInt("id");
+					
+					
+					aClientCommand = new ClientCommand();
+					aClientCommand.setId(id);
+					aClientCommand.se
+					
 					listCommandes.add(id);
 				}
 				session.setAttribute("commandeList", listCommandes);

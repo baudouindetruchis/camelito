@@ -137,6 +137,7 @@ public class ShoppingListFunctions {
 					if (list_id_articles.size() == list_quantities.size()) {
 						// pour chaque articles de la liste
 						List<Article> lArt = new ArrayList<>();
+						float total_price=(float) 0.0;
 						int id_art;
 						int quantity_article;
 						Article anArticle;
@@ -178,11 +179,13 @@ public class ShoppingListFunctions {
 							anArticle.setStock(stock);
 							anArticle.setQuantity(quantity_article);
 							anArticle.setSelling_price(price);
-
+							
+							total_price+=quantity_article*price;
 							// store the article
 							lArt.add(anArticle);
 						}
 						// set session attribute
+						session.setAttribute("total_price", total_price);
 						session.setAttribute("panierList", lArt);
 					} else {
 						System.out.println("Pas autant d'articles que de quantités");
