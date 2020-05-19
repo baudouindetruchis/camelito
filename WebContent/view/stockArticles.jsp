@@ -27,7 +27,7 @@
 		<div class="form-group col-md-5"></div>
 		<div class="form-group col-md-3 divErase">
 			<label></label>
-			<input type="submit" class="btn btn-primary btnErase" name="act" value="Tout supprimer" data-toggle="modal" data-target="#modalConfirmSuppr">
+			<input type="submit" class="btn btn-primary btnErase" name="act" value="Vider vos stocks" data-toggle="modal" data-target="#modalConfirmSuppr">
 		</div>
 
 		<!-- Popup pour le bouton Tout Supprimer -->
@@ -36,7 +36,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content noborder">
 					<div class="modal-header text-center headpopup">
-						<h4 class="messageSuppr">Voulez-vous vraiment supprimer tous vos articles ?</h4>
+						<h4 class="messageSuppr">Voulez-vous vraiment vider tous vos stocks ?</h4>
 
 						<!-- Bouton pour fermer le popup -->
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -48,7 +48,7 @@
 					<div class="modal-body mx-3">
 						<div class="md-form mb-5 popupConfirm">
 							<button class="btn btn-default btn-rounded mb-4 btnNon">Non</button>
-							<button class="btn btn-default btn-rounded mb-4 btnOui">Oui</button>
+							<button class="btn btn-default btn-rounded mb-4 btnOui" onclick="emptyStock()">Oui</button>
 						</div>
 					</div>
 				</div>

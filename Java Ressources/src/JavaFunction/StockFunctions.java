@@ -52,8 +52,9 @@ public class StockFunctions {
 	public static void modifArticle(int idArticle, String description, float real_price, float selling_price,
 			int stock) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			PreparedStatement pst = con.prepareStatement("UPDATE public.articles SET description ='" + description
-					+ "', initial_price=" + real_price + ", selling_price=" + selling_price + ", available="+stock+" WHERE id=" + idArticle);
+			PreparedStatement pst = con.prepareStatement(
+					"UPDATE public.articles SET description ='" + description + "', initial_price=" + real_price
+							+ ", selling_price=" + selling_price + ", available=" + stock + " WHERE id=" + idArticle);
 			pst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,6 +79,26 @@ public class StockFunctions {
 						"UPDATE public.articles SET available = " + newVal + " WHERE id = " + id_article);
 				editStock.execute();
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void emptyStock(int id_user) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+
+			// SQL to connect to a store
+			PreparedStatement pstStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + id_user);
+			ResultSet reStore = pstStore.executeQuery();
+			reStore.next();
+
+			// get data on the article
+			int id_store = reStore.getInt("id");
+
+			PreparedStatement editStock = con
+					.prepareStatement("UPDATE public.articles SET available = 0 WHERE id_store = " + id_store);
+			editStock.execute();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

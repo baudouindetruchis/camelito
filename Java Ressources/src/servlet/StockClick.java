@@ -35,16 +35,27 @@ public class StockClick extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//get session atribute
-		int newVal = (int) Math.round(Float.parseFloat(request.getParameter("newStock")));
-		int id_article = Integer.parseInt(request.getParameter("id"));
-		
+		String newValStr = request.getParameter("newStock");
+		String id_articleStr = request.getParameter("id");
+
 		// connection a la bdd
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
 		int user_id = user.getId(); 
 		
-		//update bdd data
-		StockFunctions.updateBddStock(newVal, id_article);
+		if(newValStr!= null && !newValStr.isEmpty() && id_articleStr!= null && !id_articleStr.isEmpty() ) {
+			// if request have param it's a stock modif
+			
+			int newVal = (int) Math.round(Float.parseFloat(newValStr));
+			int id_article = Integer.parseInt(id_articleStr);
+			
+			//update bdd data
+			StockFunctions.updateBddStock(newVal, id_article);
+			
+		} else {
+			//otherwise it's empty all
+			StockFunctions.emptyStock(user_id);
+		}
 		
 		//update session data
 		List<Article> stockList = StockFunctions.getStockList(user_id);

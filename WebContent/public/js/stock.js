@@ -3,26 +3,40 @@ function onload(){
     	$("#divFormModif").load("stockFormModif.jsp"); 
     	includeHeaderAndCheckUser();
     }
-    
-    function stockUpdate(id){
-    	var inputStock = document.getElementById("stock-"+id);
-    	var newStock = inputStock.value;
-    	$.ajax({
-  		  url: "../StockClick",
-  		  type: "get", //send it through get method
-  		  data: { 
-  		    id:id, 
-  		    newStock: newStock
-  		  },
-  		  success: function(response) {
-    			$("#articlesDiv").load("stockArticles.jsp");
-    	    	$("#divFormModif").load("stockFormModif.jsp");
-  		  },
-  		  error: function(xhr) {
-  		    //Do Something to handle error
-  		  }
-  		});
-    }
+emptyStock
+
+function emptyStock(){
+	$.ajax({
+		  url: "../StockClick",
+		  type: "get", //send it through get method
+		  success: function(response) {
+			$("#articlesDiv").load("stockArticles.jsp");
+	    	$("#divFormModif").load("stockFormModif.jsp");
+		  },
+		  error: function(xhr) {
+		    //Do Something to handle error
+		  }
+		});
+}
+function stockUpdate(id){
+	var inputStock = document.getElementById("stock-"+id);
+	var newStock = inputStock.value;
+	$.ajax({
+		  url: "../StockClick",
+		  type: "get", //send it through get method
+		  data: { 
+		    id:id, 
+		    newStock: newStock
+		  },
+		  success: function(response) {
+			$("#articlesDiv").load("stockArticles.jsp");
+	    	$("#divFormModif").load("stockFormModif.jsp");
+		  },
+		  error: function(xhr) {
+		    //Do Something to handle error
+		  }
+		});
+}
     
     function changeForm() {
       var checkBox = document.getElementById("formCheck");
