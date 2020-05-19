@@ -18,8 +18,7 @@ public class ClientCommand {
 	public float getPriceTotal() {
 		return priceTotal;
 	}
-	public void finaliseCommand() {
-		//TODO set les total price
+	public void setPriceTotal(float priceTotal) {
 		this.priceTotal = priceTotal;
 	}
 	

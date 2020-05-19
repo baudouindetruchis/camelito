@@ -15,17 +15,18 @@
 	<h2>Mes commandes </h2>
 	<c:forEach var="comm" items="${sessionScope.commandeList}">
 		<!-- Bouton -->
-		<a href="" class="btn btn-default btn-rounded mb-4 btnComm" data-toggle="modal" data-target="#modalPopupComm" onClick="btnCommClick(${comm})">N°<c:out value="${comm}" /></a>
+		<a href="" class="btn btn-default btn-rounded mb-4 btnComm" data-toggle="modal" 
+		data-target="#modalPopupComm${comm.id}" onClick="btnCommClick(${comm.id})">N°<c:out value="${comm.id}" /></a>
 
 		<!-- Form utilisé comme popup -->
-		<div class="modal fade" id="modalPopupComm" tabindex="-1"
+		<div class="modal fade" id="modalPopupComm${comm.id}" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content noborder">
 					<div class="modal-header text-center headpopup">
 						<h4 class="modal-title w-100 font-weight-bold">
 							Votre commande N°
-							<c:out value="${comm}" />
+							<c:out value="${comm.id}"/>
 						</h4>
 						<!-- Bouton pour fermer le popup -->
 						<button type="button" class="close" data-dismiss="modal"
@@ -34,7 +35,7 @@
 						</button>
 					</div>
 					<div class="text-center totalpopup">
-						<h5>Total : 11.0€</h5>
+						<h5>Total : <c:out value="${comm.priceTotal}"/>€</h5>
 					</div>
 
 					<!-- Contenu du popup -->
