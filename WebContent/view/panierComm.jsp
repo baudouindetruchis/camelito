@@ -40,25 +40,21 @@
 
 					<!-- Contenu du popup -->
 					<div class="modal-body mx-3">
+						<!-- Pour chaque store -->
+						<c:forEach var="subComm" items="${comm.commandTotal}">
 						<div class="md-form mb-5 contentpopup">
-							<label class="magasinpopup">Monoprix : 6.0€ </label>
-							<br>
-							<label>1 P'tit lu : 3.0€ </label>
-							<br>
-							<label>1 Pasta box : 3.0€ </label>
+							<label class="magasinpopup"> <c:out value="${subComm.storeName}"/> :  <c:out value="${subComm.priceStore}"/>€ </label>
+							<!-- Pour chaque article -->
+							<c:forEach var="art" items="${subComm.commandToStore}">
+								<br>
+								<label>
+									(<c:out value="${art.quantity}"/>)
+									<c:out value="${art.name}"/> : 
+									<c:out value="${art.selling_price}"/>€
+								</label>
+							</c:forEach>
 						</div>
-						<div class="md-form mb-5 contentpopup">
-							<label class="magasinpopup">MacDo : 2.0€ </label>
-							<br>
-							<label>2 Big mac : 2.0€ </label>
-						</div>
-
-						<div class="md-form mb-5 contentpopup">
-							<label class="magasinpopup">Franprix : 3.0€ </label>
-							<br>
-							<label>3 Arizona : 3.0€ </label>
-						</div>
-
+						</c:forEach>
 					</div>
 				</div>
 			</div>
