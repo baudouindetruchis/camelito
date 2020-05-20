@@ -120,7 +120,7 @@ public class ConnexionForm extends HttpServlet {
      	            	       	
 	            			if(type==1 || type==2) {
 	            				int score = res.getInt("score");
-	    						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, score, "","");
+	    						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, score, "","",status);
 	    					}else {
 	    						
 	    						PreparedStatement getStoreName = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + id );
@@ -130,9 +130,9 @@ public class ConnexionForm extends HttpServlet {
             						
             						String storeName = storeInfo.getString("name");
             						String address = storeInfo.getString("address");
-            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, storeName,address);
+            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, storeName,address, status);
             					}	else {
-            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, "","");
+            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, "","", status);
                     				
             					}
 	    						

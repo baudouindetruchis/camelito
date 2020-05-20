@@ -9,7 +9,7 @@ import obj.User;
 public class ConnectionFunctions {
 	
 	
-	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year, int score, String storeName, String address   ) {
+	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year, int score, String storeName, String address, Boolean status   ) {
 		HttpSession session = request.getSession(false);
 		
 		User obj = new User();
@@ -21,9 +21,11 @@ public class ConnectionFunctions {
 		obj.setLast_name(lastName); 
 		obj.setPromotion(year);
 		obj.setScore(score);
+		obj.setStatus(status);
 
 		//add all value to the 
 		
+		session.setAttribute("status",obj.getStatus());
 		session.setAttribute("type",obj.getType());
 		session.setAttribute("promo",obj.getPromotion());
 		session.setAttribute("id",obj.getId());
