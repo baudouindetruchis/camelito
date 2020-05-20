@@ -47,7 +47,7 @@
 						<c:when test="${sessionScope.type=='2'}">
 							<li class="nav-item"><a class="nav-link" href="#">Eleves</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="magasinList.jsp">Magasins</a>
+							<li class="nav-item"><a class="nav-link" href="../magasinListLoadForm">Magasins</a>
 							</li>
 						</c:when>
 						<c:when test="${sessionScope.type=='3'}">
