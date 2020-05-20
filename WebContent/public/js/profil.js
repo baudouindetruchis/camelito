@@ -54,3 +54,29 @@ function goToEdit() {
 		
 
 }
+ 
+ function changeType() {
+	 var checkBox = document.getElementById("mode");
+		$.ajax({
+			  url: "../ChangeTypeForm",
+			  type: "get", //send it through get method
+			  data: {   
+			  },
+			  success: function(response) {
+				  includeHeaderAndCheckUser();
+				  if (checkBox.checked == true){
+					  includeReussite.hidden=false;
+					  //document.getElementById("btnGoToEdit").hidden = true;
+			      } else {
+			    	  includeReussite.hidden=true;
+			    	//  document.getElementById("btnGoToEdit").hidden = false;
+			      }
+				  
+				  
+				  
+			  },
+			  error: function(xhr) {
+			    //Do Something to handle error
+			  }
+			});
+ }

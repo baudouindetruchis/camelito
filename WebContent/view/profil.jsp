@@ -9,6 +9,11 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	
+	<!-- Bootstrap Toggle -->
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
@@ -90,16 +95,25 @@
 					</div>
 					<c:choose>
 
-						<c:when test="${sessionScope.type=='2'}">
+						<c:when test="${sessionScope.type=='2'|| sessionScope.type=='4'}">
 							<div class="form-group row">
-								<label for="mode" class="col-form-label">Mode client : </label>
-								<label class="switch"> <input type="checkbox" id="mode">
-									<span class="slider round"></span>
-								</label>
+		
+								<label for="mode" class="col-form-label">Client/Association : </label> 
+								<c:choose>
+									<c:when test="${sessionScope.type=='4'}">
+										<input type="checkbox" class="toogle" data-toggle="toggle" data-on="Client" data-off="Association" data-onstyle="warning" data-offstyle="warning" id="mode" onchange="changeType()" checked>			
+									</c:when>
+									<c:otherwise>
+									<input type="checkbox" class="toogle" data-toggle="toggle" data-on="Client" data-off="Association" data-onstyle="warning" data-offstyle="warning" id="mode" onchange="changeType()">			
+									
+									</c:otherwise>
+								</c:choose>
+								
 							</div>
 						</c:when>
-
-						<c:when test="${sessionScope.type=='1' }">
+					</c:choose>
+					<c:choose>
+							<c:when test="${sessionScope.type=='1' || sessionScope.type=='2' || sessionScope.type=='4'}">
 							<c:choose>
 								<c:when test="${sessionScope.promo=='0'}">
 									<div class="form-group row">
@@ -163,8 +177,15 @@
 					<div id="includeStore" class="col-sm-6"></div>
 				</c:when>
 				
-				<c:when test="${sessionScope.type=='1'}">
+				<c:when test="${sessionScope.type=='1'} ">
 					<div id="includeReussite" class="col-sm-6"></div>
+				</c:when>
+				
+				<c:when test="${sessionScope.type=='2' }">
+					<div id="includeReussite" class="col-sm-6" hidden></div>
+				</c:when>
+				<c:when test="${sessionScope.type=='4' }">
+					<div id="includeReussite" class="col-sm-6" ></div>
 				</c:when>
 			</c:choose>
 				
