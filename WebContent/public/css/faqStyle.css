@@ -67,3 +67,5 @@ a {
   width: 500px;
   margin: 0px;
 }
+
+@media (min-width: 576px) and (max-width:1199px) {
