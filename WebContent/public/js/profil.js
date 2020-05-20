@@ -66,10 +66,8 @@ function goToEdit() {
 				  includeHeaderAndCheckUser();
 				  if (checkBox.checked == true){
 					  includeReussite.hidden=false;
-					  //document.getElementById("btnGoToEdit").hidden = true;
 			      } else {
 			    	  includeReussite.hidden=true;
-			    	//  document.getElementById("btnGoToEdit").hidden = false;
 			      }
 				  
 				  

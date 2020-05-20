@@ -19,6 +19,9 @@ public class User {
 	
 	String address;
 	String storeName;
+	public boolean getStatus() {
+		return status;
+	}
 	
 	public String getAddress() {
 		return address;
