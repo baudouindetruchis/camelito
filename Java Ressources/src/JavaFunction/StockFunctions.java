@@ -52,8 +52,9 @@ public class StockFunctions {
 	public static void modifArticle(int idArticle, String description, float real_price, float selling_price,
 			int stock) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			PreparedStatement pst = con.prepareStatement("UPDATE public.articles SET description ='" + description
-					+ "', initial_price=" + real_price + ", selling_price=" + selling_price + ", available="+stock+" WHERE id=" + idArticle);
+			PreparedStatement pst = con.prepareStatement(
+					"UPDATE public.articles SET description ='" + description + "', initial_price=" + real_price
+							+ ", selling_price=" + selling_price + ", available=" + stock + " WHERE id=" + idArticle);
 			pst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,6 +85,26 @@ public class StockFunctions {
 		}
 	}
 
+	public static void emptyStock(int id_user) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+
+			// SQL to connect to a store
+			PreparedStatement pstStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + id_user);
+			ResultSet reStore = pstStore.executeQuery();
+			reStore.next();
+
+			// get data on the article
+			int id_store = reStore.getInt("id");
+
+			PreparedStatement editStock = con
+					.prepareStatement("UPDATE public.articles SET available = 0 WHERE id_store = " + id_store);
+			editStock.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private static int secureNewVal(int val) {
 		int newVal = val;
 		if (newVal > 99) {
@@ -94,11 +115,11 @@ public class StockFunctions {
 		return newVal;
 	}
 
-	public static List<Article> getStockList(int user_id) {
+	public static List<Article> getStockList(int user_id, String sqlOrder) {
 		List<Article> stockList = new ArrayList<Article>();
 
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-
+			
 			PreparedStatement getStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
 			ResultSet theStore = getStore.executeQuery();
 			if (theStore == null) {
@@ -108,7 +129,7 @@ public class StockFunctions {
 				int id_store = theStore.getInt("id");
 				String name_store = theStore.getString("name");
 				PreparedStatement getArticles = con
-						.prepareStatement("SELECT * FROM public.articles WHERE id_store = " + id_store);
+						.prepareStatement("SELECT * FROM public.articles WHERE id_store = " + id_store+" "+sqlOrder);
 				ResultSet rsArticle = getArticles.executeQuery();
 				Article anArticle;
 

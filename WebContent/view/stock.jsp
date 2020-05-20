@@ -11,7 +11,6 @@
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../public/css/stockStyle.css">
 <link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
 
 <head>

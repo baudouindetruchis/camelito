@@ -10,8 +10,6 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 </script>
 
-<link rel="stylesheet" type="text/css" href="../public/css/stockStyle.css">
-
 
 <body>
 	<div class=formStyle>
@@ -20,7 +18,6 @@
 					<div class="form-group col-md-6">
 						<label for="modId">Produit sélectionné</label> 
 						<select id="modId" class="form-control" name="idArticle" required>
-						<option disabled selected>-- Choisissez une option --</option>
 						<c:forEach var="artc" items="${sessionScope.stockList}">
 							<option value="${artc.id}">${artc.id}- ${artc.name}</option>
 						</c:forEach>
@@ -48,8 +45,9 @@
 
 				<div class="form-row" style="text-align: center">
 					<div class="form-group col-md-12">
-						<input type="submit" class="btn btn-primary btnAjout" name="act" value="Modifier"> 
-						<input type="submit" class="btn btn-primary btnAjout" name="act" value="Supprimer">
+						<input type="submit" class="btn btn-primary btnAjout" name="act" value="Modifier">
+						<input type="submit" class="btn btn-primary btnAjout" name="act" value="Supprimer" formnovalidate>
+<!-- 						<button class="btn btn-primary btnAjout" name="act" value="Supprimer">Supprimer</button> -->
 				</div>
 				</div>
 		</form>
