@@ -44,8 +44,8 @@ function onload(){
     		    act: act
     		  },
     		  success: function(response) {
-  		    	$("#cartDiv").load("panierTable.jsp");
-		    	$("#ordersDiv").load("panierComm.jsp");
+    		    	$("#cartDiv").load("panierTable.jsp"); 
+    		    	$("#ordersDiv").load("panierComm.jsp");
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error

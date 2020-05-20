@@ -10,24 +10,23 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 </script>
 
-<link rel="stylesheet" type="text/css" href="../public/css/stockStyle.css">
-
-
 <body>
 	<div class="form-row stockFilter">
 		<div class="form-group col-md-4">
-			<label for="trierId">Trier vos produits</label> 
-			<select id="trierId" class="form-control" name="trierId" required>
-				<option disabled selected>-- Choisissez une option --</option>
-				<c:forEach var="artc" items="">
-					<option value=""></option>
-				</c:forEach>
+			<label for="trierId">Trier vos produits</label>
+			<select id="trierId" class="form-control" name="trierId" onchange="setSqlOrder()" >
+				<option value="ORDER BY id ASC" selected>Id croissant</option>
+				<option value="ORDER BY id DESC" >Id decroissant</option>
+				<option value="ORDER BY name ASC" >Name croissant</option>
+				<option value="ORDER BY name DESC" >Name decroissant</option>
+				<option value="ORDER BY available ASC" >Stock croissant</option>
+				<option value="ORDER BY available DESC" >Stock decroissant</option>
 			</select>
 		</div>
 		<div class="form-group col-md-5"></div>
 		<div class="form-group col-md-3 divErase">
 			<label></label>
-			<input type="submit" class="btn btn-primary btnErase" name="act" value="Tout supprimer" data-toggle="modal" data-target="#modalConfirmSuppr">
+			<input type="submit" class="btn btn-primary btnErase" name="act" value="Vider vos stocks" data-toggle="modal" data-target="#modalConfirmSuppr">
 		</div>
 
 		<!-- Popup pour le bouton Tout Supprimer -->
@@ -36,7 +35,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content noborder">
 					<div class="modal-header text-center headpopup">
-						<h4 class="messageSuppr">Voulez-vous vraiment supprimer tous vos articles ?</h4>
+						<h4 class="messageSuppr">Voulez-vous vraiment vider tous vos stocks ?</h4>
 
 						<!-- Bouton pour fermer le popup -->
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -48,7 +47,7 @@
 					<div class="modal-body mx-3">
 						<div class="md-form mb-5 popupConfirm">
 							<button class="btn btn-default btn-rounded mb-4 btnNon">Non</button>
-							<button class="btn btn-default btn-rounded mb-4 btnOui">Oui</button>
+							<button class="btn btn-default btn-rounded mb-4 btnOui" onclick="emptyStock()">Oui</button>
 						</div>
 					</div>
 				</div>

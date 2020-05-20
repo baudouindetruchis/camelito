@@ -1,3 +1,9 @@
+
+function onload(){ 
+    	$("#includArt").load("shoppingArticles.jsp");
+    	includeHeaderAndCheckUser();
+    }
+   
 function btnActClick(id, act) { 
     	$.ajax({
     		  url: "../ShoppingClick",
@@ -7,7 +13,7 @@ function btnActClick(id, act) {
     		    act: act
     		  },
     		  success: function(response) {
-    		    	$("#cartDiv").load("panierTable.jsp");
+    		    	$("#includArt").load("shoppingArticles.jsp");
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error

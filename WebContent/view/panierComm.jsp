@@ -15,17 +15,18 @@
 	<h2>Mes commandes </h2>
 	<c:forEach var="comm" items="${sessionScope.commandeList}">
 		<!-- Bouton -->
-		<a href="" class="btn btn-default btn-rounded mb-4 btnComm" data-toggle="modal" data-target="#modalPopupComm" onClick="btnCommClick(${comm})">N°<c:out value="${comm}" /></a>
+		<a href="" class="btn btn-default btn-rounded mb-4 btnComm" data-toggle="modal" 
+		data-target="#modalPopupComm${comm.id}" onClick="btnCommClick(${comm.id})">N°<c:out value="${comm.id}" /></a>
 
 		<!-- Form utilisé comme popup -->
-		<div class="modal fade" id="modalPopupComm" tabindex="-1"
+		<div class="modal fade" id="modalPopupComm${comm.id}" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content noborder">
 					<div class="modal-header text-center headpopup">
 						<h4 class="modal-title w-100 font-weight-bold">
 							Votre commande N°
-							<c:out value="${comm}" />
+							<c:out value="${comm.id}"/>
 						</h4>
 						<!-- Bouton pour fermer le popup -->
 						<button type="button" class="close" data-dismiss="modal"
@@ -34,30 +35,26 @@
 						</button>
 					</div>
 					<div class="text-center totalpopup">
-						<h5>Total : 11.0€</h5>
+						<h5>Total : <c:out value="${comm.priceTotal}"/>€</h5>
 					</div>
 
 					<!-- Contenu du popup -->
 					<div class="modal-body mx-3">
+						<!-- Pour chaque store -->
+						<c:forEach var="subComm" items="${comm.commandTotal}">
 						<div class="md-form mb-5 contentpopup">
-							<label class="magasinpopup">Monoprix : 6.0€ </label>
-							<br>
-							<label>1 P'tit lu : 3.0€ </label>
-							<br>
-							<label>1 Pasta box : 3.0€ </label>
+							<label class="magasinpopup"> <c:out value="${subComm.storeName}"/> :  <c:out value="${subComm.priceStore}"/>€ </label>
+							<!-- Pour chaque article -->
+							<c:forEach var="art" items="${subComm.commandToStore}">
+								<br>
+								<label>
+									(<c:out value="${art.quantity}"/>)
+									<c:out value="${art.name}"/> : 
+									<c:out value="${art.selling_price}"/>€
+								</label>
+							</c:forEach>
 						</div>
-						<div class="md-form mb-5 contentpopup">
-							<label class="magasinpopup">MacDo : 2.0€ </label>
-							<br>
-							<label>2 Big mac : 2.0€ </label>
-						</div>
-
-						<div class="md-form mb-5 contentpopup">
-							<label class="magasinpopup">Franprix : 3.0€ </label>
-							<br>
-							<label>3 Arizona : 3.0€ </label>
-						</div>
-
+						</c:forEach>
 					</div>
 				</div>
 			</div>
