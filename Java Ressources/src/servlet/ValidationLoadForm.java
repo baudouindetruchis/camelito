@@ -38,12 +38,17 @@ public class ValidationLoadForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
 		HttpSession session = request.getSession(false);
-		ArrayList<User> listUsers = new ArrayList<User>();
+		
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			PreparedStatement getUsers = con
-					.prepareStatement("SELECT * FROM public.users WHERE status = false");
-			
+			Boolean toValide=false;
+			PreparedStatement getUsers;
+			for(int i=0; i<2;i++) {
+				ArrayList<User> listUsers = new ArrayList<User>();
+			getUsers = con.prepareStatement("SELECT * FROM public.users WHERE status ='" +toValide+"'");
+
 			ResultSet users = getUsers.executeQuery();
 			while(users.next()) {  
 				User user = new User();
@@ -52,11 +57,17 @@ public class ValidationLoadForm extends HttpServlet {
 				user.setPseudo(users.getString("user_name"));
 				user.setMail(users.getString("mail"));
 				user.setType(users.getInt("type"));
-				user.setStatus(false);
+				user.setStatus(toValide);
 				listUsers.add(user);
 			}
-			session.setAttribute("listUsers", listUsers);
-			
+			if(!toValide) {
+				session.setAttribute("listUsers", listUsers);
+			}else {
+				session.setAttribute("listValideUsers", listUsers);
+			}
+			toValide=true;
+		}
+				 
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		} catch (Exception e) {

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -43,6 +42,15 @@ public class ValidationForm extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		int id_user = Integer.parseInt(request.getParameter("id"));
 		String changeType = request.getParameter("changeType");
+		String toValidate = request.getParameter("toValidate");
+		Boolean valider ;
+		ArrayList<User> listUsers ;
+		ArrayList<User> listValideUsers ;
+		if(toValidate.contentEquals("true")) {
+			valider = true;
+		}else {
+			valider=false;
+		}
 		
 		
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
@@ -56,24 +64,47 @@ public class ValidationForm extends HttpServlet {
 			
 
 			PreparedStatement modifyProfil = con
-					.prepareStatement("Update public.users set status= true WHERE id = '"+id_user+"'");
+					.prepareStatement("Update public.users set status='"+valider+"' WHERE id = '"+id_user+"'");
 			
 			modifyProfil.execute();
-			ArrayList<User> listUsers = (ArrayList<User>) session.getAttribute("listUsers");
-			for(User user : listUsers) {
-				if(user.getId()==id_user) {
-					listUsers.remove(user);
-					break;
+			
+			listUsers = (ArrayList<User>) session.getAttribute("listUsers");
+			listValideUsers= (ArrayList<User>) session.getAttribute("listValideUsers");
+			if(valider) {
+				for(User user : listUsers) {
+					if(user.getId()==id_user) {
+						listUsers.remove(user);
+						listValideUsers.add(user);
+						break;
+					}
+					session.setAttribute("surLesValides", "false");
 				}
+				
+				
+			}else {
+				for(User user : listValideUsers) {
+					if(user.getId()==id_user) {
+						listValideUsers.remove(user);
+						listUsers.add(user);
+						break;
+					}
+				}
+				session.setAttribute("surLesValides", "true");
 			}
-			session.removeAttribute("listUsers");
-			session.setAttribute("listUsers",listUsers);
+			
+				session.removeAttribute("listUsers");
+				session.setAttribute("listUsers",listUsers);	
+			
+				session.removeAttribute("listValideUsers");
+				session.setAttribute("listValideUsers",listValideUsers);
+			
+			
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		 
+		
 	}
 
 	/**
