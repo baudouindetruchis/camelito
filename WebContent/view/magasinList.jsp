@@ -34,7 +34,8 @@
       <div class="col-xs-6 col-sm-3">
       
          <div class="listbox">
-            <c:out value="${store.storeName}" />
+            <c:out value="${store.storeName}" /> <br>
+            <c:out value="${store.priceStore}" />
          </div>
          
          <label for="articles"><u>Articles commandés : </u></label>
