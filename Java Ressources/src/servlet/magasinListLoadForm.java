@@ -97,7 +97,6 @@ public class magasinListLoadForm extends HttpServlet {
 				}
 				
 			}
-			System.out.println(listArticles.get(1).getQuantity());
 			ClientCommand commandes = new ClientCommand();
 			
 			for(int key : listArticles.keySet()) {
@@ -105,8 +104,6 @@ public class magasinListLoadForm extends HttpServlet {
 				commandes.addArticle(art);
 			}
 			List<ClientSubCommand> commandTotal= commandes.getCommandTotal();
-			
-			
 			session.setAttribute("listCommands", commandTotal);
 			
 			
