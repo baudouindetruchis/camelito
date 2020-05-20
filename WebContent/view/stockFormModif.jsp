@@ -13,7 +13,7 @@
 
 <body>
 	<div class=formStyle>
-		<form id="formModif" action="../StockForm" class="form-container" name="" hidden=true>
+		<form id="formModif" action="../StockFiltre" class="form-container" name="" hidden=true>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="modId">Produit sélectionné</label> 

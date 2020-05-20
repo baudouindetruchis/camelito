@@ -116,6 +116,7 @@ public class StockFunctions {
 	}
 
 	public static List<Article> getStockList(int user_id, String sqlOrder) {
+		sqlOrder = sqlOrder.replaceAll("_", " ");
 		List<Article> stockList = new ArrayList<Article>();
 
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
