@@ -120,7 +120,7 @@ public class StockFunctions {
 
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			
-			PreparedStatement getStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id+" "+sqlOrder);
+			PreparedStatement getStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
 			ResultSet theStore = getStore.executeQuery();
 			if (theStore == null) {
 				System.out.println("Erreur de connexion (commandes=null)");
@@ -129,7 +129,7 @@ public class StockFunctions {
 				int id_store = theStore.getInt("id");
 				String name_store = theStore.getString("name");
 				PreparedStatement getArticles = con
-						.prepareStatement("SELECT * FROM public.articles WHERE id_store = " + id_store);
+						.prepareStatement("SELECT * FROM public.articles WHERE id_store = " + id_store+" "+sqlOrder);
 				ResultSet rsArticle = getArticles.executeQuery();
 				Article anArticle;
 

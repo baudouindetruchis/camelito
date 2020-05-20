@@ -5,6 +5,13 @@ function onload(){
     }
 emptyStock
 
+function setSqlOrder() {
+    var dropDown = document.getElementById("trierId");
+    var sqlOrder = dropDown.value;
+    '<%Session["sqlOrder"] = "' + sqlOrder + '"; %>';
+     alert('<%=Session["sqlOrder"] %>');
+}
+
 function emptyStock(){
 	$.ajax({
 		  url: "../StockClick",

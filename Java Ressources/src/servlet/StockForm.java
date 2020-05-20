@@ -45,7 +45,8 @@ public class StockForm extends HttpServlet {
 		String sp = request.getParameter("selling_price");
 		String ida = request.getParameter("idArticle");
 		String s = request.getParameter("stock");
-		String sqlOrder = request.getParameter("sqlOrder");
+
+		String sqlOrder =(String) session.getAttribute("sqlOrder");
 		
 		// get value or default 
 		String description = d==null ? "" : d;

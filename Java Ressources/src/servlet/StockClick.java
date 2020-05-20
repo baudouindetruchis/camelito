@@ -35,7 +35,6 @@ public class StockClick extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//get session atribute
-		String sqlOrder = request.getParameter("sqlOrder");
 		String newValStr = request.getParameter("newStock");
 		String id_articleStr = request.getParameter("id");
 
@@ -43,6 +42,8 @@ public class StockClick extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
 		int user_id = user.getId(); 
+
+		String sqlOrder =(String) session.getAttribute("sqlOrder");
 		
 		if(newValStr!= null && !newValStr.isEmpty() && id_articleStr!= null && !id_articleStr.isEmpty() ) {
 			// if request have param it's a stock modif

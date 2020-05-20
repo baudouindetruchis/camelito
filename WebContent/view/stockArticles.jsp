@@ -10,20 +10,17 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 </script>
 
-<link rel="stylesheet" type="text/css" href="../public/css/stockStyle.css">
-
-
 <body>
 	<div class="form-row stockFilter">
 		<div class="form-group col-md-4">
 			<label for="trierId">Trier vos produits</label>
-			<select id="trierId" class="form-control" name="trierId" required>
+			<select id="trierId" class="form-control" name="trierId" onchange="setSqlOrder()" >
 				<option value="ORDER BY id ASC" selected>Id croissant</option>
-				<option value="ORDER BY id DESC" selected>Id decroissant</option>
-				<option value="ORDER BY name ASC" selected>Name croissant</option>
-				<option value="ORDER BY name DESC" selected>Name decroissant</option>
-				<option value="ORDER BY available ASC" selected>Stock croissant</option>
-				<option value="ORDER BY available DESC" selected>Stock decroissant</option>
+				<option value="ORDER BY id DESC" >Id decroissant</option>
+				<option value="ORDER BY name ASC" >Name croissant</option>
+				<option value="ORDER BY name DESC" >Name decroissant</option>
+				<option value="ORDER BY available ASC" >Stock croissant</option>
+				<option value="ORDER BY available DESC" >Stock decroissant</option>
 			</select>
 		</div>
 		<div class="form-group col-md-5"></div>
