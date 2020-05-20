@@ -1,78 +1,55 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+<meta charset="UTF-8">
+<%@page contentType="text/html; charset=UTF-8"%>
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="../public/css/magasinListStyle.css">
+<link rel="stylesheet" type="text/css"
+	href="../public/css/pageStyle.css">
+
+
 <head>
-<meta charset="utf-8">
-<title></title>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet">
- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js">
-</script>
-
-<style type="text/css">
-   .listbox
-{
-    margin-right: 1px;
-    margin-left: 1px;
-    margin-top: 10px;
-    padding: 10px;
-    background-color:#eee;
-    border: 1px solid #ddd;
-}
-
-</style>
+<title>Camelito - Les Commandes</title>
 <script src="../public/js/header.js"></script>
+
 </head>
 <body onload="includeHeaderAndCheckUser()">
 <div id="includedHeader"></div>
 <div class="container">
 <input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
    <div class="row">
+   <c:forEach var="store" items="${sessionScope.listCommands}">
       <div class="col-xs-6 col-sm-3">
+      
          <div class="listbox">
-            <p>Alice 4€</p>
+            <c:out value="${store.storeName}" />
          </div>
+         
+         <label for="articles"><u>Articles commandés : </u></label>
+         <c:forEach var="art" items="${store.commandToStore}">
+			<p class="form-control-plaintext" id="name">
+				<c:out value="${art.quantity}" /> <c:out value="${art.name}" />
+			</p>
+		</c:forEach>
+       
       </div>
-      <div class="col-xs-6 col-sm-3">
-         <div class="listbox">
-            <p>Bob 24€</p>
-         </div>
-      </div>
-      <div class="col-xs-6 col-sm-3">
-         <div class="listbox">
-            <p>Camille 14€</p>
-         </div>
-      </div>
-      <div class="col-xs-6 col-sm-3">
-         <div class="listbox">
-            <p>Etienne 4€</p>
-         </div>
-      </div>
+      </c:forEach>
    </div>
-   <div class="row">
-      <div class="col-xs-6 col-sm-3">
-         <div class="listbox">
-            <p>David 3€</p>
-         </div>
-      </div>
-      <div class="col-xs-6 col-sm-3">
-         <div class="listbox">
-            <p>Fred 4€</p>
-         </div>
-      </div>
-      <div class="col-xs-6 col-sm-3">
-         <div class="listbox">
-            <p>Barnabé 4€</p>
-         </div>
-      </div>
-      <div class="col-xs-6 col-sm-3">
-         <div class="listbox">
-            <p>Irene 4€</p>
-         </div>
-      </div>
-</div>
+   
+
+
 </div>
 </body>
 </html>
