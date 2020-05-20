@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,8 +24,8 @@ import obj.User;
 /**
  * Servlet implementation class magasinListForm
  */
-@WebServlet("/magasinListLoadForm")
-public class magasinListLoadForm extends HttpServlet {
+@WebServlet("/MagasinListLoadForm")
+public class MagasinListLoadForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
@@ -35,7 +34,7 @@ public class magasinListLoadForm extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public magasinListLoadForm() {
+    public MagasinListLoadForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +42,6 @@ public class magasinListLoadForm extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		HashMap<Integer, Article> listArticles = new HashMap<Integer, Article>();
