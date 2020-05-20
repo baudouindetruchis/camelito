@@ -11,19 +11,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js">
 </script>
 
-<style type="text/css">
-   .listbox
-{
-    margin-right: 1px;
-    margin-left: 1px;
-    margin-top: 10px;
-    padding: 10px;
-    background-color:#eee;
-    border: 1px solid #ddd;
-}
 
-</style>
 <script src="../public/js/header.js"></script>
+<link rel="stylesheet" type="text/css" href="../public/css/magasinListStyle.css">
 </head>
 <body onload="includeHeaderAndCheckUser()">
 <div id="includedHeader"></div>
