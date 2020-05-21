@@ -206,70 +206,78 @@
 						name="inscription">
 						<img src="../public/images/times.png" onclick="closeForm()"
 							alt="close" class="close_button">
-						<h1>Changer son avatar</h1>
-						
-						<div>
-						<label for="chooseImg" class="col-form-label">Avatars disponibles : </label> 
-						
-						
-						<div class="radio_but">
-							<div>
-							<input type="radio" id="sansImage" name="pic" value="../public/images/Add_User.png"
-								required="required">								
-								<img class="profil img-responsive"
-									src="../public/images/Add_User.png" alt="Add User" width="25%" id="chooseImg"
-									height="120"/><br>
-									</div>
-							<div>
-								<input type="radio"
-									id="Camel4" name="pic" value="../public/images/Camel4.png"
-									required="required">
-									<img class="profil img-responsive"
-										src="../public/images/Camel4.png" alt="Camel4" width="25%" id="chooseImg"
-										height="120"/><br>
-							</div>
-							
-							
-							<div>
-								<input type="radio"
-								id="Camel2" name="pic" value="../public/images/Camel2.png"
+						<h1>Changer de monture</h1>
+						<p id="intro">Le choix de votre monture est une étape importante pour devenir un utilisateur experimenté de Camelito.
+						<br>Chaque chameau est unique en son genre ce qui vous permet de trouver le votre nouveau meilleur ami sans difficulté  </p>
+									
+							<br><input type="radio"
+								id="pic" name="pic" value="../public/images/Camel4.png"
 								required="required">
-								<img class="profil img-responsive"
-									src="../public/images/Camel2.png" alt="Camel2" width="25%" id="chooseImg"
-									height="120"/><br>
-							</div>
-							
-							
-							<div>
-								<input type="radio"
-								id="Camel4" name="pic" value="../public/images/Camel3.png"
+							<div data-toggle="collapse" data-target="#Camel4"><img class="editPic img-responsive"
+								src="../public/images/Camel4.png" alt="Camel4" width="25%" id="chooseImg"
+								height="100"/></div>
+  								<div id="Camel4" class="collapse">
+    								<p id="intro"><b>Augustus</b> est le chameau de compagnie parfait il restera toujours à vos côtés.<br> 
+													Ses passions : manger et dormir. Son tempérament calme et posé le rendent de très bonne compagnie.<br> Attention cependant,
+								 					il peut avoir une réaction exagérée lorsque quelqu'un lui dérobe ses doux mets.</p>
+  								</div>
+	
+							<br><input type="radio"
+								id="pic" name="pic" value="../public/images/Camel2.png"
 								required="required">
-								<img class="profil img-responsive"
-									src="../public/images/Camel3.png" alt="Camel4" width="25%" id="chooseImg"
-									height="120"/><br>
-							</div>
+							<div data-toggle="collapse" data-target="#Camel2"><img class="editPic img-responsive"
+									src="../public/images/Camel2.png" alt="Camel2" width="25%" id="Philibert"
+									height="100"/></div>
+  								<div id="Camel2" class="collapse">
+    								<p id="intro"><b>Philibert</b> est le petit jeunot de notre troupe. Il est énergique et petit blagueur.<br>
+										Il fera tout ce qui est possible pour lui afin de vous rendre heureux. <br>Son peulage soyeux le rend la parfaite peluche 
+										pour toutes sièstes. <br>Attention cependant son jeune âge et son manque d'experience peut le rendre maladroit.</p>
+								</div>
 							
-							<div>
-								<input type="radio"
-								id="Camel5" name="pic" value="../public/images/Camel5.png"
+							
+							<br><input type="radio"
+								id="pic" name="pic" value="../public/images/Camel3.png"
 								required="required">
-								<img class="profil img-responsive"
+							<div data-toggle="collapse" data-target="#Camel3"><img class="editPic img-responsive"
+									src="../public/images/Camel3.png" alt="Camel3" width="25%" id="chooseImg"
+									height="100"/></div>
+  								<div id="Camel3" class="collapse">
+    								<p id="intro"><b>Marthe </b>est la doyenne du groupe.<br> Ses 57 ans d'expérience dans l'aide aux bipèdes lui confèrent une assurance indégniable.<br> 
+										C'est la chamelle à avoir si vous voulez connaître le bons plans de Camelito. <br>C'est l'amie qu'il faut si vous aimez
+										les soirées au coin de la cheminée accompagnées de tisane et de jeu de cartes.</p>
+							</div>
+		
+							
+							
+							<br><input type="radio"
+								id="pic" name="pic" value="../public/images/Camel5.png"
+								required="required">
+							<div data-toggle="collapse" data-target="#Camel5"><img class="editPic img-responsive"
 									src="../public/images/Camel5.png" alt="Camel5" width="25%" id="chooseImg"
-									height="120"/><br>
-							</div>
+									height="100"/></div>
+  								<div id="Camel5" class="collapse">
+    								<p id="intro"><b>Roseline </b>est la sportive du groupe.<br>
+    								 Du haut de ses 20km/h en vitesse de pointe vous ne serez jamais en retard. <br>
+    								 Elle fait très attention à ce qu'elle achète : tout doit être bon pour son organisme. Avec elle adieu les <i>Mcdo</i>!
+    								 <br>Infatiguable, elle peut cependant vite le devenir si vous ne lui faites pas faire une balade dans la journée
+    								
+    								</p></div>
 							
-							<div>
-								<input type="radio"
-								id="Camel" name="pic" value="../public/images/Camel.png"
+							
+							<br><input type="radio"
+								id="pic" name="pic" value="../public/images/Camel.png"
 								required="required">
-								<img class="profil img-responsive"
+							<div data-toggle="collapse" data-target="#Camel"><img class="editPic img-responsive"
 									src="../public/images/Camel.png" alt="Camel" width="25%" id="chooseImg"
-									height="120"/><br>
-							</div>
+									height="100"/></div>
+  								<div id="Camel" class="collapse">
+    								<p id="intro"><b>Ferdinand </b> est le bon vivant du groupe. <br>
+    								Fan incontesté de Dionisos plus connu sous le nom de Baccus chez nos amis les romains, <br>
+    								'dinand ne manque pas une occasion pour passer une bonne soirée. Ses mots d'ordre sont : boisson et gateaux apéro!	
+    								<br>Attention cependant à ne pas oublier que les chameau peuvent boire jusqu'a 132 litres en 10 minutes!</p></div>
 							
-							
-						</div>
-						</div><br>
+						
+						
 						<input class="btn-primary btn-responsive" type="submit" id="ChangePic"
 						  value="Valider mon choix"
 						 />
