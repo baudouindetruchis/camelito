@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
+<link rel="stylesheet" type="text/css" href="../public/css/stockStyle.css">
 
 <head>
 	<title>Camelito - Stock</title>

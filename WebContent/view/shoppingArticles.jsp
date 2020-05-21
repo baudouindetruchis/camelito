@@ -25,7 +25,7 @@
 						title="Add to favorite">
 						<i class="fa fa-heart"></i>
 					</button>
-					<c:out value="${artc.description}"/> <!--display description -->
+					<%-- <c:out value="${artc.description}"/> <!--display description --> : A insérer plus tard --%>
 				</div>
 				
 				<table class="quantity">
