@@ -48,6 +48,7 @@ public class ClientListLoadForm extends HttpServlet {
 					.prepareStatement("SELECT id_user, list_id_articles, liste_quantities FROM public.carts WHERE status = true");
 			
 			ResultSet commandes = getCommandes.executeQuery();
+			
 			while(commandes.next()) {   
 				int price = 0;
 				Commande commande = new Commande();

@@ -49,9 +49,14 @@
 				<fieldset>
 					<img class="profil img-responsive"
 					<c:set var="user" scope="session" value="${sessionScope.user}" />
-						src="../public/images/Add_User.png" alt="Add User" width="25%"
+						src="${usr.profilPic}" alt="Add User" width="25%"
 						height="120"/>
+						
+						<a href="#" onclick="openForm() "><img class="edit img-responsive"
+						src="../public/images/edit.png" alt="edit" width="5%"
+						height="20"/></a>
 				</fieldset>
+				
 				
 					<div class="form-group row">
 						<label for="name" class="col-form-label">Nom : </label>
@@ -166,7 +171,8 @@
 
 					<input class="btn-primary btn-responsive" type="submit"
 						id="btnSaveChange" value="Save Changes" onclick="saveChange()"
-						hidden /> <input class="btn-primary btn-responsive" type="button"
+						hidden />
+					<input class="btn-primary btn-responsive" type="button"
 						value="Modifier" id="btnGoToEdit" onclick="goToEdit()" />
 
 				</form>
@@ -193,6 +199,85 @@
 			</div>
 			
 			</div>
+
+
+			<div class="form-popup" id="myForm">
+					<form action="../ChangePicForm" class="form-container"
+						name="inscription">
+						<img src="../public/images/times.png" onclick="closeForm()"
+							alt="close" class="close_button">
+						<h1>Changer son avatar</h1>
+						
+						<div>
+						<label for="chooseImg" class="col-form-label">Avatars disponibles : </label> 
+						
+						
+						<div class="radio_but">
+							<div>
+							<input type="radio" id="sansImage" name="pic" value="../public/images/Add_User.png"
+								required="required">								
+								<img class="profil img-responsive"
+									src="../public/images/Add_User.png" alt="Add User" width="25%" id="chooseImg"
+									height="120"/><br>
+									</div>
+							<div>
+								<input type="radio"
+									id="Camel4" name="pic" value="../public/images/Camel4.png"
+									required="required">
+									<img class="profil img-responsive"
+										src="../public/images/Camel4.png" alt="Camel4" width="25%" id="chooseImg"
+										height="120"/><br>
+							</div>
+							
+							
+							<div>
+								<input type="radio"
+								id="Camel2" name="pic" value="../public/images/Camel2.png"
+								required="required">
+								<img class="profil img-responsive"
+									src="../public/images/Camel2.png" alt="Camel2" width="25%" id="chooseImg"
+									height="120"/><br>
+							</div>
+							
+							
+							<div>
+								<input type="radio"
+								id="Camel4" name="pic" value="../public/images/Camel3.png"
+								required="required">
+								<img class="profil img-responsive"
+									src="../public/images/Camel3.png" alt="Camel4" width="25%" id="chooseImg"
+									height="120"/><br>
+							</div>
+							
+							<div>
+								<input type="radio"
+								id="Camel5" name="pic" value="../public/images/Camel5.png"
+								required="required">
+								<img class="profil img-responsive"
+									src="../public/images/Camel5.png" alt="Camel5" width="25%" id="chooseImg"
+									height="120"/><br>
+							</div>
+							
+							<div>
+								<input type="radio"
+								id="Camel" name="pic" value="../public/images/Camel.png"
+								required="required">
+								<img class="profil img-responsive"
+									src="../public/images/Camel.png" alt="Camel" width="25%" id="chooseImg"
+									height="120"/><br>
+							</div>
+							
+							
+						</div>
+						</div><br>
+						<input class="btn-primary btn-responsive" type="submit" id="ChangePic"
+						  value="Valider mon choix"
+						 />
+						 
+					</form>
+				</div>
+
+
 
 
 
