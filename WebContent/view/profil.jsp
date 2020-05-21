@@ -208,7 +208,7 @@
 							alt="close" class="close_button">
 						<h1>Changer de monture</h1>
 						<p id="intro">Le choix de votre monture est une étape importante pour devenir un utilisateur experimenté de Camelito.
-						<br>Chaque chameau est unique en son genre ce qui vous permet de trouver le votre nouveau meilleur ami sans difficulté <br>
+						<br>Chaque chameau est unique en son genre, ce qui vous permet de trouver votre nouveau meilleur ami sans difficulté <br>
 						N'hésitez pas à cliquer sur la photo des différentes montures pour voir leur description </p>
 									
 							<br><input type="radio"
@@ -218,8 +218,8 @@
 								src="../public/images/Camel4.png" alt="Camel4" width="25%" id="chooseImg"
 								height="100"/></div>
   								<div id="Camel4" class="collapse">
-    								<p id="intro"><b>Augustus</b> est le chameau de compagnie parfait il restera toujours à vos côtés.<br> 
-													Ses passions : manger et dormir. Son tempérament calme et posé le rendent de très bonne compagnie.<br> Attention cependant,
+    								<p id="intro"><b>Augustus</b> est le chameau de compagnie parfait : il restera toujours à vos côtés.<br> 
+													Ses passions : manger et dormir. Son tempérament calme et posé le rend de très bonne compagnie.<br> Attention cependant,
 								 					il peut avoir une réaction exagérée lorsque quelqu'un lui dérobe ses doux mets.</p>
   								</div>
 	
@@ -231,8 +231,8 @@
 									height="100"/></div>
   								<div id="Camel2" class="collapse">
     								<p id="intro"><b>Philibert</b> est le petit jeunot de notre troupe. Il est énergique et petit blagueur.<br>
-										Il fera tout ce qui est possible pour lui afin de vous rendre heureux. <br>Son peulage soyeux le rend la parfaite peluche 
-										pour toutes sièstes. <br>Attention cependant son jeune âge et son manque d'experience peut le rendre maladroit.</p>
+										Il fera tout ce qui est possible afin de vous rendre heureux. <br>Son peulage doux et soyeux fait de lui la parfaite peluche 
+										pour toutes siestes. <br>Attention cependant son jeune âge et son manque d'experience peuvent le rendre maladroit.</p>
 								</div>
 							
 							
@@ -259,7 +259,7 @@
   								<div id="Camel5" class="collapse">
     								<p id="intro"><b>Roseline </b>est la sportive du groupe.<br>
     								 Du haut de ses 20km/h en vitesse de pointe vous ne serez jamais en retard. <br>
-    								 Elle fait très attention à ce qu'elle achète : tout doit être bon pour son organisme. Avec elle adieu les <i>Mcdo</i>!
+    								 Elle fait très attention à ce qu'elle achète : tout doit être bon pour son organisme. Avec elle adieu les <i>Mcdo'</i>!
     								 <br>Infatiguable, elle peut cependant vite le devenir si vous ne lui faites pas faire une balade dans la journée
     								
     								</p></div>
@@ -273,9 +273,9 @@
 									height="100"/></div>
   								<div id="Camel" class="collapse">
     								<p id="intro"><b>Ferdinand </b> est le bon vivant du groupe. <br>
-    								Fan incontesté de Dionisos plus connu sous le nom de Baccus chez nos amis les romains, <br>
-    								'dinand ne manque pas une occasion pour passer une bonne soirée. Ses mots d'ordre sont : boisson et gateaux apéro!	
-    								<br>Attention cependant à ne pas oublier que les chameau peuvent boire jusqu'a 132 litres en 10 minutes!</p></div>
+    								Fan incontesté de Dionisos plus connu sous le nom de Bacchus chez nos amis les romains, <br>
+    								'dinand ne manque pas une occasion pour passer une bonne soirée. Ses mots d'ordre sont boisson et gateaux apéro	
+    								<br>Attention cependant à ne pas oublier que les chameaux peuvent boire jusqu'à 132 litres en 10 minutes!</p></div>
 							
 						
 						
