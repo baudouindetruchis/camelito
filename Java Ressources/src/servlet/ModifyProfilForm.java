@@ -74,7 +74,7 @@ public class ModifyProfilForm extends HttpServlet {
 						obj.setMail(email);
 					}
 					
-					if((int) session.getAttribute("type")==1) {
+					if((int) session.getAttribute("type")==1 || (int) session.getAttribute("type")==4 || (int) session.getAttribute("type")==2) {
 						if(!promotion.isEmpty()&& !(promotion== null)) {
 							try {
 								promotionInt = Integer.parseInt(promotion);

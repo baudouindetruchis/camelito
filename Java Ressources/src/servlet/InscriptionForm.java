@@ -89,7 +89,7 @@ public class InscriptionForm extends HttpServlet {
 					
 					// create the object user and initialize session attributes
 					
-					ConnectionFunctions.connect(request, id, email, type, pseudo, firstname, lastname, year, 0, "","",false);
+					ConnectionFunctions.connect(request, id, email, type, pseudo, firstname, lastname, year, 0, "","",false,"../public/images/Add_User.png");
 					
 					
 					
