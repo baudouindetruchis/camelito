@@ -208,7 +208,8 @@
 							alt="close" class="close_button">
 						<h1>Changer de monture</h1>
 						<p id="intro">Le choix de votre monture est une étape importante pour devenir un utilisateur experimenté de Camelito.
-						<br>Chaque chameau est unique en son genre ce qui vous permet de trouver le votre nouveau meilleur ami sans difficulté  </p>
+						<br>Chaque chameau est unique en son genre ce qui vous permet de trouver le votre nouveau meilleur ami sans difficulté <br>
+						N'hésitez pas à cliquer sur la photo des différentes montures pour voir leur description </p>
 									
 							<br><input type="radio"
 								id="pic" name="pic" value="../public/images/Camel4.png"
