@@ -48,6 +48,7 @@ public class ClientListLoadForm extends HttpServlet {
 					.prepareStatement("SELECT id_user, list_id_articles, liste_quantities FROM public.carts WHERE status = true");
 			
 			ResultSet commandes = getCommandes.executeQuery();
+			int id=0;
 			while(commandes.next()) {   
 				int price = 0;
 				Commande commande = new Commande();
@@ -82,7 +83,9 @@ public class ClientListLoadForm extends HttpServlet {
 					newArticle.setId(id_Article);
 					listArticles.add(newArticle);	
 				}
+				id++;
 				commande.setprice(price);
+				commande.setId(user_Name + String.valueOf(id));
 				commande.setUser_name(user_Name);
 				commande.setListArticles(listArticles);
 				listArticlesByUser.add(commande);
