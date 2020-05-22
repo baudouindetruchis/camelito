@@ -260,7 +260,7 @@
     								<p id="intro"><b>Roseline </b>est la sportive du groupe.<br>
     								 Du haut de ses 20km/h en vitesse de pointe vous ne serez jamais en retard. <br>
     								 Elle fait très attention à ce qu'elle achète : tout doit être bon pour son organisme. Avec elle adieu les <i>Mcdo'</i>!
-    								 <br>Infatiguable, elle peut cependant vite le devenir si vous ne lui faites pas faire une balade dans la journée
+    								 <br>Infatiguable, elle peut cependant vite devenir fatigante si vous ne lui faites pas faire une balade dans la journée
     								
     								</p></div>
 							
@@ -273,7 +273,7 @@
 									height="100"/></div>
   								<div id="Camel" class="collapse">
     								<p id="intro"><b>Ferdinand </b> est le bon vivant du groupe. <br>
-    								Fan incontesté de Dionisos plus connu sous le nom de Bacchus chez nos amis les romains, <br>
+    								Fan incontesté de Dionysos plus connu sous le nom de Bacchus chez nos amis les romains, <br>
     								'dinand ne manque pas une occasion pour passer une bonne soirée. Ses mots d'ordre sont boisson et gateaux apéro	
     								<br>Attention cependant à ne pas oublier que les chameaux peuvent boire jusqu'à 132 litres en 10 minutes!</p></div>
 							
