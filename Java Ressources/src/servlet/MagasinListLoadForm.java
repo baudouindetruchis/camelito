@@ -52,7 +52,7 @@ public class MagasinListLoadForm extends HttpServlet {
 			
 			ResultSet users = getUsers.executeQuery();
 			while(users.next()) { 
-				Article newArticle =new Article();
+				
 				Object array_articleByUser =   users.getArray("list_id_articles").getArray();
 				Integer[] list_articleByUser = (Integer[]) array_articleByUser;
 				
@@ -60,48 +60,66 @@ public class MagasinListLoadForm extends HttpServlet {
 				Integer[] list_articleQuantity = (Integer[]) array_articleQuantity;
 
 				for(int i =0; i<list_articleByUser.length; i++) {
+					Article newArticle =new Article();
 					int id_Article = list_articleByUser[i];
 					int quantity = list_articleQuantity[i];
 					
+					
+					newArticle.setId(id_Article);
 					PreparedStatement getArticle = con
 							.prepareStatement("SELECT name, id_Store, selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
 					
 					ResultSet articleInfo = getArticle.executeQuery();
 					while(articleInfo.next()){
 						int price = articleInfo.getInt("selling_price");
-						int id_Store = articleInfo.getInt("selling_price");
+						int id_Store = articleInfo.getInt("id_Store");
 						String name = articleInfo.getString("name");
 						PreparedStatement getStore = con
 								.prepareStatement("SELECT name FROM public.stores WHERE id = '" + id_Store+"'" );
 						ResultSet getName = getStore.executeQuery();
-						while(getName.next()) {
+						getName.next();
 							
-							String storeName = getName.getString("name");
-							if(listArticles.containsKey(id_Article)) {
-								quantity =quantity+ listArticles.get(id_Article).getQuantity();
+						String storeName = getName.getString("name");
+						if(listArticles.containsKey(id_Article)) {
+							quantity =quantity+ listArticles.get(id_Article).getQuantity();
 								
-							}
-
-							newArticle.setMagasin(storeName);
 						}
-						
+							
+						newArticle.setMagasin(storeName);
 						newArticle.setQuantity(quantity);
-						newArticle.setId(id_Article);
 						newArticle.setSelling_price(price);
 						newArticle.setName(name);
-						listArticles.put(id_Article, newArticle);
-					}
-					
+
+						}
+					listArticles.put(newArticle.getId(), newArticle);
 				}
+				System.out.println("----");	
 				
+				for(int key : listArticles.keySet()) {
+					System.out.println("Key " +key);
+					System.out.println("id " +listArticles.get(key).getId());
+					System.out.println("name " +listArticles.get(key).getName());
+					System.out.println("magasin " +listArticles.get(key).getMagasin());
+					System.out.println("quantity " +listArticles.get(key).getQuantity());
+					
+					}
+				
+				
+			
+				
+				
+			
 			}
+			
 			ClientCommand commandes = new ClientCommand();
 			
 			for(int key : listArticles.keySet()) {
 				Article art =listArticles.get(key);
+				//System.out.println(listArticles.get(key).getName());
 				commandes.addArticle(art);
 			}
 			List<ClientSubCommand> commandTotal= commandes.getCommandTotal();
+			
 			session.setAttribute("listCommands", commandTotal);
 			
 			
