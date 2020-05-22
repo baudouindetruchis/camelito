@@ -10,15 +10,15 @@ public class Article {
 	float real_price;
 	int quantity;
 	int stock;
-	String img_link;
+	String img;
 
 
 	public String getImg() {
-		return img_link;
+		return img;
 	}
 
 	public void setImg(String img) {
-		this.img_link = img;
+		this.img = img;
 	}
 
 	public int getStock() {

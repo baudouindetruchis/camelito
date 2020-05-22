@@ -81,6 +81,8 @@ public class ShoppingListFunctions {
 					float real_price = allStock.getInt("initial_price");
 					float selling_price = allStock.getInt("selling_price");
 
+					String pic = allStock.getString("pic");
+					
 					// get quantity from user current cart
 					int quantity = 0;
 					if(list_id_articles.contains(id_article)){
@@ -108,6 +110,7 @@ public class ShoppingListFunctions {
 					anArticle.setQuantity(quantity);
 					anArticle.setReal_price(real_price);
 					anArticle.setSelling_price(selling_price);
+					anArticle.setImg(pic);
 
 					lArt.add(anArticle);
 				}

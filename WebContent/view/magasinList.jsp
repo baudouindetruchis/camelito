@@ -25,7 +25,7 @@
 <head>
 <title>Camelito - Les Commandes</title>
 <script src="../public/js/header.js"></script>
-
+<script src="../public/js/asso.js"></script>
 </head>
 <body onload="includeHeaderAndCheckUser()">
 <input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
@@ -34,7 +34,7 @@
 <div class="container">
    <div class="row">
    <c:forEach var="store" items="${sessionScope.listCommands}">
-      <div class="col-md-3 mobileMargin">
+      <div class="col-md-3 mobileMargin" id="comm${store.storeName}">
 
 		<div class="listbox">
 			<div>
@@ -43,7 +43,9 @@
 			<div>
 			<c:out value="${store.priceStore}" />
 				€
+				
 			</div>
+			
 		</div>
 
 					<!-- Form  -->
@@ -64,9 +66,14 @@
 									</li> 
 								</div>
 							</c:forEach>
-							</ul>
+							</ul>				
+							
+							
+							
+							<div id="closeCommand" class="closeOrderBtn position-relative stretched-link" onclick="recupCommande('comm${store.storeName}', '${store.storeName}')">
+						<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
 					</div>
-					
+					</div>	
        
       </div>
       </c:forEach>

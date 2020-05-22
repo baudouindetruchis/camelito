@@ -16,7 +16,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-<script src="../public/js/asso.js"></script>
+
 
 <link rel="stylesheet" type="text/css"
 	href="../public/css/magasinListStyle.css">
@@ -27,6 +27,7 @@
 <head>
 <title>Camelito - Les Commandes</title>
 <script src="../public/js/header.js"></script>
+<script src="../public/js/asso.js"></script>
 
 </head>
 <body onload="includeHeaderAndCheckUser()">
@@ -37,7 +38,8 @@
 	<div class="row">
 		<c:forEach var="listCommand"
 			items="${sessionScope.listArticlesByUser}">
-			<div id="comm${listCommand.id}" class="col-md-3 mobileMargin">
+			
+			<div id="comm${listCommand.idAndName}" class="col-md-3 mobileMargin">
 				<div class="listbox">
 					<div>
 						<c:out value="${listCommand.user_name}" />
@@ -46,17 +48,27 @@
 						<c:out value="${listCommand.price}" />
 						€
 					</div>
+					<c:choose>
+						<c:when test="${listCommand.ready=='lacommandeestprete'}">
+						
+								<p>La commande est prête </p>
+						</c:when>
+						<c:when test="${listCommand.ready=='lacommandenestpasprete'}">
+						<p>La commande n'est pas prête </p>
+						</c:when>
+					</c:choose>
 				</div>
 
 				<!-- Form  -->
-				<div for="${listCommand.id}" href="#${listCommand.id}"
+				<div for="${listCommand.idAndName}" href="#${listCommand.idAndName}"
 					data-toggle="collapse" class="divSousTitre">
 					<p class="pSousTitre" for="articles">Articles commandés</p>
 					<i class="fa fa-angle-double-down" aria-hidden="true"></i>
 				</div>
 
 				<!-- Contenu -->
-				<div id="${listCommand.id}" class="collapse col-md-12 contentToggle ">
+				<div id="${listCommand.idAndName}" class="collapse col-md-12 contentToggle ">
+					
 					<ul class="list-group list-group-flush paddingTopBot">
 
 						<!-- Chaque liste d'articles -->
@@ -70,9 +82,19 @@
 							</div>
 						</c:forEach>
 					</ul>
-						<div id="closeOrder" class="closeOrderBtn position-relative stretched-link" onclick="finishOrder(comm${listCommand.id})">
+					
+					<c:choose>
+						<c:when test="${listCommand.ready=='lacommandeestprete'}">
+						
+								<div id="closeOrder" class="closeOrderBtn position-relative stretched-link" onclick="finishOrder('comm${listCommand.idAndName}', '${listCommand.user_name}', '${listCommand.id}')">
 						<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
 					</div>
+						</c:when>
+						
+					</c:choose>
+					
+					
+						
 				</div>
 			</div>
 		</c:forEach>

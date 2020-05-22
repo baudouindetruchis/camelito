@@ -17,7 +17,7 @@ public class StockFunctions {
 	private static final String PSW = "123";
 
 	public static void addArticle(int user_id, String description, float real_price, float selling_price, int stock,
-			String name) {
+			String name, String pic) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 
 			// SQL to connect to a store
@@ -30,9 +30,9 @@ public class StockFunctions {
 
 			// add the new article
 			PreparedStatement editQuantity = con.prepareStatement(
-					"INSERT INTO articles(id_store, description, initial_price, selling_price, available, name)"
+					"INSERT INTO articles(id_store, description, initial_price, selling_price, available, name, pic)"
 							+ "VALUES(" + id_store + ", '" + description + "', " + real_price + ", " + selling_price
-							+ ", " + stock + ", '" + name + "')");
+							+ ", " + stock + ", '" + name + "','"+ pic + "')");
 			editQuantity.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,12 +50,13 @@ public class StockFunctions {
 	}
 
 	public static void modifArticle(int idArticle, String description, float real_price, float selling_price,
-			int stock) {
+			int stock, String pic) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			PreparedStatement pst = con.prepareStatement(
 					"UPDATE public.articles SET description ='" + description + "', initial_price=" + real_price
-							+ ", selling_price=" + selling_price + ", available=" + stock + " WHERE id=" + idArticle);
+							+ ", selling_price=" + selling_price + ", available=" + stock+ ", pic='" +pic+ "' WHERE id=" + idArticle);
 			pst.execute();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -139,6 +140,7 @@ public class StockFunctions {
 				float real_price;
 				float selling_price;
 				int stock;
+				String pic;
 
 				while (rsArticle.next()) {
 					// get data
@@ -148,7 +150,8 @@ public class StockFunctions {
 					real_price = rsArticle.getFloat("initial_price");
 					selling_price = rsArticle.getFloat("selling_price");
 					stock = rsArticle.getInt("available");
-
+					pic = rsArticle.getString("pic");
+					
 					// init object
 					anArticle = new Article();
 					anArticle.setDescription(description);
@@ -158,6 +161,7 @@ public class StockFunctions {
 					anArticle.setReal_price(real_price);
 					anArticle.setSelling_price(selling_price);
 					anArticle.setStock(stock);
+					anArticle.setImg(pic);
 
 					stockList.add(anArticle);
 				}
