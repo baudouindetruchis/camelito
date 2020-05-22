@@ -58,7 +58,6 @@ public class StockForm extends HttpServlet {
 		
 		//choose function based on 
 		String act = request.getParameter("act");
-		System.out.println(act);
 		switch (act) {
 		case "Ajouter":
 			String n =  request.getParameter("name");
@@ -66,7 +65,6 @@ public class StockForm extends HttpServlet {
 			StockFunctions.addArticle(user_id, description, real_price, selling_price, stock, name, picture);			
 			break;
 		case "Modifier":
-			System.out.println("ici");
 			idArticle = ida.matches("[0-9]*") ? Integer.parseInt(ida) : 0;
 			StockFunctions.modifArticle(idArticle, description, real_price, selling_price, stock, picture);	
 			break;
