@@ -45,15 +45,15 @@ public class ClientListLoadForm extends HttpServlet {
 		List<Commande> listArticlesByUser = new ArrayList<Commande>();
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			PreparedStatement getCommandes = con
-					.prepareStatement("SELECT id_user, list_id_articles, liste_quantities FROM public.carts WHERE status = true");
+					.prepareStatement("SELECT id,id_user, list_id_articles, liste_quantities FROM public.carts WHERE status = true");
 			
 			ResultSet commandes = getCommandes.executeQuery();
-			int id=0;
+			
 			while(commandes.next()) {   
 				int price = 0;
 				Commande commande = new Commande();
 				List<Article> listArticles= new ArrayList<>();
-				
+				int id= commandes.getInt("id");
 				int id_user = commandes.getInt("id_user");
 				
 				Object array_articleByUser =   commandes.getArray("list_id_articles").getArray();
@@ -66,8 +66,10 @@ public class ClientListLoadForm extends HttpServlet {
 				usernameRS.next();
 				
 				String user_Name = usernameRS.getString("user_name");
-
+				
 				for(int i =0; i<list_articleByUser.length; i++) {
+					
+					
 					int id_Article = list_articleByUser[i];
 					int quantity = list_articleQuantity[i];
 					Article newArticle =new Article();
@@ -83,9 +85,9 @@ public class ClientListLoadForm extends HttpServlet {
 					newArticle.setId(id_Article);
 					listArticles.add(newArticle);	
 				}
-				id++;
+				commande.setIdAndName("commande"+ String.valueOf(id)+user_Name);
 				commande.setprice(price);
-				commande.setId(user_Name + String.valueOf(id));
+				commande.setId(id);
 				commande.setUser_name(user_Name);
 				commande.setListArticles(listArticles);
 				listArticlesByUser.add(commande);

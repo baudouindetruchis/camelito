@@ -5,15 +5,27 @@ import java.util.List;
 
 public class Commande {
 	int price;
-	String id;
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	int id;
+	
+	String idAndName;
+	
+	
 	String user_name;
 	List<Article> listArticles= new ArrayList<>();
+	
+	
+	public String getIdAndName() {
+		return idAndName;
+	}
+	public void setIdAndName(String idAndName) {
+		this.idAndName = idAndName;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getUser_name() {
 		return user_name;

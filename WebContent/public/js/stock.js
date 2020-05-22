@@ -3,7 +3,6 @@ function onload(){
     	$("#divFormModif").load("stockFormModif.jsp"); 
     	includeHeaderAndCheckUser();
     }
-emptyStock
 
 function setSqlOrder() {
     var dropDown = document.getElementById("trierId");
