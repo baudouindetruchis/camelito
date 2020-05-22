@@ -43,6 +43,8 @@ public class ClientListLoadForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		List<Commande> listArticlesByUser = new ArrayList<Commande>();
+		
+		Boolean recuperee = true;
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			PreparedStatement getCommandes = con
 					.prepareStatement("SELECT id,id_user, list_id_articles, liste_quantities FROM public.carts WHERE status = true");
@@ -73,18 +75,40 @@ public class ClientListLoadForm extends HttpServlet {
 					int id_Article = list_articleByUser[i];
 					int quantity = list_articleQuantity[i];
 					Article newArticle =new Article();
-					PreparedStatement getArticle = con.prepareStatement("SELECT name,  selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
+					PreparedStatement getArticle = con.prepareStatement("SELECT id_store, name,  selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
 					ResultSet articleInfo = getArticle.executeQuery();
 					articleInfo.next();
 					
 					price =price + articleInfo.getInt("selling_price");
 					String name = articleInfo.getString("name");
-
+					
+					int id_store = articleInfo.getInt("id_store");
+					PreparedStatement getStore = con.prepareStatement("SELECT name FROM public.stores WHERE id = '" + id_store+"'" );
+					ResultSet store = getStore.executeQuery();
+					store.next();
+					String store_name = store.getString("name");
+					if(session.getAttribute(store_name)!=null) {
+						
+						if(!session.getAttribute(store_name).equals("recuperee")) {
+							recuperee=false;
+						}
+					}else {
+						session.setAttribute(store_name,false);
+						recuperee=false;
+					}
+					
+					
 					newArticle.setName(name);
 					newArticle.setQuantity(quantity);
 					newArticle.setId(id_Article);
 					listArticles.add(newArticle);	
 				}
+				if(recuperee) {
+					commande.setReady("lacommandeestprete");
+				}else {
+					commande.setReady("lacommandenestpasprete");
+				}
+				
 				commande.setIdAndName("commande"+ String.valueOf(id)+user_Name);
 				commande.setprice(price);
 				commande.setId(id);

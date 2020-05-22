@@ -48,6 +48,15 @@
 						<c:out value="${listCommand.price}" />
 						€
 					</div>
+					<c:choose>
+						<c:when test="${listCommand.ready=='lacommandeestprete'}">
+						
+								<p>La commande est prête </p>
+						</c:when>
+						<c:when test="${listCommand.ready=='lacommandenestpasprete'}">
+						<p>La commande n'est pas prête </p>
+						</c:when>
+					</c:choose>
 				</div>
 
 				<!-- Form  -->
@@ -74,9 +83,18 @@
 						</c:forEach>
 					</ul>
 					
-						<div id="closeOrder" class="closeOrderBtn position-relative stretched-link" onclick="finishOrder('comm${listCommand.idAndName}', '${listCommand.user_name}', '${listCommand.id}')">
+					<c:choose>
+						<c:when test="${listCommand.ready=='lacommandeestprete'}">
+						
+								<div id="closeOrder" class="closeOrderBtn position-relative stretched-link" onclick="finishOrder('comm${listCommand.idAndName}', '${listCommand.user_name}', '${listCommand.id}')">
 						<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
 					</div>
+						</c:when>
+						
+					</c:choose>
+					
+					
+						
 				</div>
 			</div>
 		</c:forEach>

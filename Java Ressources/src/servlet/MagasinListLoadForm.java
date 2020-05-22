@@ -83,8 +83,8 @@ public class MagasinListLoadForm extends HttpServlet {
 						if(listArticles.containsKey(id_Article)) {
 							quantity =quantity+ listArticles.get(id_Article).getQuantity();
 								
-						}
-							
+						}					
+						
 						newArticle.setMagasin(storeName);
 						newArticle.setQuantity(quantity);
 						newArticle.setSelling_price(price);
@@ -93,29 +93,13 @@ public class MagasinListLoadForm extends HttpServlet {
 						}
 					listArticles.put(newArticle.getId(), newArticle);
 				}
-				System.out.println("----");	
-				
-				for(int key : listArticles.keySet()) {
-					System.out.println("Key " +key);
-					System.out.println("id " +listArticles.get(key).getId());
-					System.out.println("name " +listArticles.get(key).getName());
-					System.out.println("magasin " +listArticles.get(key).getMagasin());
-					System.out.println("quantity " +listArticles.get(key).getQuantity());
-					
-					}
-				
-				
-			
-				
-				
-			
+		
 			}
 			
 			ClientCommand commandes = new ClientCommand();
 			
 			for(int key : listArticles.keySet()) {
 				Article art =listArticles.get(key);
-				//System.out.println(listArticles.get(key).getName());
 				commandes.addArticle(art);
 			}
 			List<ClientSubCommand> commandTotal= commandes.getCommandTotal();

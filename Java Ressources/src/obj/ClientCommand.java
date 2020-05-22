@@ -30,7 +30,6 @@ public class ClientCommand {
 				int id=commandTotal.indexOf(tempComm);
 				tempComm.increasePriceStore(art.getSelling_price()*art.getQuantity());
 				tempComm.addArticle(art);
-				System.out.println("dans obj " +art.getMagasin());
 				this.commandTotal.set(id, tempComm);
 				added=true;
 			}
@@ -39,7 +38,6 @@ public class ClientCommand {
 		if(!added) {
 			ClientSubCommand tempComm = new ClientSubCommand();
 			tempComm.setStoreName(art.getMagasin());
-			System.out.println("dans obj " +art.getMagasin());
 			tempComm.increasePriceStore(art.getSelling_price()*art.getQuantity());
 			tempComm.addArticle(art);
 			this.commandTotal.add(tempComm);

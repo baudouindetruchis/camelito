@@ -16,3 +16,22 @@ function finishOrder(idComm, user_name, id) {
 		});
 	
 }
+
+
+function recupCommande(idComm, store_name) {
+	document.getElementById(store_name).hidden = true;
+			
+		$.ajax({
+			url: "../MagasinGetCommandFrom",
+			type: "get", //send it through get method
+			data: { 
+				store_name:store_name
+				  },
+			success: function(response) {
+										},
+			error: function(xhr) {
+				    //Do Something to handle error
+								}
+			});
+			
+}

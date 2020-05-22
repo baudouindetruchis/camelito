@@ -6,14 +6,18 @@ import java.util.List;
 public class Commande {
 	int price;
 	int id;
-	
 	String idAndName;
-	
-	
 	String user_name;
 	List<Article> listArticles= new ArrayList<>();
+	String ready;
 	
 	
+	public String getReady() {
+		return ready;
+	}
+	public void setReady(String ready) {
+		this.ready = ready;
+	}
 	public String getIdAndName() {
 		return idAndName;
 	}
