@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import obj.Article;
 import obj.ClientCommand;
 import obj.ClientSubCommand;
+import obj.Commande;
 import obj.User;
 
 /**
@@ -44,67 +46,67 @@ public class MagasinListLoadForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		HashMap<Integer, Article> listArticles = new HashMap<Integer, Article>();
+		
+		List< Commande> listStoresCommands = new ArrayList< Commande>();
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			
-			PreparedStatement getUsers = con
-					.prepareStatement("SELECT list_id_articles, liste_quantities FROM public.carts WHERE status = true");
+			PreparedStatement getCommmands = con
+					.prepareStatement("SELECT id_command, id_store, list_id_articles, liste_quantities,status FROM public.commands ");
 			
-			ResultSet users = getUsers.executeQuery();
-			while(users.next()) { 
+			ResultSet commands = getCommmands.executeQuery();
+			
+			while(commands.next()) { 
+				List< Article> listArticles = new ArrayList< Article>();
+				Commande commande = new Commande();
+				int cmdPrice =0;
+				int id_store = commands.getInt("id_store");
+				int id_command = commands.getInt("id_command");
+				//TODO Boolean status = commands.getBoolean("status");
+				String store_name="";
 				
-				Object array_articleByUser =   users.getArray("list_id_articles").getArray();
-				Integer[] list_articleByUser = (Integer[]) array_articleByUser;
+				PreparedStatement getStore = con
+						.prepareStatement("SELECT name FROM public.stores WHERE id = '" + id_store+"'" );
+				ResultSet getName = getStore.executeQuery();
+				if(getName.next()) {
+					store_name = getName.getString("name");
+				}
 				
-				Object array_articleQuantity =   users.getArray("liste_quantities").getArray();
+				Object array_article =   commands.getArray("list_id_articles").getArray();
+				Integer[] list_article = (Integer[]) array_article;
+				
+				Object array_articleQuantity =   commands.getArray("liste_quantities").getArray();
 				Integer[] list_articleQuantity = (Integer[]) array_articleQuantity;
-
-				for(int i =0; i<list_articleByUser.length; i++) {
+				
+				for(int i =0; i<list_article.length; i++) {
 					Article newArticle =new Article();
-					int id_Article = list_articleByUser[i];
+					int id_Article = list_article[i];
 					int quantity = list_articleQuantity[i];
 					
-					
+					newArticle.setQuantity(quantity);
 					newArticle.setId(id_Article);
 					PreparedStatement getArticle = con
-							.prepareStatement("SELECT name, id_Store, selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
+							.prepareStatement("SELECT name, selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
 					
 					ResultSet articleInfo = getArticle.executeQuery();
-					while(articleInfo.next()){
+					if(articleInfo.next()){
 						int price = articleInfo.getInt("selling_price");
-						int id_Store = articleInfo.getInt("id_Store");
 						String name = articleInfo.getString("name");
-						PreparedStatement getStore = con
-								.prepareStatement("SELECT name FROM public.stores WHERE id = '" + id_Store+"'" );
-						ResultSet getName = getStore.executeQuery();
-						getName.next();
-							
-						String storeName = getName.getString("name");
-						if(listArticles.containsKey(id_Article)) {
-							quantity =quantity+ listArticles.get(id_Article).getQuantity();
-								
-						}					
-						
-						newArticle.setMagasin(storeName);
-						newArticle.setQuantity(quantity);
-						newArticle.setSelling_price(price);
 						newArticle.setName(name);
-
-						}
-					listArticles.put(newArticle.getId(), newArticle);
+						cmdPrice=cmdPrice+price;
+					}
+					
+					listArticles.add(newArticle);
 				}
-		
+				
+				commande.setListArticles(listArticles);
+				commande.setprice(cmdPrice);
+				commande.setStore_name(store_name);
+				commande.setId(id_command);
+				commande.setIdAndName(id_command+store_name);
+				listStoresCommands.add(commande);
 			}
+			session.setAttribute("listStoresCommands", listStoresCommands);
 			
-			ClientCommand commandes = new ClientCommand();
-			
-			for(int key : listArticles.keySet()) {
-				Article art =listArticles.get(key);
-				commandes.addArticle(art);
-			}
-			List<ClientSubCommand> commandTotal= commandes.getCommandTotal();
-			
-			session.setAttribute("listCommands", commandTotal);
 			
 			
 		} catch (SQLException e) {
