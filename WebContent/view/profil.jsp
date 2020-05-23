@@ -54,29 +54,29 @@ $(document).ready(function() {
 
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6">
-			<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
+			<div class="col-md-5 lcol">
+				<input id="checkSession" type="text" name="checkSession"
+					value="${sessionScope.type}" hidden>
 				<h2>Mon profil</h2>
-				<form action="../ModifyProfilForm" >
+				<form action="../ModifyProfilForm">
 
 					<c:set var="usr" scope="session" value="${sessionScope.user}" />
 
-				<fieldset>
-					<img class="profil img-responsive btn btn-default btn-rounded mb-4 btnComm" data-toggle="modal" 
-					data-target="#myForm"
-					<c:set var="user" scope="session" value="${sessionScope.user}" />
-						src="${usr.profilPic}" alt="Add User" width="25%"
-						height="120"/>
-						
-						<!-- <a href="#" onclick="openForm() "><img class="edit img-responsive"
-						src="../public/images/edit.png" alt="edit" width="5%"
-						height="20"/></a> -->
-				</fieldset>
-				
-				
+					<fieldset>
+						<img
+							class="profil img-responsive btn btn-default btn-rounded mb-4 btnComm"
+							data-toggle="modal" data-target="#myForm"
+							<c:set var="user" scope="session" value="${sessionScope.user}" />
+							src="${usr.profilPic}" alt="Add User" width="25%" height="120" />
+
+					</fieldset>
+
+
 					<div class="form-group row">
-						<label for="name" class="col-form-label">Nom : </label>
-						<div class="col-sm-7">
+						<div class="col-md-4">
+							<label for="name" class="col-form-label">Nom: </label>
+						</div>
+						<div class="col-md-8">
 							<p class="form-control-plaintext" id="name">
 								<c:out value="${usr.last_name}" />
 							</p>
@@ -84,8 +84,10 @@ $(document).ready(function() {
 					</div>
 
 					<div class="form-group row">
-						<label for="surname" class="col-form-label">Prénom : </label>
-						<div class="col-sm-7">
+						<div class="col-md-4">
+							<label for="surname" class="col-form-label">Prénom: </label>
+						</div>
+						<div class="col-md-8">
 							<p class="form-control-plaintext" id="surname">
 								<c:out value="${usr.first_name}" />
 							</p>
@@ -93,8 +95,10 @@ $(document).ready(function() {
 					</div>
 
 					<div class="form-group row">
-						<label for="pseudo" class="col-form-label">Pseudo : </label>
-						<div class="col-sm-7">
+						<div class="col-md-4">
+							<label for="pseudo" class="col-form-label">Pseudo: </label>
+						</div>
+						<div class="col-md-8">
 							<input type="text" class="form-control-plaintext" name="pseudo"
 								id="pseudo" value="${usr.pseudo}" disabled>
 						</div>
@@ -105,8 +109,10 @@ $(document).ready(function() {
 
 
 					<div class="form-group row">
-						<label for="mail" class="col-form-label">Adresse mail : </label>
-						<div class="col-sm-7 edit">
+						<div class="col-md-4">
+							<label for="mail" class="col-form-label">Adresse mail: </label>
+						</div>
+						<div class="col-md-8 edit">
 							<input type="email" class="form-control-plaintext" id="mail"
 								value="${usr.mail}" disabled>
 						</div>
@@ -118,29 +124,39 @@ $(document).ready(function() {
 
 						<c:when test="${sessionScope.type=='2'|| sessionScope.type=='4'}">
 							<div class="form-group row">
-		
-								<label for="mode" class="col-form-label">Client/Association : </label> 
-								<c:choose>
-									<c:when test="${sessionScope.type=='4'}">
-										<input type="checkbox" class="toogle" data-toggle="toggle" data-on="Client" data-off="Association" data-onstyle="warning" data-offstyle="warning" id="mode" onchange="changeType()" checked>			
-									</c:when>
-									<c:otherwise>
-									<input type="checkbox" class="toogle" data-toggle="toggle" data-on="Client" data-off="Association" data-onstyle="warning" data-offstyle="warning" id="mode" onchange="changeType()">			
-									
-									</c:otherwise>
-								</c:choose>
-								
+								<div class="col-md-12">
+									<label for="mode" class="col-form-label">Client/Association
+										: </label>
+									<c:choose>
+										<c:when test="${sessionScope.type=='4'}">
+											<input type="checkbox" class="toogle" data-toggle="toggle"
+												data-on="Client" data-off="Association"
+												data-onstyle="warning" data-offstyle="warning" id="mode"
+												onchange="changeType()" checked>
+										</c:when>
+										<c:otherwise>
+											<input type="checkbox" class="toogle" data-toggle="toggle"
+												data-on="Client" data-off="Association"
+												data-onstyle="warning" data-offstyle="warning" id="mode"
+												onchange="changeType()">
+
+										</c:otherwise>
+									</c:choose>
+								</div>
 							</div>
 						</c:when>
 					</c:choose>
 					<c:choose>
-							<c:when test="${sessionScope.type=='1' || sessionScope.type=='2' || sessionScope.type=='4'}">
+						<c:when
+							test="${sessionScope.type=='1' || sessionScope.type=='2' || sessionScope.type=='4'}">
 							<c:choose>
 								<c:when test="${sessionScope.promo=='0'}">
 									<div class="form-group row">
-										<label for="Promo" class="col-form-label">Promotion :
-										</label>
-										<div class="col-sm-7">
+										<div class="col-md-4">
+											<label for="Promo" class="col-form-label">Promotion:
+											</label>
+										</div>
+										<div class="col-md-8">
 											<input type="text" class="form-control" id="promo"
 												value="Pas concerné" disabled>
 										</div>
@@ -149,72 +165,76 @@ $(document).ready(function() {
 
 								<c:otherwise>
 									<div class="form-group row">
-										<label for="Promo" class="col-form-label">Promotion :
-										</label>
-										<div class="col-sm-7">
+										<div class="col-md-4">
+											<label for="Promo" class="col-form-label">Promotion:
+											</label>
+										</div>
+										<div class="col-md-8">
 											<input type="text" class="form-control-plaintext" id="promo"
 												value="${usr.promotion}" disabled>
 										</div>
-										
+
 
 									</div>
 
-								</c:otherwise>								
+								</c:otherwise>
 							</c:choose>
 
 						</c:when>
 					</c:choose>
-					
-					
+
+
 					<div>
-					<input class="form-control" type="number" name="newPromo" id="newPromo"placeholder="Année de diplôme, 0 si non concerné" hidden /></br>
-							
+						<input class="form-control" type="number" name="newPromo"
+							id="newPromo" placeholder="Année de diplôme, 0 si non concerné"
+							hidden /></br>
+
 					</div>
-					
+
 					<div class="form-group row" id="Mdp" hidden>
 						<label for="oldPassword" class="col-form-label">Ancien mot
-							de passe : </label> <input class="form-control" type="password"
+							de passe: </label> <input class="form-control" type="password"
 							placeholder="Ancien Mot de passe" name="oldPassword"> <label
 							for="newPassword" class="col-form-label">Nouveau mot de
-							passe : </label> <input class="form-control" type="password"
+							passe: </label> <input class="form-control" type="password"
 							placeholder="Nouveau mot de passe" name="newPassword"
 							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères">
 						<label for="secondPassword" class="col-form-label">Nouveau
-							mot de passe : </label> <input class="form-control" type="password"
+							mot de passe: </label> <input class="form-control" type="password"
 							placeholder="Vérification du mot de passe" name="secondPassword">
 					</div>
 
-					<input class="btn-primary btn-responsive" type="submit"
-						id="btnSaveChange" value="Save Changes" onclick="saveChange()"
-						hidden />
-					<input class="btn-primary btn-responsive" type="button"
+					<input class="btn btn-primary btn-responsive btnModifier"
+						type="submit" id="btnSaveChange" value="Save Changes"
+						onclick="saveChange()" hidden /> <input
+						class="btn btn-primary btn-responsive btnModifier" type="button"
 						value="Modifier" id="btnGoToEdit" onclick="goToEdit()" />
 
 				</form>
 			</div>
 
-			<c:choose> 
+			<c:choose>
 				<c:when test="${sessionScope.type=='3'}">
-					<div id="includeStore" class="col-sm-6"></div>
+					<div id="includeStore" class="col-md-5 rcol"></div>
 				</c:when>
-				
+
 				<c:when test="${sessionScope.type=='1'} ">
-					<div id="includeReussite" class="col-sm-6"></div>
+					<div id="includeReussite" class="col-md-5 rcol"></div>
 				</c:when>
-				
+
 				<c:when test="${sessionScope.type=='2' }">
-					<div id="includeReussite" class="col-sm-6" hidden></div>
+					<div id="includeReussite" class="col-md-5 rcol" hidden></div>
 				</c:when>
 				<c:when test="${sessionScope.type=='4' }">
-					<div id="includeReussite" class="col-sm-6" ></div>
+					<div id="includeReussite" class="col-md-5 rcol"></div>
 				</c:when>
 			</c:choose>
-				
 
-			</div>
-			
-			</div>
+
+		</div>
+
+	</div>
 
 	<!-- Form utilisé comme popup -->
 	<div class="modal fade" id="myForm" tabindex="-1" role="dialog"
@@ -257,10 +277,10 @@ $(document).ready(function() {
 								</div>
 								<div>
 									<div id="intro">
-										<b>Augustus</b> est le chameau de compagnie parfait : il
-										restera toujours à vos côtés.<br> Ses passions : <b>manger
+										<b>Augustus</b> est le chameau de compagnie parfait: il
+										restera toujours à vos côtés.<br> Ses passions: <b>manger
 										et dormir</b>. Son tempérament calme et posé le rend de très bonne
-										compagnie.<br> Attention cependant, il peut avoir une
+										compagnie. Attention cependant, il peut avoir une
 										réaction exagérée lorsque quelqu'un lui dérobe ses doux mets.
 									</div>
 								</div>

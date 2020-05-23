@@ -39,6 +39,14 @@ h1{
 	height: 40px;
 	text-align: center;
 }
+
+.container .lcol {
+	margin-right: 5%
+}
+.container .rcol {
+	margin-left: 5%
+}
+
 /* The popup form - hidden by default */
 .form-popup {
   display: none;
@@ -121,6 +129,9 @@ img.profil {
 	margin-left: 10%;
 	width: auto;
 	height: 100px;
+	border: 2px solid sandybrown;
+    box-shadow: 2px 2px 4px burlywood;
+    cursor: pointer;
 }
 img.editPic {
 	width: auto;
@@ -228,23 +239,27 @@ img.edit{
 
 /* END EXPERIMENTAL RADIO BUTTON FROM FUTURE */
 
-/* input[type=submit], [type=button] {
-	background-image: linear-gradient(#e0a85d, #b47623);
-	border-radius: 10px;
-	border: 1px solid #b47623;
-	color: black;
-	width: 200px;
-	text-align: center;
-	font-weight: bold;
-	margin-top: 5%;
-	margin-left: 5%;
-	}
-	 */
-/* input[type=radio] {
-	margin-top: 5%;
-	margin-left: 40%;
-	position: absolute;
-} */
+.btnModifier {
+	padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    margin-bottom: 0;
+    border-radius: 0.3rem;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    background-color: #764e17 !important;
+    border: 0px solid !important;
+    color: white;
+    height: 45px;
+    width: 50%;
+    font-size: 18px;
+}
+	
+.btnModifier:hover {
+	background-color: sandybrown !important;
+	border: 0px solid;
+}
 
 /*switch*/
 .switch {
