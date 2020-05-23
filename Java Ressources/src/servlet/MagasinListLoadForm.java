@@ -92,13 +92,15 @@ public class MagasinListLoadForm extends HttpServlet {
 						int price = articleInfo.getInt("selling_price");
 						String name = articleInfo.getString("name");
 						newArticle.setName(name);
-						cmdPrice=cmdPrice+price;
+						cmdPrice=cmdPrice+(price*quantity);
+						System.out.println(cmdPrice);
 					}
 					
 					listArticles.add(newArticle);
 				}
 				
 				commande.setListArticles(listArticles);
+				System.out.println(cmdPrice);
 				commande.setprice(cmdPrice);
 				commande.setStore_name(store_name);
 				commande.setId(id_command);
