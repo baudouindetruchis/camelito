@@ -17,7 +17,7 @@
 <c:forEach var="artc" items="${sessionScope.articleList}">
 	<div class="col-md-3">
 		<div class="product-top">
-			<img src="${artc.img}">
+			<img class="object-fit_contain" src="${artc.img}">
 			<div class="overlay">
 				<!-- Get the icons from "fontawesome.com/icons" -->
 				<div class="favorite">

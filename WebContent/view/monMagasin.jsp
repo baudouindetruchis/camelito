@@ -53,9 +53,9 @@
 					
 					
 
-					<input class="btn-primary btn-responsive" type="submit"
+					<input class="btn-primary btn-responsive btnModifier" type="submit"
 						id="btnSaveChangeStore" value="Save Changes" onclick="btnSaveChangeStore()"
-						hidden /> <input class="btn-primary btn-responsive" type="button"
+						hidden /> <input class="btn-primary btn-responsive btnModifier" type="button"
 						value="Modifier" id="btnEditStore" onclick="editStore()" />
 
 				</form>
