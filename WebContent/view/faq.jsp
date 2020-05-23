@@ -1,20 +1,12 @@
+<%@page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr">
 
-<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="../public/css/faqStyle.css">
-<link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
-
 <head>
-					
 <meta charset="UTF-8">
-<%@page contentType="text/html; charset=UTF-8"%>
 </head>
 
 <body>
-
 
 <div class="center_div">
 
@@ -37,7 +29,7 @@
 	<fieldset>
 		<legend>La date de péremption d’un aliment étant passée est ce que je peux encore le consommer ?</legend>
 		<p>Les dates de péremption sont là à titre indicatif. La plupart des aliments restent bon à la consommation plusieurs jours/mois après. Pour savoir combien de temps il est encore consommable vous pouvez vous référer à la grille suivante :</p>
-		<div class="img_centered"><img class="peremption" src="../public/images/date_peremption.png" alt="Grille peremption"/></div>
+		<img class="mx-auto d-block" src="../public/images/date_peremption.png" alt="Grille peremption"/>
 	</fieldset>
 
 </div>					
