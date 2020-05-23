@@ -32,12 +32,12 @@ public class ArticleListFunctions {
 	 * @param session
 	 */
 	public static void setAllStockList(HttpSession session) {
-		
+
 		User user = (User) session.getAttribute("user");
 		int user_id = user.getId();
 
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			// Get curent cart 
+			// Get curent cart
 			Object[] cartDetail = getCurrentCartDetail(con, user_id);
 			@SuppressWarnings("unchecked")
 			List<Integer> list_id_articles = (List<Integer>) cartDetail[0];
@@ -69,6 +69,7 @@ public class ArticleListFunctions {
 
 	/**
 	 * return the deatail (list_ article_id and list_quantity) of user current cart
+	 * 
 	 * @param con
 	 * @param user_id
 	 * @return Object[] { list_id_articles, list_quantities }
@@ -111,20 +112,59 @@ public class ArticleListFunctions {
 		Object[] cartDetail = new Object[] { list_id_articles, list_quantities };
 		return cartDetail;
 	}
-	
-	public static boolean isCommandValid() {
+
+	/**
+	 * Check if every quantity are inferior to the available stock Return a boolean
+	 * following if all quantity are inferior or not
+	 * 
+	 * @param session
+	 * @return
+	 */
+	public static boolean isCommandValid(HttpSession session) {
 		boolean allArticlesAreInStock = true;
-		//TODO
+
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+
+			int user_id = user.getId();
+			// complete the part "mon panier"
+			// there should only be one cart by user whith a false status
+			PreparedStatement getCart = con
+					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
+			ResultSet theCart = getCart.executeQuery();
+			if (theCart == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+				theCart.next();
+				List<Article> myListArt = ArticleListFunctions.getCart(theCart, con);
+
+				if (!myListArt.isEmpty()) {
+					int stock;
+					int quantity;
+					for (Article anArticle : myListArt) {
+						stock = anArticle.getStock();
+						quantity = anArticle.getQuantity();
+						allArticlesAreInStock = allArticlesAreInStock && (stock >= quantity);
+					}
+				} else {
+					allArticlesAreInStock=false;
+				}
+			}
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return allArticlesAreInStock;
 	}
-	
+
 	public static void decreaseStock() {
-		//TODO
+		// TODO
 	}
-	
 
 	/**
 	 * When looping over a ResultSet create correcponding object Article
+	 * 
 	 * @param allStock
 	 * @param list_id_articles
 	 * @param list_quantities
@@ -473,7 +513,8 @@ public class ArticleListFunctions {
 					Article anArticle;
 					String name;
 					int id_store;
-					int price;
+					float price;
+					int stock;
 					String store;
 					for (int i = 0; i < list_id_articles.length; i++) {
 						id_article = list_id_articles[i];
@@ -488,7 +529,8 @@ public class ArticleListFunctions {
 						// get data on the article
 						name = rsArticle.getString("name");
 						id_store = rsArticle.getInt("id_store");
-						price = rsArticle.getInt("selling_price");
+						price = rsArticle.getFloat("selling_price");
+						stock = rsArticle.getInt("available");
 
 						// SQL to connect to a store
 						PreparedStatement pstStore = con
@@ -503,6 +545,7 @@ public class ArticleListFunctions {
 						anArticle = new Article();
 						anArticle.setId(id_article);
 						anArticle.setName(name);
+						anArticle.setStock(stock);
 						anArticle.setMagasin(store);
 						anArticle.setQuantity(quantity_article);
 						anArticle.setSelling_price(price);

@@ -33,7 +33,7 @@ public class PanierClick extends HttpServlet {
 			throws ServletException, IOException {
 
 		String action = request.getParameter("act");
-		String msg="";
+		String msg = "";
 
 		HttpSession session = request.getSession(false);
 
@@ -43,17 +43,27 @@ public class PanierClick extends HttpServlet {
 			break;
 		case "ann":
 			ArticleListFunctions.actionAnnul(request);
+			session.removeAttribute("panierList");
+			session.removeAttribute("total_price");
 			break;
 		case "pay":
-			ArticleListFunctions.isCommandValid();
-			ArticleListFunctions.decreaseStock();
-			ArticleListFunctions.actionPay(request);
-			ArticleListFunctions.updateScore(session);
+			boolean isValid = ArticleListFunctions.isCommandValid(session);
+			if (isValid) {
+				System.out.println("dfghjk");
+				ArticleListFunctions.decreaseStock();
+				ArticleListFunctions.actionPay(request);
+				ArticleListFunctions.updateScore(session);
+				ArticleListFunctions.setCommandList(session);
+				session.removeAttribute("panierList");
+				session.removeAttribute("total_price");
+			} else {
+				System.out.println("command non valide");//TODO
+			}
 			break;
 		case "less":
 		case "more":
 		case "supp":
-			msg =ArticleListFunctions.modifQuantity(request);
+			msg = ArticleListFunctions.modifQuantity(request);
 			System.out.println(msg);
 			ArticleListFunctions.loadCart(session);
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
@@ -61,18 +71,6 @@ public class PanierClick extends HttpServlet {
 
 		default:
 			System.out.println("unkonwn action in doGet panier click");
-			break;
-		}
-
-		System.out.println(action);
-		switch (action) {
-		case "pay":
-			ArticleListFunctions.setCommandList(session);
-		case "ann":
-			session.removeAttribute("panierList");
-			session.removeAttribute("total_price");
-			break;
-		default:
 			break;
 		}
 	}
