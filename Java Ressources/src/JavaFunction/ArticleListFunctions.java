@@ -32,14 +32,52 @@ public class ArticleListFunctions {
 	 * @param session
 	 */
 	public static void setAllStockList(HttpSession session) {
-
+		
 		User user = (User) session.getAttribute("user");
 		int user_id = user.getId();
 
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			List<Integer> list_id_articles = null;
-			List<Integer> list_quantities = null;
-			// Get curent cart //TODO docker une fonction getCurrentCart
+			// Get curent cart 
+			Object[] cartDetail = getCurrentCartDetail(con, user_id);
+			@SuppressWarnings("unchecked")
+			List<Integer> list_id_articles = (List<Integer>) cartDetail[0];
+			@SuppressWarnings("unchecked")
+			List<Integer> list_quantities = (List<Integer>) cartDetail[1];
+
+			// get all available article
+			PreparedStatement getStock = con.prepareStatement("SELECT * FROM public.articles WHERE available != 0 ");
+			ResultSet allStock = getStock.executeQuery();
+			if (allStock == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+
+				List<Article> lArt = new ArrayList<Article>();
+				Article anArticle;
+				while (allStock.next()) {
+					anArticle = getAnArticleFromRsStock(allStock, list_id_articles, list_quantities, con);
+
+					lArt.add(anArticle);
+				}
+				session.setAttribute("articleList", lArt);
+			}
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * return the deatail (list_ article_id and list_quantity) of user current cart
+	 * @param con
+	 * @param user_id
+	 * @return Object[] { list_id_articles, list_quantities }
+	 */
+	private static Object[] getCurrentCartDetail(Connection con, int user_id) {
+		List<Integer> list_id_articles = null;
+		List<Integer> list_quantities = null;
+
+		try {
 			PreparedStatement getCart = con
 					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
 			ResultSet theCart = getCart.executeQuery();
@@ -67,30 +105,32 @@ public class ArticleListFunctions {
 					list_quantities = new ArrayList<Integer>(Arrays.asList(tmp_list_id_quantities));
 				}
 			}
-
-			// get all available article
-			PreparedStatement getStock = con.prepareStatement("SELECT * FROM public.articles WHERE available != 0 ");
-			ResultSet allStock = getStock.executeQuery();
-			if (allStock == null) {
-				System.out.println("Erreur de connexion (cart=null)");
-			} else {
-
-				List<Article> lArt = new ArrayList<Article>();
-				Article anArticle;
-				while (allStock.next()) {
-					anArticle = getAnArticleFromRsStock(allStock, list_id_articles, list_quantities, con);
-
-					lArt.add(anArticle);
-				}
-				session.setAttribute("articleList", lArt);
-			}
-		} catch (SQLException e) {
-			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
+		Object[] cartDetail = new Object[] { list_id_articles, list_quantities };
+		return cartDetail;
 	}
+	
+	public static boolean isCommandValid() {
+		boolean allArticlesAreInStock = true;
+		//TODO
+		return allArticlesAreInStock;
+	}
+	
+	public static void decreaseStock() {
+		//TODO
+	}
+	
 
+	/**
+	 * When looping over a ResultSet create correcponding object Article
+	 * @param allStock
+	 * @param list_id_articles
+	 * @param list_quantities
+	 * @param con
+	 * @return
+	 */
 	private static Article getAnArticleFromRsStock(ResultSet allStock, List<Integer> list_id_articles,
 			List<Integer> list_quantities, Connection con) {
 		Article anArticle = new Article();
@@ -127,7 +167,6 @@ public class ArticleListFunctions {
 				store = rsStore.getString("name");
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

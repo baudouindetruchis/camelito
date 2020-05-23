@@ -45,6 +45,8 @@ public class PanierClick extends HttpServlet {
 			ArticleListFunctions.actionAnnul(request);
 			break;
 		case "pay":
+			ArticleListFunctions.isCommandValid();
+			ArticleListFunctions.decreaseStock();
 			ArticleListFunctions.actionPay(request);
 			ArticleListFunctions.updateScore(session);
 			break;
