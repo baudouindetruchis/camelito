@@ -51,7 +51,7 @@ fieldset {
   border-radius: 15px;
   background-color: #f1d8b6;
   padding-left: 10px;
-  margin-top: 10px;
+  margin-top: 10px;	
 }
 
 legend {
@@ -78,6 +78,9 @@ h6 {
 .center_div, .right_div {
   padding: 20px;
   position: relative;
+  box-sizing: border-box;
+  text-align: center;
+  
 }
 
 .animated_img {
@@ -87,6 +90,7 @@ h6 {
 }
 
 .behind_center {
+  box-sizing: border-box;
   position: relative;
   z-index: -1;
   top: -400px;
@@ -100,8 +104,7 @@ h6 {
 }
 
 .marque {
-  width: 90px;
-  padding-left: 20px;
+  width: 70x;
 }
 
 .icon {
@@ -180,6 +183,7 @@ input[type=radio], [type=checkbox] {
 }
 
 .behind_right {
+  box-sizing: border-box;
   position: relative;
   z-index: -1;
   top: -450px;
@@ -225,10 +229,15 @@ input[type=radio], [type=checkbox] {
   content: "&#10006;";
 }
 
-@media (min-width: 576px) and (max-width:1199px) {
-  /* Faire en sorte que les 2 images + pav�s cach�s soient responsive et adapt� � tout format mobile/phablette/tablette -> Mettre les deux images sur la meme ligne en dessous = taille du form connexion*/
-}
 
 .labelito {
 	font-size: 14px;
+}
+
+/* Make expiration image responsive */
+.mx-auto {
+	width: 90%;
+	height: auto;
+ 
+	
 }
