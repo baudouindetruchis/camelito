@@ -46,6 +46,7 @@ public class PanierClick extends HttpServlet {
 			break;
 		case "pay":
 			ShoppingListFunctions.actionPay(request);
+			ShoppingListFunctions.updateScore(session);
 			break;
 		case "less":
 		case "more":
@@ -61,8 +62,9 @@ public class PanierClick extends HttpServlet {
 
 		System.out.println(action);
 		switch (action) {
-		case "ann":
 		case "pay":
+			ShoppingListFunctions.loadUpdateCommList(session);
+		case "ann":
 			session.removeAttribute("panierList");
 			session.removeAttribute("total_price");
 			break;

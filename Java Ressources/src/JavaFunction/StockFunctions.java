@@ -17,7 +17,7 @@ public class StockFunctions {
 	private static final String PSW = "123";
 
 	public static void addArticle(int user_id, String description, float real_price, float selling_price, int stock,
-			String name) {
+			String name, String pic) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 
 			// SQL to connect to a store
@@ -30,9 +30,9 @@ public class StockFunctions {
 
 			// add the new article
 			PreparedStatement editQuantity = con.prepareStatement(
-					"INSERT INTO articles(id_store, description, initial_price, selling_price, available, name)"
+					"INSERT INTO articles(id_store, description, initial_price, selling_price, available, name, pic)"
 							+ "VALUES(" + id_store + ", '" + description + "', " + real_price + ", " + selling_price
-							+ ", " + stock + ", '" + name + "')");
+							+ ", " + stock + ", '" + name + "','"+ pic + "')");
 			editQuantity.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,11 +50,13 @@ public class StockFunctions {
 	}
 
 	public static void modifArticle(int idArticle, String description, float real_price, float selling_price,
-			int stock) {
+			int stock, String pic) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			PreparedStatement pst = con.prepareStatement("UPDATE public.articles SET description ='" + description
-					+ "', initial_price=" + real_price + ", selling_price=" + selling_price + ", available="+stock+" WHERE id=" + idArticle);
+			PreparedStatement pst = con.prepareStatement(
+					"UPDATE public.articles SET description ='" + description + "', initial_price=" + real_price
+							+ ", selling_price=" + selling_price + ", available=" + stock+ ", pic='" +pic+ "' WHERE id=" + idArticle);
 			pst.execute();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -84,6 +86,26 @@ public class StockFunctions {
 		}
 	}
 
+	public static void emptyStock(int id_user) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+
+			// SQL to connect to a store
+			PreparedStatement pstStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + id_user);
+			ResultSet reStore = pstStore.executeQuery();
+			reStore.next();
+
+			// get data on the article
+			int id_store = reStore.getInt("id");
+
+			PreparedStatement editStock = con
+					.prepareStatement("UPDATE public.articles SET available = 0 WHERE id_store = " + id_store);
+			editStock.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private static int secureNewVal(int val) {
 		int newVal = val;
 		if (newVal > 99) {
@@ -94,11 +116,11 @@ public class StockFunctions {
 		return newVal;
 	}
 
-	public static List<Article> getStockList(int user_id) {
+	public static List<Article> getStockList(int user_id, String sqlOrder) {
 		List<Article> stockList = new ArrayList<Article>();
 
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-
+			
 			PreparedStatement getStore = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + user_id);
 			ResultSet theStore = getStore.executeQuery();
 			if (theStore == null) {
@@ -108,7 +130,7 @@ public class StockFunctions {
 				int id_store = theStore.getInt("id");
 				String name_store = theStore.getString("name");
 				PreparedStatement getArticles = con
-						.prepareStatement("SELECT * FROM public.articles WHERE id_store = " + id_store);
+						.prepareStatement("SELECT * FROM public.articles WHERE id_store = " + id_store+" "+sqlOrder);
 				ResultSet rsArticle = getArticles.executeQuery();
 				Article anArticle;
 
@@ -118,6 +140,7 @@ public class StockFunctions {
 				float real_price;
 				float selling_price;
 				int stock;
+				String pic;
 
 				while (rsArticle.next()) {
 					// get data
@@ -127,7 +150,8 @@ public class StockFunctions {
 					real_price = rsArticle.getFloat("initial_price");
 					selling_price = rsArticle.getFloat("selling_price");
 					stock = rsArticle.getInt("available");
-
+					pic = rsArticle.getString("pic");
+					
 					// init object
 					anArticle = new Article();
 					anArticle.setDescription(description);
@@ -137,6 +161,7 @@ public class StockFunctions {
 					anArticle.setReal_price(real_price);
 					anArticle.setSelling_price(selling_price);
 					anArticle.setStock(stock);
+					anArticle.setImg(pic);
 
 					stockList.add(anArticle);
 				}

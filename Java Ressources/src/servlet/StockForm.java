@@ -26,7 +26,6 @@ public class StockForm extends HttpServlet {
 	 */
 	public StockForm() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -46,13 +45,16 @@ public class StockForm extends HttpServlet {
 		String sp = request.getParameter("selling_price");
 		String ida = request.getParameter("idArticle");
 		String s = request.getParameter("stock");
+		String picture = request.getParameter("pic");
+
+		String sqlOrder =(String) session.getAttribute("sqlOrder");
 		
 		// get value or default 
 		String description = d==null ? "" : d;
 		float real_price = rp.matches("[0-9]*\\.?[0-9]+") ? Float.parseFloat(rp) : (float) 0.0;
 		float selling_price = sp.matches("[0-9]*\\.?[0-9]+") ? Float.parseFloat(sp) : (float) 0.0;
-		int stock = s.matches("[0-9]*") ? Integer.parseInt(s) : 0;
-		int idArticle = ida.matches("[0-9]*") ? Integer.parseInt(ida) : 0;
+		int stock = s.matches("[0-9].*") ? Integer.parseInt(s) : 0;
+		int idArticle;
 		
 		//choose function based on 
 		String act = request.getParameter("act");
@@ -60,12 +62,14 @@ public class StockForm extends HttpServlet {
 		case "Ajouter":
 			String n =  request.getParameter("name");
 			String name = n==null ? "" : n;
-			StockFunctions.addArticle(user_id, description, real_price, selling_price, stock, name);			
+			StockFunctions.addArticle(user_id, description, real_price, selling_price, stock, name, picture);			
 			break;
-		case "Modifer":
-			StockFunctions.modifArticle(idArticle, description, real_price, selling_price, stock);	
+		case "Modifier":
+			idArticle = ida.matches("[0-9]*") ? Integer.parseInt(ida) : 0;
+			StockFunctions.modifArticle(idArticle, description, real_price, selling_price, stock, picture);	
 			break;
 		case "Supprimer":
+			idArticle = ida.matches("[0-9]*") ? Integer.parseInt(ida) : 0;
 			StockFunctions.suppArticle(idArticle);
 			break;
 
@@ -74,7 +78,7 @@ public class StockForm extends HttpServlet {
 		}
 
 		// update session data
-		List<Article> stockList = StockFunctions.getStockList(user_id);
+		List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
 		session.setAttribute("stockList", stockList);
 
 		// load page
@@ -88,7 +92,6 @@ public class StockForm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

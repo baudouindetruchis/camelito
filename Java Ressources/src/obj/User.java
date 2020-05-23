@@ -15,10 +15,23 @@ public class User {
 	String last_name;
 	int score;
 	int promotion;
-	
-	
+	String profilPic;
+
 	String address;
 	String storeName;
+	
+	
+	public String getProfilPic() {
+		return profilPic;
+	}
+
+	public void setProfilPic(String profilPic) {
+		this.profilPic = profilPic;
+	}
+	
+	public boolean getStatus() {
+		return status;
+	}
 	
 	public String getAddress() {
 		return address;
@@ -64,6 +77,10 @@ public class User {
 
 	public int getScore() {
 		return score;
+	}
+
+	public void increaseScore(int score) {
+		this.score += score;
 	}
 
 	public void setScore(int score) {

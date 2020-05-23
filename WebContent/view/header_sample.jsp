@@ -34,7 +34,10 @@
 					<li class="nav-item"><a class="nav-link" href="profil.jsp">Profil</a>
 					</li>
 					<c:choose>
-						<c:when test="${sessionScope.type=='1'}">
+						<c:when test="${sessionScope.status==false}">
+						
+						</c:when>
+						<c:when test="${sessionScope.type=='1'||sessionScope.type=='4'}">
 							<li class="nav-item"><a class="nav-link" href="../ShoppingLoad">Shopping</a>
 							</li>
 							<li class="nav-item"><a class="nav-link"
@@ -44,10 +47,12 @@
 							<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
 							</li>
 						</c:when>
-						<c:when test="${sessionScope.type=='2'}">
-							<li class="nav-item"><a class="nav-link" href="#">Eleves</a>
+						<c:when test="${sessionScope.type=='2' }">
+							<li class="nav-item"><a class="nav-link" href="../ClientListLoadForm">Clients</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="#">Magasins</a>
+							<li class="nav-item"><a class="nav-link" href="../MagasinListLoadForm">Magasins</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="../ValidationLoadForm">Utilisateurs</a>
 							</li>
 						</c:when>
 						<c:when test="${sessionScope.type=='3'}">

@@ -1,6 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,49 +14,48 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import JavaFunction.StockFunctions;
-import obj.Article;
-import obj.User;
+import obj.Commande;
 
 /**
- * Servlet implementation class StockLoad
+ * Servlet implementation class MagasinGetCommandFrom
  */
-@WebServlet("/StockLoad")
-public class StockLoad extends HttpServlet {
+@WebServlet("/MagasinGetCommandFrom")
+public class MagasinGetCommandFrom extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
+	private static final String USER_BDD = "postgres";
+	private static final String PSW = "123";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StockLoad() {
+    public MagasinGetCommandFrom() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//get session and attribute
+	
 		HttpSession session = request.getSession(false);
-		User user = (User) session.getAttribute("user");
-		int user_id = user.getId();
 		
-		//set session atribute
-		String sqlOrder = "ORDER BY id ASC";
-		session.setAttribute("sqlOrder", sqlOrder);
+		String store_name = request.getParameter("store_name");
 		
-		List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
-		session.setAttribute("stockList", stockList);
 		
-		// load page
-		String page = "./view/stock.jsp";
-		response.sendRedirect(page);
+		session.setAttribute(store_name, "recuperee");
+			
+			
+		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

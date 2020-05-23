@@ -86,47 +86,56 @@ public class ConnexionForm extends HttpServlet {
 	            	       	String firstname = res.getString("first_name");
 	            	       	String lastname = res.getString("last_name");
 	            	       	int promotion = res.getInt("promotion");
+	            	       	String profilPic = res.getString("profil_pic");
 	            	       	
 	            	       	
+	            	       	if(type==1 || type==2) {
+	            	       		
+	            	       		PreparedStatement getSucces = con.prepareStatement("SELECT list_id_success FROM public.details WHERE id_user = " + id );
+		            			ResultSet succes = getSucces.executeQuery();
+		            			if (succes == null) {
+		            				System.out.println("Erreur de connexion (succes=null)");
+		            			} else {
+		            				
+		            				succes.next();		
+		            				List<String> successNamesTab = new ArrayList<String>(); 
+		            				Object array_id_success =   succes.getArray("list_id_success").getArray();
+		            				Integer[] list_id_success = (Integer[]) array_id_success;
+		            			
+		            				int id_succes=0;
+		            				
+		            				for(int i =0; i<  list_id_success.length;i++) {
+		            					id_succes =  list_id_success[i];
+		            					PreparedStatement getSuccesName = con.prepareStatement("SELECT success_name FROM public.success WHERE id = " + id_succes );
+		            					ResultSet succesName = getSuccesName.executeQuery();
+		            					while(succesName.next()) {
+		            						successNamesTab.add(succesName.getString("success_name"));
+		            					}	
+		            				}
+		            				session.setAttribute("succesList", successNamesTab);
+		            				
+		            				
+		            			}
+	            	       	}
 	            	       	
-	            	       	PreparedStatement getSucces = con.prepareStatement("SELECT list_id_success FROM public.details WHERE id_user = " + id );
-	            			ResultSet succes = getSucces.executeQuery();
-	            			if (succes == null) {
-	            				System.out.println("Erreur de connexion (succes=null)");
-	            			} else {
-	            				
-	            				succes.next();		
-	            				List<String> successNamesTab = new ArrayList<String>(); 
-	            				Object array_id_success =   succes.getArray("list_id_success").getArray();
-	            				Integer[] list_id_success = (Integer[]) array_id_success;
-	            			
-	            				int id_succes=0;
-             				
-	            				for(int i =0; i<  list_id_success.length;i++) {
-	            					id_succes =  list_id_success[i];
-	            					PreparedStatement getSuccesName = con.prepareStatement("SELECT success_name FROM public.success WHERE id = " + id_succes );
-	            					ResultSet succesName = getSuccesName.executeQuery();
-	            					while(succesName.next()) {
-	            						successNamesTab.add(succesName.getString("success_name"));
-	            					}	
-	            				}
-	            				session.setAttribute("succesList", successNamesTab);
-	            				
-	            				
-	            			}
      	            	       	
 	            			if(type==1 || type==2) {
 	            				int score = res.getInt("score");
-	    						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, score, "","");
+	    						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, score, "","",status,profilPic);
 	    					}else {
+	    						
 	    						PreparedStatement getStoreName = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + id );
             					ResultSet storeInfo = getStoreName.executeQuery();
             					
-            					while(storeInfo.next()) {
+            					if(storeInfo.next()) {
+            						
             						String storeName = storeInfo.getString("name");
             						String address = storeInfo.getString("address");
-            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, storeName,address);
-            					}	
+            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, storeName,address, status, profilPic);
+            					}	else {
+            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, "","", status,profilPic);
+                    				
+            					}
 	    						
 	    					}
             				//load page

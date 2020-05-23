@@ -1,0 +1,149 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+	width: 100%;
+	margin-top: 5%;
+}
+
+.container h2 {
+	background: #764e17;
+	color: #fff;
+	width: 233px;
+	font-size: 24px;
+	padding: 8px;
+	height: 40px;
+	text-align: center;
+}
+
+/* Bootstrap Toggle */
+.toggle-off.btn {
+	padding-left: 1.1rem;
+	color: white;
+	background-color: sandybrown;
+	border-color: sandybrown;
+}
+
+.toggle-on.btn {
+	color: white;
+	background-color: sandybrown;
+	border-color: sandybrown;
+}
+
+/* Stock Form */
+.formStyle {
+	margin-right: 0;
+	margin-left: 0;
+	border-width: .2rem;
+	position: relative;
+	/* border: solid #f8f9fa; */
+}
+
+.btnAjout {
+	margin-top: 5px;
+	color: #fff;
+	background-color: sandybrown;
+	border: none;
+}
+
+.btnAjout:hover {
+	background-color: #764e17 !important;
+}
+
+/* Stock Table (stockArticles.jsp) */
+.stockFilter {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.divErase {
+	padding-top: 8px;
+}
+
+.btnErase {
+	margin-top: 1.65rem;
+	color: #fff;
+	background-color: #764e17;
+	border: none;
+}
+
+.btnErase:hover {
+	background-color: brown !important;
+}
+
+.stockTable {
+	text-align: center;
+}
+
+.btnTable {
+	background-color: sandybrown;
+	color: white !important;
+}
+
+.btnTable:hover {
+	background-color: #764e17 !important;
+}
+
+.table {
+	border-left: 2px solid #764e17;
+	border-right: 2px solid #764e17;
+	border-top: none !important;
+}
+
+.table thead th {
+	border-bottom: 5px solid antiquewhite;
+}
+
+.table tbody td {
+	padding: 0.5rem;
+	border-bottom: 5px solid antiquewhite;
+}
+
+.table td, .table th {
+	border-top: 0px !important;
+}
+
+/* ToutSuppr popup */
+.messageSuppr {
+	font-size: 1.2rem;
+}
+
+.btnNon {
+	background-color: #764e17;
+	color: white !important;
+	margin-bottom: 0 !important;
+}
+
+.btnOui {
+	background-color: #764e17;
+	color: white !important;
+	margin-left: 50px;
+	margin-bottom: 0 !important;
+}
+
+.btnNon:hover {
+	background-color: yellowgreen !important;
+}
+
+.btnOui:hover {
+	background-color: brown !important;
+}
+
+.popupConfirm {
+	text-align: center;
+	margin-bottom: 0 !important;
+}
+
+.headpopup {
+	background-color: antiquewhite;
+	border-bottom: none !important;
+	margin-bottom: 0px;
+	padding-bottom: 5px;
+}
+
+.noborder {
+	border: 0px !important;
+}
