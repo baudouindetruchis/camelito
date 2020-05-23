@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import JavaFunction.ShoppingListFunctions;
+import JavaFunction.ArticleListFunctions;
 
 /**
  * Servlet implementation class PanierClick
@@ -31,9 +31,10 @@ public class ShoppingClick extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ShoppingListFunctions.modifQuantity(request);
+		ArticleListFunctions.modifQuantity(request);
 		HttpSession session = request.getSession();
-		ShoppingListFunctions.setArticleList(session);
+		ArticleListFunctions.loadCart(session);
+		ArticleListFunctions.setAllStockList(session);
 		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 

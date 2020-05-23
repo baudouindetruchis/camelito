@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import JavaFunction.ShoppingListFunctions;
+import JavaFunction.ArticleListFunctions;
 
 /**
  * Servlet implementation class ShoppingLoad
@@ -34,7 +34,7 @@ public class ShoppingLoad extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		
-		ShoppingListFunctions.setArticleList(session);
+		ArticleListFunctions.setAllStockList(session);
 		
 		// load page
 		String page = "./view/shopping.jsp";

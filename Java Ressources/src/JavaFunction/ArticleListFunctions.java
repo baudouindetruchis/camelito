@@ -18,13 +18,20 @@ import obj.Article;
 import obj.ClientCommand;
 import obj.User;
 
-public class ShoppingListFunctions {
+public class ArticleListFunctions {
 
 	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 	private static final String USER_BDD = "postgres";
 	private static final String PSW = "123";
 
-	public static void setArticleList(HttpSession session) {
+	/**
+	 * Page shopping Recupère la liste d'articles dont le stock est > a 0 Ainsi que
+	 * les quantitée indiquée dans le panier actuel du client et stock cette liste
+	 * dans l'artibue de session articleList
+	 * 
+	 * @param session
+	 */
+	public static void setAllStockList(HttpSession session) {
 
 		User user = (User) session.getAttribute("user");
 		int user_id = user.getId();
@@ -32,7 +39,7 @@ public class ShoppingListFunctions {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			List<Integer> list_id_articles = null;
 			List<Integer> list_quantities = null;
-			// Get curent cart
+			// Get curent cart //TODO docker une fonction getCurrentCart
 			PreparedStatement getCart = con
 					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
 			ResultSet theCart = getCart.executeQuery();
@@ -71,46 +78,7 @@ public class ShoppingListFunctions {
 				List<Article> lArt = new ArrayList<Article>();
 				Article anArticle;
 				while (allStock.next()) {
-					// get value from bdd
-					int id_article = allStock.getInt("id");
-					String description = allStock.getString("description");
-					int id_store = allStock.getInt("id_store");
-					String name = allStock.getString("name");
-					int stock = allStock.getInt("available");
-					;
-					float real_price = allStock.getInt("initial_price");
-					float selling_price = allStock.getInt("selling_price");
-
-					String pic = allStock.getString("pic");
-					
-					// get quantity from user current cart
-					int quantity = 0;
-					if(list_id_articles.contains(id_article)){
-						int index_of_article = list_id_articles.indexOf(id_article);
-						quantity = list_quantities.get(index_of_article);
-					}
-					
-					
-					// SQL to connect to a store
-					PreparedStatement pstStore = con
-							.prepareStatement("SELECT * FROM public.stores WHERE id = " + id_store);
-					ResultSet rsStore = pstStore.executeQuery();
-					rsStore.next();
-
-					// get data on the store
-					String store = rsStore.getString("name");
-
-					// create corresponding article object
-					anArticle = new Article();
-					anArticle.setId(id_article);
-					anArticle.setDescription(description);
-					anArticle.setMagasin(store);
-					anArticle.setName(name);
-					anArticle.setStock(stock);
-					anArticle.setQuantity(quantity);
-					anArticle.setReal_price(real_price);
-					anArticle.setSelling_price(selling_price);
-					anArticle.setImg(pic);
+					anArticle = getAnArticleFromRsStock(allStock, list_id_articles, list_quantities, con);
 
 					lArt.add(anArticle);
 				}
@@ -121,9 +89,72 @@ public class ShoppingListFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	private static Article getAnArticleFromRsStock(ResultSet allStock, List<Integer> list_id_articles,
+			List<Integer> list_quantities, Connection con) {
+		Article anArticle = new Article();
+		try {
+			// get value from bdd
+			int id_article = allStock.getInt("id");
+			String description = allStock.getString("description");
+			int id_store = allStock.getInt("id_store");
+			String name = allStock.getString("name");
+			int stock = allStock.getInt("available");
+			;
+			float real_price = allStock.getInt("initial_price");
+			float selling_price = allStock.getInt("selling_price");
+
+			String pic = allStock.getString("pic");
+
+			// get quantity from user current cart
+			int quantity = 0;
+			if (list_id_articles.contains(id_article)) {
+				int index_of_article = list_id_articles.indexOf(id_article);
+				quantity = list_quantities.get(index_of_article);
+			}
+
+			// SQL to connect to a store
+			PreparedStatement pstStore;
+			ResultSet rsStore;
+			String store = "";
+			try {
+				pstStore = con.prepareStatement("SELECT * FROM public.stores WHERE id = " + id_store);
+				rsStore = pstStore.executeQuery();
+				rsStore.next();
+
+				// get data on the store
+				store = rsStore.getString("name");
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// create corresponding article object
+			anArticle.setId(id_article);
+			anArticle.setDescription(description);
+			anArticle.setMagasin(store);
+			anArticle.setName(name);
+			anArticle.setStock(stock);
+			anArticle.setQuantity(quantity);
+			anArticle.setReal_price(real_price);
+			anArticle.setSelling_price(selling_price);
+			anArticle.setImg(pic);
+
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return anArticle;
+	}
+
+	/**
+	 * Page shopping et panier Recuppère le panier actuel du client Modifi la
+	 * quantité d'un article donné dans la Bdd
+	 * 
+	 * @param request
+	 * @return un message expliquant ce qui a raté
+	 */
 	public static String modifQuantity(HttpServletRequest request) {
 		Integer id_article = Integer.parseInt(request.getParameter("id"));
 		String action = request.getParameter("act");
@@ -234,63 +265,6 @@ public class ShoppingListFunctions {
 										+ ", '" + str_list_id_articles + "', '" + str_list_quantities + "')");
 						editQuantity.execute();
 					}
-
-					if (list_id_articles.size() == list_quantities.size()) {
-						// pour chaque articles de la liste
-						List<Article> lArt = new ArrayList<>();
-						float total_price = (float) 0.0;
-						int id_art;
-						int quantity_article;
-						Article anArticle;
-						String name;
-						int id_store;
-						int price;
-						int stock;
-						String store;
-						for (int i = 0; i < list_id_articles.size(); i++) {
-							id_art = list_id_articles.get(i);
-							quantity_article = list_quantities.get(i);
-
-							// SQL to connect to an article
-							PreparedStatement pstArticle = con
-									.prepareStatement("SELECT * FROM public.articles WHERE id = " + id_art);
-							ResultSet rsArticle = pstArticle.executeQuery();
-							rsArticle.next();
-
-							// get data on the article
-							name = rsArticle.getString("name");
-							id_store = rsArticle.getInt("id_store");
-							price = rsArticle.getInt("selling_price");
-							stock = rsArticle.getInt("available");
-
-							// SQL to connect to a store
-							PreparedStatement pstStore = con
-									.prepareStatement("SELECT * FROM public.stores WHERE id = " + id_store);
-							ResultSet rsStore = pstStore.executeQuery();
-							rsStore.next();
-
-							// get data on the store
-							store = rsStore.getString("name");
-
-							// create coresponding article object
-							anArticle = new Article();
-							anArticle.setId(id_art);
-							anArticle.setName(name);
-							anArticle.setMagasin(store);
-							anArticle.setStock(stock);
-							anArticle.setQuantity(quantity_article);
-							anArticle.setSelling_price(price);
-
-							total_price += quantity_article * price;
-							// store the article
-							lArt.add(anArticle);
-						}
-						// set session attribute
-						session.setAttribute("total_price", total_price);
-						session.setAttribute("panierList", lArt);
-					} else {
-						System.out.println("Pas autant d'articles que de quantités");
-					}
 				} else {
 					System.out.println("Problme de convertion de list");
 				}
@@ -301,6 +275,13 @@ public class ShoppingListFunctions {
 		return msg;
 	}
 
+	/**
+	 * Convertie un List<Integer> en chaine de charactere utilisablr dans les
+	 * requetes SQL
+	 * 
+	 * @param l
+	 * @return
+	 */
 	private static String listToString(List<Integer> l) {
 		StringBuilder sb = new StringBuilder();
 		if (l.size() == 0) {
@@ -317,19 +298,18 @@ public class ShoppingListFunctions {
 		return sb.toString();
 	}
 
-	public static void loadUpdateCommList(HttpSession session) {
+	/**
+	 * recupère la liste des commande validé et met a jour l'attribut de sesion
+	 * commandeList avec la liste des commande true (payé) du client
+	 * 
+	 * @param session
+	 * @param con
+	 * @param user_id
+	 */
+	public static void setCommandList(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-
 			int user_id = user.getId();
-			ShoppingListFunctions.updateCommList(session, con, user_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void updateCommList(HttpSession session, Connection con, int user_id) {
-		try {
 			// complete the part "mes commandes"
 			PreparedStatement getCommandes = con
 					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = true");
@@ -345,11 +325,11 @@ public class ShoppingListFunctions {
 					aClientCommand = new ClientCommand();
 					aClientCommand.setId(id);
 
-					List<Article> myListArt = ShoppingListFunctions.getListArticle(commandes, con);
+					List<Article> myListArt = ArticleListFunctions.getCart(commandes, con);
 					for (Article anArt : myListArt) {
 						aClientCommand.addArticle(anArt);
 					}
-					float total_price = ShoppingListFunctions.getPriceOfList(myListArt);
+					float total_price = ArticleListFunctions.getPriceOfList(myListArt);
 
 					aClientCommand.setPriceTotal(total_price);
 					allClientCommand.add(aClientCommand);
@@ -362,6 +342,12 @@ public class ShoppingListFunctions {
 		}
 	}
 
+	/**
+	 * modifi l'etat de la commande dans la bdd lorsqu'un client paye passe le statu
+	 * de la commande en cour a payé
+	 * 
+	 * @param request
+	 */
 	public static void actionPay(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
@@ -370,13 +356,17 @@ public class ShoppingListFunctions {
 			PreparedStatement editQuantity = con.prepareStatement(
 					"UPDATE public.carts SET status = true" + " WHERE id_user = " + user_id + " AND status = false");
 			editQuantity.execute();
-
-//			updateCommList(user_id, session, con); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * modifi le score dans la bdd lorsqu'un client paye incremete le score d'un
+	 * client en se basant sur ses achats
+	 * 
+	 * @param session
+	 */
 	public static void updateScore(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 
@@ -398,6 +388,11 @@ public class ShoppingListFunctions {
 		}
 	}
 
+	/**
+	 * vide la panier d'un client lorsqua ce dernier annul une commande
+	 * 
+	 * @param request
+	 */
 	public static void actionAnnul(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
@@ -416,7 +411,14 @@ public class ShoppingListFunctions {
 		}
 	}
 
-	public static List<Article> getListArticle(ResultSet theCart, Connection con) {
+	/**
+	 * renvoi une List<Article> a partir du panier pris en argument
+	 * 
+	 * @param theCart
+	 * @param con
+	 * @return
+	 */
+	private static List<Article> getCart(ResultSet theCart, Connection con) {
 		List<Article> myListArticle = new ArrayList<Article>();
 		try {
 			Object array_id_articles = theCart.getArray("list_id_articles").getArray();
@@ -481,7 +483,50 @@ public class ShoppingListFunctions {
 		return myListArticle;
 	}
 
-	public static float getPriceOfList(List<Article> myListArt) {
+	/**
+	 * recupère la liste des articles actuelment dans le panier du client calcul le
+	 * prix de cette liste et les ajoute au attribu de session
+	 * 
+	 * @param session
+	 */
+	public static void loadCart(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+
+			int user_id = user.getId();
+
+			// complete the part "mon panier"
+			// there should only be one cart by user whith a false status
+			PreparedStatement getCart = con
+					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
+			ResultSet theCart = getCart.executeQuery();
+			if (theCart == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+				theCart.next();
+
+				List<Article> myListArt = ArticleListFunctions.getCart(theCart, con);
+				float total_price = ArticleListFunctions.getPriceOfList(myListArt);
+
+				// set session attribute
+				session.setAttribute("panierList", myListArt);
+				session.setAttribute("total_price", total_price);
+
+			}
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Fait le somme de prix de tout les articles present dans la liste
+	 * 
+	 * @param myListArt
+	 * @return total price
+	 */
+	private static float getPriceOfList(List<Article> myListArt) {
 		float total_price = (float) 0;
 		int quantity_article;
 		float price;
