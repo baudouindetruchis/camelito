@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import JavaFunction.ShoppingListFunctions;
+import JavaFunction.ArticleListFunctions;
 
 /**
  * Servlet implementation class PanierClick
@@ -42,16 +42,18 @@ public class PanierClick extends HttpServlet {
 //			actionMore(request);
 			break;
 		case "ann":
-			ShoppingListFunctions.actionAnnul(request);
+			ArticleListFunctions.actionAnnul(request);
 			break;
 		case "pay":
-			ShoppingListFunctions.actionPay(request);
-			ShoppingListFunctions.updateScore(session);
+			ArticleListFunctions.actionPay(request);
+			ArticleListFunctions.updateScore(session);
 			break;
 		case "less":
 		case "more":
 		case "supp":
-			msg =ShoppingListFunctions.modifQuantity(request);
+			msg =ArticleListFunctions.modifQuantity(request);
+			System.out.println(msg);
+			ArticleListFunctions.loadCart(session);
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			break;
 
@@ -63,7 +65,7 @@ public class PanierClick extends HttpServlet {
 		System.out.println(action);
 		switch (action) {
 		case "pay":
-			ShoppingListFunctions.loadUpdateCommList(session);
+			ArticleListFunctions.setCommandList(session);
 		case "ann":
 			session.removeAttribute("panierList");
 			session.removeAttribute("total_price");

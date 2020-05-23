@@ -17,14 +17,16 @@
 	<div class="form-row stockFilter">
 		<div class="form-group col-md-4">
 			<label for="trierId">Trier vos produits</label>
-			<select id="trierId" class="form-control" name="trierId" onchange="setSqlOrder()" >
-				<option value="ORDER BY id ASC" selected>Id croissant</option>
-				<option value="ORDER BY id DESC" >Id decroissant</option>
-				<option value="ORDER BY name ASC" >Name croissant</option>
-				<option value="ORDER BY name DESC" >Name decroissant</option>
-				<option value="ORDER BY available ASC" >Stock croissant</option>
-				<option value="ORDER BY available DESC" >Stock decroissant</option>
+
+			<select id="trierId" class="form-control" name="sqlOrder" onchange="orderSql()" >
+				<option value="ORDER_BY_id_ASC">Id croissant</option>
+				<option value="ORDER_BY_id_DESC" >Id decroissant</option>
+				<option value="ORDER_BY_name_ASC" >Name croissant</option>
+				<option value="ORDER_BY_name_DESC" >Name decroissant</option>
+				<option value="ORDER_BY_available_ASC" >Stock croissant</option>
+				<option value="ORDER_BY_available_DESC" >Stock decroissant</option>
 			</select>
+
 		</div>
 		<div class="form-group col-md-5"></div>
 		<div class="form-group col-md-3 divErase">

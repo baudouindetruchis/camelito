@@ -4,11 +4,27 @@ function onload(){
     	includeHeaderAndCheckUser();
     }
 
-function setSqlOrder() {
-    var dropDown = document.getElementById("trierId");
-    var sqlOrder = dropDown.value;
-    '<%Session["sqlOrder"] = "' + sqlOrder + '"; %>';
-     alert('<%=Session["sqlOrder"] %>');
+function reloadTable(){ 
+    	$("#articlesDiv").load("stockArticles.jsp");  
+    }
+
+
+function orderSql(){
+	var cBox = document.getElementById("trierId");
+	var sqlOrder = cBox.value;
+	$.ajax({
+		  url: "../StockClick",
+		  type: "get", //send it through get method
+		  data: { 
+			  sqlOrder:sqlOrder
+			  },
+		  success: function(response) {
+			$("#articlesDiv").load("stockArticles.jsp");
+		  },
+		  error: function(xhr) {
+		    //Do Something to handle error
+		  }
+		});
 }
 
 function emptyStock(){
