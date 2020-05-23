@@ -1,9 +1,28 @@
 #ChangePic{
-	margin-left:40%;
+	padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    margin-bottom: 0;
+    border-radius: 0.3rem;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    background-color: #764e17;
+    border: 2px solid;
+    color: white;
+    height: 45px;
+    width: 30%;
+    font-size: 18px;
 }
+#ChangePic:hover {
+	background-color: sandybrown;
+}
+
 #intro{
 	text-align:center;
 	font-size: 14px;
+	padding-right: 10px;
+    padding-left: 10px;
 }
 h1{
 	font-size: 20px;
@@ -31,13 +50,35 @@ h1{
   border-radius: 27px;
 }
 
-/* Add styles to the form container */
-.form-container {
-  max-width: 100%;
-  padding: 10px;
-  background-color: #f8ead8; 
-  background-attachment: fixed;
-  border-radius: 20px;
+/* Add styles to the profil pic popup form */
+.form {
+  padding: 0 16px;
+  max-width: 550px;
+  margin: 15px auto;
+  font-size: 18px;
+}
+
+.titrepopup {
+	padding-left: 60px;
+}
+
+.headpopup {
+	background-color: antiquewhite;
+    border-bottom: none !important;
+	margin-bottom: 0px;
+}
+
+.totalpopup {
+	background-color: antiquewhite;
+    padding-bottom: 10px;
+}
+
+.contentpopup {
+	background-color: antiquewhite;
+	/* border-radius: 10px; */
+	margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .close_button {
@@ -84,16 +125,110 @@ img.profil {
 img.editPic {
 	width: auto;
 	height: 70px;
-	margin-left: 53%;
+	/* margin-left: 53%; */
 }
 
 img.edit{
 	margin-top: 10%;
 }
 
+/* EXPERIMENTAL RADIO BUTTON FROOM FUTURE */
 
+.inputGroup {
+	background-color: burlywood;
+	display: block;
+	margin: 10px 0;
+	position: relative;
+	padding: 0 !important;
+}
 
-input[type=submit], [type=button] {
+.inputGroup label {
+	padding: 13px 30px;
+	width: 100%;
+	display: block;
+	text-align: left;
+	color: #3C454C;
+	cursor: pointer;
+	position: relative;
+	z-index: 2;
+	transition: color 200ms ease-in;
+	border: none !important;
+	margin-bottom: 0 !important;
+	overflow: hidden;
+}
+
+.inputGroup label:before {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	content: '';
+	background-color: sandybrown;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) scale3d(1, 1, 1);
+	transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+	opacity: 0;
+	z-index: -1;
+}
+
+.inputGroup label:after {
+	width: 32px;
+	height: 32px;
+	content: '';
+	border: 2px solid #D1D7DC;
+	background-color: #fff;
+	background-image:
+		url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+	background-repeat: no-repeat;
+	background-position: 2px 3px;
+	border-radius: 50%;
+	z-index: 2;
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	transition: all 200ms ease-in;
+}
+
+.inputGroup input:checked ~ label {
+	color: #fff;
+}
+
+.inputGroup input:checked ~ label:before {
+	transform: translate(-50%, -50%) scale3d(56, 56, 1);
+	opacity: 1;
+}
+
+.inputGroup input:checked ~ label:after {
+	background-color: #764e17;
+	border-color: #764e17;
+}
+
+.inputGroup input {
+	width: 32px;
+	height: 32px;
+	order: 1;
+	z-index: 2;
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	visibility: hidden !important;
+}
+
+.selected {
+  opacity: 1
+}
+.unselected {
+  opacity: 0.5
+}
+
+/* END EXPERIMENTAL RADIO BUTTON FROM FUTURE */
+
+/* input[type=submit], [type=button] {
 	background-image: linear-gradient(#e0a85d, #b47623);
 	border-radius: 10px;
 	border: 1px solid #b47623;
@@ -104,14 +239,12 @@ input[type=submit], [type=button] {
 	margin-top: 5%;
 	margin-left: 5%;
 	}
-	
-input[type=radio] {
+	 */
+/* input[type=radio] {
 	margin-top: 5%;
 	margin-left: 40%;
 	position: absolute;
-}
-
-
+} */
 
 /*switch*/
 .switch {
@@ -182,6 +315,18 @@ input:checked+.slider:before {
 .form-control {
 	width: 75% !important;
 	margin-top: 5px;
+}
+
+@media (max-width: 576px) {
+	#ChangePic {
+		font-size: 2vw;
+	}
+}
+
+@media (min-width: 576px) {
+	.modal-dialog {
+    max-width: 800px !important;
+}
 }
 
 @media ( min-width : 576px) and (max-width:767px) {
