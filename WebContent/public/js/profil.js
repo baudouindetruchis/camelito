@@ -6,6 +6,39 @@ function includeOtherPart()  {
 }
 
 
+function changePic() {
+	 var checkBox = document.getElementById("mode");
+		$.ajax({
+			  url: "../ChangeTypeForm",
+			  type: "get", //send it through get method
+			  data: {   
+			  },
+			  success: function(response) {
+				  includeHeaderAndCheckUser();
+				  if (checkBox.checked == true){
+					  includeReussite.hidden=false;
+			      } else {
+			    	  includeReussite.hidden=true;
+			      }
+				  
+				  
+				  
+			  },
+			  error: function(xhr) {
+			    //Do Something to handle error
+			  }
+			});
+}
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+
 function editStore(){
 	
 	var value = document.getElementById("btnSaveChangeStore").hidden;
@@ -54,3 +87,27 @@ function goToEdit() {
 		
 
 }
+ 
+ function changeType() {
+	 var checkBox = document.getElementById("mode");
+		$.ajax({
+			  url: "../ChangeTypeForm",
+			  type: "get", //send it through get method
+			  data: {   
+			  },
+			  success: function(response) {
+				  includeHeaderAndCheckUser();
+				  if (checkBox.checked == true){
+					  includeReussite.hidden=false;
+			      } else {
+			    	  includeReussite.hidden=true;
+			      }
+				  
+				  
+				  
+			  },
+			  error: function(xhr) {
+			    //Do Something to handle error
+			  }
+			});
+ }

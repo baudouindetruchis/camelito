@@ -10,6 +10,9 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 </script>
 
+<link rel="stylesheet" type="text/css" href="../public/css/stockStyle.css">
+
+
 <body>
 	<div class="form-row stockFilter">
 		<div class="form-group col-md-4">

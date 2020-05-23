@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
+<link rel="stylesheet" type="text/css" href="../public/css/stockStyle.css">
 
 <head>
 	<title>Camelito - Stock</title>
@@ -62,6 +63,12 @@
 						<input type="number" class="form-control" id="numberProduct" placeholder="0" name="stock" min="0" max="99" required>
 					</div>
 				</div>
+				<div class="form-row">
+						<label for="pic">Image</label> 
+						<input type="text" class="form-control" id="pic" placeholder="Lien hypertext de l'image" name="pic">
+					</div>
+				
+
 
 				<div class="form-row" style="text-align: center">
 					<div class="form-group col-md-12">

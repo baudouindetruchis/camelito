@@ -10,6 +10,8 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 </script>
 
+<link rel="stylesheet" type="text/css" href="../public/css/stockStyle.css">
+
 
 <body>
 	<div class=formStyle>
@@ -42,6 +44,10 @@
 						<input type="number" class="form-control" id="modStock" placeholder="0" name="stock" min="0" max="99" required>
 					</div>
 				</div>
+				<div class="form-row">
+						<label for="pic">Image</label> 
+						<input type="text" class="form-control" id="pic" placeholder="Lien hypertext de l'image" name="pic">
+					</div>
 
 				<div class="form-row" style="text-align: center">
 					<div class="form-group col-md-12">

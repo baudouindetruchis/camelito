@@ -1,6 +1,14 @@
-.container {
-	width: 100%;
-	margin-top: 5%;
+#ChangePic{
+	margin-left:40%;
+}
+#intro{
+	text-align:center;
+	font-size: 14px;
+}
+h1{
+	font-size: 20px;
+	color: #b47623;
+ 	text-align: center;
 }
 
 .container h2 {
@@ -12,6 +20,52 @@
 	height: 40px;
 	text-align: center;
 }
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 20%;
+  border: 4px solid #b67823;
+  z-index: 9;
+  border-radius: 27px;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 100%;
+  padding: 10px;
+  background-color: #f8ead8; 
+  background-attachment: fixed;
+  border-radius: 20px;
+}
+
+.close_button {
+  position: absolute;
+  width: 20px;
+  height: auto;
+  right: 3%;
+}
+
+.close_button:hover {
+  opacity: 70%;
+  transition: .1s;
+  transform: translate(0, 1px);
+}
+
+
+
+.toggle{
+	margin-left: 10px;
+}
+
+
+.container {
+	width: 100%;
+	margin-top: 5%;
+}
+
+
 
 .container .success {
 	width: 210px;
@@ -23,24 +77,23 @@ label {
 }
 
 img.profil {
-	margin-left: 25%;
+	margin-left: 10%;
 	width: auto;
-	height: 80px;
+	height: 100px;
+}
+img.editPic {
+	width: auto;
+	height: 70px;
+	margin-left: 53%;
 }
 
-input[type=button] {
-	background-image: linear-gradient(#e0a85d, #b47623);
-	border-radius: 10px;
-	border: 1px solid #b47623;
-	color: black;
-	width: 150px;
-	text-align: center;
-	font-weight: bold;
-	margin-top: 7%;
-	margin-bottom: 20%;
+img.edit{
+	margin-top: 10%;
 }
 
-input[type=submit] {
+
+
+input[type=submit], [type=button] {
 	background-image: linear-gradient(#e0a85d, #b47623);
 	border-radius: 10px;
 	border: 1px solid #b47623;
@@ -48,9 +101,17 @@ input[type=submit] {
 	width: 200px;
 	text-align: center;
 	font-weight: bold;
-	margin-top: 7%;
-	margin-bottom: 20%;
+	margin-top: 5%;
+	margin-left: 5%;
+	}
+	
+input[type=radio] {
+	margin-top: 5%;
+	margin-left: 40%;
+	position: absolute;
 }
+
+
 
 /*switch*/
 .switch {

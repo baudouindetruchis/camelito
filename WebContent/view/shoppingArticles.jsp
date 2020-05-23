@@ -17,7 +17,7 @@
 <c:forEach var="artc" items="${sessionScope.articleList}">
 	<div class="col-md-3">
 		<div class="product-top">
-			<img src="../public/images/Dandan-Mian.jpg">
+			<img src="${artc.img}">
 			<div class="overlay">
 				<!-- Get the icons from "fontawesome.com/icons" -->
 				<div class="favorite">
@@ -25,7 +25,7 @@
 						title="Add to favorite">
 						<i class="fa fa-heart"></i>
 					</button>
-					<c:out value="${artc.description}"/> <!--display description -->
+					<%-- <c:out value="${artc.description}"/> <!--display description --> : A insérer plus tard --%>
 				</div>
 				
 				<table class="quantity">

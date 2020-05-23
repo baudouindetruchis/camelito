@@ -45,6 +45,7 @@ public class StockForm extends HttpServlet {
 		String sp = request.getParameter("selling_price");
 		String ida = request.getParameter("idArticle");
 		String s = request.getParameter("stock");
+		String picture = request.getParameter("pic");
 
 		String sqlOrder =(String) session.getAttribute("sqlOrder");
 		
@@ -61,11 +62,11 @@ public class StockForm extends HttpServlet {
 		case "Ajouter":
 			String n =  request.getParameter("name");
 			String name = n==null ? "" : n;
-			StockFunctions.addArticle(user_id, description, real_price, selling_price, stock, name);			
+			StockFunctions.addArticle(user_id, description, real_price, selling_price, stock, name, picture);			
 			break;
-		case "Modifer":
+		case "Modifier":
 			idArticle = ida.matches("[0-9]*") ? Integer.parseInt(ida) : 0;
-			StockFunctions.modifArticle(idArticle, description, real_price, selling_price, stock);	
+			StockFunctions.modifArticle(idArticle, description, real_price, selling_price, stock, picture);	
 			break;
 		case "Supprimer":
 			idArticle = ida.matches("[0-9]*") ? Integer.parseInt(ida) : 0;

@@ -1,0 +1,78 @@
+.container {
+	width: 100%;
+	margin-top: 5%;
+}
+
+.listbox {
+	background-color: sandybrown;
+	text-align: center;
+	color: white;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	padding: 5px;
+	font-size: 1rem;
+}
+
+.divSousTitre {
+	background-color: bisque;
+	text-align: center;
+	padding: 10px;
+}
+
+.pSousTitre {
+	margin: 0;
+}
+
+.col-md-3 {
+	border-radius: 15px !important;
+}
+
+.contentToggle {
+	background-color: bisque;
+	border-top: 2px solid #764e17;
+	/* border-right: 2px solid #764e17; */
+	/* border-left: 2px solid #764e17; */
+	/* border-bottom: 2px solid #764e17; */
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+	
+	
+	/* Adding padding here makes the toggle's animations buggy */
+}
+
+.paddingTopBot {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 15px;
+    padding-left: 15px !important;
+}
+
+.listContent {
+	border-radius: 15px !important;
+}
+
+.badge-primary {
+	background-color: sandybrown !important;
+}
+
+.closeOrderBtn {
+	margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    background-color: indianred;
+    border-top: 2px solid #764e17;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.fa-times-circle-o {
+	color: rosybrown;
+}
+
+@media ( max-width : 767px) {
+	.col-md-3.mobileMargin {
+		margin-bottom: 30px;
+	}
+}

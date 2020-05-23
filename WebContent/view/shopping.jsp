@@ -12,14 +12,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
 <link rel="stylesheet" type="text/css" href="../public/css/shopping.css">
-<link rel="stylesheet" type="text/css"
-	href="../public/css/pageStyle.css">
 
-<script> 
-   
-    
-</script>
 <script src="../public/js/header.js"></script>
 <script src="../public/js/shopping.js"></script>
 </head>

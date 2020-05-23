@@ -15,10 +15,23 @@ public class User {
 	String last_name;
 	int score;
 	int promotion;
-	
-	
+	String profilPic;
+
 	String address;
 	String storeName;
+	
+	
+	public String getProfilPic() {
+		return profilPic;
+	}
+
+	public void setProfilPic(String profilPic) {
+		this.profilPic = profilPic;
+	}
+	
+	public boolean getStatus() {
+		return status;
+	}
 	
 	public String getAddress() {
 		return address;
