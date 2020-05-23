@@ -38,7 +38,7 @@ public class StockLoad extends HttpServlet {
 		int user_id = user.getId();
 		
 		//set session atribute
-		String sqlOrder = "ORDER BY id ASC";
+		String sqlOrder = "ORDER_BY_id_ASC";
 		session.setAttribute("sqlOrder", sqlOrder);
 		
 		List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);

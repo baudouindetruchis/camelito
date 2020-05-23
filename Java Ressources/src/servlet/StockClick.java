@@ -48,7 +48,6 @@ public class StockClick extends HttpServlet {
 		
 		if(reqSqlOrder!= null && !reqSqlOrder.isEmpty()){
 			session.setAttribute("sqlOrder", reqSqlOrder);
-
 			List<Article> stockList = StockFunctions.getStockList(user_id, reqSqlOrder);
 			session.setAttribute("stockList", stockList);
 		
@@ -60,15 +59,17 @@ public class StockClick extends HttpServlet {
 			
 			//update bdd data
 			StockFunctions.updateBddStock(newVal, id_article);
+			//update session data
+			List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
+			session.setAttribute("stockList", stockList);
 			
 		} else {
 			//otherwise it's empty all
 			StockFunctions.emptyStock(user_id);
+			//update session data
+			List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
+			session.setAttribute("stockList", stockList);
 		}
-		
-		//update session data
-		List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
-		session.setAttribute("stockList", stockList);
 		
 		// don't reload the whole page
 		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
