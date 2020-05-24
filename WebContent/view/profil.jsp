@@ -6,18 +6,14 @@
 
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	
 	<!-- Bootstrap Toggle -->
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="../public/css/profilStyle.css">
@@ -30,21 +26,6 @@
 <script src="../public/js/profil.js"></script>
 <script src="../public/js/header.js"></script>
 
-<script>
-$(document).ready(function() {
-	  $('.sev_check').each(function() {
-	    $(this).addClass('unselected');
-	  });
-	  $('.sev_check').on('click', function() {
-	    $(this).toggleClass('unselected');
-	    $(this).toggleClass('selected');
-	    $('.sev_check').not(this).prop('checked', false);
-	    $('.sev_check').not(this).removeClass('selected');
-	    $('.sev_check').not(this).addClass('unselected');
-	  });
-	});
-</script>
-
 </head>
 
 <body onload="includeOtherPart()">
@@ -53,84 +34,82 @@ $(document).ready(function() {
 	<div id="includedHeader"></div>
 
 	<div class="container">
-		<div class="row">
-			<div class="col-md-5 lcol">
+		<div>
+			<div class="col-md-12">
 				<input id="checkSession" type="text" name="checkSession"
 					value="${sessionScope.type}" hidden>
 				<h2>Mon profil</h2>
-				<form action="../ModifyProfilForm">
+				<form action="../ModifyProfilForm" class="form-container">
 
 					<c:set var="usr" scope="session" value="${sessionScope.user}" />
-
-					<fieldset>
-						<img
-							class="profil img-responsive btn btn-default btn-rounded mb-4 btnComm"
-							data-toggle="modal" data-target="#myForm"
-							<c:set var="user" scope="session" value="${sessionScope.user}" />
-							src="${usr.profilPic}" alt="Add User" width="25%" height="120" />
-
-					</fieldset>
-
-
-					<div class="form-group row">
-						<div class="col-md-4">
-							<label for="name" class="col-form-label">Nom: </label>
+					<div class="form-group headProfil">
+						<div class="form-row">
+							<div class="col-md-12 text-center">
+								<h5>Bienvenue sur votre profil,</h5>
+							</div>
 						</div>
-						<div class="col-md-8">
-							<p class="form-control-plaintext" id="name">
-								<c:out value="${usr.last_name}" />
-							</p>
+						<div class="form-row">
+							<div class="form-group col-md-12 text-center">
+								<h5>
+									<c:out value="${usr.first_name}" />
+									<c:out value="${usr.last_name}" />
+								</h5>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-12 text-center">
+								<fieldset>
+									<img
+										class="profil img-responsive btn btn-default btn-rounded btnComm"
+										data-toggle="modal" data-target="#myForm"
+										<c:set var="user" scope="session" value="${sessionScope.user}" />
+										src="${usr.profilPic}" alt="Add User" width="25%" height="120" />
+								</fieldset>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12 text-center">
+								<label for="imgProfil" class="col-form-label">Votre personnage</label>
+							</div>
 						</div>
 					</div>
 
-					<div class="form-group row">
-						<div class="col-md-4">
-							<label for="surname" class="col-form-label">Prénom: </label>
-						</div>
-						<div class="col-md-8">
-							<p class="form-control-plaintext" id="surname">
-								<c:out value="${usr.first_name}" />
-							</p>
-						</div>
-					</div>
 
-					<div class="form-group row">
-						<div class="col-md-4">
-							<label for="pseudo" class="col-form-label">Pseudo: </label>
-						</div>
-						<div class="col-md-8">
-							<input type="text" class="form-control-plaintext" name="pseudo"
+					<div class="form-row text-center">
+						<div class="form-group col-md-1"></div>
+					
+						<div class="form-group col-md-5">
+							<label for="pseudo" class="col-form-label">Pseudo </label>
+							<input type="text" class="form-control-plaintext text-center" name="pseudo"
 								id="pseudo" value="${usr.pseudo}" disabled>
+							<input class="form-control text-center" type="text" name="newPseudo"
+							id="newPseudo" placeholder="newPseudo" hidden />
 						</div>
-						<input class="form-control" type="text" name="newPseudo"
-							id="newPseudo" placeholder="newPseudo" hidden /></br>
-						<!-- old:   class="form-control-plaintext" -->
+						
+						<div class="col-md-5">
+							<label for="mail" class="col-form-label">Adresse mail </label>
+							<input type="email" class="form-control-plaintext text-center" id="mail" value="${usr.mail}" disabled>
+							<input class="form-control text-center" type="text" name="newEmail" id="newEmail" placeholder="newEmail" hidden />
+						</div>
+						
+						<div class="form-group col-md-1"></div>
+						
 					</div>
 
+					<div class="form-row text-center">
+					
+						<c:choose>
+							<c:when test="${sessionScope.type=='2'|| sessionScope.type=='4'}">
 
-					<div class="form-group row">
-						<div class="col-md-4">
-							<label for="mail" class="col-form-label">Adresse mail: </label>
-						</div>
-						<div class="col-md-8 edit">
-							<input type="email" class="form-control-plaintext" id="mail"
-								value="${usr.mail}" disabled>
-						</div>
-						<input class="form-control" type="text" name="newEmail"
-							id="newEmail" placeholder="newEmail" hidden /></br>
-						<!-- old:   class="form-control-plaintext" -->
-					</div>
-					<c:choose>
+								<div class="form-group col-md-2"></div>
 
-						<c:when test="${sessionScope.type=='2'|| sessionScope.type=='4'}">
-							<div class="form-group row">
-								<div class="col-md-12">
-									<label for="mode" class="col-form-label">Client/Association
-										: </label>
+								<div class="form-group col-md-3">
+									<label for="mode" class="col-form-label switchLabel">Client/Association
+									</label>
 									<c:choose>
 										<c:when test="${sessionScope.type=='4'}">
-											<input type="checkbox" class="toogle" data-toggle="toggle"
-												data-on="Client" data-off="Association"
+											<input type="checkbox" class="toogle text-center"
+												data-toggle="toggle" data-on="Client" data-off="Association"
 												data-onstyle="warning" data-offstyle="warning" id="mode"
 												onchange="changeType()" checked>
 										</c:when>
@@ -143,98 +122,88 @@ $(document).ready(function() {
 										</c:otherwise>
 									</c:choose>
 								</div>
-							</div>
-						</c:when>
-					</c:choose>
-					<c:choose>
-						<c:when
-							test="${sessionScope.type=='1' || sessionScope.type=='2' || sessionScope.type=='4'}">
-							<c:choose>
-								<c:when test="${sessionScope.promo=='0'}">
-									<div class="form-group row">
-										<div class="col-md-4">
-											<label for="Promo" class="col-form-label">Promotion:
-											</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control" id="promo"
-												value="Pas concerné" disabled>
-										</div>
-									</div>
-								</c:when>
+							</c:when>
+						</c:choose>
+						
+						<div class="form-group col-md-2"></div>
 
-								<c:otherwise>
-									<div class="form-group row">
-										<div class="col-md-4">
-											<label for="Promo" class="col-form-label">Promotion:
-											</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control-plaintext" id="promo"
-												value="${usr.promotion}" disabled>
-										</div>
+						<c:choose>
+							<c:when
+								test="${sessionScope.type=='1' || sessionScope.type=='2' || sessionScope.type=='4'}">
+								<div class="form-group col-md-3 text-center">
+									<c:choose>
+										<c:when test="${sessionScope.promo=='0'}">
+											<label for="Promo" class="col-form-label labelMargin">Promotion </label>
+											<input type="text" class="form-control text-center"
+												id="promo" value="Pas concerné" disabled>
+										</c:when>
 
-
-									</div>
-
-								</c:otherwise>
-							</c:choose>
-
-						</c:when>
-					</c:choose>
-
-
-					<div>
-						<input class="form-control" type="number" name="newPromo"
-							id="newPromo" placeholder="Année de diplôme, 0 si non concerné"
-							hidden /></br>
+										<c:otherwise>
+											<label for="Promo" class="col-form-label labelMargin">Promotion </label>
+											<input type="text" class="form-control-plaintext text-center"
+												id="promo" value="${usr.promotion}" disabled>
+											<input class="form-control text-center" type="number" name="newPromo"
+												id="newPromo"
+												value="${usr.promotion}" hidden />
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</c:when>
+						</c:choose>
 
 					</div>
 
+
 					<div class="form-group row" id="Mdp" hidden>
-						<label for="oldPassword" class="col-form-label">Ancien mot
-							de passe: </label> <input class="form-control" type="password"
+						<label for="oldPassword" class="col-form-label labelMargin">Ancien
+							mot de passe: </label> <input class="form-control" type="password"
 							placeholder="Ancien Mot de passe" name="oldPassword"> <label
-							for="newPassword" class="col-form-label">Nouveau mot de
-							passe: </label> <input class="form-control" type="password"
+							for="newPassword" class="col-form-label labelMargin">Nouveau
+							mot de passe: </label> <input class="form-control" type="password"
 							placeholder="Nouveau mot de passe" name="newPassword"
 							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères">
-						<label for="secondPassword" class="col-form-label">Nouveau
+						<label for="secondPassword" class="col-form-label labelMargin">Nouveau
 							mot de passe: </label> <input class="form-control" type="password"
 							placeholder="Vérification du mot de passe" name="secondPassword">
 					</div>
 
-					<input class="btn btn-primary btn-responsive btnModifier"
-						type="submit" id="btnSaveChange" value="Save Changes"
-						onclick="saveChange()" hidden /> <input
-						class="btn btn-primary btn-responsive btnModifier" type="button"
-						value="Modifier" id="btnGoToEdit" onclick="goToEdit()" />
+					<div class="form-row text-center">
+						<div class="form-group col-md-12">
+							<input class="btn btn-primary btn-responsive btnModifier"
+								type="submit" id="btnSaveChange" value="Save Changes"
+								onclick="saveChange()" hidden />
+						</div>
+						<div class="form-group col-md-12 marginBottom">
+							<input class="btn btn-primary btn-responsive btnModifier"
+								type="button" value="Modifier" id="btnGoToEdit"
+								onclick="goToEdit()" />
+						</div>
+					</div>
 
 				</form>
 			</div>
 
-			<c:choose>
-				<c:when test="${sessionScope.type=='3'}">
-					<div id="includeStore" class="col-md-5 rcol"></div>
-				</c:when>
-
-				<c:when test="${sessionScope.type=='1'} ">
-					<div id="includeReussite" class="col-md-5 rcol"></div>
-				</c:when>
-
-				<c:when test="${sessionScope.type=='2' }">
-					<div id="includeReussite" class="col-md-5 rcol" hidden></div>
-				</c:when>
-				<c:when test="${sessionScope.type=='4' }">
-					<div id="includeReussite" class="col-md-5 rcol"></div>
-				</c:when>
-			</c:choose>
-
-
 		</div>
 
 	</div>
+	
+	<c:choose>
+				<c:when test="${sessionScope.type=='3'}">
+					<div id="includeStore" class="col-md-12"></div>
+				</c:when>
+
+				<c:when test="${sessionScope.type=='1'} ">
+					<div id="includeReussite" class="col-md-12"></div>
+				</c:when>
+
+				<c:when test="${sessionScope.type=='2' }">
+					<div id="includeReussite" class="col-md-12" hidden></div>
+				</c:when>
+				<c:when test="${sessionScope.type=='4' }">
+					<div id="includeReussite" class="col-md-12"></div>
+				</c:when>
+			</c:choose>
 
 	<!-- Form utilisé comme popup -->
 	<div class="modal fade" id="myForm" tabindex="-1" role="dialog"
@@ -407,6 +376,8 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+
+<div id="includedFooter"></div>
 
 </body>
 
