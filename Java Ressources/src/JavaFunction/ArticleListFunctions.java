@@ -68,6 +68,35 @@ public class ArticleListFunctions {
 	}
 
 	/**
+	 * Permet d'afficher les article victime de leur succes
+	 */
+	public static void setNotAvailableList(HttpSession session) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			// get all not available article
+			PreparedStatement getStock = con.prepareStatement("SELECT * FROM public.articles WHERE available = 0 ");
+			ResultSet allStock = getStock.executeQuery();
+			if (allStock == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+
+				List<Article> lArt = new ArrayList<Article>();
+				Article anArticle;
+				while (allStock.next()) {
+					anArticle = getAnArticleFromRsStock(allStock, new ArrayList<Integer>(), new ArrayList<Integer>(),
+							con);
+
+					lArt.add(anArticle);
+				}
+				session.setAttribute("articleNotAvailableList", lArt);
+			}
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * return the deatail (list_ article_id and list_quantity) of user current cart
 	 * 
 	 * @param con
@@ -147,7 +176,7 @@ public class ArticleListFunctions {
 						allArticlesAreInStock = allArticlesAreInStock && (stock >= quantity);
 					}
 				} else {
-					allArticlesAreInStock=false;
+					allArticlesAreInStock = false;
 				}
 			}
 		} catch (SQLException e) {
@@ -159,8 +188,8 @@ public class ArticleListFunctions {
 	}
 
 	/**
-	 * remove reserved quantity from available stock
-	 * for every article in the cart
+	 * remove reserved quantity from available stock for every article in the cart
+	 * 
 	 * @param session
 	 */
 	public static void decreaseStockForCart(HttpSession session) {
@@ -177,9 +206,9 @@ public class ArticleListFunctions {
 			} else {
 				theCart.next();
 				List<Article> myListArt = ArticleListFunctions.getCart(theCart, con);
-				for(Article art : myListArt) {
+				for (Article art : myListArt) {
 					decreaseStockForArticle(art);
-				}				
+				}
 			}
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -187,24 +216,23 @@ public class ArticleListFunctions {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * remove reserved quantity from available stock
-	 * for a given article
+	 * remove reserved quantity from available stock for a given article
+	 * 
 	 * @param anArticle
 	 */
 	private static void decreaseStockForArticle(Article anArticle) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			//statement to update available stock 
+			// statement to update available stock
 			int id_article = anArticle.getId();
 			int currentStock = anArticle.getStock();
 			int quantity = anArticle.getQuantity();
-			int newStock = currentStock-quantity;
-			PreparedStatement pst = con
-					.prepareStatement("UPDATE public.articles SET available = "
-							+ newStock + " WHERE id = " + id_article);
+			int newStock = currentStock - quantity;
+			PreparedStatement pst = con.prepareStatement(
+					"UPDATE public.articles SET available = " + newStock + " WHERE id = " + id_article);
 			pst.executeQuery();
-			
+
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		} catch (Exception e) {
