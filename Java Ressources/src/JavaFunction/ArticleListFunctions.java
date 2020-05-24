@@ -158,8 +158,58 @@ public class ArticleListFunctions {
 		return allArticlesAreInStock;
 	}
 
-	public static void decreaseStock() {
-		// TODO
+	/**
+	 * remove reserved quantity from available stock
+	 * for every article in the cart
+	 * @param session
+	 */
+	public static void decreaseStockForCart(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			int user_id = user.getId();
+			// complete the part "mon panier"
+			// there should only be one cart by user whith a false status
+			PreparedStatement getCart = con
+					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
+			ResultSet theCart = getCart.executeQuery();
+			if (theCart == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+				theCart.next();
+				List<Article> myListArt = ArticleListFunctions.getCart(theCart, con);
+				for(Article art : myListArt) {
+					decreaseStockForArticle(art);
+				}				
+			}
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * remove reserved quantity from available stock
+	 * for a given article
+	 * @param anArticle
+	 */
+	private static void decreaseStockForArticle(Article anArticle) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			//statement to update available stock 
+			int id_article = anArticle.getId();
+			int currentStock = anArticle.getStock();
+			int quantity = anArticle.getQuantity();
+			int newStock = currentStock-quantity;
+			PreparedStatement pst = con
+					.prepareStatement("UPDATE public.articles SET available = "
+							+ newStock + " WHERE id = " + id_article);
+			pst.executeQuery();
+			
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
