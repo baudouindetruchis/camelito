@@ -141,6 +141,14 @@ img.edit {
 	margin-top: 10%;
 }
 
+.marginBottom {
+	margin-bottom: 5% !important;
+}
+
+.marginBottomStrong {
+	margin-bottom: 10% !important;
+}
+
 /*  */
 /* EXPERIMENTAL RADIO BUTTON FROM FUTURE */
 /*  */
@@ -296,10 +304,9 @@ img.edit {
 /* Page monMagasin.jsp */
 /*  */
 
-hr {
+.hrmargin {
 	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(153, 102, 102, 1), rgba(0, 0, 0, 0));
-	margin-top: 7% !important;
-	margin-bottom: 8% !important;
+	margin-top: 3% !important;
 }
 
 

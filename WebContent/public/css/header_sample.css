@@ -20,7 +20,10 @@ nav a {
 	color: #764e17;
 }
 
-
+.sticky-top {
+	text-align: center !important;
+	background-color: #fdeee0 !important;
+}
 
 /* Navbar's hamburger button color settings */
 .navbar-toggler {

@@ -6,18 +6,14 @@
 
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	
 	<!-- Bootstrap Toggle -->
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="../public/css/profilStyle.css">
@@ -29,21 +25,6 @@
 <title>Camelito - Profil</title>
 <script src="../public/js/profil.js"></script>
 <script src="../public/js/header.js"></script>
-
-<script>
-$(document).ready(function() {
-	  $('.sev_check').each(function() {
-	    $(this).addClass('unselected');
-	  });
-	  $('.sev_check').on('click', function() {
-	    $(this).toggleClass('unselected');
-	    $(this).toggleClass('selected');
-	    $('.sev_check').not(this).prop('checked', false);
-	    $('.sev_check').not(this).removeClass('selected');
-	    $('.sev_check').not(this).addClass('unselected');
-	  });
-	});
-</script>
 
 </head>
 
@@ -193,7 +174,7 @@ $(document).ready(function() {
 								type="submit" id="btnSaveChange" value="Save Changes"
 								onclick="saveChange()" hidden />
 						</div>
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-12 marginBottom">
 							<input class="btn btn-primary btn-responsive btnModifier"
 								type="button" value="Modifier" id="btnGoToEdit"
 								onclick="goToEdit()" />
@@ -395,6 +376,8 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+
+<div id="includedFooter"></div>
 
 </body>
 
