@@ -285,7 +285,7 @@ img.edit {
 		max-width: 800px !important;
 }
 
-@media screen and (max-width :760px) {
+@media screen and (max-width :767px) {
 	.switchLabel {
 		margin-left: 23% !important;
 		margin-right: 23% !important;
