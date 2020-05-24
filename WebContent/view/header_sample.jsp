@@ -14,7 +14,7 @@
 
 </head>
 <body>
-	<div class="col-md-12 nopadding">
+	<div class="col-md-12 nopadding fixed-top">
 		<nav class="navbar navbar-expand-md bg-light sticky-top">
 
 			<button class="navbar-toggler" data-toggle="collapse"
