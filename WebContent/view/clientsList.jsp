@@ -82,7 +82,6 @@
 							</div>
 						</c:forEach>
 					</ul>
-					
 					<c:choose>
 						<c:when test="${listCommand.ready=='lacommandeestprete'}">
 						

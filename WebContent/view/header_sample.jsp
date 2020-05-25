@@ -14,8 +14,8 @@
 
 </head>
 <body>
-	<div class="col-md-12 nopadding">
-		<nav class="navbar navbar-expand-md bg-light sticky-top">
+	<div class="col-md-12 nopadding fixed-top">
+		<nav class="navbar navbar-expand-md sticky-top">
 
 			<button class="navbar-toggler" data-toggle="collapse"
 				data-target="#collapse_target"> 
@@ -59,6 +59,8 @@
 							<li class="nav-item"><a class="nav-link" href="../StockLoad">Stock</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="../MessageLoad">Messagerie</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="../MyCmdLoadFrom">Ma commande</a>
 							</li>
 						</c:when>
 					</c:choose>

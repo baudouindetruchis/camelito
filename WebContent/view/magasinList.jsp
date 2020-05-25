@@ -26,6 +26,7 @@
 <title>Camelito - Les Commandes</title>
 <script src="../public/js/header.js"></script>
 <script src="../public/js/asso.js"></script>
+
 </head>
 <body onload="includeHeaderAndCheckUser()">
 <input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
@@ -33,15 +34,16 @@
 
 <div class="container">
    <div class="row">
-   <c:forEach var="store" items="${sessionScope.listCommands}">
-      <div class="col-md-3 mobileMargin" id="comm${store.storeName}">
-
+   <c:forEach var="cmd" items="${sessionScope.listStoresCommands}">
+      <div class="col-md-3 mobileMargin" id="comm${store.store_name}">
+<c:choose>
+						<c:when test="${cmd.ready=='lacommandenestpasprete'}">
 		<div class="listbox">
 			<div>
-			<c:out value="${store.storeName}" />
+			<c:out value="${cmd.store_name}" />
 			</div>
 			<div>
-			<c:out value="${store.priceStore}" />
+			<c:out value="${cmd.price}" />
 				€
 				
 			</div>
@@ -49,17 +51,17 @@
 		</div>
 
 					<!-- Form  -->
-					<div for="${store.storeName}" href="#${store.storeName}" data-toggle="collapse" class="divSousTitre">
+					<div for="${cmd.store_name}" href="#${cmd.store_name}" data-toggle="collapse" class="divSousTitre">
 						<p class="pSousTitre" for="articles">Articles commandés</p>
 						<i class="fa fa-angle-double-down" aria-hidden="true"></i>
 					</div>
 					
 					<!-- Contenu -->
-					<div id="${store.storeName}" class="collapse col-md-12 contentToggle ">
+					<div id="${cmd.store_name}" class="collapse col-md-12 contentToggle ">
 						<ul class="list-group list-group-flush paddingTopBot">
 
 							<!-- Chaque liste d'articles -->
-							<c:forEach var="art" items="${store.commandToStore}">
+							<c:forEach var="art" items="${cmd.listArticles}">
 								<div class="form-control-plaintext" id="name">
 									<li class="list-group-item d-flex justify-content-between align-items-center listContent">
 										<c:out value="${art.name}" /> <span class="badge badge-primary badge-pill"><c:out value="${art.quantity}" /></span>
@@ -69,11 +71,14 @@
 							</ul>				
 							
 							
-							
-							<div id="closeCommand" class="closeOrderBtn position-relative stretched-link" onclick="recupCommande('comm${store.storeName}', '${store.storeName}')">
+							<div id="closeCommand" class="closeOrderBtn position-relative stretched-link" onclick="recupCommande('comm${cmd.store_name}', '${cmd.store_name}', '${cmd.id}')">
 						<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
 					</div>
+					
 					</div>	
+					</c:when>
+						
+					</c:choose>
        
       </div>
       </c:forEach>

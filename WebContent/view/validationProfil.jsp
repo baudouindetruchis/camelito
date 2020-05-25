@@ -28,92 +28,124 @@
 <body onload="includeHeaderAndCheckUser()">
 	<div id="includedHeader"></div>
 	<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
-		<label for="mode" class="col-form-label">Client/Association : </label> 
-		
-		<c:choose>
-			<c:when test="${sessionScope.surLesValides=='true'}">
-				<input type="checkbox" class="toogle" data-toggle="toggle" data-on="false" data-off="Validés" data-onstyle="warning" 
-				data-offstyle="warning" id="checkbox" onchange="unvalidate()"  >			
-			</c:when>
-			<c:otherwise>
-					<input type="checkbox" class="toogle" data-toggle="toggle" data-on="false" data-off="Validés" data-onstyle="warning" 
-				data-offstyle="warning" id="checkbox" onchange="unvalidate()" checked>			
-			</c:otherwise>
-			
-		</c:choose>
-								
-		
-		
-		
-		
-		<c:choose>
-			<c:when test="${sessionScope.surLesValides=='true'}">
-			<div id= "aValider" hidden>
-			
-					<c:forEach var="user" items="${sessionScope.listUsers}">
-							<p><u>Pseudo </u>:  <c:out value="${user.pseudo}" /> 
-							<u>Mail </u>:  <c:out value="${user.mail}" /> 
-							<u>Type </u>:  <c:out value="${user.type}" /> </p>
-							<input class="btn btn-warning" type="submit"
-											value="Valider le profil" onclick="validateProfil(${user.id},false,true)" />
-							<input class="btn btn-warning" type="submit"
-											value="Changer type et valider profil" onclick="validateProfil(${user.id},true,true)" />
-					
-					</c:forEach>
-				</div>	
-			
-				<div id="valide" >
-			
-					<c:forEach var="user" items="${sessionScope.listValideUsers}">
-						<p><u>Pseudo </u>:  <c:out value="${user.pseudo}" /> 
-						<u>Mail </u>:  <c:out value="${user.mail}" /> 
-						<u>Type </u>:  <c:out value="${user.type}" /> </p>
-						
-						<input class="btn btn-warning" type="submit"
-									value="Rendre invalide le profil" onclick="validateProfil(${user.id},false,false)" />
-						
-					</c:forEach>
-					
-			
-				</div>	
-			
-			</c:when>
-		
-			<c:otherwise>
-						
-				<div id= "aValider">
-			
-					<c:forEach var="user" items="${sessionScope.listUsers}">
-							<p><u>Pseudo </u>:  <c:out value="${user.pseudo}" /> 
-							<u>Mail </u>:  <c:out value="${user.mail}" /> 
-							<u>Type </u>:  <c:out value="${user.type}" /> </p>
-							<input class="btn btn-warning" type="submit"
-											value="Valider le profil" onclick="validateProfil(${user.id},false,true)" />
-							<input class="btn btn-warning" type="submit"
-											value="Changer type et valider profil" onclick="validateProfil(${user.id},true,true)" />
-					
-					</c:forEach>
-				</div>	
-			
-				<div id="valide" hidden>
-			
-					<c:forEach var="user" items="${sessionScope.listValideUsers}">
-						<p><u>Pseudo </u>:  <c:out value="${user.pseudo}" /> 
-						<u>Mail </u>:  <c:out value="${user.mail}" /> 
-						<u>Type </u>:  <c:out value="${user.type}" /> </p>
-						
-						<input class="btn btn-warning" type="submit"
-									value="Rendre invalide le profil" onclick="validateProfil(${user.id},false,false)" />
-						
-					</c:forEach>
-					
-			
-				</div>	
-						
-			</c:otherwise>
-			
-		</c:choose>
-		
 
-	</body>
+	<div class="container">
+		<label for="mode" class="col-form-label">Client/Association :
+		</label>
+
+		<c:choose>
+			<c:when test="${sessionScope.surLesValides=='true'}">
+				<input type="checkbox" class="toogle" data-toggle="toggle"
+					data-on="false" data-off="Validés" data-onstyle="warning"
+					data-offstyle="warning" id="checkbox" onchange="unvalidate()">
+			</c:when>
+			<c:otherwise>
+				<input type="checkbox" class="toogle" data-toggle="toggle"
+					data-on="false" data-off="Validés" data-onstyle="warning"
+					data-offstyle="warning" id="checkbox" onchange="unvalidate()"
+					checked>
+			</c:otherwise>
+
+		</c:choose>
+
+
+
+
+
+		<c:choose>
+			<c:when test="${sessionScope.surLesValides=='true'}">
+				<div id="aValider" hidden>
+
+					<c:forEach var="user" items="${sessionScope.listUsers}">
+						<p>
+							<u>Pseudo </u>:
+							<c:out value="${user.pseudo}" />
+							<u>Mail </u>:
+							<c:out value="${user.mail}" />
+							<u>Type </u>:
+							<c:out value="${user.type}" />
+						</p>
+						<input class="btn btn-warning" type="submit"
+							value="Valider le profil"
+							onclick="validateProfil(${user.id},false,true)" />
+						<input class="btn btn-warning" type="submit"
+							value="Changer type et valider profil"
+							onclick="validateProfil(${user.id},true,true)" />
+
+					</c:forEach>
+				</div>
+
+				<div id="valide">
+
+					<c:forEach var="user" items="${sessionScope.listValideUsers}">
+						<p>
+							<u>Pseudo </u>:
+							<c:out value="${user.pseudo}" />
+							<u>Mail </u>:
+							<c:out value="${user.mail}" />
+							<u>Type </u>:
+							<c:out value="${user.type}" />
+						</p>
+
+						<input class="btn btn-warning" type="submit"
+							value="Rendre invalide le profil"
+							onclick="validateProfil(${user.id},false,false)" />
+
+					</c:forEach>
+
+
+				</div>
+
+			</c:when>
+
+			<c:otherwise>
+
+				<div id="aValider">
+
+					<c:forEach var="user" items="${sessionScope.listUsers}">
+						<p>
+							<u>Pseudo </u>:
+							<c:out value="${user.pseudo}" />
+							<u>Mail </u>:
+							<c:out value="${user.mail}" />
+							<u>Type </u>:
+							<c:out value="${user.type}" />
+						</p>
+						<input class="btn btn-warning" type="submit"
+							value="Valider le profil"
+							onclick="validateProfil(${user.id},false,true)" />
+						<input class="btn btn-warning" type="submit"
+							value="Changer type et valider profil"
+							onclick="validateProfil(${user.id},true,true)" />
+
+					</c:forEach>
+				</div>
+
+				<div id="valide" hidden>
+
+					<c:forEach var="user" items="${sessionScope.listValideUsers}">
+						<p>
+							<u>Pseudo </u>:
+							<c:out value="${user.pseudo}" />
+							<u>Mail </u>:
+							<c:out value="${user.mail}" />
+							<u>Type </u>:
+							<c:out value="${user.type}" />
+						</p>
+
+						<input class="btn btn-warning" type="submit"
+							value="Rendre invalide le profil"
+							onclick="validateProfil(${user.id},false,false)" />
+
+					</c:forEach>
+
+
+				</div>
+
+			</c:otherwise>
+
+		</c:choose>
+
+	</div>
+</body>
 </html>

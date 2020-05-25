@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import JavaFunction.ArticleListFunctions;
+import JavaFunction.CommandsFunctions;
 
 /**
  * Servlet implementation class PanierClick
@@ -53,6 +54,7 @@ public class PanierClick extends HttpServlet {
 				ArticleListFunctions.actionPay(request);
 				ArticleListFunctions.updateScoreAndSaving(session);
 				ArticleListFunctions.setCommandList(session);
+				CommandsFunctions.reloadCommands(request, response, session);
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
 			} else {

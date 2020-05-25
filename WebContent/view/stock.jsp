@@ -64,9 +64,11 @@
 					</div>
 				</div>
 				<div class="form-row">
+					<div class="form-group col-md-12">
 						<label for="pic">Image</label> 
 						<input type="text" class="form-control" id="pic" placeholder="Lien hypertext de l'image" name="pic">
 					</div>
+				</div>
 				
 
 
