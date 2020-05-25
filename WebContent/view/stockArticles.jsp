@@ -17,14 +17,27 @@
 	<div class="form-row stockFilter">
 		<div class="form-group col-md-4">
 			<label for="trierId">Trier vos produits</label>
-
+			
+			<% String choice = (String)session.getAttribute("sqlOrder"); %>
 			<select id="trierId" class="form-control" name="sqlOrder" onchange="orderSql()" >
-				<option value="ORDER_BY_id_ASC">Id croissant</option>
-				<option value="ORDER_BY_id_DESC" >Id decroissant</option>
-				<option value="ORDER_BY_name_ASC" >Name croissant</option>
-				<option value="ORDER_BY_name_DESC" >Name decroissant</option>
-				<option value="ORDER_BY_available_ASC" >Stock croissant</option>
-				<option value="ORDER_BY_available_DESC" >Stock decroissant</option>
+				<option value="ORDER_BY_id_ASC" 
+					<%= ("ORDER_BY_id_ASC".equals(choice))?("selected='selected'"):""%> >
+					Id croissant</option>
+				<option value="ORDER_BY_id_DESC"
+					<%= ("ORDER_BY_id_DESC".equals(choice))?("selected='selected'"):""%> >
+					Id decroissant</option>
+				<option value="ORDER_BY_name_ASC"
+					<%= ("ORDER_BY_name_ASC".equals(choice))?("selected='selected'"):""%> >
+					Name croissant</option>
+				<option value="ORDER_BY_name_DESC"
+					<%= ("ORDER_BY_name_DESC".equals(choice))?("selected='selected'"):""%> >
+					Name decroissant</option>
+				<option value="ORDER_BY_available_ASC"
+					<%= ("ORDER_BY_available_ASC".equals(choice))?("selected='selected'"):""%> >
+					Stock croissant</option>
+				<option value="ORDER_BY_available_DESC"
+					<%= ("ORDER_BY_available_DESC".equals(choice))?("selected='selected'"):""%> >
+					Stock decroissant</option>
 			</select>
 
 		</div>

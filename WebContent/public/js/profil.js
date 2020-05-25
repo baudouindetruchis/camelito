@@ -67,6 +67,7 @@ function goToEdit() {
 		document.getElementById("Mdp").hidden = false;
 		if(value!=null){
 			document.getElementById("newPromo").hidden = false;
+			document.getElementById("promo").hidden = true;
 			document.getElementById("info").hidden = false;
 		}
 

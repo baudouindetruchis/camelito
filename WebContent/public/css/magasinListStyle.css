@@ -1,6 +1,6 @@
 .container {
 	width: 100%;
-	margin-top: 5%;
+	margin-top: 10%;
 }
 
 .listbox {
@@ -71,8 +71,7 @@
 	color: rosybrown;
 }
 
-@media ( max-width : 767px) {
-	.col-md-3.mobileMargin {
-		margin-bottom: 30px;
-	}
+
+.col-md-3.mobileMargin {
+	margin-bottom: 30px;
 }

@@ -9,7 +9,7 @@ body {
 
 .container {
 	width: 100%;
-	margin-top: 5%;
+	margin-top: 10%;
 }
 
 .container h2 {
@@ -53,7 +53,6 @@ body {
 
 .totalpopup {
 	background-color: antiquewhite;
-    border-bottom: 1px solid #764e17;
 }
 
 .contentpopup {

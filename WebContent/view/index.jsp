@@ -24,7 +24,7 @@
 
 <body onload="includeOtherPartOnLoad()">
 		<div class="row">
-			<div class="col-sm-4">
+			<div class="col-lg-4">
 
 				<form action="../ConnexionForm">
 					<c:set var="connectionMsg" scope="session"
@@ -91,7 +91,7 @@
 							placeholder="Mot de passe" name="password"
 							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							title="Le mot de passe doit contenir au moins un chiffre, une majuscule et une minuscule, il doit aussi avoir au moins 8 caractères"
-							required="required" class="field"> 
+							required="required" class="field">
 							<input
 							id="passwordInsc2" type="password"
 							placeholder="Vérification du mot de passe" name="secondPassword"
@@ -118,9 +118,9 @@
 			</div>
 
 
-			<div id="includeCamelitoInfo" class="col-sm-4"></div>
-			<div id="includeCamelitoPrez" class="col-sm-4"></div>
-			<div id="includeFAQ" class="col-sm-8"></div>
+			<div id="includeCamelitoInfo" class="col-lg-4"></div>
+			<div id="includeCamelitoPrez" class="col-lg-4"></div>
+			<div id="includeFAQ" class="col-lg-8"></div>
 
 		</div>
 
