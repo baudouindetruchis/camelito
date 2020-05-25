@@ -51,7 +51,7 @@ public class MagasinListLoadForm extends HttpServlet {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			
 			PreparedStatement getCommmands = con
-					.prepareStatement("SELECT id_command, id_store, list_id_articles, liste_quantities,status FROM public.commands ");
+					.prepareStatement("SELECT id_command, id_store, list_id_articles, liste_quantities, status FROM public.commands ");
 			
 			ResultSet commands = getCommmands.executeQuery();
 			
@@ -61,7 +61,7 @@ public class MagasinListLoadForm extends HttpServlet {
 				int cmdPrice =0;
 				int id_store = commands.getInt("id_store");
 				int id_command = commands.getInt("id_command");
-				//TODO Boolean status = commands.getBoolean("status");
+				Boolean status = commands.getBoolean("status");
 				String store_name="";
 				
 				PreparedStatement getStore = con
@@ -93,14 +93,16 @@ public class MagasinListLoadForm extends HttpServlet {
 						String name = articleInfo.getString("name");
 						newArticle.setName(name);
 						cmdPrice=cmdPrice+(price*quantity);
-						System.out.println(cmdPrice);
 					}
 					
 					listArticles.add(newArticle);
 				}
-				
+				if(status) {
+					commande.setReady("lacommandenestpasprete");
+				}else{
+					commande.setReady("lacommandeestprete");
+				}
 				commande.setListArticles(listArticles);
-				System.out.println(cmdPrice);
 				commande.setprice(cmdPrice);
 				commande.setStore_name(store_name);
 				commande.setId(id_command);

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import obj.Article;
+import obj.User;
 
 public class CommandsFunctions {
 	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
@@ -52,6 +53,7 @@ public class CommandsFunctions {
 						Integer[] list_listArticle = (Integer[]) array_listArticle;
 						Object array_listArticleQuantity =   storeCommand.getArray("liste_quantities").getArray();
 						Integer[] list_listArticleQuantity = (Integer[]) array_listArticleQuantity;
+						updateIdCommandList(request,id);
 						updateExistingList(con, list_listArticle,list_listArticleQuantity,id_Article,quantity,id);
 						
 	
@@ -68,19 +70,16 @@ public class CommandsFunctions {
 					listIdArticles.add(id_Article);
 					List<Integer> liste_quantities = new ArrayList<Integer>();
 					liste_quantities.add(quantity);
-					if(idLastCommand==0) {//if there never is a command for this store 
 						idLastCommand++;
 						
-					}
+					
 					PreparedStatement creatCommand = con.prepareStatement("INSERT INTO public.commands(id_command, id_store,list_id_articles, liste_quantities) VALUES ('"+ idLastCommand+"','"+id_store+"','"+ ArticleListFunctions.listToString(listIdArticles)+"','"+ArticleListFunctions.listToString(liste_quantities) +"')" );
 					creatCommand.execute();
+					updateIdCommandList(request,idLastCommand);
 				}
 		
 			}
-			
-			
-			
-			
+	
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -136,6 +135,37 @@ public class CommandsFunctions {
 			e.printStackTrace();
 		}
 		
+	}
+	public static void updateIdCommandList(HttpServletRequest request, int idCommand) {
+		HttpSession session = request.getSession(false);
+		User user = (User) session.getAttribute("user");
+		List<Integer> listCmd= new ArrayList<Integer>();
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			int user_id = user.getId();
+			PreparedStatement getCartListIDCmd = con.prepareStatement(
+					"SELECT liste_command FROM public.carts WHERE id_user = " + user_id + " AND status = false");
+			ResultSet listCmdRS = getCartListIDCmd.executeQuery();
+			listCmdRS.next();
+			
+			Object array_id =   listCmdRS.getArray("liste_command").getArray();
+
+			Integer[] tabCmd=   (Integer[]) array_id;
+			
+			
+			for(int id : tabCmd ) {
+				listCmd.add(id);
+			}
+			 
+			if(!listCmd.contains(idCommand)) {
+				listCmd.add(idCommand);
+			}
+			 
+			PreparedStatement editQuantity = con.prepareStatement(
+					"UPDATE public.carts SET liste_command ='"+  ArticleListFunctions.listToString(listCmd)+ "'  WHERE id_user = " + user_id + " AND status = false");
+			editQuantity.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

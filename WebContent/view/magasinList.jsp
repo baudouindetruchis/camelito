@@ -26,6 +26,7 @@
 <title>Camelito - Les Commandes</title>
 <script src="../public/js/header.js"></script>
 <script src="../public/js/asso.js"></script>
+
 </head>
 <body onload="includeHeaderAndCheckUser()">
 <input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
@@ -68,11 +69,14 @@
 							</c:forEach>
 							</ul>				
 							
-							
-							
-							<div id="closeCommand" class="closeOrderBtn position-relative stretched-link" onclick="recupCommande('comm${cmd.store_name}', '${cmd.store_name}')">
+							<c:choose>
+						<c:when test="${cmd.ready=='lacommandenestpasprete'}">
+							<div id="closeCommand" class="closeOrderBtn position-relative stretched-link" onclick="recupCommande('comm${cmd.store_name}', '${cmd.store_name}', '${cmd.id}')">
 						<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
 					</div>
+					</c:when>
+						
+					</c:choose>
 					</div>	
        
       </div>

@@ -47,7 +47,7 @@ public class ClientListLoadForm extends HttpServlet {
 		Boolean recuperee = true;
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			PreparedStatement getCommandes = con
-					.prepareStatement("SELECT id,id_user, list_id_articles, liste_quantities FROM public.carts WHERE status = true");
+					.prepareStatement("SELECT id,id_user, list_id_articles, liste_quantities, liste_command FROM public.carts WHERE status = true");
 			
 			ResultSet commandes = getCommandes.executeQuery();
 			
@@ -62,7 +62,26 @@ public class ClientListLoadForm extends HttpServlet {
 				Integer[] list_articleByUser = (Integer[]) array_articleByUser;
 				Object array_articleQuantity =   commandes.getArray("liste_quantities").getArray();
 				Integer[] list_articleQuantity = (Integer[]) array_articleQuantity;
+				Object array_Command =   commandes.getArray("liste_command").getArray();
+				Integer[] list_IdCommand = (Integer[]) array_Command;
+				Boolean cmdPrete=true;
+				for(int idCommand: list_IdCommand) {
+					PreparedStatement getCommand = con.prepareStatement("SELECT status FROM public.commands WHERE id = '" + idCommand+"'" );
+					ResultSet commandRS = getCommand.executeQuery();
+					while(commandRS.next()){
+						Boolean commandeReady = commandRS.getBoolean("status");
+						if(commandeReady) {
+							cmdPrete=false;
+						}	
+					}
+				}
+				if(cmdPrete) {
+					commande.setReady("lacommandeestprete");
+				}else {
+					commande.setReady("lacommandenestpasprete");	
+				}
 				
+
 				PreparedStatement getUser = con.prepareStatement("SELECT user_name FROM public.users WHERE id = '" + id_user+"'" );
 				ResultSet usernameRS = getUser.executeQuery();
 				usernameRS.next();
@@ -70,7 +89,6 @@ public class ClientListLoadForm extends HttpServlet {
 				String user_Name = usernameRS.getString("user_name");
 				
 				for(int i =0; i<list_articleByUser.length; i++) {
-					
 					
 					int id_Article = list_articleByUser[i];
 					int quantity = list_articleQuantity[i];
@@ -82,33 +100,11 @@ public class ClientListLoadForm extends HttpServlet {
 					price =price + articleInfo.getInt("selling_price");
 					String name = articleInfo.getString("name");
 					
-					int id_store = articleInfo.getInt("id_store");
-					PreparedStatement getStore = con.prepareStatement("SELECT name FROM public.stores WHERE id = '" + id_store+"'" );
-					ResultSet store = getStore.executeQuery();
-					store.next();
-					String store_name = store.getString("name");
-					if(session.getAttribute(store_name)!=null) {
-						
-						if(!session.getAttribute(store_name).equals("recuperee")) {
-							recuperee=false;
-						}
-					}else {
-						session.setAttribute(store_name,false);
-						recuperee=false;
-					}
-					
-					
 					newArticle.setName(name);
 					newArticle.setQuantity(quantity);
 					newArticle.setId(id_Article);
 					listArticles.add(newArticle);	
 				}
-				if(recuperee) {
-					commande.setReady("lacommandeestprete");
-				}else {
-					commande.setReady("lacommandenestpasprete");
-				}
-				
 				commande.setIdAndName("commande"+ String.valueOf(id)+user_Name);
 				commande.setprice(price);
 				commande.setId(id);
