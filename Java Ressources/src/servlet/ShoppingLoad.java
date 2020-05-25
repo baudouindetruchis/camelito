@@ -33,8 +33,9 @@ public class ShoppingLoad extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
-		
+
 		ArticleListFunctions.setAllStockList(session);
+		ArticleListFunctions.setNotAvailableList(session);
 		
 		// load page
 		String page = "./view/shopping.jsp";

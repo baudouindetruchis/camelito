@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -86,6 +85,7 @@ public class ConnexionForm extends HttpServlet {
 	            	       	String firstname = res.getString("first_name");
 	            	       	String lastname = res.getString("last_name");
 	            	       	int promotion = res.getInt("promotion");
+	            	       	float savings = res.getFloat("saving");
 	            	       	String profilPic = res.getString("profil_pic");
 	            	       	
 	            	       	
@@ -121,7 +121,7 @@ public class ConnexionForm extends HttpServlet {
      	            	       	
 	            			if(type==1 || type==2) {
 	            				int score = res.getInt("score");
-	    						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, score, "","",status,profilPic);
+	    						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, score, "","",status,profilPic,savings);
 	    					}else {
 	    						
 	    						PreparedStatement getStoreName = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + id );
@@ -131,9 +131,9 @@ public class ConnexionForm extends HttpServlet {
             						
             						String storeName = storeInfo.getString("name");
             						String address = storeInfo.getString("address");
-            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, storeName,address, status, profilPic);
+            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, storeName,address, status, profilPic, savings);
             					}	else {
-            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, "","", status,profilPic);
+            						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, 0, "","", status,profilPic, savings);
                     				
             					}
 	    						
