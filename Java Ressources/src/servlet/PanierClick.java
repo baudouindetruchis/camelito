@@ -51,7 +51,7 @@ public class PanierClick extends HttpServlet {
 			if (isValid) {
 				ArticleListFunctions.decreaseStockForCart(session);
 				ArticleListFunctions.actionPay(request);
-				ArticleListFunctions.updateScore(session);
+				ArticleListFunctions.updateScoreAndSaving(session);
 				ArticleListFunctions.setCommandList(session);
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
