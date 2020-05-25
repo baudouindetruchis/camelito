@@ -211,7 +211,7 @@ public class CommandsFunctions {
 	 * @param quantity
 	 * @return
 	 */
-	public static Article getArticle(Connection con, ResultSet commands, int id_store, int id_Article,int quantity) {
+	public static Article getArticle(Connection con, ResultSet commands, int id_Article,int quantity) {
 			
 			Article newArticle =new Article();
 				try {
@@ -271,7 +271,7 @@ public class CommandsFunctions {
 				
 				int id_Article = list_article[i];
 				int quantity = list_articleQuantity[i];
-				newArticle =getArticle(con,commands, id_command,id_Article, quantity);
+				newArticle =getArticle(con,commands, id_Article, quantity);
 
 				
 				cmdPrice=(int) (cmdPrice+(newArticle.getSelling_price()*quantity));
@@ -291,7 +291,7 @@ public class CommandsFunctions {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		
 		
 	return commande;

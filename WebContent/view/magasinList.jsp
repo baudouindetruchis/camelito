@@ -36,7 +36,8 @@
    <div class="row">
    <c:forEach var="cmd" items="${sessionScope.listStoresCommands}">
       <div class="col-md-3 mobileMargin" id="comm${store.store_name}">
-
+<c:choose>
+						<c:when test="${cmd.ready=='lacommandenestpasprete'}">
 		<div class="listbox">
 			<div>
 			<c:out value="${cmd.store_name}" />
@@ -69,15 +70,15 @@
 							</c:forEach>
 							</ul>				
 							
-							<c:choose>
-						<c:when test="${cmd.ready=='lacommandenestpasprete'}">
+							
 							<div id="closeCommand" class="closeOrderBtn position-relative stretched-link" onclick="recupCommande('comm${cmd.store_name}', '${cmd.store_name}', '${cmd.id}')">
 						<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
 					</div>
+					
+					</div>	
 					</c:when>
 						
 					</c:choose>
-					</div>	
        
       </div>
       </c:forEach>
