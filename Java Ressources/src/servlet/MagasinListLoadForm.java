@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,11 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import JavaFunction.CommandsFunctions;
 import obj.Article;
-import obj.ClientCommand;
-import obj.ClientSubCommand;
 import obj.Commande;
-import obj.User;
 
 /**
  * Servlet implementation class magasinListForm
@@ -56,57 +53,8 @@ public class MagasinListLoadForm extends HttpServlet {
 			ResultSet commands = getCommmands.executeQuery();
 			
 			while(commands.next()) { 
-				List< Article> listArticles = new ArrayList< Article>();
-				Commande commande = new Commande();
-				int cmdPrice =0;
-				int id_store = commands.getInt("id_store");
-				int id_command = commands.getInt("id_command");
-				Boolean status = commands.getBoolean("status");
-				String store_name="";
+				Commande commande =CommandsFunctions.prepareCommmande( commands,  con);
 				
-				PreparedStatement getStore = con
-						.prepareStatement("SELECT name FROM public.stores WHERE id = '" + id_store+"'" );
-				ResultSet getName = getStore.executeQuery();
-				if(getName.next()) {
-					store_name = getName.getString("name");
-				}
-				
-				Object array_article =   commands.getArray("list_id_articles").getArray();
-				Integer[] list_article = (Integer[]) array_article;
-				
-				Object array_articleQuantity =   commands.getArray("liste_quantities").getArray();
-				Integer[] list_articleQuantity = (Integer[]) array_articleQuantity;
-				
-				for(int i =0; i<list_article.length; i++) {
-					Article newArticle =new Article();
-					int id_Article = list_article[i];
-					int quantity = list_articleQuantity[i];
-					
-					newArticle.setQuantity(quantity);
-					newArticle.setId(id_Article);
-					PreparedStatement getArticle = con
-							.prepareStatement("SELECT name, selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
-					
-					ResultSet articleInfo = getArticle.executeQuery();
-					if(articleInfo.next()){
-						int price = articleInfo.getInt("selling_price");
-						String name = articleInfo.getString("name");
-						newArticle.setName(name);
-						cmdPrice=cmdPrice+(price*quantity);
-					}
-					
-					listArticles.add(newArticle);
-				}
-				if(status) {
-					commande.setReady("lacommandenestpasprete");
-				}else{
-					commande.setReady("lacommandeestprete");
-				}
-				commande.setListArticles(listArticles);
-				commande.setprice(cmdPrice);
-				commande.setStore_name(store_name);
-				commande.setId(id_command);
-				commande.setIdAndName(id_command+store_name);
 				listStoresCommands.add(commande);
 			}
 			session.setAttribute("listStoresCommands", listStoresCommands);
@@ -131,5 +79,7 @@ public class MagasinListLoadForm extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
 
+	
 }

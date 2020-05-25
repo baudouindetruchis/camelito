@@ -60,10 +60,7 @@ public class MagasinGetCommandFrom extends HttpServlet {
 			e.printStackTrace();
 		}
 		session.setAttribute(store_name, "recuperee");
-			
-			
-		
-		
+					
 	}
 
 	/**

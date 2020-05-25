@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import JavaFunction.ClientListsFunctions;
 import obj.Article;
 import obj.Commande;
 
@@ -44,7 +45,6 @@ public class ClientListLoadForm extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		List<Commande> listArticlesByUser = new ArrayList<Commande>();
 		
-		Boolean recuperee = true;
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			PreparedStatement getCommandes = con
 					.prepareStatement("SELECT id,id_user, list_id_articles, liste_quantities, liste_command FROM public.carts WHERE status = true");
@@ -52,64 +52,8 @@ public class ClientListLoadForm extends HttpServlet {
 			ResultSet commandes = getCommandes.executeQuery();
 			
 			while(commandes.next()) {   
-				int price = 0;
-				Commande commande = new Commande();
-				List<Article> listArticles= new ArrayList<>();
-				int id= commandes.getInt("id");
-				int id_user = commandes.getInt("id_user");
+				Commande commande =ClientListsFunctions.getListArticle( con, commandes);
 				
-				Object array_articleByUser =   commandes.getArray("list_id_articles").getArray();
-				Integer[] list_articleByUser = (Integer[]) array_articleByUser;
-				Object array_articleQuantity =   commandes.getArray("liste_quantities").getArray();
-				Integer[] list_articleQuantity = (Integer[]) array_articleQuantity;
-				Object array_Command =   commandes.getArray("liste_command").getArray();
-				Integer[] list_IdCommand = (Integer[]) array_Command;
-				Boolean cmdPrete=true;
-				for(int idCommand: list_IdCommand) {
-					PreparedStatement getCommand = con.prepareStatement("SELECT status FROM public.commands WHERE id = '" + idCommand+"'" );
-					ResultSet commandRS = getCommand.executeQuery();
-					while(commandRS.next()){
-						Boolean commandeReady = commandRS.getBoolean("status");
-						if(commandeReady) {
-							cmdPrete=false;
-						}	
-					}
-				}
-				if(cmdPrete) {
-					commande.setReady("lacommandeestprete");
-				}else {
-					commande.setReady("lacommandenestpasprete");	
-				}
-				
-
-				PreparedStatement getUser = con.prepareStatement("SELECT user_name FROM public.users WHERE id = '" + id_user+"'" );
-				ResultSet usernameRS = getUser.executeQuery();
-				usernameRS.next();
-				
-				String user_Name = usernameRS.getString("user_name");
-				
-				for(int i =0; i<list_articleByUser.length; i++) {
-					
-					int id_Article = list_articleByUser[i];
-					int quantity = list_articleQuantity[i];
-					Article newArticle =new Article();
-					PreparedStatement getArticle = con.prepareStatement("SELECT id_store, name,  selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
-					ResultSet articleInfo = getArticle.executeQuery();
-					articleInfo.next();
-					
-					price =price + articleInfo.getInt("selling_price");
-					String name = articleInfo.getString("name");
-					
-					newArticle.setName(name);
-					newArticle.setQuantity(quantity);
-					newArticle.setId(id_Article);
-					listArticles.add(newArticle);	
-				}
-				commande.setIdAndName("commande"+ String.valueOf(id)+user_Name);
-				commande.setprice(price);
-				commande.setId(id);
-				commande.setUser_name(user_Name);
-				commande.setListArticles(listArticles);
 				listArticlesByUser.add(commande);
 			}
 			
@@ -129,5 +73,8 @@ public class ClientListLoadForm extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	
+	
 
 }
