@@ -8,7 +8,22 @@ import obj.User;
 
 public class ConnectionFunctions {
 	
-	
+	/**
+	 * Create the object user and set it as session attribut
+	 * @param request
+	 * @param id
+	 * @param email
+	 * @param type
+	 * @param pseudo
+	 * @param firstName
+	 * @param lastName
+	 * @param year
+	 * @param score
+	 * @param storeName
+	 * @param address
+	 * @param status
+	 * @param profilPic
+	 */
 	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year, int score, String storeName, String address, Boolean status, String profilPic   ) {
 		HttpSession session = request.getSession(false);
 		
@@ -40,7 +55,13 @@ public class ConnectionFunctions {
 		}
 		
 	}
-	
+	/**
+	 * set the user obj with the right propertie depending on the type
+	 * @param request
+	 * @param storeName
+	 * @param address
+	 * @param obj
+	 */
 	public static void connectAsComm( HttpServletRequest request, String storeName, String address, User obj   ) {
 		HttpSession session = request.getSession(false);
 		
@@ -50,7 +71,11 @@ public class ConnectionFunctions {
 		session.setAttribute("user", obj);
 		
 	}
-	
+	/**
+	 * get the number corresponding to the type entered as a string
+	 * @param categorie
+	 * @return
+	 */
 	public static int getType(String categorie) {
 		int type = 0;
 		switch (categorie) {
@@ -66,7 +91,11 @@ public class ConnectionFunctions {
 		}
 		return type;
 	}
-	
+	/**
+	 * get thyear of diploma depending of the name of promotion
+	 * @param promotion
+	 * @return
+	 */
 	public static int getPromo(String promotion) {		
 		int year = 0;
 		LocalDate currentdate = LocalDate.now();

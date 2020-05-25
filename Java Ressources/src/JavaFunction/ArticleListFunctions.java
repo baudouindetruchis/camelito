@@ -282,7 +282,7 @@ public class ArticleListFunctions {
 	 * @param l
 	 * @return
 	 */
-	private static String listToString(List<Integer> l) {
+	static String listToString(List<Integer> l) {
 		StringBuilder sb = new StringBuilder();
 		if (l.size() == 0) {
 			sb.append("{}");

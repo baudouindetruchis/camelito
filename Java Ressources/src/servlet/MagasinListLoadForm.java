@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,10 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import JavaFunction.CommandsFunctions;
 import obj.Article;
-import obj.ClientCommand;
-import obj.ClientSubCommand;
-import obj.User;
+import obj.Commande;
 
 /**
  * Servlet implementation class magasinListForm
@@ -44,67 +43,22 @@ public class MagasinListLoadForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		HashMap<Integer, Article> listArticles = new HashMap<Integer, Article>();
+		
+		List< Commande> listStoresCommands = new ArrayList< Commande>();
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			
-			PreparedStatement getUsers = con
-					.prepareStatement("SELECT list_id_articles, liste_quantities FROM public.carts WHERE status = true");
+			PreparedStatement getCommmands = con
+					.prepareStatement("SELECT id_command, id_store, list_id_articles, liste_quantities, status FROM public.commands ");
 			
-			ResultSet users = getUsers.executeQuery();
-			while(users.next()) { 
+			ResultSet commands = getCommmands.executeQuery();
+			
+			while(commands.next()) { 
+				Commande commande =CommandsFunctions.prepareCommmande( commands,  con);
 				
-				Object array_articleByUser =   users.getArray("list_id_articles").getArray();
-				Integer[] list_articleByUser = (Integer[]) array_articleByUser;
-				
-				Object array_articleQuantity =   users.getArray("liste_quantities").getArray();
-				Integer[] list_articleQuantity = (Integer[]) array_articleQuantity;
-
-				for(int i =0; i<list_articleByUser.length; i++) {
-					Article newArticle =new Article();
-					int id_Article = list_articleByUser[i];
-					int quantity = list_articleQuantity[i];
-					
-					
-					newArticle.setId(id_Article);
-					PreparedStatement getArticle = con
-							.prepareStatement("SELECT name, id_Store, selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
-					
-					ResultSet articleInfo = getArticle.executeQuery();
-					while(articleInfo.next()){
-						int price = articleInfo.getInt("selling_price");
-						int id_Store = articleInfo.getInt("id_Store");
-						String name = articleInfo.getString("name");
-						PreparedStatement getStore = con
-								.prepareStatement("SELECT name FROM public.stores WHERE id = '" + id_Store+"'" );
-						ResultSet getName = getStore.executeQuery();
-						getName.next();
-							
-						String storeName = getName.getString("name");
-						if(listArticles.containsKey(id_Article)) {
-							quantity =quantity+ listArticles.get(id_Article).getQuantity();
-								
-						}					
-						
-						newArticle.setMagasin(storeName);
-						newArticle.setQuantity(quantity);
-						newArticle.setSelling_price(price);
-						newArticle.setName(name);
-
-						}
-					listArticles.put(newArticle.getId(), newArticle);
-				}
-		
+				listStoresCommands.add(commande);
 			}
+			session.setAttribute("listStoresCommands", listStoresCommands);
 			
-			ClientCommand commandes = new ClientCommand();
-			
-			for(int key : listArticles.keySet()) {
-				Article art =listArticles.get(key);
-				commandes.addArticle(art);
-			}
-			List<ClientSubCommand> commandTotal= commandes.getCommandTotal();
-			
-			session.setAttribute("listCommands", commandTotal);
 			
 			
 		} catch (SQLException e) {
@@ -125,5 +79,7 @@ public class MagasinListLoadForm extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
 
+	
 }

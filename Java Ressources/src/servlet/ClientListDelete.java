@@ -45,18 +45,12 @@ public class ClientListDelete extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		int idComm = Integer.parseInt(request.getParameter("id"));
-		String user_name = request.getParameter("user_name");
-		
-		
 		
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			
-
 			PreparedStatement deleteCart = con
 					.prepareStatement("DELETE from public.carts WHERE id = '"+idComm+"'");
 			
 			deleteCart.execute();
-			
 			
 			@SuppressWarnings("unchecked")
 			List<Commande> listArticlesByUser = (List<Commande>) session.getAttribute("listArticlesByUser");
@@ -67,8 +61,6 @@ public class ClientListDelete extends HttpServlet {
 				}
 			}
 			session.setAttribute("listArticlesByUser", listArticlesByUser);
-			
-			
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		} catch (Exception e) {
