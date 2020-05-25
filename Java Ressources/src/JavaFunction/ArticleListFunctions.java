@@ -37,9 +37,77 @@ public class ArticleListFunctions {
 		int user_id = user.getId();
 
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			List<Integer> list_id_articles = null;
-			List<Integer> list_quantities = null;
-			// Get curent cart //TODO docker une fonction getCurrentCart
+			// Get curent cart
+			Object[] cartDetail = getCurrentCartDetail(con, user_id);
+			@SuppressWarnings("unchecked")
+			List<Integer> list_id_articles = (List<Integer>) cartDetail[0];
+			@SuppressWarnings("unchecked")
+			List<Integer> list_quantities = (List<Integer>) cartDetail[1];
+
+			// get all available article
+			PreparedStatement getStock = con.prepareStatement("SELECT * FROM public.articles WHERE available != 0 ");
+			ResultSet allStock = getStock.executeQuery();
+			if (allStock == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+
+				List<Article> lArt = new ArrayList<Article>();
+				Article anArticle;
+				while (allStock.next()) {
+					anArticle = getAnArticleFromRsStock(allStock, list_id_articles, list_quantities, con);
+
+					lArt.add(anArticle);
+				}
+				session.setAttribute("articleList", lArt);
+			}
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Permet d'afficher les article victime de leur succes
+	 */
+	public static void setNotAvailableList(HttpSession session) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			// get all not available article
+			PreparedStatement getStock = con.prepareStatement("SELECT * FROM public.articles WHERE available = 0 ");
+			ResultSet allStock = getStock.executeQuery();
+			if (allStock == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+
+				List<Article> lArt = new ArrayList<Article>();
+				Article anArticle;
+				while (allStock.next()) {
+					anArticle = getAnArticleFromRsStock(allStock, new ArrayList<Integer>(), new ArrayList<Integer>(),
+							con);
+
+					lArt.add(anArticle);
+				}
+				session.setAttribute("articleNotAvailableList", lArt);
+			}
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * return the deatail (list_ article_id and list_quantity) of user current cart
+	 * 
+	 * @param con
+	 * @param user_id
+	 * @return Object[] { list_id_articles, list_quantities }
+	 */
+	private static Object[] getCurrentCartDetail(Connection con, int user_id) {
+		List<Integer> list_id_articles = null;
+		List<Integer> list_quantities = null;
+
+		try {
 			PreparedStatement getCart = con
 					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
 			ResultSet theCart = getCart.executeQuery();
@@ -67,22 +135,80 @@ public class ArticleListFunctions {
 					list_quantities = new ArrayList<Integer>(Arrays.asList(tmp_list_id_quantities));
 				}
 			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		Object[] cartDetail = new Object[] { list_id_articles, list_quantities };
+		return cartDetail;
+	}
 
-			// get all available article
-			PreparedStatement getStock = con.prepareStatement("SELECT * FROM public.articles WHERE available != 0 ");
-			ResultSet allStock = getStock.executeQuery();
-			if (allStock == null) {
+	/**
+	 * Check if every quantity are inferior to the available stock Return a boolean
+	 * following if all quantity are inferior or not
+	 * 
+	 * @param session
+	 * @return
+	 */
+	public static boolean isCommandValid(HttpSession session) {
+		boolean allArticlesAreInStock = true;
+
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+
+			int user_id = user.getId();
+			// complete the part "mon panier"
+			// there should only be one cart by user whith a false status
+			PreparedStatement getCart = con
+					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
+			ResultSet theCart = getCart.executeQuery();
+			if (theCart == null) {
 				System.out.println("Erreur de connexion (cart=null)");
 			} else {
+				theCart.next();
+				List<Article> myListArt = ArticleListFunctions.getCart(theCart, con);
 
-				List<Article> lArt = new ArrayList<Article>();
-				Article anArticle;
-				while (allStock.next()) {
-					anArticle = getAnArticleFromRsStock(allStock, list_id_articles, list_quantities, con);
-
-					lArt.add(anArticle);
+				if (!myListArt.isEmpty()) {
+					int stock;
+					int quantity;
+					for (Article anArticle : myListArt) {
+						stock = anArticle.getStock();
+						quantity = anArticle.getQuantity();
+						allArticlesAreInStock = allArticlesAreInStock && (stock >= quantity);
+					}
+				} else {
+					allArticlesAreInStock = false;
 				}
-				session.setAttribute("articleList", lArt);
+			}
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return allArticlesAreInStock;
+	}
+
+	/**
+	 * remove reserved quantity from available stock for every article in the cart
+	 * 
+	 * @param session
+	 */
+	public static void decreaseStockForCart(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			int user_id = user.getId();
+			// complete the part "mon panier"
+			// there should only be one cart by user whith a false status
+			PreparedStatement getCart = con
+					.prepareStatement("SELECT * FROM public.carts WHERE id_user = " + user_id + " AND status = false");
+			ResultSet theCart = getCart.executeQuery();
+			if (theCart == null) {
+				System.out.println("Erreur de connexion (cart=null)");
+			} else {
+				theCart.next();
+				List<Article> myListArt = ArticleListFunctions.getCart(theCart, con);
+				for (Article art : myListArt) {
+					decreaseStockForArticle(art);
+				}
 			}
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -91,6 +217,38 @@ public class ArticleListFunctions {
 		}
 	}
 
+	/**
+	 * remove reserved quantity from available stock for a given article
+	 * 
+	 * @param anArticle
+	 */
+	private static void decreaseStockForArticle(Article anArticle) {
+		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
+			// statement to update available stock
+			int id_article = anArticle.getId();
+			int currentStock = anArticle.getStock();
+			int quantity = anArticle.getQuantity();
+			int newStock = currentStock - quantity;
+			PreparedStatement pst = con.prepareStatement(
+					"UPDATE public.articles SET available = " + newStock + " WHERE id = " + id_article);
+			pst.executeQuery();
+
+		} catch (SQLException e) {
+			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * When looping over a ResultSet create correcponding object Article
+	 * 
+	 * @param allStock
+	 * @param list_id_articles
+	 * @param list_quantities
+	 * @param con
+	 * @return
+	 */
 	private static Article getAnArticleFromRsStock(ResultSet allStock, List<Integer> list_id_articles,
 			List<Integer> list_quantities, Connection con) {
 		Article anArticle = new Article();
@@ -127,7 +285,6 @@ public class ArticleListFunctions {
 				store = rsStore.getString("name");
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -367,25 +524,48 @@ public class ArticleListFunctions {
 	 * 
 	 * @param session
 	 */
-	public static void updateScore(HttpSession session) {
+	public static void updateScoreAndSaving(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 
 		float tPrice = (float) session.getAttribute("total_price");
 		@SuppressWarnings("unchecked")
-		List<Article> list = (List<Article>) session.getAttribute("panierList");
-		int nombreArticle = list.size();
+		List<Article> panierList = (List<Article>) session.getAttribute("panierList");
+		int nombreArticle = panierList.size();
 		int scoreCommande = (int) Math.round(3 + Math.sqrt(tPrice) + 2 * Math.sqrt(nombreArticle));
-
+		float savings = getSavingOfList(panierList);
+		user.increaseSaving(savings);
+		savings = user.getSaving();
+		
 		user.increaseScore(scoreCommande);
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 			int newScore = user.getScore();
 			PreparedStatement editScore = con
-					.prepareStatement("UPDATE public.details SET score = " + newScore + " WHERE id_user = " + user_id);
+					.prepareStatement("UPDATE public.details SET score = " + newScore + ", saving = '"+savings+"' WHERE id_user = " + user_id);
 			editScore.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Calculate the saving made trough one command
+	 * difference between initial/real price and selling price
+	 * 
+	 * @param panierList
+	 * @return
+	 */
+	private static float getSavingOfList(List<Article> panierList) {
+		float total_saving = (float) 0;
+		int quantity_article;
+		float saving_oneArticle;
+
+		for (Article anArt : panierList) {
+			quantity_article = anArt.getQuantity();
+			saving_oneArticle =anArt.getSelling_price() - anArt.getReal_price();
+			total_saving += quantity_article * saving_oneArticle;
+		}
+		return total_saving;
 	}
 
 	/**
@@ -434,7 +614,8 @@ public class ArticleListFunctions {
 					Article anArticle;
 					String name;
 					int id_store;
-					int price;
+					float price;
+					int stock;
 					String store;
 					for (int i = 0; i < list_id_articles.length; i++) {
 						id_article = list_id_articles[i];
@@ -449,7 +630,8 @@ public class ArticleListFunctions {
 						// get data on the article
 						name = rsArticle.getString("name");
 						id_store = rsArticle.getInt("id_store");
-						price = rsArticle.getInt("selling_price");
+						price = rsArticle.getFloat("selling_price");
+						stock = rsArticle.getInt("available");
 
 						// SQL to connect to a store
 						PreparedStatement pstStore = con
@@ -464,6 +646,7 @@ public class ArticleListFunctions {
 						anArticle = new Article();
 						anArticle.setId(id_article);
 						anArticle.setName(name);
+						anArticle.setStock(stock);
 						anArticle.setMagasin(store);
 						anArticle.setQuantity(quantity_article);
 						anArticle.setSelling_price(price);

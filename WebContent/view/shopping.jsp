@@ -24,9 +24,25 @@
 	<div id="includedHeader"></div>
 	<div class="container">
 		<h2>Produits disponibles</h2>
-		<div id="includArt" class="row">
-
-		</div>
+		<div id="includArt" class="row"></div>
+	</div>
+	<div>
+		<h2>Victime de leur succes</h2>
+		<c:forEach var="artc" items="${sessionScope.articleNotAvailableList}">
+			<div class="col-md-3">
+				<div class="product-top">
+					<img class="object-fit_contain" src="${artc.img}" style="filter: grayscale(100%);">
+				</div>
+				<div class="product-bottom text-center">
+					<h5>
+						<c:out value="${artc.magasin}" />
+					</h5>
+					<h3>
+						<c:out value="${artc.name}" />
+					</h3>
+				</div>
+			</div>
+		</c:forEach>
 	</div>
 	<div id="includedFooter"></div>
 </body>

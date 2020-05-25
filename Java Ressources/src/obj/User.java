@@ -14,12 +14,25 @@ public class User {
 	String first_name;
 	String last_name;
 	int score;
+	float saving;
 	int promotion;
 	String profilPic;
 
 	String address;
 	String storeName;
 	
+
+	public float getSaving() {
+		return saving;
+	}
+
+	public void setSaving(float saving) {
+		this.saving = saving;
+	}
+	
+	public void increaseSaving(float saving) {
+		this.saving += saving;
+	}
 	
 	public String getProfilPic() {
 		return profilPic;

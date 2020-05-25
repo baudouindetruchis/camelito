@@ -8,6 +8,7 @@ import obj.User;
 
 public class ConnectionFunctions {
 	
+	
 	/**
 	 * Create the object user and set it as session attribut
 	 * @param request
@@ -23,8 +24,9 @@ public class ConnectionFunctions {
 	 * @param address
 	 * @param status
 	 * @param profilPic
+	 * @param savings
 	 */
-	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year, int score, String storeName, String address, Boolean status, String profilPic   ) {
+	public static void connect( HttpServletRequest request, int id,  String email, int type, String pseudo, String firstName, String lastName, int year, int score, String storeName, String address, Boolean status, String profilPic, float savings) {
 		HttpSession session = request.getSession(false);
 		
 		User obj = new User();
@@ -38,6 +40,7 @@ public class ConnectionFunctions {
 		obj.setScore(score);
 		obj.setStatus(status);
 		obj.setProfilPic(profilPic);
+		obj.setSaving(savings);
 
 		//add all value to the 
 		
