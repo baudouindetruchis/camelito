@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 
 <html>
@@ -18,6 +19,7 @@
 
 </head>
 <body>
+	<jsp:useBean id="date" class="java.util.Date" />
 	<!-- Site footer -->
 	<footer class="site-footer">
 		<div class="container footerContainer">
@@ -55,7 +57,7 @@
 			<div class="row">
 				<div class="col-md-8 col-sm-6 col-xs-12">
 					<p class="copyright-text">
-						Copyright &copy; 2020 All Rights Reserved by <a href="#">the Camelito Team</a>.
+						Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> All Rights Reserved by <a href="#">the Camelito Team</a>.
 					</p>
 				</div>
 
