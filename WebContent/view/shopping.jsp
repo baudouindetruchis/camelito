@@ -44,5 +44,6 @@
 			</div>
 		</c:forEach>
 	</div>
+	<div id="includedFooter"></div>
 </body>
 </html>

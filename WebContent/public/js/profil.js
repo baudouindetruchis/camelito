@@ -5,6 +5,24 @@ function includeOtherPart()  {
 	includeHeaderAndCheckUser();
 }
 
+function includeIntroMonture(profilPic) {
+	if(profilPic==='../public/images/Camel4.png'){
+		$("#introMonture").load("profil.jsp #introAugustus");
+	}
+	if(profilPic==='../public/images/Camel2.png'){
+		$("#introMonture").load("profil.jsp #introPhilibert");
+	}
+	if(profilPic==='../public/images/Camel3.png'){
+		$("#introMonture").load("profil.jsp #introMarthe");
+	}
+	if(profilPic==='../public/images/Camel5.png'){
+		$("#introMonture").load("profil.jsp #introRoseline");
+	}
+	if(profilPic==='../public/images/Camel.png'){
+		$("#introMonture").load("profil.jsp #introFerdinand");
+	}
+}
+
 
 function changePic() {
 	 var checkBox = document.getElementById("mode");
@@ -30,13 +48,13 @@ function changePic() {
 			});
 }
 
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+//function openForm() {
+//  document.getElementById("myForm").style.display = "block";
+//}
+//
+//function closeForm() {
+//  document.getElementById("myForm").style.display = "none";
+//}
 
 
 function editStore(){

@@ -95,6 +95,7 @@
             <input type="button" value="envoyer" class="talk_sub" id="talksub">
         </div>
     </div>
+    <div id="includedFooter"></div>
 
 </body>
 </html>

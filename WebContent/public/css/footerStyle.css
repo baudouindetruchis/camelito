@@ -63,6 +63,24 @@ footer {
 {
   display:inline-block
 }
+.footer-links td {
+	padding: 0.3rem !important;
+	border: none !important;
+    vertical-align: middle;
+}
+.site-footer .footer-links .contactIcon {
+	background-color: orange;
+	color: white;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 6px;
+    margin-right: 0;
+    border-radius: 100%;
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
+}
 .site-footer .social-icons
 {
   text-align:right
@@ -88,10 +106,8 @@ footer {
     margin-bottom:30px
   }
 }
-@media (max-width:767px)
-{
-  .site-footer
-  {
+@media ( max-width :767px) {
+	.site-footer {
     padding-bottom:0
   }
   .site-footer .copyright-text,.site-footer .social-icons
