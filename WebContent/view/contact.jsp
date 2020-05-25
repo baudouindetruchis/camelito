@@ -29,5 +29,5 @@
 	<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
 	Pour nous contacter
 	</div>
-	
+	<div id="includedFooter"></div>
 </body>

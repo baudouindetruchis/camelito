@@ -26,6 +26,13 @@
 	padding-left: 10px;
 }
 
+div#introMonture {
+    padding-right: 10px;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
 h1 {
 	font-size: 20px;
 	color: #b47623;
@@ -104,7 +111,7 @@ h1 {
 
 .container {
 	width: 100%;
-	margin-top: 10%;
+	margin-top: 100px;
 }
 
 label {

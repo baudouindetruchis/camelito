@@ -64,7 +64,7 @@ ResultSet resultSet = null;
 	<table class="table table-striped">
 	  <thead>
 	    <tr>
-<th scope="col" style="width: 5%"> Prénom </th>
+<th scope="col" style="width: 5%"> Prï¿½nom </th>
 <th scope="col" style="width: 10%"> Nom </th>
 <th scope="col" style="width: 5%"> Score </th>
 	    </tr>
@@ -156,5 +156,5 @@ while(resultSet.next()){
 		<img class="camel" alt="next" src="../public/images/chammeau.png">
 	</div>
 	
-	
+	<div id="includedFooter"></div>
 </body>

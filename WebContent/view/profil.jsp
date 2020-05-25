@@ -28,7 +28,7 @@
 
 </head>
 
-<body onload="includeOtherPart()">
+<body onload="includeOtherPart(); includeIntroMonture('${sessionScope.user.profilPic}')">
 
 
 	<div id="includedHeader"></div>
@@ -69,7 +69,10 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-12 text-center">
-								<label for="imgProfil" class="col-form-label">Votre personnage</label>
+								<label for="imgProfil" class="col-form-label">Votre monture</label>
+								<div id="introMonture">
+								N'hésite pas à <b>cliquer sur l'image</b> pour sélectionner la monture de tes rêves ! 
+								</div>
 							</div>
 						</div>
 					</div>
@@ -136,6 +139,9 @@
 											<label for="Promo" class="col-form-label labelMargin">Promotion </label>
 											<input type="text" class="form-control text-center"
 												id="promo" value="Pas concerné" disabled>
+											<input class="form-control text-center" type="number"
+												name="newPromo" id="newPromo" value="${usr.promotion}"
+												hidden />
 										</c:when>
 
 										<c:otherwise>
@@ -246,11 +252,13 @@
 								</div>
 								<div>
 									<div id="intro">
+										<div id="introAugustus">	
 										<b>Augustus</b> est le chameau de compagnie parfait: il
 										restera toujours à vos côtés.<br> Ses passions: <b>manger
 										et dormir</b>. Son tempérament calme et posé le rend de très bonne
 										compagnie. Attention cependant, il peut avoir une
 										réaction exagérée lorsque quelqu'un lui dérobe ses doux mets.
+										</div>
 									</div>
 								</div>
 							</div>
@@ -272,12 +280,14 @@
 								</div>
 								<div>
 									<div id="intro">
+										<div id="introPhilibert">
 										<b>Philibert</b> est le petit jeunot de notre troupe. <br>Il est
 										<b>énergique et petit blagueur</b>. Il fera tout ce qui est
 										possible afin de vous rendre heureux. Son peulage
 										doux et soyeux fait de lui la parfaite peluche pour toutes
 										siestes. Attention cependant son jeune âge et son
 										manque d'experience peuvent le rendre maladroit.
+										</div>
 									</div>
 								</div>
 						
@@ -300,12 +310,14 @@
 								</div>
 								<div>
 									<div id="intro">
+										<div id="introMarthe">
 										<b>Marthe </b>est la doyenne du groupe.<br> Ses 57 ans
 										d'expérience dans l'aide aux bipèdes lui confèrent une
 										<b>assurance indégniable</b>. C'est la chamelle à avoir si
 										vous voulez connaître le bons plans de Camelito. C'est
 										l'amie qu'il faut si vous aimez les soirées au coin de la
 										cheminée accompagnées de tisane et de jeu de cartes.
+										</div>
 									</div>
 								</div>
 							</div>
@@ -327,6 +339,7 @@
 								</div>
 								<div>
 									<div id="intro">
+										<div id="introRoseline">
 										<b>Roseline </b>est la sportive du groupe.<br> Du haut de
 										ses 20km/h en vitesse de pointe vous ne serez jamais en
 										retard. Elle fait très attention à ce qu'elle achète
@@ -334,6 +347,7 @@
 										<b>Infatiguable</b>, elle peut cependant vite devenir
 										fatigante si vous ne lui faites pas faire une balade dans la
 										journée.
+										</div>
 									</div>
 								</div>
 							</div>
@@ -343,8 +357,8 @@
 							
 							<div class="row" style="margin-bottom: 15px;">
 									<div class="col-md-5 inputGroup">
-										<input type="radio" class="checkboxAvatar" id="pica" name="pic"  value="../public/images/Camel.png" required="required">
-										<label for="pica"> Ferdinand </label>
+										<input type="radio" class="checkboxAvatar" id="pic1" name="pic"  value="../public/images/Camel.png" required="required">
+										<label for="pic1"> Ferdinand </label>
 									</div>
 									<div class="col-md-4 text-center">
 										<img class="editPic img-responsive center-block"
@@ -355,6 +369,7 @@
 								</div>
 								<div>
 									<div id="intro">
+										<div id="introFerdinand">
 										<b>Ferdinand </b> est le bon vivant du groupe. <br> Fan
 										incontesté de Dionysos plus connu sous le nom de Bacchus chez
 										nos amis les romains, 'dinand ne manque pas une
@@ -362,6 +377,7 @@
 										boisson et gateaux apéro Attention cependant à ne pas
 										oublier que les chameaux peuvent boire jusqu'à 132 litres en
 										10 minutes!
+										</div>
 									</div>
 								</div>
 							</div>

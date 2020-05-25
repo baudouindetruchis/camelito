@@ -79,5 +79,5 @@
 		</div>
 	</div>
 
-
+	<div id="includedFooter"></div>
 </body>

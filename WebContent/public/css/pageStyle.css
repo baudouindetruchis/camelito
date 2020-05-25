@@ -8,5 +8,13 @@ body{
 	background-image: linear-gradient(white,#fdf8f0,#fcf3e4, #f3daba);
 	background-attachment: fixed;
 	font-size:2vw;
+	
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.container {
+	flex: 1;
 }
 
