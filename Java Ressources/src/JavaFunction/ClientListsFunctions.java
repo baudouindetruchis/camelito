@@ -23,7 +23,7 @@ public class ClientListsFunctions {
 	public static Commande getListArticle(Connection con,ResultSet commandes) {
 		
 		int price = 0;
-		Commande commande = prepareCmd(commandes,con );
+		Commande commande = prepareCmd(commandes,con);
 		
 		try{
 			List<Article> listArticles= new ArrayList<>();

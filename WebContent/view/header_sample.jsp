@@ -60,6 +60,8 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="../MessageLoad">Messagerie</a>
 							</li>
+							<li class="nav-item"><a class="nav-link" href="../MyCmdLoadFrom">Ma commande</a>
+							</li>
 						</c:when>
 					</c:choose>
 					<li class="nav-item"><a class="nav-link"
