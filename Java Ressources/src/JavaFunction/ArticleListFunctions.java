@@ -533,13 +533,15 @@ public class ArticleListFunctions {
 		int nombreArticle = panierList.size();
 		int scoreCommande = (int) Math.round(3 + Math.sqrt(tPrice) + 2 * Math.sqrt(nombreArticle));
 		float savings = getSavingOfList(panierList);
+		user.increaseSaving(savings);
+		savings = user.getSaving();
 		
 		user.increaseScore(scoreCommande);
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 			int newScore = user.getScore();
 			PreparedStatement editScore = con
-					.prepareStatement("UPDATE public.details SET score = " + newScore + " WHERE id_user = " + user_id);
+					.prepareStatement("UPDATE public.details SET score = " + newScore + ", saving = '"+savings+"' WHERE id_user = " + user_id);
 			editScore.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -560,7 +562,7 @@ public class ArticleListFunctions {
 
 		for (Article anArt : panierList) {
 			quantity_article = anArt.getQuantity();
-			saving_oneArticle = anArt.getReal_price() - anArt.getSelling_price();
+			saving_oneArticle =anArt.getSelling_price() - anArt.getReal_price();
 			total_saving += quantity_article * saving_oneArticle;
 		}
 		return total_saving;
