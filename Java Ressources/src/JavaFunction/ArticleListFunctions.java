@@ -524,15 +524,16 @@ public class ArticleListFunctions {
 	 * 
 	 * @param session
 	 */
-	public static void updateScore(HttpSession session) {
+	public static void updateScoreAndSaving(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 
 		float tPrice = (float) session.getAttribute("total_price");
 		@SuppressWarnings("unchecked")
-		List<Article> list = (List<Article>) session.getAttribute("panierList");
-		int nombreArticle = list.size();
+		List<Article> panierList = (List<Article>) session.getAttribute("panierList");
+		int nombreArticle = panierList.size();
 		int scoreCommande = (int) Math.round(3 + Math.sqrt(tPrice) + 2 * Math.sqrt(nombreArticle));
-
+		float savings = getSavingOfList(panierList);
+		
 		user.increaseScore(scoreCommande);
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
@@ -543,6 +544,26 @@ public class ArticleListFunctions {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Calculate the saving made trough one command
+	 * difference between initial/real price and selling price
+	 * 
+	 * @param panierList
+	 * @return
+	 */
+	private static float getSavingOfList(List<Article> panierList) {
+		float total_saving = (float) 0;
+		int quantity_article;
+		float saving_oneArticle;
+
+		for (Article anArt : panierList) {
+			quantity_article = anArt.getQuantity();
+			saving_oneArticle = anArt.getReal_price() - anArt.getSelling_price();
+			total_saving += quantity_article * saving_oneArticle;
+		}
+		return total_saving;
 	}
 
 	/**
