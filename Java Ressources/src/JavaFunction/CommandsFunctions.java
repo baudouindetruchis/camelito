@@ -58,24 +58,30 @@ public class CommandsFunctions {
 						
 	
 				}else {
-					//TODO to test
-					PreparedStatement getStorepastCommand = con.prepareStatement("SELECT id_command FROM public.commands WHERE id_store = '" + id_store+"' AND status = false ORDER BY id_command" );
+					PreparedStatement getStorepastCommand = con.prepareStatement("SELECT id, id_command FROM public.commands WHERE id_store = '" + id_store+"' AND status = false ORDER BY id_command" );
 					ResultSet storePastCommand = getStorepastCommand.executeQuery();
 					int idLastCommand=0;
 					while(storePastCommand.next()) {//get the id of last command
 						idLastCommand= storePastCommand.getInt("id_command");
+						 
 					}
 					
 					List<Integer> listIdArticles = new ArrayList<Integer>();
 					listIdArticles.add(id_Article);
 					List<Integer> liste_quantities = new ArrayList<Integer>();
 					liste_quantities.add(quantity);
-						idLastCommand++;
-						
+					idLastCommand++;
 					
 					PreparedStatement creatCommand = con.prepareStatement("INSERT INTO public.commands(id_command, id_store,list_id_articles, liste_quantities) VALUES ('"+ idLastCommand+"','"+id_store+"','"+ ArticleListFunctions.listToString(listIdArticles)+"','"+ArticleListFunctions.listToString(liste_quantities) +"')" );
 					creatCommand.execute();
-					updateIdCommandList(request,idLastCommand);
+					
+					PreparedStatement getidCmd = con.prepareStatement("SELECT id FROM public.commands WHERE id_store = '" + id_store+"' AND id_command ='"+idLastCommand+"'" );
+					ResultSet idCmd = getidCmd.executeQuery();
+					idCmd.next() ;	
+					int id= idCmd.getInt("id");
+					updateIdCommandList(request,id);
+					
+					
 				}
 		
 			}
@@ -148,9 +154,7 @@ public class CommandsFunctions {
 			listCmdRS.next();
 			
 			Object array_id =   listCmdRS.getArray("liste_command").getArray();
-
 			Integer[] tabCmd=   (Integer[]) array_id;
-			
 			
 			for(int id : tabCmd ) {
 				listCmd.add(id);
