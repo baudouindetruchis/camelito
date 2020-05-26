@@ -13,10 +13,10 @@
 </script>
 
 <body>
-
 <c:forEach var="artc" items="${sessionScope.articleList}">
+
 	<div class="col-md-3">
-		<div class="product-top">
+		  <div class="product-top">
 			<img class="object-fit_contain" src="${artc.img}">
 			<div class="overlay">
 				<!-- Get the icons from "fontawesome.com/icons" -->
@@ -25,7 +25,6 @@
 						title="Add to favorite">
 						<i class="fa fa-heart"></i>
 					</button>
-					<%-- <c:out value="${artc.description}"/> <!--display description --> : A insérer plus tard --%>
 				</div>
 				
 				<table class="quantity">
@@ -34,13 +33,19 @@
 								onClick="btnActClick(${artc.id}, 'less')" title="Less">
 								<i class="fa fa-minus-circle" aria-hidden="true"></i>
 							</button></td>
-						<td><label for="" class="col-form-label"><c:out value="${artc.quantity}"/></label></td>
+						<td><label for="" class="col-form-label"><c:out value="${artc.quantity}"/> / <c:out value="${artc.stock}"/></label></td>
 						<td><button type="button" class="btn btn-secondary"
 								onClick="btnActClick(${artc.id}, 'more')" title="Add">
 								<i class="fa fa-plus-circle" aria-hidden="true"></i>
 							</button></td>
 					</tr>
 				</table>
+				<div class="desc">
+					<c:out value="${artc.description}"/>
+				</div>
+				<div class="sav">
+					Economie : <c:out value="${artc.saving}"/>
+				</div>
 			</div>
 		</div>
 		<div class="product-bottom text-center">
@@ -48,8 +53,7 @@
 				<c:out value="${artc.magasin}" />
 			</h5>
 			<h3>
-				<c:out value="${artc.name}" />
-				<c:if test="${artc.quantity}!=0"> (<c:out value="${artc.quantity}"/>)</c:if>
+				<c:out value="${artc.name}" /> (<c:out value="${artc.quantity}"/>)
 			</h3>
 			<h5 class="prix">
 				<c:out value="${artc.selling_price}" />
