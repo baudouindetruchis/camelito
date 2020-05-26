@@ -6,12 +6,17 @@ public class Article {
 	String name;
 	String description;
 	String magasin;
-	float selling_price;
-	float real_price;
+	float selling_price=0;
+	float real_price=0;
+	float saving;
 	int quantity;
 	int stock;
 	String img;
 
+
+	public float getSaving() {
+		return saving;
+	}
 
 	public String getImg() {
 		return img;
@@ -67,6 +72,7 @@ public class Article {
 
 	public void setSelling_price(float selling_price) {
 		this.selling_price = selling_price;
+		this.saving=this.real_price-this.selling_price;
 	}
 
 	public float getReal_price() {
@@ -75,6 +81,7 @@ public class Article {
 
 	public void setReal_price(float real_price) {
 		this.real_price = real_price;
+		this.saving=this.real_price-this.selling_price;
 	}
 
 	public int getQuantity() {

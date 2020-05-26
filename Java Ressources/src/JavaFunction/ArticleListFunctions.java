@@ -260,11 +260,11 @@ public class ArticleListFunctions {
 			String name = allStock.getString("name");
 			int stock = allStock.getInt("available");
 			;
-			float real_price = allStock.getInt("initial_price");
-			float selling_price = allStock.getInt("selling_price");
-
+			float real_price = allStock.getFloat("initial_price");
+			float selling_price = allStock.getFloat("selling_price");
+			
 			String pic = allStock.getString("pic");
-
+			
 			// get quantity from user current cart
 			int quantity = 0;
 			if (list_id_articles.contains(id_article)) {
