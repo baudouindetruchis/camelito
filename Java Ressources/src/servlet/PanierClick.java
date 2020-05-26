@@ -80,7 +80,7 @@ public class PanierClick extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println(msg);
 		System.out.println("set msg to :");
-		System.out.println(msg);
+		System.out.println("."+msg+".");
 		out.close();
 		return;
 	}
