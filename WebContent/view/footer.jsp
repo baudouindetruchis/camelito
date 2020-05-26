@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 
 <html>
@@ -18,8 +19,9 @@
 
 </head>
 <body>
+<jsp:useBean id="date" class="java.util.Date" />
 	<!-- Site footer -->
-	<footer class="site-footer">
+	<footer class="site-footer sticky-bottom">
 		<div class="container footerContainer">
 			<div class="row">
 				<div class="col-sm-12 col-md-6">
@@ -33,20 +35,59 @@
 					</p>
 				</div>
 
-				<div class="col-xs-6 col-md-3">
+				<div class="col-xs-6 col-md-3 text-center">
 					<h6>Catégories</h6>
-					<ul class="footer-links">
-						<li><a href="">Petit example</a></li>
+					<ul class="footer-links" style="line-height: 30px;">
+						<li><a href="profil.jsp">Profil</a></li>
+						<c:choose>
+							<c:when test="${sessionScope.status==false}">
+
+							</c:when>
+							<c:when test="${sessionScope.type=='1'||sessionScope.type=='4'}">
+								<li><a href="../ShoppingLoad">Shopping</a></li>
+								<li><a href="../PanierLoad">Panier</a></li>
+								<li><a href="score.jsp">Classement</a></li>
+								<li><a href="contact.jsp">Contact</a></li>
+							</c:when>
+							<c:when test="${sessionScope.type=='2' }">
+								<li><a href="../ClientListLoadForm">Clients</a></li>
+								<li><a href="../MagasinListLoadForm">Magasins</a></li>
+								<li><a href="../ValidationLoadForm">Utilisateurs</a></li>
+							</c:when>
+							<c:when test="${sessionScope.type=='3'}">
+								<li><a href="../StockLoad">Stock</a></li>
+								<li><a href="../MessageLoad">Messagerie</a></li>
+							</c:when>
+						</c:choose>
+						<li><a href="<%=request.getContextPath()%>/Deconnexion">Quitter</a></li>
 					</ul>
 				</div>
 
-				<div class="col-xs-6 col-md-3">
+				<div class="col-xs-6 col-md-3 text-center">
 					<h6>Nous contacter</h6>
-					<ul class="footer-links">
-						<li><a href="">À faire...</a></li>
-						<!-- <li><a href="">Contribute</a></li>
-						<li><a href="">Privacy Policy</a></li> -->
-					</ul>
+					<table class="table footer-links">
+						<tbody>
+							<tr>
+								<td style="vertical-align: middle;"><i class="fa fa-map-marker contactIcon"></i></td>
+								<td><div><a href="#"> 10 Rue de Vanves, 92130 Issy-les-Moulineaux</a></div></td>
+							</tr>
+							<tr>
+								<td style="vertical-align: middle;"><i class="fa fa-phone contactIcon"></i></td>
+								<td><div><a href="#"> 01 49 54 52 43</a></div></td>
+							</tr>
+							<tr>
+								<td style="vertical-align: middle;"><i class="fa fa-envelope-o contactIcon"></i></td>
+								<td><div><a href="#"> camelito-contact@isep.fr</a></div></td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- <ul class="footer-links">
+						<li><i class="fa fa-map-marker contactIcon"></i><a href="#"> 10 Rue de Vanves, 92130 Issy-les-Moulineaux</a></li>
+						
+						<li><br><i class="fa fa-phone contactIcon"></i><a href="#"> 01 49 54 52 43</a></li>
+						
+						<li><br><i class="fa fa-envelope-o contactIcon"></i><a href="#"> camelito-contact@isep.fr</a></li>
+					</ul> -->
 				</div>
 			</div>
 			<hr>
@@ -55,7 +96,7 @@
 			<div class="row">
 				<div class="col-md-8 col-sm-6 col-xs-12">
 					<p class="copyright-text">
-						Copyright &copy; 2020 All Rights Reserved by <a href="#">the Camelito Team</a>.
+						Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> All Rights Reserved by <a href="#">the Camelito Team</a>.
 					</p>
 				</div>
 

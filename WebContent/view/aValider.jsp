@@ -33,4 +33,5 @@
 						
 
 </body>
+<div id="includedFooter"></div>
 </html>

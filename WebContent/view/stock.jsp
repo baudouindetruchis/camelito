@@ -85,4 +85,5 @@
 		<div id="articlesDiv"></div>
 		<div id="addArticlDiv"></div>
 	</div>
+	<div id="includedFooter"></div>
 </body>
