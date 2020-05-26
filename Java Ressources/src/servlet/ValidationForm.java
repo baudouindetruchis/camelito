@@ -58,7 +58,6 @@ public class ValidationForm extends HttpServlet {
 			if(changeType.equals("true")) {
 				PreparedStatement modifyType = con
 						.prepareStatement("Update public.users set type= 1 WHERE id = '"+id_user+"'");
-				
 				modifyType.execute();
 			}
 			
@@ -67,14 +66,18 @@ public class ValidationForm extends HttpServlet {
 					.prepareStatement("Update public.users set status='"+valider+"' WHERE id = '"+id_user+"'");
 			
 			modifyProfil.execute();
-			
 			listUsers = (ArrayList<User>) session.getAttribute("listUsers");
 			listValideUsers= (ArrayList<User>) session.getAttribute("listValideUsers");
+			
 			if(valider) {
 				for(User user : listUsers) {
 					if(user.getId()==id_user) {
 						listUsers.remove(user);
+						if(changeType.equals("true")) {
+							user.setType(1);
+						}
 						listValideUsers.add(user);
+						
 						break;
 					}
 					session.setAttribute("surLesValides", "false");
