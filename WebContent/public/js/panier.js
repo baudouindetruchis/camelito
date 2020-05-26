@@ -14,12 +14,8 @@ function onload(){
     		    act: act
     		  },
     		  success: function(response) {
-    		    $("#cartDiv").load("panierTable.jsp");
-    		    console.log("."+response+".");
-    		    console.log("."+response===""+".");
-    		    console.log(".bob.");
-    		    
-    		    if(!response===""){
+    		    $("#cartDiv").load("panierTable.jsp"); 		    
+    		    if(!(response.trim()==="")){
     		    	var elemTxt = document.getElementById("txtResponse");
         		    elemTxt.innerHTML = response;
         			$("#modalMsg").modal();
