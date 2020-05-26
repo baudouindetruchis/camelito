@@ -149,10 +149,11 @@ public class ArticleListFunctions {
 	 * @param session
 	 * @return
 	 */
-	public static boolean isCommandValid(HttpSession session) {
+	public static Object[] isCommandValid(HttpSession session) {
 		boolean allArticlesAreInStock = true;
-
+		String msg="";
 		User user = (User) session.getAttribute("user");
+		float totalPrice = 0;
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 
 			int user_id = user.getId();
@@ -166,17 +167,22 @@ public class ArticleListFunctions {
 			} else {
 				theCart.next();
 				List<Article> myListArt = ArticleListFunctions.getCart(theCart, con);
-
+				totalPrice = getPriceOfList(myListArt);
+				
 				if (!myListArt.isEmpty()) {
 					int stock;
 					int quantity;
 					for (Article anArticle : myListArt) {
 						stock = anArticle.getStock();
 						quantity = anArticle.getQuantity();
-						allArticlesAreInStock = allArticlesAreInStock && (stock >= quantity);
+						if(!(stock >= quantity)) {
+							allArticlesAreInStock=false;
+							msg+=quantity+" "+anArticle.getName()+" selectionné pour un stock disponible de "+stock+" <br>";
+						}
 					}
 				} else {
 					allArticlesAreInStock = false;
+					msg="Votre commande est vide<br>";
 				}
 			}
 		} catch (SQLException e) {
@@ -184,7 +190,11 @@ public class ArticleListFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return allArticlesAreInStock;
+		if(msg.equals("")) {
+			msg="Prix total de la commande : "+totalPrice+"€ <br>";
+		}
+		Object[] res = new Object[] {allArticlesAreInStock, msg};
+		return res;
 	}
 
 	/**
@@ -389,9 +399,8 @@ public class ArticleListFunctions {
 					} else if (newVal == -1) {
 						list_quantities.remove(idToChangeLocation);
 						list_id_articles.remove(idToChangeLocation);
-						msg = "impossible d'avoir des quatité negative";
+						msg = "Il est impossible de sélectionner une quatité negative";
 					} else {
-						msg = "le stock disponible est malhersment limite";
 						// SQL to connect to the article
 						PreparedStatement pstArticle = con
 								.prepareStatement("SELECT * FROM public.articles WHERE id = " + id_article);
@@ -401,7 +410,8 @@ public class ArticleListFunctions {
 						int theStock = rsArticle.getInt("available");
 						// si quantité supp au stock alors impossible on retourne en arrière
 						if (theStock < newVal) {
-							list_quantities.set(idToChangeLocation, pastVal);
+							msg = "La quantité demandée n'est malheuresment pas en stock (diponible "+theStock+")";
+							list_quantities.set(idToChangeLocation, theStock);
 						}
 					}
 
@@ -524,7 +534,7 @@ public class ArticleListFunctions {
 	 * 
 	 * @param session
 	 */
-	public static void updateScoreAndSaving(HttpSession session) {
+	public static String updateScoreAndSaving(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 
 		float tPrice = (float) session.getAttribute("total_price");
@@ -534,18 +544,21 @@ public class ArticleListFunctions {
 		int scoreCommande = (int) Math.round(3 + Math.sqrt(tPrice) + 2 * Math.sqrt(nombreArticle));
 		float savings = getSavingOfList(panierList);
 		user.increaseSaving(savings);
-		savings = user.getSaving();
+		float new_savings = user.getSaving();
 		
 		user.increaseScore(scoreCommande);
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 			int newScore = user.getScore();
 			PreparedStatement editScore = con
-					.prepareStatement("UPDATE public.details SET score = " + newScore + ", saving = '"+savings+"' WHERE id_user = " + user_id);
+					.prepareStatement("UPDATE public.details SET score = " + newScore + ", saving = '"+new_savings+"' WHERE id_user = " + user_id);
 			editScore.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		String msg = "Votre score augment de "+scoreCommande+" points<br>";
+		msg+="Vous avez economisé "+savings+"€ grace a Camelito";
+		return msg;
 	}
 
 	/**

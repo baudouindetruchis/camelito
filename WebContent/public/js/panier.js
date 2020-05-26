@@ -14,7 +14,10 @@ function onload(){
     		    act: act
     		  },
     		  success: function(response) {
-    		    	$("#cartDiv").load("panierTable.jsp");
+    		    $("#cartDiv").load("panierTable.jsp");
+    		    var elemTxt = document.getElementById("txtResponse");
+    		    elemTxt.innerHtml = response;
+    			console.log(response);
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error
@@ -46,6 +49,9 @@ function onload(){
     		  success: function(response) {
     		    	$("#cartDiv").load("panierTable.jsp"); 
     		    	$("#ordersDiv").load("panierComm.jsp");
+    		    var elemTxt = document.getElementById("txtResponse");
+    		    elemTxt.innerHTML = response;
+    			 console.log(response);
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error

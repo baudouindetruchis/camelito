@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,32 +49,40 @@ public class PanierClick extends HttpServlet {
 			session.removeAttribute("total_price");
 			break;
 		case "pay":
-			boolean isValid = ArticleListFunctions.isCommandValid(session);
+			Object[] res = ArticleListFunctions.isCommandValid(session);
+			boolean isValid = (boolean) res[0];
+			msg+=(String) res[1];
 			if (isValid) {
+				msg+=ArticleListFunctions.updateScoreAndSaving(session);
+				msg += "<br><br>Vous allez automatiquement être redirigé vers une plateforme de paiement, veuillez patienter...";
 				ArticleListFunctions.decreaseStockForCart(session);
 				ArticleListFunctions.actionPay(request);
-				ArticleListFunctions.updateScoreAndSaving(session);
 				ArticleListFunctions.setCommandList(session);
 				CommandsFunctions.reloadCommands(request, response, session);
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
 			} else {
-				System.out.println("command non valide");//TODO
+				msg += "Votre commande n'a malheuresement pas pu aboutir";
 			}
 			break;
 		case "less":
 		case "more":
 		case "supp":
 			msg = ArticleListFunctions.modifQuantity(request);
-			System.out.println(msg);
 			ArticleListFunctions.loadCart(session);
-			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+//			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			break;
 
 		default:
-			System.out.println("unkonwn action in doGet panier click");
+			msg = "404 : action inconnue in doGet panier click";
 			break;
 		}
+		PrintWriter out = response.getWriter();
+		out.println(msg);
+		System.out.println("set msg to :");
+		System.out.println(msg);
+		out.close();
+		return;
 	}
 
 	/**

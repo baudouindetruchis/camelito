@@ -70,9 +70,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content noborder">
 					<div class="modal-header text-center headpopupPayer">
-						<h4 class="messageAnnulerPayer">Vous allez automatiquement
-							être redirigé vers une plateforme de paiement, veuillez
-							patienter...</h4>
+						<h4 id="txtResponse" class="messageAnnulerPayer"></h4>
 					</div>
 				</div>
 			</div>
