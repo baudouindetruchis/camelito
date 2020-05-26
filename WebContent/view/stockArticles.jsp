@@ -64,8 +64,8 @@
 					<!-- Contenu du popup -->
 					<div class="modal-body mx-3">
 						<div class="md-form mb-5 popupConfirm">
-							<button class="btn btn-default btn-rounded mb-4 btnNon">Non</button>
-							<button class="btn btn-default btn-rounded mb-4 btnOui" onclick="emptyStock()">Oui</button>
+							<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-rounded mb-4 btnNon">Non</button>
+							<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-rounded mb-4 btnOui" onclick="emptyStock()">Oui</button>
 						</div>
 					</div>
 				</div>

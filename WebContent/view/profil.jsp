@@ -203,9 +203,9 @@
 					<div id="includeReussite" class="col-md-12"></div>
 				</c:when>
 
-				<c:when test="${sessionScope.type=='2' }">
+				<%-- <c:when test="${sessionScope.type=='2' }">
 					<div id="includeReussite" class="col-md-12" hidden></div>
-				</c:when>
+				</c:when> --%>
 				<c:when test="${sessionScope.type=='4' }">
 					<div id="includeReussite" class="col-md-12"></div>
 				</c:when>

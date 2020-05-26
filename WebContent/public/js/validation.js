@@ -41,4 +41,16 @@ function unvalidate(){
 	
 }
 
+function typeMembre(type){
+	if(type=='1'){
+		document.write("Client");
+	}
+	if(type=='2'){
+		document.write("Association");
+	}
+	if(type=='3'){
+		document.write("Commerçant");
+	}
+}
+
 
