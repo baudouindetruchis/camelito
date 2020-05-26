@@ -33,7 +33,7 @@
 								onClick="btnActClick(${artc.id}, 'less')" title="Less">
 								<i class="fa fa-minus-circle" aria-hidden="true"></i>
 							</button></td>
-						<td><label for="" class="col-form-label"><c:out value="${artc.quantity}"/></label></td>
+						<td><label for="" class="col-form-label"><c:out value="${artc.quantity}"/> / <c:out value="${artc.stock}"/></label></td>
 						<td><button type="button" class="btn btn-secondary"
 								onClick="btnActClick(${artc.id}, 'more')" title="Add">
 								<i class="fa fa-plus-circle" aria-hidden="true"></i>
