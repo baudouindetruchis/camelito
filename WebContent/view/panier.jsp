@@ -23,7 +23,7 @@
 
 <body onload="onload()">
 	<input id="checkSession" type="text" name="checkSession"
-		value="${sessionScope.type}" hidden>
+		value="${sessionScope.type}" hidden=true>
 	<div id="includedHeader"></div>
 
 	<div class="container">
