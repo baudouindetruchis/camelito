@@ -31,8 +31,7 @@
 		<div id="cartDiv"></div>
 		<div id="fin">
 			<button class="btn btn-default btn-rounded mb-4 btnFinAnnuler"
-				data-toggle="modal" data-target="#modalConfirmAnnuler"
-				onClick="btnActClick('ann')">Annuler</button>
+				data-toggle="modal" data-target="#modalConfirmAnnuler">Annuler</button>
 			<button class="btn btn-default btn-rounded mb-4 btnFinPayer"
 				data-toggle="modal" data-target="#modalConfirmPayer"
 				onClick="btnActClick('pay')">Payer</button>
@@ -58,8 +57,8 @@
 					<!-- Contenu du popup -->
 					<div class="modal-body mx-3">
 						<div class="md-form mb-5 popupConfirm">
-							<button class="btn btn-default btn-rounded mb-4 btnNon">Non</button>
-							<button class="btn btn-default btn-rounded mb-4 btnOui">Oui</button>
+							<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-rounded mb-4 btnNon">Non</button>
+							<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-rounded mb-4 btnOui" onClick="btnActClick('ann')">Oui</button>
 						</div>
 					</div>
 				</div>
