@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Commande {
-	int price;
+	float price;
 	int id;
 	String idAndName;
 	String user_name;
@@ -41,10 +41,10 @@ public class Commande {
 	public String getUser_name() {
 		return user_name;
 	}
-	public int getprice() {
+	public float getprice() {
 		return price;
 	}
-	public void setprice(int price) {
+	public void setprice(float price) {
 		this.price = price;
 	}
 	public void setUser_name(String user_name) {

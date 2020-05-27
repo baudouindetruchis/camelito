@@ -222,7 +222,7 @@ public class CommandsFunctions {
 	
 						ResultSet articleInfo = getArticle.executeQuery();
 						if(articleInfo.next()){
-							int price = articleInfo.getInt("selling_price");
+							float price = articleInfo.getFloat("selling_price");
 							String name = articleInfo.getString("name");
 							newArticle.setName(name);
 							newArticle.setSelling_price(price);
@@ -247,7 +247,7 @@ public class CommandsFunctions {
 		Commande commande = new Commande();
 		
 		try {
-			int cmdPrice =0;
+			float cmdPrice =0;
 			int id_store = commands.getInt("id_store");
 			int id_command = commands.getInt("id_command");
 			Boolean status = commands.getBoolean("status");
@@ -275,7 +275,7 @@ public class CommandsFunctions {
 				newArticle =getArticle(con,commands, id_Article, quantity);
 
 				
-				cmdPrice=(int) (cmdPrice+(newArticle.getSelling_price()*quantity));
+				cmdPrice=(float) (cmdPrice+(newArticle.getSelling_price()*quantity));
 				listArticles.add(newArticle);
 				}
 				
