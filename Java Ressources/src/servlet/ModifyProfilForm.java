@@ -39,6 +39,7 @@ public class ModifyProfilForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String error="";
 		String email = request.getParameter("newEmail");	
 		String pseudo = request.getParameter("newPseudo");
 		String promotion =request.getParameter("newPromo");
@@ -65,14 +66,21 @@ public class ModifyProfilForm extends HttpServlet {
 							User obj = (User) session.getAttribute("user");
 							editPseudo.execute();
 							obj.setPseudo(pseudo);
+						}else {
+							error="Erreur sur le pseudo";
 						}
 					}
 
-					if(ModifyProfilFunctions.verifyEmail( email)) {
-						editMail.execute();	
-						User obj = (User) session.getAttribute("user");
-						obj.setMail(email);
+					if(email!=null && email!="") {
+						if(ModifyProfilFunctions.verifyEmail( email)) {
+							editMail.execute();	
+							User obj = (User) session.getAttribute("user");
+							obj.setMail(email);
+						}else {
+							error= error + " Erreur sur le mail";
+						}
 					}
+					
 					
 					if((int) session.getAttribute("type")==1 || (int) session.getAttribute("type")==4 || (int) session.getAttribute("type")==2) {
 						if(!promotion.isEmpty()&& !(promotion== null)) {
@@ -85,6 +93,8 @@ public class ModifyProfilForm extends HttpServlet {
 									editPromo.execute();
 									obj.setPromotion(promotionInt);	
 									session.setAttribute("promo", promotionInt);
+								}else {
+									error= error + " Erreur sur la promotion";
 								}
 								
 							}catch(Exception e) {
@@ -92,8 +102,7 @@ public class ModifyProfilForm extends HttpServlet {
 							}
 						}
 					}
-									
-				
+
 					
 					String pwd = request.getParameter("oldPassword");
 					String newPwd = request.getParameter("newPassword");
@@ -114,6 +123,8 @@ public class ModifyProfilForm extends HttpServlet {
 			        		newPwd = BCrypt.hashPassword(newPwd);
 			        		PreparedStatement editPsw= con.prepareStatement("UPDATE public.users SET password=  '"+ newPwd +"' WHERE id = '"+id+"'" );
 			        		editPsw.execute();	
+			        	}else {
+			        		error= error + " Erreur sur les mots de passe";
 			        	}
 					}
 					
@@ -123,7 +134,7 @@ public class ModifyProfilForm extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+				session.setAttribute("ModifyError", error);
 				response.sendRedirect(page);
 
 	}

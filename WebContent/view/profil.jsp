@@ -28,7 +28,7 @@
 
 </head>
 
-<body onload="includeOtherPart(); includeIntroMonture('${sessionScope.user.profilPic}')">
+<body onload="includeOtherPart(); includeIntroMonture('${sessionScope.user.profilPic}'); modifyError('${sessionScope.ModifyError}')">
 
 
 	<div id="includedHeader"></div>

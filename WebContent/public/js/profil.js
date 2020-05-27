@@ -3,7 +3,19 @@ function includeOtherPart()  {
 	$("#includeStore").load("monMagasin.jsp");
 
 	includeHeaderAndCheckUser();
+	
 }
+
+
+function modifyError(error) {
+	if(error===''){
+		
+	}else{
+		alert(error);
+	}
+ 
+}
+
 
 function includeIntroMonture(profilPic) {
 	if(profilPic==='../public/images/Camel4.png'){
