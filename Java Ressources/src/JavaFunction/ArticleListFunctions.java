@@ -151,7 +151,7 @@ public class ArticleListFunctions {
 	 */
 	public static Object[] isCommandValid(HttpSession session) {
 		boolean allArticlesAreInStock = true;
-		String msg="";
+		String msg = "";
 		User user = (User) session.getAttribute("user");
 		float totalPrice = 0;
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
@@ -168,21 +168,22 @@ public class ArticleListFunctions {
 				theCart.next();
 				List<Article> myListArt = ArticleListFunctions.getCart(theCart, con);
 				totalPrice = getPriceOfList(myListArt);
-				
+
 				if (!myListArt.isEmpty()) {
 					int stock;
 					int quantity;
 					for (Article anArticle : myListArt) {
 						stock = anArticle.getStock();
 						quantity = anArticle.getQuantity();
-						if(!(stock >= quantity)) {
-							allArticlesAreInStock=false;
-							msg+=quantity+" "+anArticle.getName()+" selectionné pour un stock disponible de "+stock+" <br>";
+						if (!(stock >= quantity)) {
+							allArticlesAreInStock = false;
+							msg += quantity + " " + anArticle.getName() + " selectionné pour un stock disponible de "
+									+ stock + " <br>";
 						}
 					}
 				} else {
 					allArticlesAreInStock = false;
-					msg="Votre commande est vide<br>";
+					msg = "Votre commande est vide<br>";
 				}
 			}
 		} catch (SQLException e) {
@@ -190,10 +191,10 @@ public class ArticleListFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(msg.equals("")) {
-			msg="Prix total de la commande : "+totalPrice+"€ <br>";
+		if (msg.equals("")) {
+			msg = "Prix total de la commande : " + totalPrice + "€ <br>";
 		}
-		Object[] res = new Object[] {allArticlesAreInStock, msg};
+		Object[] res = new Object[] { allArticlesAreInStock, msg };
 		return res;
 	}
 
@@ -272,9 +273,9 @@ public class ArticleListFunctions {
 			;
 			float real_price = allStock.getFloat("initial_price");
 			float selling_price = allStock.getFloat("selling_price");
-			
+
 			String pic = allStock.getString("pic");
-			
+
 			// get quantity from user current cart
 			int quantity = 0;
 			if (list_id_articles.contains(id_article)) {
@@ -410,7 +411,7 @@ public class ArticleListFunctions {
 						int theStock = rsArticle.getInt("available");
 						// si quantité supp au stock alors impossible on retourne en arrière
 						if (theStock < newVal) {
-							msg = "La quantité demandée n'est malheuresment pas en stock (diponible "+theStock+")";
+							msg = "La quantité demandée n'est malheuresment pas en stock (diponible " + theStock + ")";
 							list_quantities.set(idToChangeLocation, theStock);
 						}
 					}
@@ -545,25 +546,25 @@ public class ArticleListFunctions {
 		float savings = getSavingOfList(panierList);
 		user.increaseSaving(savings);
 		float new_savings = user.getSaving();
-		
+
 		user.increaseScore(scoreCommande);
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 			int newScore = user.getScore();
-			PreparedStatement editScore = con
-					.prepareStatement("UPDATE public.details SET score = " + newScore + ", saving = '"+new_savings+"' WHERE id_user = " + user_id);
+			PreparedStatement editScore = con.prepareStatement("UPDATE public.details SET score = " + newScore
+					+ ", saving = '" + new_savings + "' WHERE id_user = " + user_id);
 			editScore.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		String msg = "Votre score augment de "+scoreCommande+" points<br>";
-		msg+="Vous avez economisé "+savings+"€ grace a Camelito";
+		String msg = "Votre score augment de " + scoreCommande + " points<br>";
+		msg += "Vous avez economisé " + savings + "€ grace a Camelito";
 		return msg;
 	}
 
 	/**
-	 * Calculate the saving made trough one command
-	 * difference between initial/real price and selling price
+	 * Calculate the saving made trough one command difference between initial/real
+	 * price and selling price
 	 * 
 	 * @param panierList
 	 * @return
@@ -575,7 +576,7 @@ public class ArticleListFunctions {
 
 		for (Article anArt : panierList) {
 			quantity_article = anArt.getQuantity();
-			saving_oneArticle =anArt.getSelling_price() - anArt.getReal_price();
+			saving_oneArticle = anArt.getSelling_price() - anArt.getReal_price();
 			total_saving += quantity_article * saving_oneArticle;
 		}
 		return total_saving;
