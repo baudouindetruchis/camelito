@@ -21,6 +21,15 @@ public static boolean verifyEmail(String email) {
 		if (email == null) return false; 
 		else return pat.matcher(email).matches();	
 	}
+
+public static boolean verifyPsw(String password) {
+	System.out.println(password);
+	String pswRegex ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$"; 
+              
+	Pattern pat = Pattern.compile(pswRegex); 
+	if (password == null) return false; 
+	else return pat.matcher(password).matches();	
+}
 	/**
 	 * Check if the promotion entered is corresponding to someone currently in the school
 	 * @param promo
