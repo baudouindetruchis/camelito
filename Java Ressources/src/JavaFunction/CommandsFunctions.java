@@ -168,7 +168,7 @@ public class CommandsFunctions {
 		
 	}
 	/**
-	 * When a article is added to one cart the list of id of command per store has to been updated
+	 * When a article is added to one cart the list of id of command per store in the cart has to be updated
 	 * @param request
 	 * @param idCommand
 	 */
