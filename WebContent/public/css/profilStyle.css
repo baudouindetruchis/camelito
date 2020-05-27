@@ -48,6 +48,7 @@ h1 {
 	text-align: center;
 	margin-left: 15%;
     margin-right: 15%;
+    min-width: 200px;
 }
 
 /* The popup form - hidden by default */
