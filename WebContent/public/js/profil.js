@@ -12,6 +12,21 @@ function modifyError(error) {
 		
 	}else{
 		alert(error);
+		$.ajax({
+			  url: "../ModifyProfilForm",
+			  type: "get", //send it through get method
+			  data: {  
+				  error:error
+			  },
+			  success: function(response) {
+				 
+			  },
+			  error: function(xhr) {
+			    //Do Something to handle error
+			  }
+			});
+		
+		
 	}
  
 }
@@ -103,7 +118,6 @@ function goToEdit() {
 
 }
  
-
  function saveChange() {
 	var value = document.getElementById("promo");
 	 
