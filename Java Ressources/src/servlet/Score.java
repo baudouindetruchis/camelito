@@ -5,19 +5,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 /**
- * Servlet implementation class modifyProfilForm
+ * Servlet implementation class servlet
  */
 @WebServlet("/Score")
 public class Score extends HttpServlet {
@@ -29,88 +26,64 @@ public class Score extends HttpServlet {
      */
     public Score() {
         super();
+        //this.nom = "nom par defaut";
+        
+        System.out.println("la servlet a bien était appelé");
+        String driverName = "org.postgresql.Driver";
+        String connectionUrl = "jdbc:postgresql://127.0.0.1:5432/";
+        String dbName = "camelitoLocal";
+        String userId = "postgres";
+        String password = "123";
+
+        try {
+        Class.forName(driverName);
+        } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+        }
+
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        
+        
+        try{ 
+        	connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+        	statement=connection.createStatement();
+        	String sql ="SELECT * FROM details WHERE score IS NOT NULL ORDER BY score";
+
+        	resultSet = statement.executeQuery(sql);
+        	while(resultSet.next()) {
+        		resultSet.getString("last_name");
+        		resultSet.getString("first_name");
+        		resultSet.getString("score");
+        	}
+
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+        
+        System.out.println("toute la servlet à était lue");
         // TODO Auto-generated constructor stub
     }
+    
+  
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
-				//time to connect to bdd
-				String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
-				String user = "postgres";
-				String psw = "123";
-				String page = "./view/score.jsp";
-				
-				try  {
-					Connection con = DriverManager.getConnection(url, user, psw);
-					//int id = (int) session.getAttribute("id");
-					
-					Statement st;
-					ResultSet rst;
-					
-					st = con.createStatement();
-					rst=st.executeQuery("SELECT * FROM score");
-					
-					while(rst.next()) {
-						System.out.print(rst.getInt("id")+"\t");
-						System.out.print(rst.getInt("point")+"\t");
-						System.out.println();
-					}
-					
-					
-		            Context initContext = new InitialContext();
-		            Statement statement = con.createStatement();
-		              
-		            //Récupération des stations dans la bd
-		            ResultSet resultat =statement.executeQuery("SELECT * FROM score");
-		              
-		            Map<String, String> stations = new HashMap<String, String>();
-		            String id = "";
-		            String point= "";
-		              
-		              
-		            while (resultat.next()) {
-		                 id=resultat.getString("id");
-		                 point=resultat.getString("point");
-		                 stations.put(id, point);
-		                               
-		                }
-		              
-		            /* Stockage du résultat et des messages d'erreur dans l'objet request */
-		            request.setAttribute( "stations", stations );
-		  
-		            resultat.close();
-		            statement.close();
-		            con.close();                             
-		            statement = null;
-		            resultat = null;					
-					
-	
-		
-					}catch(Exception e) {
-						e.printStackTrace();
-					}
-				
-				this.getServletContext().getRequestDispatcher( "/WebContent/score.jsp" ).forward( request, response );
-				
-				
+        HttpSession session = request.getSession();
+		String page = "./view/score.jsp";// TODO
+		response.sendRedirect(page);
 				}
-									
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/accueil.jsp" ).forward( request, response );
-		//doGet(request, response);
+		doGet(request, response);
 	}
-	
-
 	
 	}

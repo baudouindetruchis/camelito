@@ -53,12 +53,14 @@ public class PanierClick extends HttpServlet {
 			boolean isValid = (boolean) res[0];
 			msg+=(String) res[1];
 			if (isValid) {
-				msg+=ArticleListFunctions.updateScoreAndSaving(session);
-				msg += "<br><br>Vous allez automatiquement être redirigé vers une plateforme de paiement, veuillez patienter...";
-				ArticleListFunctions.decreaseStockForCart(session);
-				ArticleListFunctions.actionPay(request);
+				// Careful setCommandList and reloadCommands must be run before the others
 				ArticleListFunctions.setCommandList(session);
 				CommandsFunctions.reloadCommands(request, response, session);
+				ArticleListFunctions.decreaseStockForCart(session);
+				ArticleListFunctions.actionPay(request);
+				msg+=ArticleListFunctions.updateScoreAndSaving(session);
+				msg += "<br><br>Vous allez automatiquement ï¿½tre redirigï¿½ vers une plateforme de paiement, veuillez patienter...";
+				
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
 			} else {

@@ -47,7 +47,6 @@
 								<li><a href="../ShoppingLoad">Shopping</a></li>
 								<li><a href="../PanierLoad">Panier</a></li>
 								<li><a href="score.jsp">Classement</a></li>
-								<li><a href="contact.jsp">Contact</a></li>
 							</c:when>
 							<c:when test="${sessionScope.type=='2' }">
 								<li><a href="../ClientListLoadForm">Clients</a></li>
@@ -57,6 +56,7 @@
 							<c:when test="${sessionScope.type=='3'}">
 								<li><a href="../StockLoad">Stock</a></li>
 								<li><a href="../MessageLoad">Messagerie</a></li>
+								<li><a href="../MyCmdLoadFrom">Ma commande</a></li>
 							</c:when>
 						</c:choose>
 						<li><a href="<%=request.getContextPath()%>/Deconnexion">Quitter</a></li>

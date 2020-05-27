@@ -168,7 +168,7 @@ public class CommandsFunctions {
 		
 	}
 	/**
-	 * When a article is added to one cart the list of id of command per store has to been updated
+	 * When a article is added to one cart the list of id of command per store in the cart has to be updated
 	 * @param request
 	 * @param idCommand
 	 */
@@ -218,7 +218,7 @@ public class CommandsFunctions {
 						newArticle.setQuantity(quantity);
 						newArticle.setId(id_Article);
 						PreparedStatement getArticle;
-						getArticle = con.prepareStatement("SELECT name, selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
+						getArticle = con.prepareStatement("SELECT name, pic, selling_price FROM public.articles WHERE id = '" + id_Article+"'" );
 	
 						ResultSet articleInfo = getArticle.executeQuery();
 						if(articleInfo.next()){
@@ -226,6 +226,7 @@ public class CommandsFunctions {
 							String name = articleInfo.getString("name");
 							newArticle.setName(name);
 							newArticle.setSelling_price(price);
+							newArticle.setImg(articleInfo.getString("pic"));
 						}
 					
 			} catch (SQLException e) {

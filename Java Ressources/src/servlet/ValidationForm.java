@@ -88,6 +88,9 @@ public class ValidationForm extends HttpServlet {
 				for(User user : listValideUsers) {
 					if(user.getId()==id_user) {
 						listValideUsers.remove(user);
+						if(changeType.equals("true")) {
+							user.setType(1);
+						}
 						listUsers.add(user);
 						break;
 					}
