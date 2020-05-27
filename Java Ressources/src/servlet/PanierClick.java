@@ -50,11 +50,12 @@ public class PanierClick extends HttpServlet {
 		case "pay":
 			boolean isValid = ArticleListFunctions.isCommandValid(session);
 			if (isValid) {
+				ArticleListFunctions.setCommandList(session);
+				CommandsFunctions.reloadCommands(request, response, session);
 				ArticleListFunctions.decreaseStockForCart(session);
 				ArticleListFunctions.actionPay(request);
 				ArticleListFunctions.updateScoreAndSaving(session);
-				ArticleListFunctions.setCommandList(session);
-				CommandsFunctions.reloadCommands(request, response, session);
+				
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
 			} else {
