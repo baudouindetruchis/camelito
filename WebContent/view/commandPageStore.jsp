@@ -28,29 +28,31 @@
 </head>
 
 <body onload="includeHeaderAndCheckUser()">
-<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
+	<input id="checkSession" type="text" name="checkSession"
+		value="${sessionScope.type}" hidden>
 	<div id="includedHeader"></div>
-<div>
+	<div class="container">
 
-</div>
-	
-<c:forEach var="article" items="${sessionScope.CommandePourStore}">
 
-Ma commande : 
-<c:out value="prix total : ${sessionScope.TotalPrice}" />€
-<br>
-      <c:out value="- ${article.quantity} x  " /><c:out value="${article.name}" />
-			
+
+		<c:forEach var="article" items="${sessionScope.CommandePourStore}">
+
+			<label>Ma commande :</label>
+			<c:out value="prix total : ${sessionScope.TotalPrice}" />€
+			<c:out value="- ${article.quantity} x  " />
+			<c:out value="${article.name}" />
+
 			<div>
-			<c:out value="	-->${article.selling_price}" />
+				<c:out value="	-->${article.selling_price}" />
 				€ la pièce
-				</div>
-				
-      
-</c:forEach>
-	
+			</div>
 
-<div id="includedFooter"></div>
+
+		</c:forEach>
+
+	</div>
+
+	<div id="includedFooter"></div>
 
 </body>
 

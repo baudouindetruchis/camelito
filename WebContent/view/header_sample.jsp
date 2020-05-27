@@ -44,8 +44,8 @@
 								href="../PanierLoad">Panier</a></li>
 							<li class="nav-item"><a class="nav-link" href="score.jsp">Classement</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
-							</li>
+							<!-- <li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
+							</li> -->
 						</c:when>
 						<c:when test="${sessionScope.type=='2' }">
 							<li class="nav-item"><a class="nav-link" href="../ClientListLoadForm">Clients</a>
