@@ -1,0 +1,88 @@
+.container {
+	width: 100%;
+	margin-top: 100px;
+}
+
+.container h2 {
+	background: #764e17;
+	color: #fff;
+	font-size: 24px;
+	padding: 8px;
+	height: 40px;
+	text-align: center;
+	margin-left: 15%;
+    margin-right: 15%;
+    min-width: 200px;
+}
+
+.container h4 {
+	background: #764e17;
+	color: #fff;
+	padding: 8px;
+	height: 40px;
+	text-align: center;
+	margin-left: 15%;
+    margin-right: 15%;
+    min-width: 200px;
+}
+
+.cardLike {
+    float: none;
+    margin: auto;
+    height: 150px;
+}
+
+.cardContent {
+    margin-top: 10%;
+    font-size: 20px;
+}
+
+.article img {
+	width: 197.5px;
+    height: 150px;
+}
+
+.articleList {
+	padding-bottom: 1px;
+    margin-bottom: 20px;
+}
+
+.articleTitre {
+	background-color: bisque;
+}
+
+.article {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    background-color: antiquewhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    border: 1px solid moccasin;
+}
+
+.col-md-4.totalPrice {
+    margin-bottom: 50px !important;
+    padding: 20px;
+    margin: auto;
+    float: none;
+}
+
+.col-md-4.totalPrice h3 {
+    background-color: peru;
+	color: #fff;
+	font-size: 24px;
+	padding: 5px;
+	height: 40px;
+	text-align: center;
+    min-width: 200px;
+    border: 2px solid white;
+}
+
+
+@media screen and (max-width:767px) {
+	.container h4 {
+	margin-top: 10px;
+	}
+}
