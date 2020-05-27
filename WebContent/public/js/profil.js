@@ -3,7 +3,34 @@ function includeOtherPart()  {
 	$("#includeStore").load("monMagasin.jsp");
 
 	includeHeaderAndCheckUser();
+	
 }
+
+
+function modifyError(error) {
+	if(error===''){
+		
+	}else{
+		alert(error);
+		$.ajax({
+			  url: "../ModifyProfilForm",
+			  type: "get", //send it through get method
+			  data: {  
+				  error:error
+			  },
+			  success: function(response) {
+				 
+			  },
+			  error: function(xhr) {
+			    //Do Something to handle error
+			  }
+			});
+		
+		
+	}
+ 
+}
+
 
 function includeIntroMonture(profilPic) {
 	if(profilPic==='../public/images/Camel4.png'){
@@ -91,7 +118,6 @@ function goToEdit() {
 
 }
  
-
  function saveChange() {
 	var value = document.getElementById("promo");
 	 

@@ -22,7 +22,7 @@ public class ClientListsFunctions {
 	 */
 	public static Commande getListArticle(Connection con,ResultSet commandes) {
 		
-		int price = 0;
+		float price = 0;
 		Commande commande = prepareCmd(commandes,con);
 		
 		try{
@@ -47,7 +47,7 @@ public class ClientListsFunctions {
 				int quantity = list_articleQuantity[i];
 				Article newArticle =getArticle(con, id_Article, quantity);
 				
-				price =(int) (price + newArticle.getSelling_price());
+				price =(float) (price + newArticle.getSelling_price());
 				listArticles.add(newArticle);	
 			}
 			commande.setIdAndName("commande"+ String.valueOf(id)+user_Name);
@@ -117,7 +117,7 @@ public class ClientListsFunctions {
 			ResultSet articleInfo = getArticle.executeQuery();
 			articleInfo.next();
 			
-			int price = articleInfo.getInt("selling_price")*quantity;
+			float price = articleInfo.getFloat("selling_price")*quantity;
 			String name = articleInfo.getString("name");
 			
 			newArticle.setName(name);

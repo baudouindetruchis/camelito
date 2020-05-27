@@ -51,7 +51,7 @@ public class MyCmdLoadFrom extends HttpServlet {
 			ResultSet store = getStoreId.executeQuery();
 			store.next();
 			int id_store= store.getInt("id");
-			int price = 0;
+			float price = 0;
 			
 			PreparedStatement getCommmand = con
 					.prepareStatement("SELECT list_id_articles, liste_quantities FROM public.commands WHERE status = true AND id_store='"+ id_store+"'");
@@ -66,7 +66,7 @@ public class MyCmdLoadFrom extends HttpServlet {
 					int id_article = list_articleByUser[i];
 					int quantity = list_articleQuantity[i];
 					Article newArticle = CommandsFunctions.getArticle(con, command, id_article, quantity);
-					price= (int) (price + newArticle.getSelling_price()*quantity);
+					price= (float) (price + newArticle.getSelling_price()*quantity);
 					listArticles.add(newArticle);
 				}
 				

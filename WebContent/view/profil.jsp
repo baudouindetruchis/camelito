@@ -28,11 +28,11 @@
 
 </head>
 
-<body onload="includeOtherPart(); includeIntroMonture('${sessionScope.user.profilPic}')">
+<body onload="includeOtherPart(); includeIntroMonture('${sessionScope.user.profilPic}'); modifyError('${sessionScope.ModifyError}')">
 
 
 	<div id="includedHeader"></div>
-
+	
 	<div class="container">
 		<div>
 			<div class="col-md-12">
@@ -162,13 +162,17 @@
 
 					<div class="form-group row" id="Mdp" hidden>
 						<label for="oldPassword" class="col-form-label labelMargin">Ancien
-							mot de passe: </label> <input class="form-control" type="password"
+							mot de passe: </label> 
+							<input class="form-control" type="password"
 							placeholder="Ancien Mot de passe" name="oldPassword"> <label
 							for="newPassword" class="col-form-label labelMargin">Nouveau
-							mot de passe: </label> <input class="form-control" type="password"
-							placeholder="Nouveau mot de passe" name="newPassword"
-							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-							title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères">
+							mot de passe: </label>
+							 <input class="form-control" type="password"
+							placeholder="Nouveau mot de passe" name="newPassword">
+							 <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+							title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères" >
+ -->
+						
 						<label for="secondPassword" class="col-form-label labelMargin">Nouveau
 							mot de passe: </label> <input class="form-control" type="password"
 							placeholder="Vérification du mot de passe" name="secondPassword">
