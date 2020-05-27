@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import JavaFunction.ShoppingListFunctions;
+import JavaFunction.ArticleListFunctions;
+import JavaFunction.CommandsFunctions;
 
 /**
  * Servlet implementation class PanierClick
@@ -33,7 +34,7 @@ public class PanierClick extends HttpServlet {
 			throws ServletException, IOException {
 
 		String action = request.getParameter("act");
-		String msg="";
+		String msg = "";
 
 		HttpSession session = request.getSession(false);
 
@@ -42,33 +43,37 @@ public class PanierClick extends HttpServlet {
 //			actionMore(request);
 			break;
 		case "ann":
-			ShoppingListFunctions.actionAnnul(request);
+			ArticleListFunctions.actionAnnul(request);
+			session.removeAttribute("panierList");
+			session.removeAttribute("total_price");
 			break;
 		case "pay":
-			ShoppingListFunctions.actionPay(request);
-			ShoppingListFunctions.updateScore(session);
+			boolean isValid = ArticleListFunctions.isCommandValid(session);
+			if (isValid) {
+				// Careful setCommandList and reloadCommands must be run before the others
+				ArticleListFunctions.setCommandList(session);
+				CommandsFunctions.reloadCommands(request, response, session);
+				ArticleListFunctions.decreaseStockForCart(session);
+				ArticleListFunctions.actionPay(request);
+				ArticleListFunctions.updateScoreAndSaving(session);
+				
+				session.removeAttribute("panierList");
+				session.removeAttribute("total_price");
+			} else {
+				System.out.println("command non valide");//TODO
+			}
 			break;
 		case "less":
 		case "more":
 		case "supp":
-			msg =ShoppingListFunctions.modifQuantity(request);
+			msg = ArticleListFunctions.modifQuantity(request);
+			System.out.println(msg);
+			ArticleListFunctions.loadCart(session);
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			break;
 
 		default:
 			System.out.println("unkonwn action in doGet panier click");
-			break;
-		}
-
-		System.out.println(action);
-		switch (action) {
-		case "pay":
-			ShoppingListFunctions.loadUpdateCommList(session);
-		case "ann":
-			session.removeAttribute("panierList");
-			session.removeAttribute("total_price");
-			break;
-		default:
 			break;
 		}
 	}

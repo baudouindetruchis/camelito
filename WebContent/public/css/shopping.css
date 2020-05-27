@@ -1,6 +1,6 @@
 .container {
 	width: 100%;
-	margin-top: 5%;
+	margin-top: 100px;
 }
 
 .container h2 {
@@ -56,7 +56,7 @@ img {
 	display: block;
 	opacity: 0;
 	position: absolute;
-	top: 0 /* 10% */;
+	top: 10%;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -70,6 +70,31 @@ img {
 	display: block;
 	/* Buttons shall always be at 50% down the image's top */
 	height: 10%;
+}
+
+.overlay2 {
+	display: block;
+	opacity: 0;
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	text-align: center;
+	background-color: #e89d2c;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px #888;
+}
+
+.overlay2:before {
+	content: ' ';
+	display: block;
+	/* Buttons shall always be at 50% down the image's top */
+	height: 10%;
+}
+.product-top:hover .overlay2 {
+	opacity: 1;
+	margin-top: 2%;
+	transition: 0.5s;
 }
 
 .product-top {
@@ -121,7 +146,23 @@ img {
 	box-shadow: none !important;
 }
 
-@media ( min-width : 500px) and (max-width:767px) {
+@media (max-width : 576px) {
+	img {
+	width: 191.25px;
+	height: 150px;
+}
+	.product-top {
+    text-align: center;
+}
+	.overlay {
+	width: 100%;
+	}
+	.favorite {
+    margin-right: 150px;
+}
+}
+
+@media ( min-width : 576px) and (max-width:767px) {
 	.overlay:before {
 		height: 15%;
 	}
@@ -135,11 +176,14 @@ img {
 	}
 	.overlay .col-form-label {
 		height: 91px;
-	    width: 91px;
+	    width: 150px;
 	    font-size: 50px;
 		margin-left: 7px;
 		margin-top: -36px;
 	}
+	img {
+	height: 400px;
+}
 }
 
 @media ( min-width : 768px) and (max-width:991px) {
@@ -150,15 +194,26 @@ img {
 		height: 25px;
 		width: 25px;
 		font-size: 14px;
-		/* padding: 6px;
-		margin: 5%;
-		margin-bottom: 5%; */
+		padding: 6px;
 	}
 	.overlay {
 		width: 1px;
 	}
+	.overlay2 {
+		font-size: 13px;
+	}
 	.overlay .col-form-label {
 		font-size: 14px;
+		width: 42px;
+	}
+	img {
+	height: 117.6px;
+	}
+	.product-bottom h5 {
+    font-size: 12px !important;
+	}
+	.product-bottom h3 {
+    font-size: 17px !important;
 	}
 }
 
@@ -171,10 +226,13 @@ img {
 	}
 	.overlay .col-form-label {
 		height: 40px;
-	    width: 40px;	
+	    width: 60px;	
 	    margin-bottom: 7px;
 	    margin-left: 3px;
 	}
+	img {
+	height: 164.7px;
+}
 }
 
 @media ( min-width : 1200px) {
@@ -191,9 +249,9 @@ img {
 	}
 	.overlay .col-form-label {
 		height: 45px;
-	    width: 45px;
+	    width: 70px;
 	    font-size: 20px;
 		margin: 5%;
-		margin-bottom: 50%;
+		margin-bottom: 30%;
 	}
 }

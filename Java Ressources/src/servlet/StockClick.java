@@ -37,6 +37,7 @@ public class StockClick extends HttpServlet {
 		//get session atribute
 		String newValStr = request.getParameter("newStock");
 		String id_articleStr = request.getParameter("id");
+		String reqSqlOrder = request.getParameter("sqlOrder");
 
 		// connection a la bdd
 		HttpSession session = request.getSession(false);
@@ -45,7 +46,12 @@ public class StockClick extends HttpServlet {
 
 		String sqlOrder =(String) session.getAttribute("sqlOrder");
 		
-		if(newValStr!= null && !newValStr.isEmpty() && id_articleStr!= null && !id_articleStr.isEmpty() ) {
+		if(reqSqlOrder!= null && !reqSqlOrder.isEmpty()){
+			session.setAttribute("sqlOrder", reqSqlOrder);
+			List<Article> stockList = StockFunctions.getStockList(user_id, reqSqlOrder);
+			session.setAttribute("stockList", stockList);
+		
+		} else if(newValStr!= null && !newValStr.isEmpty() && id_articleStr!= null && !id_articleStr.isEmpty() ) {
 			// if request have param it's a stock modif
 			
 			int newVal = (int) Math.round(Float.parseFloat(newValStr));
@@ -53,15 +59,17 @@ public class StockClick extends HttpServlet {
 			
 			//update bdd data
 			StockFunctions.updateBddStock(newVal, id_article);
+			//update session data
+			List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
+			session.setAttribute("stockList", stockList);
 			
 		} else {
 			//otherwise it's empty all
 			StockFunctions.emptyStock(user_id);
+			//update session data
+			List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
+			session.setAttribute("stockList", stockList);
 		}
-		
-		//update session data
-		List<Article> stockList = StockFunctions.getStockList(user_id, sqlOrder);
-		session.setAttribute("stockList", stockList);
 		
 		// don't reload the whole page
 		response.setStatus(HttpServletResponse.SC_NO_CONTENT);

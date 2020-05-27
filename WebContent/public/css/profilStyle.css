@@ -1,74 +1,118 @@
-#ChangePic{
-	margin-left:40%;
+#ChangePic {
+	padding-top: calc(.375rem + 1px);
+	padding-bottom: calc(.375rem + 1px);
+	margin-bottom: 0;
+	border-radius: 0.3rem;
+	border-top-left-radius: 0.3rem;
+	border-top-right-radius: 0.3rem;
+	border-bottom-right-radius: 0.3rem;
+	border-bottom-left-radius: 0.3rem;
+	background-color: #764e17;
+	border: 2px solid;
+	color: white;
+	height: 45px;
+	width: 30%;
+	font-size: 18px;
 }
-#intro{
-	text-align:center;
+
+#ChangePic:hover {
+	background-color: sandybrown;
+}
+
+#intro {
+	text-align: center;
 	font-size: 14px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
-h1{
+
+div#introMonture {
+    padding-right: 10px;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+h1 {
 	font-size: 20px;
 	color: #b47623;
- 	text-align: center;
+	text-align: center;
 }
 
 .container h2 {
 	background: #764e17;
 	color: #fff;
-	width: 175px;
 	font-size: 24px;
 	padding: 8px;
 	height: 40px;
 	text-align: center;
-}
-/* The popup form - hidden by default */
-.form-popup {
-  display: none;
-  position: fixed;
-  top: 10%;
-  left: 20%;
-  border: 4px solid #b67823;
-  z-index: 9;
-  border-radius: 27px;
+	margin-left: 15%;
+    margin-right: 15%;
+    min-width: 200px;
 }
 
-/* Add styles to the form container */
-.form-container {
-  max-width: 100%;
-  padding: 10px;
-  background-color: #f8ead8; 
-  background-attachment: fixed;
-  border-radius: 20px;
+/* The popup form - hidden by default */
+.form-popup {
+	display: none;
+	position: fixed;
+	top: 10%;
+	left: 20%;
+	border: 4px solid #b67823;
+	z-index: 9;
+	border-radius: 27px;
+}
+
+/* Add styles to the profil pic popup form */
+.form {
+	padding: 0 16px;
+	max-width: 550px;
+	margin: 15px auto;
+	font-size: 18px;
+}
+
+.titrepopup {
+	padding-left: 60px;
+}
+
+.headpopup {
+	background-color: antiquewhite;
+	border-bottom: none !important;
+	margin-bottom: 0px;
+}
+
+.totalpopup {
+	background-color: antiquewhite;
+	padding-bottom: 10px;
+}
+
+.contentpopup {
+	background-color: antiquewhite;
+	/* border-radius: 10px; */
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
 .close_button {
-  position: absolute;
-  width: 20px;
-  height: auto;
-  right: 3%;
+	position: absolute;
+	width: 20px;
+	height: auto;
+	right: 3%;
 }
 
 .close_button:hover {
-  opacity: 70%;
-  transition: .1s;
-  transform: translate(0, 1px);
+	opacity: 70%;
+	transition: .1s;
+	transform: translate(0, 1px);
 }
 
-
-
-.toggle{
+.toggle {
 	margin-left: 10px;
 }
 
-
 .container {
 	width: 100%;
-	margin-top: 5%;
-}
-
-
-
-.container .success {
-	width: 210px;
+	margin-top: 100px;
 }
 
 label {
@@ -76,102 +120,170 @@ label {
 	border-bottom: 2px solid #764e17;
 }
 
+.headProfil {
+	background-color: antiquewhite;
+	margin-left: 15%;
+	margin-right: 15%;
+	padding-top: 2%;
+	border: 2px solid bisque;
+}
+
 img.profil {
-	margin-left: 10%;
 	width: auto;
 	height: 100px;
+	border: 2px solid sandybrown;
+	cursor: pointer;
 }
+
+img.profil:hover {
+	box-shadow: 2px 2px 4px burlywood;
+}
+
 img.editPic {
 	width: auto;
 	height: 70px;
-	margin-left: 53%;
+	/* margin-left: 53%; */
 }
 
-img.edit{
+img.edit {
 	margin-top: 10%;
 }
 
-
-
-input[type=submit], [type=button] {
-	background-image: linear-gradient(#e0a85d, #b47623);
-	border-radius: 10px;
-	border: 1px solid #b47623;
-	color: black;
-	width: 200px;
-	text-align: center;
-	font-weight: bold;
-	margin-top: 5%;
-	margin-left: 5%;
-	}
-	
-input[type=radio] {
-	margin-top: 5%;
-	margin-left: 40%;
-	position: absolute;
+.marginBottom {
+	margin-bottom: 5% !important;
 }
 
+.marginBottomStrong {
+	margin-bottom: 10% !important;
+}
 
+/*  */
+/* EXPERIMENTAL RADIO BUTTON FROM FUTURE */
+/*  */
+.inputGroup {
+	background-color: burlywood;
+	display: block;
+	margin: 10px 0;
+	position: relative;
+	padding: 0 !important;
+}
+
+.inputGroup label {
+	padding: 13px 30px;
+	width: 100%;
+	display: block;
+	text-align: left;
+	color: #3C454C;
+	cursor: pointer;
+	position: relative;
+	z-index: 2;
+	transition: color 200ms ease-in;
+	border: none !important;
+	margin-bottom: 0 !important;
+	overflow: hidden;
+}
+
+.inputGroup label:before {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	content: '';
+	background-color: sandybrown;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) scale3d(1, 1, 1);
+	transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+	opacity: 0;
+	z-index: -1;
+}
+
+.inputGroup label:after {
+	width: 32px;
+	height: 32px;
+	content: '';
+	border: 2px solid #D1D7DC;
+	background-color: #fff;
+	background-image:
+		url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+	background-repeat: no-repeat;
+	background-position: 2px 3px;
+	border-radius: 50%;
+	z-index: 2;
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	transition: all 200ms ease-in;
+}
+
+.inputGroup input:checked ~ label {
+	color: #fff;
+}
+
+.inputGroup input:checked ~ label:before {
+	transform: translate(-50%, -50%) scale3d(56, 56, 1);
+	opacity: 1;
+}
+
+.inputGroup input:checked ~ label:after {
+	background-color: #764e17;
+	border-color: #764e17;
+}
+
+.inputGroup input {
+	width: 32px;
+	height: 32px;
+	order: 1;
+	z-index: 2;
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	visibility: hidden !important;
+}
+
+.selected {
+	opacity: 1
+}
+
+.unselected {
+	opacity: 0.5
+}
+
+/* END EXPERIMENTAL RADIO BUTTON FROM FUTURE */
+
+.btnModifier {
+	padding-top: calc(.375rem + 1px);
+	padding-bottom: calc(.375rem + 1px);
+	margin-bottom: 0;
+	border-radius: 0.3rem;
+	border-top-left-radius: 0.3rem;
+	border-top-right-radius: 0.3rem;
+	border-bottom-right-radius: 0.3rem;
+	border-bottom-left-radius: 0.3rem;
+	background-color: #764e17 !important;
+	border: 0px solid !important;
+	color: white;
+	height: 45px;
+	width: 50%;
+	font-size: 18px;
+}
+
+.btnModifier:hover {
+	background-color: sandybrown !important;
+	border: 0px solid;
+}
 
 /*switch*/
-.switch {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
-	margin-left: 10px;
-	border-bottom: 0px;
+.switchLabel {
+	margin-bottom: 10px !important;
 }
 
-/* Hide default HTML checkbox */
-.switch input {
-	opacity: 0;
-	width: 0;
-	height: 0;
-}
-
-/* The slider */
-.slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #c0c0c0;
-	-webkit-transition: .4s;
-	transition: .4s;
-}
-
-.slider:before {
-	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: white;
-	-webkit-transition: .4s;
-	transition: .4s;
-}
-
-input:checked+.slider {
-	background-color: #f3daba;
-}
-
-input:checked+.slider:before {
-	-webkit-transform: translateX(26px);
-	-ms-transform: translateX(26px);
-	transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-	border-radius: 25px;
-}
-
-.slider.round:before {
-	border-radius: 50%;
+.labelMargin {
+	margin-bottom: 10px !important;
 }
 
 .img-responsive {
@@ -180,26 +292,30 @@ input:checked+.slider:before {
 }
 
 .form-control {
-	width: 75% !important;
-	margin-top: 5px;
+	width: 100% !important;
+	margin-top: 0px;
 }
 
-@media ( min-width : 576px) and (max-width:767px) {
-	.edit {
-		flex: 0 0 100% !important;
-		max-width: 500px !important;
+@media (min-width: 576px) {
+	.modal-dialog {
+		max-width: 800px !important;
+}
+
+@media screen and (max-width :767px) {
+	.switchLabel {
+		margin-left: 23% !important;
+		margin-right: 23% !important;
 	}
 }
 
-@media ( min-width : 768px) and (max-width:991px) {
-	.edit {
-		flex: 0px !important;
-		max-width: 100% !important;
-	}
+/*  */
+/* Page monMagasin.jsp */
+/*  */
+
+.hrmargin {
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(153, 102, 102, 1), rgba(0, 0, 0, 0));
+	margin-top: 3% !important;
 }
 
-@media ( min-width : 992px) and (max-width:1199px) {
-}
 
-@media ( min-width : 1200px) {
-}
+

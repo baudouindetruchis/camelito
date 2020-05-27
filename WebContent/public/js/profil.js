@@ -3,6 +3,51 @@ function includeOtherPart()  {
 	$("#includeStore").load("monMagasin.jsp");
 
 	includeHeaderAndCheckUser();
+	
+}
+
+
+function modifyError(error) {
+	if(error===''){
+		
+	}else{
+		alert(error);
+		$.ajax({
+			  url: "../ModifyProfilForm",
+			  type: "get", //send it through get method
+			  data: {  
+				  error:error
+			  },
+			  success: function(response) {
+				 
+			  },
+			  error: function(xhr) {
+			    //Do Something to handle error
+			  }
+			});
+		
+		
+	}
+ 
+}
+
+
+function includeIntroMonture(profilPic) {
+	if(profilPic==='../public/images/Camel4.png'){
+		$("#introMonture").load("profil.jsp #introAugustus");
+	}
+	if(profilPic==='../public/images/Camel2.png'){
+		$("#introMonture").load("profil.jsp #introPhilibert");
+	}
+	if(profilPic==='../public/images/Camel3.png'){
+		$("#introMonture").load("profil.jsp #introMarthe");
+	}
+	if(profilPic==='../public/images/Camel5.png'){
+		$("#introMonture").load("profil.jsp #introRoseline");
+	}
+	if(profilPic==='../public/images/Camel.png'){
+		$("#introMonture").load("profil.jsp #introFerdinand");
+	}
 }
 
 
@@ -30,13 +75,13 @@ function changePic() {
 			});
 }
 
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+//function openForm() {
+//  document.getElementById("myForm").style.display = "block";
+//}
+//
+//function closeForm() {
+//  document.getElementById("myForm").style.display = "none";
+//}
 
 
 function editStore(){
@@ -67,12 +112,12 @@ function goToEdit() {
 		document.getElementById("Mdp").hidden = false;
 		if(value!=null){
 			document.getElementById("newPromo").hidden = false;
+			document.getElementById("promo").hidden = true;
 			document.getElementById("info").hidden = false;
 		}
 
 }
  
-
  function saveChange() {
 	var value = document.getElementById("promo");
 	 

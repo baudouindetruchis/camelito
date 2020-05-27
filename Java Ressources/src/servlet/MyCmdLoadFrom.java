@@ -16,24 +16,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import JavaFunction.CommandsFunctions;
 import obj.Article;
 import obj.Commande;
-import obj.User;
 
 /**
- * Servlet implementation class ClientListDelete
+ * Servlet implementation class MyCmdLoadFrom
  */
-@WebServlet("/ClientListDelete")
-public class ClientListDelete extends HttpServlet {
+@WebServlet("/MyCmdLoadFrom")
+public class MyCmdLoadFrom extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 	private static final String USER_BDD = "postgres";
 	private static final String PSW = "123";
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClientListDelete() {
+    public MyCmdLoadFrom() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,29 +42,47 @@ public class ClientListDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		
-		int idComm = Integer.parseInt(request.getParameter("id"));
-		
+		int id_user = (int) session.getAttribute("id");
+		List<Article> listArticles = new ArrayList< Article>();
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			PreparedStatement deleteCart = con
-					.prepareStatement("DELETE from public.carts WHERE id = '"+idComm+"'");
+			PreparedStatement getStoreId = con
+					.prepareStatement("SELECT id FROM public.stores WHERE id_user='"+ id_user+"'");
 			
-			deleteCart.execute();
+			ResultSet store = getStoreId.executeQuery();
+			store.next();
+			int id_store= store.getInt("id");
+			float price = 0;
 			
-			@SuppressWarnings("unchecked")
-			List<Commande> listArticlesByUser = (List<Commande>) session.getAttribute("listArticlesByUser");
-			for(Commande  command :listArticlesByUser ) {
-				if(command.getId()==(idComm)) {
-					listArticlesByUser.remove(command);
-					break;
+			PreparedStatement getCommmand = con
+					.prepareStatement("SELECT list_id_articles, liste_quantities FROM public.commands WHERE status = true AND id_store='"+ id_store+"'");
+			ResultSet command = getCommmand.executeQuery();
+			
+			while(command.next()) { 
+				Object array_articleByUser =   command.getArray("list_id_articles").getArray();
+				Integer[] list_articleByUser = (Integer[]) array_articleByUser;
+				Object array_articleQuantity =   command.getArray("liste_quantities").getArray();
+				Integer[] list_articleQuantity = (Integer[]) array_articleQuantity;		
+				for(int i=0; i<list_articleByUser.length;i++) {
+					int id_article = list_articleByUser[i];
+					int quantity = list_articleQuantity[i];
+					Article newArticle = CommandsFunctions.getArticle(con, command, id_article, quantity);
+					price= (float) (price + newArticle.getSelling_price()*quantity);
+					listArticles.add(newArticle);
 				}
-			}
-			session.setAttribute("listArticlesByUser", listArticlesByUser);
+				
+			}		
+			session.setAttribute("TotalPrice", price);
+			session.setAttribute("CommandePourStore", listArticles);
+			
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		// load page
+		String page = "./view/commandPageStore.jsp";
+		response.sendRedirect(page);
 	}
 
 	/**

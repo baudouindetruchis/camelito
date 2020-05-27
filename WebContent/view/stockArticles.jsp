@@ -17,14 +17,29 @@
 	<div class="form-row stockFilter">
 		<div class="form-group col-md-4">
 			<label for="trierId">Trier vos produits</label>
-			<select id="trierId" class="form-control" name="trierId" onchange="setSqlOrder()" >
-				<option value="ORDER BY id ASC" selected>Id croissant</option>
-				<option value="ORDER BY id DESC" >Id decroissant</option>
-				<option value="ORDER BY name ASC" >Name croissant</option>
-				<option value="ORDER BY name DESC" >Name decroissant</option>
-				<option value="ORDER BY available ASC" >Stock croissant</option>
-				<option value="ORDER BY available DESC" >Stock decroissant</option>
+			
+			<% String choice = (String)session.getAttribute("sqlOrder"); %>
+			<select id="trierId" class="form-control" name="sqlOrder" onchange="orderSql()" >
+				<option value="ORDER_BY_id_ASC" 
+					<%= ("ORDER_BY_id_ASC".equals(choice))?("selected='selected'"):""%> >
+					Id croissant</option>
+				<option value="ORDER_BY_id_DESC"
+					<%= ("ORDER_BY_id_DESC".equals(choice))?("selected='selected'"):""%> >
+					Id decroissant</option>
+				<option value="ORDER_BY_name_ASC"
+					<%= ("ORDER_BY_name_ASC".equals(choice))?("selected='selected'"):""%> >
+					Name croissant</option>
+				<option value="ORDER_BY_name_DESC"
+					<%= ("ORDER_BY_name_DESC".equals(choice))?("selected='selected'"):""%> >
+					Name decroissant</option>
+				<option value="ORDER_BY_available_ASC"
+					<%= ("ORDER_BY_available_ASC".equals(choice))?("selected='selected'"):""%> >
+					Stock croissant</option>
+				<option value="ORDER_BY_available_DESC"
+					<%= ("ORDER_BY_available_DESC".equals(choice))?("selected='selected'"):""%> >
+					Stock decroissant</option>
 			</select>
+
 		</div>
 		<div class="form-group col-md-5"></div>
 		<div class="form-group col-md-3 divErase">
@@ -49,8 +64,8 @@
 					<!-- Contenu du popup -->
 					<div class="modal-body mx-3">
 						<div class="md-form mb-5 popupConfirm">
-							<button class="btn btn-default btn-rounded mb-4 btnNon">Non</button>
-							<button class="btn btn-default btn-rounded mb-4 btnOui" onclick="emptyStock()">Oui</button>
+							<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-rounded mb-4 btnNon">Non</button>
+							<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default btn-rounded mb-4 btnOui" onclick="emptyStock()">Oui</button>
 						</div>
 					</div>
 				</div>
