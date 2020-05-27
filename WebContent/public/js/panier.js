@@ -14,7 +14,7 @@ function onload(){
     		    act: act
     		  },
     		  success: function(response) {
-    		    $("#cartDiv").load("panierTable.jsp"); 		    
+    		    $("#cartDiv").load("panierTable.jsp");
     		    if(!(response.trim()==="")){
     		    	var elemTxt = document.getElementById("txtResponse");
         		    elemTxt.innerHTML = response;

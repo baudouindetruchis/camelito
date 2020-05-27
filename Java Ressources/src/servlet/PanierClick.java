@@ -77,6 +77,8 @@ public class PanierClick extends HttpServlet {
 			msg = "404 : action inconnue in doGet panier click";
 			break;
 		}
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println(msg);
 		out.close();
