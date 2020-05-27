@@ -199,13 +199,14 @@
 					<div id="includeStore" class="col-md-12"></div>
 				</c:when>
 
-				<c:when test="${sessionScope.type=='1'} ">
+				<c:when test="${sessionScope.type=='1' }">
 					<div id="includeReussite" class="col-md-12"></div>
-				</c:when>
+				</c:when> 
 
-				<%-- <c:when test="${sessionScope.type=='2' }">
+				<c:when test="${sessionScope.type=='2' }">
 					<div id="includeReussite" class="col-md-12" hidden></div>
-				</c:when> --%>
+				</c:when> 
+				
 				<c:when test="${sessionScope.type=='4' }">
 					<div id="includeReussite" class="col-md-12"></div>
 				</c:when>
@@ -283,7 +284,7 @@
 										<div id="introPhilibert">
 										<b>Philibert</b> est le petit jeunot de notre troupe. <br>Il est
 										<b>énergique et petit blagueur</b>. Il fera tout ce qui est
-										possible afin de vous rendre heureux. Son peulage
+										possible afin de vous rendre heureux. Son pelage
 										doux et soyeux fait de lui la parfaite peluche pour toutes
 										siestes. Attention cependant son jeune âge et son
 										manque d'experience peuvent le rendre maladroit.
@@ -374,7 +375,7 @@
 										incontesté de Dionysos plus connu sous le nom de Bacchus chez
 										nos amis les romains, 'dinand ne manque pas une
 										occasion pour <b>passer une bonne soirée</b>. Ses mots d'ordre sont
-										boisson et gateaux apéro Attention cependant à ne pas
+										boisson et gateaux apéro. Attention cependant à ne pas
 										oublier que les chameaux peuvent boire jusqu'à 132 litres en
 										10 minutes!
 										</div>
