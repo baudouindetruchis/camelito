@@ -10,9 +10,6 @@
 	<h2>Course aux camelicoins </h2>
 	
 	<c:set var="pUsr" value="${sessionScope.prevParticipant}" />
-	
-	<c:out value="${pUsr.score}"></c:out>
-	<h3>you : </h3>
 	<c:set var="cUsr" value="${sessionScope.currParticipant}" />
 	<c:set var="sUsr" value="${sessionScope.succParticipant}" />
 	
@@ -26,7 +23,7 @@
 	  </thead>
 	  <tbody>
 	  <c:forEach var="part" items="${sessionScope.participantsList}">
-		  <tr>
+	     <tr style="${part.pseudo == cUsr.pseudo ? 'background-color:#b67823' : ''}">
 		  	<td><c:out value="${part.place}"/></td>
 		  	<td><c:out value="${part.pseudo}"/></td>
 		  	<td><c:out value="${part.score}"/></td>
@@ -42,7 +39,7 @@
 		  	<td><c:out value="${sUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${sUsr.score}"></c:out></td>
 	   	  </tr>	
-		  <tr>
+		  <tr style="background-color:#b67823">
 		  	<td><c:out value="${cUsr.place}"></c:out></td>
 		  	<td><c:out value="${cUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${cUsr.score}"></c:out></td>
