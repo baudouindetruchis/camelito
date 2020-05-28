@@ -144,7 +144,6 @@ public class ConnectionFunctions {
 	 * @param session
 	 */
 	public static void setSuccess(HttpSession session) {
-		System.out.println("setting success");
 		User user = (User) session.getAttribute("user");
 		int id_user = user.getId();
 		String URL = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
@@ -164,7 +163,6 @@ public class ConnectionFunctions {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("countDefault:"+countDefault);
 		int isPersonalized = countDefault==0 ? 1 : 0; //si l'usitisateur n'a pas l'image pas default alors il a personalisé
 		//recupère le nombre de commande passé par l'utilisateur
 		int nbComm = 0;
