@@ -42,4 +42,6 @@
 	</div>
 	<%@include file="scoreTable.jsp" %>
 	
+	<%@include file="scoreFiltre.jsp" %>
+	
 </body>

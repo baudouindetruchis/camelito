@@ -117,6 +117,7 @@ public class Score extends HttpServlet {
 
 		List<Participant> shortParticipantsList = participantsList.subList(0, 10);
 		session.setAttribute("participantsList", shortParticipantsList);
+		session.setAttribute("fullParticipantsList", participantsList);		
 	}
 
 }
