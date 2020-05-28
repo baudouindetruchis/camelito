@@ -59,20 +59,29 @@
 						</div>
 						<div class="form-row">
 							<div class="col-md-12 text-center">
-								<fieldset>
-									<img
-										class="profil img-responsive btn btn-default btn-rounded btnComm"
-										data-toggle="modal" data-target="#myForm"
-										<c:set var="user" scope="session" value="${sessionScope.user}" />
-										src="${usr.profilPic}" alt="Add User" width="25%" height="120" />
-								</fieldset>
+
+								<div class="card text-center cardMontureSizing">
+									<div class="card-img-overlay profilPicShadow">
+										<fieldset>
+											<img
+												class="profil img-responsive btn btn-default btn-rounded btnComm"
+												data-toggle="modal" data-target="#myForm"
+												<c:set var="user" scope="session" value="${sessionScope.user}" />
+												src="${usr.profilPic}" alt="Add User" width="25%"
+												height="120" />
+										</fieldset>
+									</div>
+								</div>
+
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-12 text-center">
-								<label for="imgProfil" class="col-form-label">Votre monture</label>
+								<label for="imgProfil" class="col-form-label">Votre
+									monture</label>
 								<div id="introMonture">
-								N'hésite pas à <b>cliquer sur l'image</b> pour sélectionner la monture de tes rêves ! 
+									N'hésite pas à <b>cliquer sur l'image</b> pour sélectionner la
+									monture de tes rêves !
 								</div>
 							</div>
 						</div>
@@ -171,8 +180,7 @@
 							 <input class="form-control" type="password"
 							placeholder="Nouveau mot de passe" name="newPassword">
 							 <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-							title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères" >
- -->
+							title="Le mot de passe doit contenir au moins un chiffre et une majuscule et minuscule, il doit avoir au moins 8 caractères" >-->
 						
 						<label for="secondPassword" class="col-form-label labelMargin">Nouveau
 							mot de passe: </label> <input class="form-control" type="password"

@@ -13,5 +13,5 @@ function btnValidate(id) {
 		document.getElementById("btnStyle"+id).style.background = "gray";
 //		console.log("2");
 	}	
-	console.log("btnStyle"+id);
+//	console.log("btnStyle"+id);
 }
