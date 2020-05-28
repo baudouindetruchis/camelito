@@ -733,7 +733,7 @@ public class ArticleListFunctions {
 			price = anArt.getSelling_price();
 			total_price += quantity_article * price;
 		}
+		total_price = UtilFunc.round(total_price, 2);
 		return total_price;
 	}
-
 }

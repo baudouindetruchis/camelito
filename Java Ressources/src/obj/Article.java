@@ -1,5 +1,7 @@
 package obj;
 
+import JavaFunction.UtilFunc;
+
 public class Article {
 	
 	int id;
@@ -72,7 +74,8 @@ public class Article {
 
 	public void setSelling_price(float selling_price) {
 		this.selling_price = selling_price;
-		this.saving=this.real_price-this.selling_price;
+		float s = UtilFunc.round(this.real_price-this.selling_price, 2);
+		this.saving=s;
 	}
 
 	public float getReal_price() {
@@ -81,7 +84,8 @@ public class Article {
 
 	public void setReal_price(float real_price) {
 		this.real_price = real_price;
-		this.saving=this.real_price-this.selling_price;
+		float s = UtilFunc.round(this.real_price-this.selling_price, 2);
+		this.saving=s;
 	}
 
 	public int getQuantity() {
