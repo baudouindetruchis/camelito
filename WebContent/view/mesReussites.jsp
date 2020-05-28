@@ -8,12 +8,12 @@
 <title>Header sample</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="../public/css/header_sample.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../public/css/header_sample.css">
+
+<script src="../public/js/mesReussites.js"></script>
+
 
 </head>
 <body>
@@ -26,55 +26,55 @@
 			<div class="form-row reussitesRow">
 				<div class="col-md-6 reussitesCol">
 					<div class="col-md-12">
-					<img class="img-responsive reussitesImg" src="../public/images/pieces.png"
-						alt="Pile de piece" /></div>
-					<label class="col-form-label reussitesLbl">10€ d'économisé</label>
+						<img class="img-responsive reussitesImg"
+							src="../public/images/pieces.png" alt="Pile de piece" />
+					</div>
+					<label class="col-form-label reussitesLbl">${usr.saving}€
+						d'économisés</label>
 				</div>
 
 				<div class="col-md-6 reussitesCol">
-				<div class="col-md-12">
-					<img class="img-responsive reussitesImg" src="../public/images/medaille.png"
-						alt="medaille" /></div>
-					<label class="col-form-label  reussitesLbl" id="name">
-						<c:out value="${usr.score}" />
-						Points cumulés
+					<div class="col-md-12">
+						<img class="img-responsive reussitesImg"
+							src="../public/images/medaille.png" alt="medaille" />
+					</div>
+					<label class="col-form-label  reussitesLbl" id="name"> <c:out
+							value="${usr.score}" /> Points cumulés
 					</label>
 				</div>
 			</div>
 		</div>
 
 
-		<%-- <div class="form-group row">
-			<label for="succes" class="col-form-label">Succès : </label>
-		</div>
-		<div class="col-sm-7">
-			<c:forEach var="success" items="${sessionScope.succesList}">
-				<p class="form-control-plaintext" id="success">
-					<c:out value="${success}" />
-				</p>
-			</c:forEach>
-
-
-		</div> --%>
-
 		<div class="col-md-12 text-center">
 			<h4 class="col-form-label">Débloquez tous les succès !</h4>
 
 			<div class="form-row" style="text-align: -webkit-center;">
 				<c:forEach var="aSuccess" items="${sessionScope.successList}">
-				
+
 					<div class="col-md-4">
-						<div class="card text-center cardSizing">
+						<div class="card text-center cardSizing"
+							id="card ${aSuccess.type}${aSuccess.value}">
+							<script>
+								colorCards('${aSuccess.type}',
+										'${aSuccess.value}')
+							</script>
 							<div class="card-body">
 
 								<c:choose>
 									<c:when test="${aSuccess.isDone}">
 										<!-- Si le success est validé -->
-										<a style="font-size: 50px;"> ${aSuccess.pic}</a>
+										<a id="icon ${aSuccess.type}${aSuccess.value}"
+											style="font-size: 50px;"> ${aSuccess.pic}</a>
+										<script>
+											colorCardIcons('${aSuccess.type}',
+													'${aSuccess.value}')
+										</script>
 									</c:when>
 									<c:otherwise>
 										<!-- Si le success n'a pas encore été realisé -->
-										<a style="opacity: 0.5; font-size: 50px;"> ${aSuccess.pic}</a>
+										<a style="opacity: 0.25; font-size: 50px;">
+											${aSuccess.pic}</a>
 									</c:otherwise>
 								</c:choose>
 								<div class="form-row centerContent">
@@ -91,18 +91,28 @@
 
 			<h4 class="col-form-label">Vos meilleurs succès</h4>
 
-			<div class="form-row" style="text-align: -webkit-center;">
+			<div class="form-row"
+				style="text-align: -webkit-center; margin-bottom: 100px;">
 				<c:forEach var="aSuccess" items="${sessionScope.successList}">
 
 					<c:choose>
 						<c:when test="${aSuccess.isBest}">
 							<div class="col-md-4">
-								<div class="card text-center cardSizing">
-									<div class="card-body">
+								<div class="card text-center cardSizing cardSuccessMax">
+									<img class="card-img cardImgStyle"
+										id="cardImg ${aSuccess.type}${aSuccess.value}" src=""
+										alt="Card image">
+									<div class="card-img-overlay">
+										<div class="shadowCard"></div>
+
 										<!-- Si le success est le meilleur de sa categorie -->
 										<a style="font-size: 50px;"> ${aSuccess.pic}</a>
+										<script>
+												fillCardImg('${aSuccess.type}',
+														'${aSuccess.value}')
+											</script>
 										<div class="form-row centerContent">
-											<label>${aSuccess.name}</label>
+											<label class="cardImgLabel">${aSuccess.name}</label>
 											<%-- <c:out value="${aSuccess.type}" /> --%>
 										</div>
 									</div>
@@ -114,7 +124,7 @@
 				</c:forEach>
 			</div>
 			<!-- wei wei wei -->
-			<div class="form-group row">
+			<%-- <div class="form-group row">
 				<label for="succes" class="col-form-label">Selectionne un
 					succes : </label>
 			</div>
@@ -135,7 +145,7 @@
 						</c:when>
 					</c:choose>
 				</c:forEach>
-			</div>
+			</div> --%>
 		</div>
 
 	</div>

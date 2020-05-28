@@ -130,19 +130,26 @@ label {
 
 img.profil {
 	width: auto;
-	height: 100px;
-	border: 2px solid sandybrown;
-	cursor: pointer;
+    height: 100px;
+    border: 2px solid sandybrown;
+    cursor: pointer;
+    z-index: 1;
+    background-color: rosybrown;
 }
 
 img.profil:hover {
-	box-shadow: 2px 2px 4px burlywood;
+	box-shadow: 0px 0px 20px burlywood;
+}
+
+.cardMontureSizing {
+	padding-bottom: 125px;
+    background-color: transparent !important;
+    border: none !important;
 }
 
 img.editPic {
 	width: auto;
 	height: 70px;
-	/* margin-left: 53%; */
 }
 
 img.edit {
@@ -245,13 +252,6 @@ img.edit {
 	visibility: hidden !important;
 }
 
-.selected {
-	opacity: 1
-}
-
-.unselected {
-	opacity: 0.5
-}
 
 /* END EXPERIMENTAL RADIO BUTTON */
 
@@ -351,6 +351,8 @@ h2.success {
     height: 40px;
     text-align: center;
     min-width: 200px;
+    border-left: 2px solid #764e17;
+    border-right: 2px solid #764e17;
 }
 
 h2.successMag {
@@ -411,6 +413,62 @@ h4.col-form-label {
     margin-top: 10px;
 }
 
-.card-body {
-	padding-bottom: 0.5rem;
+.cardImgStyle {
+	height: 150px;
 }
+
+.cardSuccessMax {
+	color: white;
+}
+
+.cardSuccessMax:hover {
+	box-shadow: 0px 1px 8px black;
+}
+
+.cardImgLabel {
+	border-bottom: 2px solid white;
+}
+
+.shadowCard {
+	background-color: gray;
+	opacity: 0.5;
+    padding-left: 100px;
+    padding-right: 150px;
+    padding-bottom: 110px;
+    margin-left: 3px;
+    position: absolute;
+    z-index: -1;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.card-img-overlay {
+	z-index: 0;
+}
+
+@media ( min-width : 768px) and (max-width:991px) {
+	.card {
+		width: auto;
+		height: 150px;
+	}
+	.shadowCard {
+		width: auto;
+		padding-left: 100px;
+		padding-right: 85px;
+		padding-bottom: 130px;
+		margin-left: 12px;
+		margin-top: 10px;
+	}
+	.card-img-overlay {
+		padding: 0 !important;
+	}
+	.card-body {
+		padding: 0 !important;
+		padding-top: 0.5rem !important;
+	}
+	.centerContent {
+		padding-left: 22px;
+		padding-right: 22px;
+	}
+}
+
