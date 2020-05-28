@@ -77,7 +77,7 @@
 							</tr>
 							<tr>
 								<td style="vertical-align: middle;"><i class="fa fa-envelope-o contactIcon"></i></td>
-								<td><div><a href="#"> camelito-contact@isep.fr</a></div></td>
+								<td><div><a href="#"> camelito.illico@presto.fr</a></div></td>
 							</tr>
 						</tbody>
 					</table>

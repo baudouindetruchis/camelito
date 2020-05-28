@@ -25,7 +25,7 @@
 	<div class="container">
 		<div class="col-md-12">
 			
-			<h2 class="success">Mon magasin</h2>
+			<h2 class="successMag">Mon magasin</h2>
 			<form action="../ModifyMagasinForm">
 				<c:set var="usr" scope="session" value="${sessionScope.user}" />
 				
@@ -53,12 +53,12 @@
 
 				<div class="form-row text-center">
 					<div class="form-group col-md-12">
-						<input class="btn-primary btn-responsive btnModifier"
+						<input class="btn-primary btn-responsive btnModifierMag"
 							type="submit" id="btnSaveChangeStore" value="Save Changes"
 							onclick="btnSaveChangeStore()" hidden />
 					</div>
 					<div class="form-group col-md-12 marginBottomStrong">
-						<input class="btn-primary btn-responsive btnModifier"
+						<input class="btn-primary btn-responsive btnModifierMag"
 							type="button" value="Modifier" id="btnEditStore"
 							onclick="editStore()" />
 					</div>

@@ -48,10 +48,10 @@
 						<c:choose>
 							<c:when test="${listCommand.ready=='lacommandeestprete'}">
 
-								<p>La commande est prête</p>
+								<p>La commande n°${listCommand.id} est prête</p>
 							</c:when>
 							<c:when test="${listCommand.ready=='lacommandenestpasprete'}">
-								<p>La commande n'est pas prête</p>
+								<p>La commande n°${listCommand.id} n'est pas prête</p>
 							</c:when>
 						</c:choose>
 					</div>
