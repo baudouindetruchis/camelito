@@ -55,7 +55,6 @@ public class PanierClick extends HttpServlet {
 			msg+=(String) res[1];
 			if (isValid) {
 				// Careful setCommandList and reloadCommands must be run before the others
-				ArticleListFunctions.setCommandList(session);
 				CommandsFunctions.reloadCommands(request, response, session);
 				
 				ArticleListFunctions.decreaseStockForCart(session);
@@ -63,6 +62,7 @@ public class PanierClick extends HttpServlet {
 				msg+=ArticleListFunctions.updateScoreAndSaving(session);
 				msg += "<br><br>Vous allez automatiquement être redirigé vers une plateforme de paiement, veuillez patienter...";
 				//must be run after score and savings
+				ArticleListFunctions.setCommandList(session);
 				ConnectionFunctions.setSuccess(session);//update the success list with new savings and score
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
