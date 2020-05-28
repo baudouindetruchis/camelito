@@ -53,9 +53,11 @@ function onload(){
     		  success: function(response) {
     		    	$("#cartDiv").load("panierTable.jsp"); 
     		    	$("#ordersDiv").load("panierComm.jsp");
-        		    var elemTxt = document.getElementById("txtResponse");
-        		    elemTxt.innerHTML = response;
-        			$("#modalMsg").modal();
+        			if(!(response.trim()==="")){
+        		    	var elemTxt = document.getElementById("txtResponse");
+            		    elemTxt.innerHTML = response;
+            			$("#modalMsg").modal();
+        		    }
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error
