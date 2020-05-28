@@ -99,8 +99,6 @@ public class Score extends HttpServlet {
 				participantsList.add(aParticipant);
 				count++;
 			}
-			// TODO set attribute
-			session.setAttribute("participantsList", participantsList);
 
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -108,14 +106,17 @@ public class Score extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		//TODO handel fist and last user
+		// handel fist and last user
 		Participant prevParticipant = participantsList.get(indexOfUser+1);
 		Participant currParticipant = participantsList.get(indexOfUser);
 		Participant succParticipant = participantsList.get(indexOfUser-1);
 		
 		session.setAttribute("prevParticipant", prevParticipant);
 		session.setAttribute("currParticipant", currParticipant);
-		session.setAttribute("succParticipant", succParticipant);		
+		session.setAttribute("succParticipant", succParticipant);	
+
+		List<Participant> shortParticipantsList = participantsList.subList(0, 11);
+		session.setAttribute("participantsList", shortParticipantsList);
 	}
 
 }

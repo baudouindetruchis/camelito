@@ -8,6 +8,14 @@
 
 <body>
 	<h2>Course aux camelicoins </h2>
+	
+	<c:set var="pUsr" value="${sessionScope.prevParticipant}" />
+	
+	<c:out value="${pUsr.score}"></c:out>
+	<h3>you : </h3>
+	<c:set var="cUsr" value="${sessionScope.currParticipant}" />
+	<c:set var="sUsr" value="${sessionScope.succParticipant}" />
+	
 	<table id='myTable' class="table table-striped" style="width: 50%">
 	  <thead>
 	    <tr>
@@ -24,6 +32,26 @@
 		  	<td><c:out value="${part.score}"/></td>
 	   	  </tr>
 	  </c:forEach>
+		  <tr>
+		  	<td>...</td>
+		  	<td>...</td>
+		  	<td>...</td>
+	   	  </tr>
+		  <tr>
+		  	<td><c:out value="${sUsr.place}"></c:out></td>
+		  	<td><c:out value="${sUsr.pseudo}"></c:out></td>
+		  	<td><c:out value="${sUsr.score}"></c:out></td>
+	   	  </tr>	
+		  <tr>
+		  	<td><c:out value="${cUsr.place}"></c:out></td>
+		  	<td><c:out value="${cUsr.pseudo}"></c:out></td>
+		  	<td><c:out value="${cUsr.score}"></c:out></td>
+	   	  </tr>	
+		  <tr>
+		  	<td><c:out value="${pUsr.place}"></c:out></td>
+		  	<td><c:out value="${pUsr.pseudo}"></c:out></td>
+		  	<td><c:out value="${pUsr.score}"></c:out></td>
+	   	  </tr>	   	  
 	  </tbody>
 	</table>
 		
