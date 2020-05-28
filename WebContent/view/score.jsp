@@ -30,53 +30,16 @@
 
 
 <body>
-
-	<form action="../Score">
-
-
-		<div id="includedHeader"></div>
-	<div id="title">
-		<h1 style="font-size: 2vw">Course au camelicoins</h1>
-	</div>
-
-	<div id="scoreTab">
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-<th scope="col" style="width: 5%"> Prénom </th>
-<th scope="col" style="width: 10%"> Nom </th>
-<th scope="col" style="width: 5%"> Score </th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  
-	  
-<jsp:useBean id="score" scope="request" class="servlet.Score">
-</jsp:useBean>
-
-<%@include file="score2.jsp" %>
-
-	  </tbody>
- 
-	</table>
-
+	<div id="includedHeader"></div>
+		
 	<div id="yourScore">
 		<h1 style="font-size: 2vw">Vôtre score : </h1>
 	</div>
+	<%@include file="scoreCamel.jsp" %>
 	
-<%@include file="score3.jsp" %>
-
-	Score de la personne suivante : <%=userSui%>
-	
-	Score de la personne précédente : <%=userPre%>
-
-	<div id="race">
-		<IMG class="style_image" alt="previous" src="../public/images/chammeau.png; margin:0 10px 0 <%=userSui%>px;">
-		<center> <IMG class="style_image" alt="you" src="../public/images/chammeau.png"> </center>
-		<IMG class="style_image" alt="next" src="../public/images/chammeau.png; margin:0 10px 0 <%=userPre%>px;">
+	<div id="title">
+		<h1 style="font-size: 2vw">Course au camelicoins</h1>
 	</div>
-
-
-	</form>	
-
+	<%@include file="scoreTable.jsp" %>
+	
 </body>
