@@ -49,7 +49,7 @@ public class Score extends HttpServlet {
         try{ 
         	connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
         	statement=connection.createStatement();
-        	String sql ="SELECT * FROM details WHERE score IS NOT NULL ORDER BY score";
+        	String sql ="SELECT * FROM details WHERE score IS NOT NULL ORDER BY score DESC";
 
         	resultSet = statement.executeQuery(sql);
         	while(resultSet.next()) {
