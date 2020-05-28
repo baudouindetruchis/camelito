@@ -114,7 +114,6 @@ public class ConnexionForm extends HttpServlet {
 		            				}
 		            				session.setAttribute("succesList", successNamesTab);
 		            				
-		            				
 		            			}
 	            	       	}
 	            	       	

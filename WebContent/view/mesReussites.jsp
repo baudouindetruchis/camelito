@@ -61,6 +61,37 @@
 
 	</div>
 
+	<div class="form-group row">
+		<label for="succes" class="col-form-label">Tout les succes : </label>
+	</div>
+	<div class="col-sm-7">
+		<c:forEach var="aSuccess" items="${sessionScope.successList}">
+			<c:out value="${aSuccess.name}" />
+			<c:choose>
+				<c:when test="${aSuccess.isDone}">
+					<!-- Si le success est validé -->
+					<img src="${aSuccess.pic}" style="height:20px; width:20px;" />
+				</c:when>
+				<c:otherwise>
+					<!-- Si le success n'a pas encore été realisé -->
+					<img src="${aSuccess.pic}" style="opacity: 0.5; height:20px; width:20px;"/>
+				</c:otherwise>
+			</c:choose>
+			<c:out value="${aSuccess.type}" />
+			<c:out value="${aSuccess.isBest}" />
+			<br>
+		</c:forEach>
+	</div>
+	
+	<div class="form-group row">
+		<label for="succes" class="col-form-label">Vos meilleurs succes : </label>
+	</div>
+	<div class="col-sm-7">
+		<c:forEach var="aSuccess" items="${sessionScope.successList}">
+			<c:out value="${success}" />
+		</c:forEach>
+	</div>
+
 
 
 </body>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import JavaFunction.ArticleListFunctions;
 import JavaFunction.CommandsFunctions;
+import JavaFunction.ConnectionFunctions;
 
 /**
  * Servlet implementation class PanierClick
@@ -56,11 +57,13 @@ public class PanierClick extends HttpServlet {
 				// Careful setCommandList and reloadCommands must be run before the others
 				ArticleListFunctions.setCommandList(session);
 				CommandsFunctions.reloadCommands(request, response, session);
+				
 				ArticleListFunctions.decreaseStockForCart(session);
 				ArticleListFunctions.actionPay(request);
 				msg+=ArticleListFunctions.updateScoreAndSaving(session);
-				msg += "<br><br>Vous allez automatiquement ï¿½tre redirigï¿½ vers une plateforme de paiement, veuillez patienter...";
-				
+				msg += "<br><br>Vous allez automatiquement être redirigé vers une plateforme de paiement, veuillez patienter...";
+				//must be run after score and savings
+				ConnectionFunctions.setSuccess(session);//update the success list with new savings and score
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
 			} else {

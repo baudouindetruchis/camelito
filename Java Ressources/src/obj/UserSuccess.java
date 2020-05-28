@@ -1,19 +1,37 @@
 package obj;
 
 public class UserSuccess {
-	
+
+	public String name;
 	String type;
 	int value;
 	String pic;
 	boolean isDone = false;
 	boolean isBest = false;
 	
-	public UserSuccess(String type, int value, String pic) {
+	public UserSuccess(String name, String type, int value, String pic) {
+		this.name=name;
 		this.type=type;
 		this.value=value;
 		this.pic=pic;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDone(boolean isDone) {
+		this.isDone = isDone;
+	}
+
+	public void setBest(boolean isBest) {
+		this.isBest = isBest;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -32,13 +50,13 @@ public class UserSuccess {
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
-	public boolean isDone() {
+	public boolean getIsDone() {
 		return isDone;
 	}
 	public void setToDone() {
 		this.isDone = true;
 	}
-	public boolean isBest() {
+	public boolean getIsBest() {
 		return isBest;
 	}
 	public void setToBestOfType() {
