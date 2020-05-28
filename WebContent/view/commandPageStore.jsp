@@ -6,7 +6,7 @@
 
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" media="screen">
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -19,7 +19,7 @@
 <head>
 <title>Camelito - Ma commande</title>
 <script src="../public/js/header.js"></script>
-
+<script src="../public/js/commandPageStore.js"></script>
 </head>
 
 <body onload="includeHeaderAndCheckUser()">
@@ -51,13 +51,18 @@
 								<c:out value="${article.selling_price}" />
 								€/u
 							</div>
+							<label class="active btnStyle" id="btnStyle${article.id}" onclick="btnValidate('${article.id}')"> 
+							<input type="checkbox" autocomplete="off" checked hidden=True>
+								<i class="fa fa-check" aria-hidden="true"></i>
+								<i class="fa fa-question" id="btnQuestion${article.id}" aria-hidden="true"></i>
+							</label>
 						</div>
 					</div>
 				</div>
 
 			</c:forEach>
 
-			<div class="col-md-4 text-center totalPrice">
+			<div class="col-md-12 text-center totalPrice">
 				<h3><label>Prix total :</label>
 				<c:out value="${sessionScope.TotalPrice}" />
 				€</h3>
