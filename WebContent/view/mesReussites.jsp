@@ -9,118 +9,136 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="../public/css/header_sample.css">
 
 </head>
 <body>
-<hr/>
+<hr class="hrmargin" />
+
+	<div class="container">
+		<h2 class="success">Mes réussites</h2>
+
+		<div class="col-md-12 reussitesCont">
+			<div class="form-row reussitesRow">
+				<div class="col-md-6 reussitesCol">
+					<div class="col-md-12">
+					<img class="img-responsive reussitesImg" src="../public/images/pieces.png"
+						alt="Pile de piece" /></div>
+					<label class="col-form-label reussitesLbl">10€ d'économisé</label>
+				</div>
+
+				<div class="col-md-6 reussitesCol">
+				<div class="col-md-12">
+					<img class="img-responsive reussitesImg" src="../public/images/medaille.png"
+						alt="medaille" /></div>
+					<label class="col-form-label  reussitesLbl" id="name">
+						<c:out value="${usr.score}" />
+						Points cumulés
+					</label>
+				</div>
+			</div>
+		</div>
 
 
-	<h2 class="success">Mes réussites</h2>
-
-	<div class="form-group row">
-		<img class="img-responsive" src="../public/images/pieces.png"
-			alt="Pile de piece" width="15%" height="17%" />
-		<p class="col-form-label">10€ d'économisés</p>
-	</div>
-	<div class="form-group row">
-		<img class="img-responsive" src="../public/images/podium.png"
-			alt="Podium" width="15%" height="17%" />
-		<p class="col-form-label">Concours en groupe</p>
-	</div>
-	<div class="form-group row">
-		<img class="img-responsive" src="../public/images/medaille.png"
-			alt="medaille" width="10%" height="10%" />
-		<p class="col-form-label" id="name">
-			<c:out value="${usr.score}" />
-			Points cumulés
-		</p>
-	</div>
+		<%-- <div class="form-group row">
+			<label for="succes" class="col-form-label">Succès : </label>
+		</div>
+		<div class="col-sm-7">
+			<c:forEach var="success" items="${sessionScope.succesList}">
+				<p class="form-control-plaintext" id="success">
+					<c:out value="${success}" />
+				</p>
+			</c:forEach>
 
 
-	<div class="form-group row">
-		<label for="succes" class="col-form-label">Succès : </label>
+		</div> --%>
 
-	</div>
-	<div class="col-sm-7">
-		<c:forEach var="success" items="${sessionScope.succesList}">
+		<div class="col-md-12 text-center">
+			<h4 class="col-form-label">Débloquez tous les succès !</h4>
 
-			<p text" class="form-control-plaintext" id="success">
-				<c:out value="${success}" />
-			</p>
-		</c:forEach>
+			<div class="form-row" style="text-align: -webkit-center;">
+				<c:forEach var="aSuccess" items="${sessionScope.successList}">
+				
+					<div class="col-md-4">
+						<div class="card text-center cardSizing">
+							<div class="card-body">
+
+								<c:choose>
+									<c:when test="${aSuccess.isDone}">
+										<!-- Si le success est validé -->
+										<a style="font-size: 50px;"> ${aSuccess.pic}</a>
+									</c:when>
+									<c:otherwise>
+										<!-- Si le success n'a pas encore été realisé -->
+										<a style="opacity: 0.5; font-size: 50px;"> ${aSuccess.pic}</a>
+									</c:otherwise>
+								</c:choose>
+								<div class="form-row centerContent">
+									<label>${aSuccess.name}</label>
+									<%-- <c:out value="${aSuccess.type}" />
+							<c:out value="${aSuccess.isBest}" /> --%>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 
 
-	</div>
+			<h4 class="col-form-label">Vos meilleurs succès</h4>
 
-	<div class="form-group row">
-		<label for="succes" class="col-form-label">Tout les succes : </label>
-	</div>
-	<div class="col-sm-7">
-		<c:forEach var="aSuccess" items="${sessionScope.successList}">
-			<c:out value="${aSuccess.name}" />
-			<c:choose>
-				<c:when test="${aSuccess.isDone}">
-					<!-- Si le success est validé -->
-					<img src="${aSuccess.pic}" style="height:20px; width:20px;" />
-				</c:when>
-				<c:otherwise>
-					<!-- Si le success n'a pas encore été realisé -->
-					<img src="${aSuccess.pic}" style="opacity: 0.5; height:20px; width:20px;"/>
-				</c:otherwise>
-			</c:choose>
-			<c:out value="${aSuccess.type}" />
-			<c:out value="${aSuccess.isBest}" />
-			<br>
-		</c:forEach>
-	</div>
-	
-	<div class="form-group row">
-		<label for="succes" class="col-form-label">Vos meilleurs succes : </label>
-	</div>
-	<div class="col-sm-7">
-		<c:forEach var="aSuccess" items="${sessionScope.successList}">
-			<c:choose>
-				<c:when test="${aSuccess.isBest}">
-					<!-- Si le success est le meilleur de sa categorie -->
-					<c:out value="${aSuccess.name}" />
-					<img src="${aSuccess.pic}" style="height:20px; width:20px;" />
-					<c:out value="${aSuccess.type}" />
-					<br>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-	</div>
+			<div class="form-row" style="text-align: -webkit-center;">
+				<c:forEach var="aSuccess" items="${sessionScope.successList}">
 
-	<div class="form-group row">
-		<label for="succes" class="col-form-label">Selectionne un succes : </label>
-	</div>
-	<div class="col-sm-7">
-		<c:forEach var="aSuccess" items="${sessionScope.successList}">
-			<c:choose>
-				<c:when test="${aSuccess.isBest}"> <!-- prend les meilleur succes -->
 					<c:choose>
-						<c:when test="${aSuccess.type == 'saving'}"> <!-- de la categorie perso -->
-							<c:out value="${aSuccess.name}" />
-							<img src="${aSuccess.pic}" style="height:20px; width:20px;" />
-							<c:out value="${aSuccess.type}" />
-							<br>
+						<c:when test="${aSuccess.isBest}">
+							<div class="col-md-4">
+								<div class="card text-center cardSizing">
+									<div class="card-body">
+										<!-- Si le success est le meilleur de sa categorie -->
+										<a style="font-size: 50px;"> ${aSuccess.pic}</a>
+										<div class="form-row centerContent">
+											<label>${aSuccess.name}</label>
+											<%-- <c:out value="${aSuccess.type}" /> --%>
+										</div>
+									</div>
+								</div>
+							</div>
 						</c:when>
 					</c:choose>
-				</c:when>
-			</c:choose>
-		</c:forEach>
+
+				</c:forEach>
+			</div>
+			<!-- wei wei wei -->
+			<div class="form-group row">
+				<label for="succes" class="col-form-label">Selectionne un
+					succes : </label>
+			</div>
+			<div class="col-sm-7">
+				<c:forEach var="aSuccess" items="${sessionScope.successList}">
+					<c:choose>
+						<c:when test="${aSuccess.isBest}">
+							<!-- prend les meilleur succes -->
+							<c:choose>
+								<c:when test="${aSuccess.type == 'saving'}">
+									<!-- de la categorie perso -->
+									<c:out value="${aSuccess.name}" />
+									<img src="${aSuccess.pic}" style="height: 20px; width: 20px;" />
+									<c:out value="${aSuccess.type}" />
+									<br>
+								</c:when>
+							</c:choose>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+			</div>
+		</div>
+
 	</div>
-
-
 
 </body>
 </html>

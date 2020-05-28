@@ -18,7 +18,7 @@
                             <img src="https://i0.wp.com/www.ucaubenas.com/wp-content/uploads/email-logo.png?fit=256%2C256" class="icon">
                               camelito.illico@presto.fr<br>
                                 <img src="https://i.ya-webdesign.com/images/telephone-icon-png-6.png" class="icon">
-                                  06 77 88 77 88<br>
+                                  01 49 54 52 43<br>
                                     <br>
                                       <img src="https://groupe-reussite.fr/wp-content/uploads/2020/04/logo_isep.png" alt="Isep" class="isep">
                                         10 Rue de Vanves, 92130<br>

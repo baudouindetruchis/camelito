@@ -26,8 +26,9 @@
 		<h2>Produits disponibles</h2>
 		<div id="includArt" class="row"></div>
 	
-
+	<div class="container">
 		<h2>Victime de leur succes</h2>
+		<div class="row">
 		<c:forEach var="artc" items="${sessionScope.articleNotAvailableList}">
 			<div class="col-md-3">
 				<div class="product-top">
@@ -43,6 +44,8 @@
 				</div>
 			</div>
 		</c:forEach>
+		</div>
+		</div>
 	</div>
 	<div id="includedFooter"></div>
 </body>
