@@ -87,7 +87,7 @@ public class Score extends HttpServlet {
 				//handel classement
 				if(score<previousScore) {
 					previousScore=score;
-					classement++;
+					classement=count+1;
 				}
 				
 				if(currentUserId==user_id){
@@ -115,7 +115,7 @@ public class Score extends HttpServlet {
 		session.setAttribute("currParticipant", currParticipant);
 		session.setAttribute("succParticipant", succParticipant);	
 
-		List<Participant> shortParticipantsList = participantsList.subList(0, 11);
+		List<Participant> shortParticipantsList = participantsList.subList(0, 10);
 		session.setAttribute("participantsList", shortParticipantsList);
 	}
 
