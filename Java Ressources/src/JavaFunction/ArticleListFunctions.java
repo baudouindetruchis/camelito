@@ -593,10 +593,10 @@ public class ArticleListFunctions {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			int user_id = user.getId();
 
-			PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET liste_quantities = null"
+			PreparedStatement editQuantity = con.prepareStatement("UPDATE public.carts SET liste_quantities = '{}'"
 					+ " WHERE id_user = " + user_id + " AND status = false");
 			editQuantity.execute();
-			editQuantity = con.prepareStatement("UPDATE public.carts SET list_id_articles = null" + " WHERE id_user = "
+			editQuantity = con.prepareStatement("UPDATE public.carts SET list_id_articles = '{}'" + " WHERE id_user = "
 					+ user_id + " AND status = false");
 			editQuantity.execute();
 
@@ -733,7 +733,7 @@ public class ArticleListFunctions {
 			price = anArt.getSelling_price();
 			total_price += quantity_article * price;
 		}
+		total_price = UtilFunc.round(total_price, 2);
 		return total_price;
 	}
-
 }

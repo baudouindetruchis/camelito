@@ -51,9 +51,8 @@
 
 				<div class="form-row" style="text-align: center">
 					<div class="form-group col-md-12">
-						<input type="submit" class="btn btn-primary btnAjout" name="act" value="Modifier">
 						<input type="submit" class="btn btn-primary btnAjout" name="act" value="Supprimer" formnovalidate>
-<!-- 						<button class="btn btn-primary btnAjout" name="act" value="Supprimer">Supprimer</button> -->
+						<input type="submit" class="btn btn-primary btnAjout" name="act" value="Modifier">
 				</div>
 				</div>
 		</form>
