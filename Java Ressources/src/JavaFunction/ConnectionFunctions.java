@@ -222,7 +222,6 @@ public class ConnectionFunctions {
 						
 						aSuccess=new UserSuccess(successName, successType, successValue, successPic);
 						if(successValue<=userVal) {
-							System.out.println(successName + " : "+successValue+", "+userVal);
 							aSuccess.setToDone();
 							subListSuccessDone.add(aSuccess);
 						} else {

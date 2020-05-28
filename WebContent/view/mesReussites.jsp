@@ -88,7 +88,35 @@
 	</div>
 	<div class="col-sm-7">
 		<c:forEach var="aSuccess" items="${sessionScope.successList}">
-			<c:out value="${success}" />
+			<c:choose>
+				<c:when test="${aSuccess.isBest}">
+					<!-- Si le success est le meilleur de sa categorie -->
+					<c:out value="${aSuccess.name}" />
+					<img src="${aSuccess.pic}" style="height:20px; width:20px;" />
+					<c:out value="${aSuccess.type}" />
+					<br>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+	</div>
+
+	<div class="form-group row">
+		<label for="succes" class="col-form-label">Selectionne un succes : </label>
+	</div>
+	<div class="col-sm-7">
+		<c:forEach var="aSuccess" items="${sessionScope.successList}">
+			<c:choose>
+				<c:when test="${aSuccess.isBest}"> <!-- prend les meilleur succes -->
+					<c:choose>
+						<c:when test="${aSuccess.type == 'saving'}"> <!-- de la categorie perso -->
+							<c:out value="${aSuccess.name}" />
+							<img src="${aSuccess.pic}" style="height:20px; width:20px;" />
+							<c:out value="${aSuccess.type}" />
+							<br>
+						</c:when>
+					</c:choose>
+				</c:when>
+			</c:choose>
 		</c:forEach>
 	</div>
 
