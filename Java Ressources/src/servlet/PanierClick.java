@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import JavaFunction.ArticleListFunctions;
 import JavaFunction.CommandsFunctions;
+import JavaFunction.ConnectionFunctions;
 
 /**
  * Servlet implementation class PanierClick
@@ -48,34 +50,44 @@ public class PanierClick extends HttpServlet {
 			session.removeAttribute("total_price");
 			break;
 		case "pay":
-			boolean isValid = ArticleListFunctions.isCommandValid(session);
+			Object[] res = ArticleListFunctions.isCommandValid(session);
+			boolean isValid = (boolean) res[0];
+			msg+=(String) res[1];
 			if (isValid) {
 				// Careful setCommandList and reloadCommands must be run before the others
 				ArticleListFunctions.setCommandList(session);
 				CommandsFunctions.reloadCommands(request, response, session);
+				
 				ArticleListFunctions.decreaseStockForCart(session);
 				ArticleListFunctions.actionPay(request);
-				ArticleListFunctions.updateScoreAndSaving(session);
-				
+				msg+=ArticleListFunctions.updateScoreAndSaving(session);
+				msg += "<br><br>Vous allez automatiquement être redirigé vers une plateforme de paiement, veuillez patienter...";
+				//must be run after score and savings
+				ConnectionFunctions.setSuccess(session);//update the success list with new savings and score
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
 			} else {
-				System.out.println("command non valide");//TODO
+				msg += "Votre commande n'a malheuresement pas pu aboutir";
 			}
 			break;
 		case "less":
 		case "more":
 		case "supp":
 			msg = ArticleListFunctions.modifQuantity(request);
-			System.out.println(msg);
 			ArticleListFunctions.loadCart(session);
-			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+//			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			break;
 
 		default:
-			System.out.println("unkonwn action in doGet panier click");
+			msg = "404 : action inconnue in doGet panier click";
 			break;
 		}
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(msg);
+		out.close();
+		return;
 	}
 
 	/**

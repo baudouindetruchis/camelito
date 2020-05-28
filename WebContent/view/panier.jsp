@@ -33,7 +33,7 @@
 			<button class="btn btn-default btn-rounded mb-4 btnFinAnnuler"
 				data-toggle="modal" data-target="#modalConfirmAnnuler">Annuler</button>
 			<button class="btn btn-default btn-rounded mb-4 btnFinPayer"
-				data-toggle="modal" data-target="#modalConfirmPayer"
+				data-toggle="modal" data-target="#modalMsg"
 				onClick="btnActClick('pay')">Payer</button>
 		</div>
 
@@ -64,14 +64,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="modalConfirmPayer" tabindex="-1"
+		<div class="modal fade" id="modalMsg" tabindex="-1"
 			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content noborder">
 					<div class="modal-header text-center headpopupPayer">
-						<h4 class="messageAnnulerPayer">Vous allez automatiquement
-							être redirigé vers une plateforme de paiement, veuillez
-							patienter...</h4>
+						<h4 id="txtResponse" class="messageAnnulerPayer"></h4>
 					</div>
 				</div>
 			</div>

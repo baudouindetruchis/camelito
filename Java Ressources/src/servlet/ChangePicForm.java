@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import JavaFunction.ConnectionFunctions;
 import obj.User;
 
 /**
@@ -54,7 +55,7 @@ public class ChangePicForm extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		ConnectionFunctions.setSuccess(session);//update the success list with the new profil pic
 		response.sendRedirect("./view/profil.jsp");
 		
 	}
