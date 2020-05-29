@@ -115,6 +115,17 @@
 											<label class="cardImgLabel">${aSuccess.name}</label>
 											<%-- <c:out value="${aSuccess.type}" /> --%>
 										</div>
+											<c:choose>
+												<c:when test="${aSuccess.isLast}">
+													<c:out value="ca marche?" />
+													<div class="form-group col-md-12 marginBottom">
+							<input class="btn btn-primary btn-responsive btnAddSuccess"
+								type="button" value="AddChooseSucces" id="btnAddSuccess"
+								onclick="goToEdit()" />
+						</div>
+													<!-- Mets ton bouton ici frérot -->
+												</c:when>
+											</c:choose>
 									</div>
 								</div>
 							</div>
