@@ -197,6 +197,7 @@ public class ConnectionFunctions {
 		int successValue;
 		String successPic;
 		String successName;
+		Boolean isBestFromCat;
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			for (Map.Entry<String, Integer> oneTypeAndVal : mapTypeAndVal.entrySet()) {
 			    type = oneTypeAndVal.getKey();
@@ -217,8 +218,8 @@ public class ConnectionFunctions {
 						successType = rsSuccess.getString("success_type");
 						successValue = rsSuccess.getInt("value");
 						successPic = rsSuccess.getString("succes_pic");
-						
-						aSuccess=new UserSuccess(successName, successType, successValue, successPic);
+						isBestFromCat= rsSuccess.getBoolean("isbestfromcat");
+						aSuccess=new UserSuccess(successName, successType, successValue, successPic,isBestFromCat);
 						if(successValue<=userVal) {
 							aSuccess.setToDone();
 							subListSuccessDone.add(aSuccess);

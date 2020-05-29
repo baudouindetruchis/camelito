@@ -20,6 +20,9 @@ public class User {
 
 	String address;
 	String storeName;
+	List<Integer> list_success = new ArrayList<Integer>();
+	
+
 	
 
 	public float getSaving() {
@@ -70,7 +73,7 @@ public class User {
 		this.promotion = promotion;
 	}
 
-	List<Integer> list_success = new ArrayList<Integer>();
+	
 
 	public String getFirst_name() {
 		return first_name;

@@ -8,12 +8,22 @@ public class UserSuccess {
 	String pic;
 	boolean isDone = false;
 	boolean isBest = false;
+	boolean isLast = false;
 	
-	public UserSuccess(String name, String type, int value, String pic) {
+	public boolean getIsLast() {
+		return isLast;
+	}
+
+	public void setLast(boolean isLast) {
+		this.isLast = isLast;
+	}
+
+	public UserSuccess(String name, String type, int value, String pic, Boolean isLast) {
 		this.name=name;
 		this.type=type;
 		this.value=value;
 		this.pic=pic;
+		this.isLast=isLast;
 	}
 	
 	public String getName() {
