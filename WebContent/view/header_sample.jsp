@@ -52,11 +52,13 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="../ValidationLoadForm">Utilisateurs</a>
 							</li>
+							<li class="nav-item"><a class="nav-link" href="../ChatLoadAssoForm">Messagerie</a>
+							</li>
 						</c:when>
 						<c:when test="${sessionScope.type=='3'}">
 							<li class="nav-item"><a class="nav-link" href="../StockLoad">Stock</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="../MessageLoad">Messagerie</a>
+							<li class="nav-item"><a class="nav-link" href="chatPage.jsp">Messagerie</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="../MyCmdLoadFrom">Ma commande</a>
 							</li>
