@@ -39,7 +39,7 @@ public class ChatForm extends HttpServlet {
 		String user = "postgres";
 		String psw = "123";
 		HttpSession session = request.getSession();
-		
+		System.out.println("ici");
 		String text = (String) request.getAttribute("txt");
 		System.out.println(text);
 		int id_user = (int) session.getAttribute("id");
