@@ -35,15 +35,15 @@
 	<c:set var="margeD" value="${coeff * (sUsr.score - cUsr.score)}" />
 	
 	
-	<div class="d-flex justify-content-center" id="scorerace">
-		<div class="scoreCamel text-left"><c:out value="${pUsr.score}"/></div>
-		<div style="width: 40px; margin-left:${margeG}%; margin-right:${margeD}%;"><c:out value="${cUsr.score}"/></div> 
-		<div class="scoreCamel text-right"><c:out value="${sUsr.score}"/></div>
+	<div class="d-flex justify-content-center text-center" id="scorerace">
+		<div style="width: 65px;"><c:out value="${pUsr.score}"/></div>
+		<div style="width: 65px; margin-left:${margeG}%; margin-right:${margeD}%;"><c:out value="${cUsr.score}"/></div> 
+		<div style="width: 65px;"><c:out value="${sUsr.score}"/></div>
 	</div>
-	<div class="d-flex justify-content-center" id="userrace">
-		<div><c:out value="${pUsr.pseudo}"/></div>
-		<div style="margin-left:${margeG}%; margin-right:${margeD}%;"><c:out value="${cUsr.pseudo}"/></div> 
-		<div><c:out value="${sUsr.pseudo}"/></div>
+	<div class="d-flex justify-content-center text-center" id="userrace">
+		<div style="width: 65px;"><c:out value="${pUsr.pseudo}"/></div>
+		<div style="width: 65px; margin-left:${margeG}%; margin-right:${margeD}%;"><c:out value="${cUsr.pseudo}"/></div> 
+		<div style="width: 65px;"><c:out value="${sUsr.pseudo}"/></div>
 	</div>
 	<div class="d-flex justify-content-center" id="race">
 		<IMG class="style_image" alt="prev" src="../public/images/chammeau.png">

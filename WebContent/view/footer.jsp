@@ -91,7 +91,7 @@
 		</div>
 		<div class="container footerContainer">
 			<div class="row">
-				<div class="col-md-8 col-sm-6 col-xs-12">
+				<div class="col-md-6 col-sm-6 col-xs-12">
 					<p class="copyright-text">
 						Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> All Rights Reserved by <a href="#">the Camelito Team</a>.
 					</p>

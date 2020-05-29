@@ -1,4 +1,6 @@
-<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="fr">
@@ -27,22 +29,26 @@
 	<div id="includedHeader"></div>
 
 	<div class="container">
-	<div class="row">
-		<div class="col-md-12" id="yourScore">
-			<h2>La course aux Camelicoins</h2>
-			<div class="col-md-12 headerTitre">Bienvenue sur cette course,
-				truc, c'est ici que tu vas pouvoir venir avec ta fidèle monture pour
-				voir les scores de chacun afin de constater à quel point tu
-				sauvegardes la planète !</div>
+		<div class="row">
+			<div class="col-md-12" id="yourScore">
+				<h2>La course aux Camelicoins</h2>
+				<c:set var="sUsr" value="${sessionScope.succParticipant}" />
+				<div class="col-md-12 headerTitre">
+					Bienvenue sur cette course, ${usr.first_name}, c'est ici que tu vas
+					venir avec ta fidèle monture afin de concourir à la place
+					de Number One !
+					<%-- <br><br>Premier objectif: Rattraper ${sUsr.pseudo} ! --%>
+					<!-- Optionnel++: Une fonction pour enlever ce message et afficher qu'on est le number one quand on est vrmt le number one quoi -->
+				</div>
 
 
-			<%@include file="scoreCamel.jsp"%>
+				<%@include file="scoreCamel.jsp"%>
 
-			<%@include file="scoreTable.jsp"%>
+				<%@include file="scoreTable.jsp"%>
 
-			<%@include file="scoreFiltre.jsp"%>
+				<%@include file="scoreFiltre.jsp"%>
+			</div>
 		</div>
-	</div>
 	</div>
 	<div id="includedFooter"></div>
 </body>
