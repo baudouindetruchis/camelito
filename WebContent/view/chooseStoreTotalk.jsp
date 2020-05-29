@@ -25,6 +25,7 @@
 <head>
 <title>Camelito - Messagerie</title>
 <script src="../public/js/header.js"></script>
+<script src="../public/js/chatpage.js"></script>
 
 </head>
 
@@ -40,7 +41,7 @@
 	
 	<c:forEach var="store" items="${sessionScope.listStores}">
 		
-		<button type="button" class="btnn"><c:out value="${store}" /> </button>
+		<button type="button" class="btnn" onclick="chooseStore('${store}')"><c:out value="${store}" /> </button>
 	</c:forEach>
 			
 	

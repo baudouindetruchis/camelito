@@ -58,7 +58,7 @@
 						<c:when test="${sessionScope.type=='3'}">
 							<li class="nav-item"><a class="nav-link" href="../StockLoad">Stock</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="chatPage.jsp">Messagerie</a>
+							<li class="nav-item"><a class="nav-link" href="../loadChats">Messagerie</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="../MyCmdLoadFrom">Ma commande</a>
 							</li>
