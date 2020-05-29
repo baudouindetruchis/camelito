@@ -4,11 +4,23 @@ public class Participant {
 	int place;
 	String pseudo;
 	int score;
-	
-	public Participant(int place, String pseudo, int score) {
+	String favSucces;
+
+	public Participant(int place, String pseudo, int score, String favSucces) {
 		this.place= place;
 		this.pseudo = pseudo;
 		this.score = score;
+		this.favSucces = favSucces;
+	}
+	public Participant() {
+		this.place= 0;
+	}
+		
+	public String getFavSucces() {
+		return favSucces;
+	}
+	public void setFavSucces(String favSucces) {
+		this.favSucces = favSucces;
 	}
 	public int getPlace() {
 		return place;

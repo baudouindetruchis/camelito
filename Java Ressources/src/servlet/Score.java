@@ -59,30 +59,43 @@ public class Score extends HttpServlet {
 		List<Participant> participantsList = new ArrayList<Participant>();
 		User currentUser = (User) session.getAttribute("user");
 		int currentUserId = currentUser.getId();
-
+		
 		int indexOfUser = 0;
 		int count = 0;
 		
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			PreparedStatement getParticipant = con.prepareStatement("SELECT * FROM details WHERE score IS NOT NULL ORDER BY score DESC");
 			ResultSet rsParticipant = getParticipant.executeQuery();
-						
+			
 			Participant aParticipant;
 			int user_id;
 			String pseudo;
 			int score;
+			String favSucces;
+			int favSuccesId;
 						
 			int classement = 0;
 			int previousScore = (int) Double.MAX_VALUE;
 			while (rsParticipant.next()) {
 				user_id = rsParticipant.getInt("id_user");
 				score = rsParticipant.getInt("score");
+				favSuccesId = rsParticipant.getInt("favSuccess");
 				
 				//get pseudo
 				PreparedStatement getPseudo = con.prepareStatement("SELECT * FROM users WHERE id ="+user_id);
 				ResultSet rsPseudo = getPseudo.executeQuery();
 				rsPseudo.next();
 				pseudo = rsPseudo.getString("user_name");
+				
+				//get fav succes
+				if(favSuccesId != 0) {
+					PreparedStatement getFavSucces = con.prepareStatement("SELECT * FROM success WHERE id ="+favSuccesId);
+					ResultSet rsFavSucces = getFavSucces.executeQuery();
+					rsFavSucces.next();
+					favSucces = rsFavSucces.getString("success_name");					
+				} else {
+					favSucces="";
+				}
 				
 				//handel classement
 				if(score<previousScore) {
@@ -95,7 +108,7 @@ public class Score extends HttpServlet {
 				}
 				
 				//create participant and a it to list
-				aParticipant = new Participant(classement, pseudo, score);
+				aParticipant = new Participant(classement, pseudo, score, favSucces);
 				participantsList.add(aParticipant);
 				count++;
 			}
@@ -117,6 +130,11 @@ public class Score extends HttpServlet {
 
 		List<Participant> shortParticipantsList = participantsList.subList(0, 10);
 		session.setAttribute("participantsList", shortParticipantsList);
+
+		//blank participant used for first and last place
+		Participant blankParticipant = new Participant();
+		participantsList.add(blankParticipant);
+		participantsList.add(0, blankParticipant);
 		session.setAttribute("fullParticipantsList", participantsList);		
 	}
 
