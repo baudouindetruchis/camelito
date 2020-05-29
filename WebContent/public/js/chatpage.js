@@ -1,9 +1,22 @@
 
 function sendText(){
 	var txt = document.getElementById("message").value;
+	
+	var arr = ["connard", "putain","merde", "salop", "pute", "prout","camelito c'est null", "attardé", "rien a foutre", "chier", "encul"];
+	var vulgar = false;
+	for(let i=0; i<=4;i++){
+		if(txt.includes(arr [i]) ){
+			vulgar=true;
+		}
+	}
 	if(!txt.replace(/\s/g, '').length){
 		alert("On ne peut pas envoyer de message vide");
+	}else if(vulgar===true){
+		alert("Quelle vulgarité! C'est pas correct!");
+	}else if(txt.includes("aime Camelito")){
+		alert("Nous aussi on t'aime");
 	}else{
+	
 		sendPreEnteredtext(txt);
 	}
 }
