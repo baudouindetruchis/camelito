@@ -122,7 +122,7 @@
 												<div class="col-md-12 btnMaxSuccess">
 													<input class="btn btn-primary btn-responsive btnAddSuccess"
 														type="button" value="AddChooseSucces" id="btnAddSuccess"
-														onclick="goToEdit()" />
+														onclick="addFavSuccess('${aSuccess.name}')" />
 												</div>
 											</div>
 										</c:when>

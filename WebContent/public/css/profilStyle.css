@@ -345,9 +345,7 @@ img.edit {
 
 
 
-.btnAddSuccess{
-	margin-bottom:50px;
-}
+
 h2.success {
 	background: darkorange;
     color: white;
@@ -392,7 +390,7 @@ h4.col-form-label {
     margin-right: 0 !important;
     margin-left: 0 !important;
     padding-top: 7%;
-    padding-bottom: 20%;
+    padding-bottom: 7%;
 }
 
 .reussitesImg {

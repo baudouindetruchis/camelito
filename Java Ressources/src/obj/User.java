@@ -21,9 +21,17 @@ public class User {
 	String address;
 	String storeName;
 	List<Integer> list_success = new ArrayList<Integer>();
-	
+	UserSuccess favSuccess;
 
 	
+
+	public UserSuccess getFavSuccess() {
+		return favSuccess;
+	}
+
+	public void setFavSuccess(UserSuccess favSuccess) {
+		this.favSuccess = favSuccess;
+	}
 
 	public float getSaving() {
 		return saving;

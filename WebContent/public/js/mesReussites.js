@@ -1,3 +1,22 @@
+  function addFavSuccess(nameSuccess) {
+    	$.ajax({
+    		  url: "../SuccessForm",
+    		  type: "get", //send it through get method
+    		  data: { 
+    		   
+    			  nameSuccess: nameSuccess
+    		  },
+    		  success: function(response) {
+    			  window.location.replace("profil.jsp");
+    		  },
+    		  error: function(xhr) {
+    		    //Do Something to handle error
+    		  }
+    		});
+    }
+
+
+
 function colorCards(type, value) {
 	var cardColor = document.getElementById("card "+type+value);
 	if (type == "bienvenu" && value =="0") {

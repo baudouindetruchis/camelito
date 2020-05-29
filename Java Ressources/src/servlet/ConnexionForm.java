@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import JavaFunction.ConnectionFunctions;
 import obj.User;
+import obj.UserSuccess;
 
 /**
  * Servlet implementation class ConnexionForm
@@ -91,6 +92,9 @@ public class ConnexionForm extends HttpServlet {
 	            	       	
 	            	       	if(type==1 || type==2) {
 	            	       		
+	            	       		
+	            	       		
+	            	       		
 	            	       		PreparedStatement getSucces = con.prepareStatement("SELECT list_id_success FROM public.details WHERE id_user = " + id );
 		            			ResultSet succes = getSucces.executeQuery();
 		            			if (succes == null) {
@@ -121,7 +125,24 @@ public class ConnexionForm extends HttpServlet {
 	            			if(type==1 || type==2) {
 	            				int score = res.getInt("score");
 	    						ConnectionFunctions.connect(request, id, mail, type, user_name, firstname, lastname, promotion, score, "","",status,profilPic,savings);
-	    					}else {
+	    						
+	    						PreparedStatement getFavSucces = con.prepareStatement("SELECT favsuccess FROM public.details WHERE id_user = " + id );
+		            			ResultSet favSucces = getFavSucces.executeQuery();
+		            			if(favSucces.next()) {
+		            				int idFavSuccess =favSucces.getInt("favsuccess");
+		            				PreparedStatement getSucces = con
+		            						.prepareStatement("SELECT * FROM public.success WHERE id= '"+ idFavSuccess+"'");
+		            				
+		            				ResultSet success = getSucces.executeQuery();
+		            				if(idFavSuccess!=0) {
+		            					success.next();
+			            				UserSuccess lastSuccess= new UserSuccess(success.getString("success_name"), success.getString("success_type"), success.getInt("value"), success.getString("succes_pic"), true);
+			            				User currentUsr = (User) session.getAttribute("user");
+			            				currentUsr.setFavSuccess(lastSuccess);
+		            				}
+		            				
+		            			}
+	            			}else {
 	    						
 	    						PreparedStatement getStoreName = con.prepareStatement("SELECT * FROM public.stores WHERE id_user = " + id );
             					ResultSet storeInfo = getStoreName.executeQuery();

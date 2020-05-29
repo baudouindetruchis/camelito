@@ -54,8 +54,10 @@
 								<h5>
 									<c:out value="${usr.first_name}" />
 									<c:out value="${usr.last_name}" />
+									
 								</h5>
 							</div>
+							<c:out value="${usr.favSuccess.name}" />
 						</div>
 						<div class="form-row">
 							<div class="col-md-12 text-center">
