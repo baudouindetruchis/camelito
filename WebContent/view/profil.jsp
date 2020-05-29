@@ -54,13 +54,21 @@
 								<h5>
 									<c:out value="${usr.first_name}" />
 									<c:out value="${usr.last_name}" />
-									
+
 								</h5>
 							</div>
-							<c:out value="${usr.favSuccess.name}" />
+
 						</div>
 						<div class="form-row">
 							<div class="col-md-12 text-center">
+
+								<div class="col-md-12">
+									<h5 class="col-form-label" id="higherSuccess">
+										<script>
+											titreSuccess('${usr.favSuccess.name}')
+										</script>
+									</h5>
+								</div>
 
 								<div class="card text-center cardMontureSizing">
 									<div class="card-img-overlay profilPicShadow">

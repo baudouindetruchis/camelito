@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<title>Camelito - Shopping</title>
 
 <meta charset="UTF-8">
 <%@page contentType="text/html; charset=UTF-8"%>
@@ -14,6 +12,9 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="../public/css/pageStyle.css">
 <link rel="stylesheet" type="text/css" href="../public/css/shopping.css">
+
+<head>
+<title>Camelito - Shopping</title>
 
 <script src="../public/js/header.js"></script>
 <script src="../public/js/shopping.js"></script>
