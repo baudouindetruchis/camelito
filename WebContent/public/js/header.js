@@ -5,7 +5,6 @@ function includeHeaderAndCheckUser()  {
 	if(session==''){
 		window.location.href = "index.jsp";
 	}
-	
 }
 
 

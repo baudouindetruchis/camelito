@@ -3,11 +3,11 @@
 <html lang="fr">
 <%@page contentType="text/html; charset=UTF-8"%>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 
 <body>
-	<h2>Course aux camelicoins </h2>
+	<h3>Le score</h3>
 	
 	<c:set var="pUsr" value="${sessionScope.prevParticipant}" />
 	<c:set var="cUsr" value="${sessionScope.currParticipant}" />

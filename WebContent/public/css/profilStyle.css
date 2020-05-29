@@ -131,14 +131,26 @@ label {
 img.profil {
 	width: auto;
     height: 100px;
-    border: 2px solid sandybrown;
+    border: 2px solid #764e17;
     cursor: pointer;
     z-index: 1;
-    background-color: rosybrown;
+    background-color: moccasin;
 }
 
 img.profil:hover {
 	box-shadow: 0px 0px 20px burlywood;
+}
+
+h5.col-form-label {
+	width: max-content;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 0 auto;
+    float: none;
+    border-left: 2px solid #764e17;
+    border-right: 2px solid #764e17;
+    background-color: moccasin;
+    font-weight: bold !important;
 }
 
 .cardMontureSizing {
@@ -347,7 +359,7 @@ img.edit {
 
 
 h2.success {
-	background: darkorange;
+	background: sandybrown;
     color: white;
     font-size: 24px;
     padding: 8px;
@@ -410,6 +422,10 @@ h4.col-form-label {
 .centerContent {
 	justify-content: center;
 }
+
+.card-body {
+		padding: 0 !important;
+	}
 
 .cardSizing {
 	width: 300px;

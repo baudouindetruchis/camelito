@@ -1,9 +1,74 @@
 .container {
 	width: 100%;
 	margin-top: 100px;
+/* 	min-width: 576px;
+ */    margin-right: auto;
+    margin-left: auto;
 }
 
 #scoreTab{
 	width: 50%;
 	margin : auto;
+}
+
+.container h2 {
+    background: #764e17;
+    color: #fff;
+    font-size: 24px;
+    padding: 8px;
+    height: 40px;
+    text-align: center;
+    margin-left: 15%;
+    margin-right: 15%;
+    min-width: 200px;
+}
+
+.container h3 {
+	font-size: 24px;
+    padding: 8px;
+    height: 40px;
+    text-align: center;
+	margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 7%;
+    margin-bottom: 2%;
+    min-width: 200px;
+    background-color: moccasin;
+    border-left: 2px solid #764e17;
+    border-right: 2px solid #764e17;
+}
+
+.headerTitre {
+	background-color: antiquewhite;
+	border: 2px solid bisque;
+	width: 70%;
+	padding: 15px;
+	text-align: center;
+	margin-bottom: 3%;
+}
+
+.d-flex {
+	margin-right: 15%;
+    margin-left: 15%;
+}
+
+.scoreCamel {
+	width: 65px;
+}
+
+@media screen and (max-width: 767px) {
+	.d-flex {
+		margin-right: 8% !important;
+		margin-left: 8% !important;
+	}
+}
+
+@media screen and (min-width: 991px) {
+	.scoreCamel {
+		width: 55px;
+	}
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+	
 }

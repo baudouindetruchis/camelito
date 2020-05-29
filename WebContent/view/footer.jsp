@@ -8,10 +8,7 @@
 <meta charset="UTF-8">
 <%@page contentType="text/html; charset=UTF-8"%>
 
-<!-- <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -24,7 +21,7 @@
 	<footer class="site-footer sticky-bottom">
 		<div class="container footerContainer">
 			<div class="row">
-				<div class="col-sm-12 col-md-6">
+				<div class="col-sm-12 col-md-4">
 					<h6>À propos</h6>
 					<p class="text-justify">
 						Camelito est un service élaboré par des étudiants pour des
@@ -63,7 +60,7 @@
 					</ul>
 				</div>
 
-				<div class="col-xs-6 col-md-3 text-center">
+				<div class="col-xs-6 col-md-4 text-center">
 					<h6>Nous contacter</h6>
 					<table class="table footer-links">
 						<tbody>

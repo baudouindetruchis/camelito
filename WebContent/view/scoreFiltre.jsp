@@ -3,8 +3,8 @@
 <html lang="fr">
 <%@page contentType="text/html; charset=UTF-8"%>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 
 <script>
 function myFunction() {
@@ -32,7 +32,7 @@ function myFunction() {
 
 <body onload="myFunction()">
 
-<h2>Pour espionner ses potes</h2>
+<h3>Pour espionner ses potes</h3>
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a pseudo">
 
