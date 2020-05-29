@@ -25,6 +25,7 @@
 <head>
 <title>Camelito - Messagerie</title>
 <script src="../public/js/header.js"></script>
+<script src="../public/js/chatpage.js"></script>
 
 </head>
 
@@ -40,7 +41,7 @@
 	
 		<c:choose>
 			<c:when test="${sessionScope.type=='3'}">
-				<button type="button" class="btnn">Commande prête!</button>
+				<button type="button" class="btnn" onclick="sendPreEnteredtext('Commande prête!')">Commande prête!</button>
 				<button type="button" class="btnn">Stocks remplis!</button>
 			</c:when>
 			<c:when test="${sessionScope.type=='2'}">

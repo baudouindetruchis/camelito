@@ -16,20 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import JavaFunction.ConnectionFunctions;
-import obj.User;
-
 /**
- * Servlet implementation class ChatLoadAssoForm
+ * Servlet implementation class ChatForm
  */
-@WebServlet("/ChatLoadAssoForm")
-public class ChatLoadAssoForm extends HttpServlet {
+@WebServlet("/ChatForm")
+public class ChatForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChatLoadAssoForm() {
+    public ChatForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,25 +35,29 @@ public class ChatLoadAssoForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 		String user = "postgres";
 		String psw = "123";
-		List<String> listNameStores = new ArrayList<String>();
 		HttpSession session = request.getSession();
+		
+		String text = (String) request.getAttribute("txt");
+		System.out.println(text);
+		int id_user = (int) session.getAttribute("id");
+		
 		try (Connection con = DriverManager.getConnection(url, user, psw)) {
 			
 			
-			PreparedStatement getAllStores = con.prepareStatement("SELECT name FROM public.stores" );
-			ResultSet rsStores = getAllStores.executeQuery();
+			PreparedStatement getIdStore = con.prepareStatement("SELECT id FROM public.stores WHERE id_user='"+ id_user+"'");
+			ResultSet rsStore = getIdStore.executeQuery();
 			
-			while(rsStores.next()) {
-				String store = rsStores.getString("name");
-				listNameStores.add(store);
-			}
+			rsStore.next();
+			int id_store = rsStore.getInt("id");
+			
+			PreparedStatement sendtext = con.prepareStatement("INSERT INTO public.messages (id_store, txt, is_send_by_asso) "
+					+ "VALUES('"+ id_store+"','"+text+ "'," +false+")");
+			sendtext.execute();
 		
-			session.setAttribute("listStores", listNameStores);
+		
 		}catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 		} catch (Exception e) {
@@ -64,7 +65,6 @@ public class ChatLoadAssoForm extends HttpServlet {
 		}
 		
 		response.sendRedirect("./view/chooseStoreTotalk.jsp");
-		
 	}
 
 	/**
