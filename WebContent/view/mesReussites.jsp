@@ -108,25 +108,25 @@
 										<!-- Si le success est le meilleur de sa categorie -->
 										<a style="font-size: 50px;"> ${aSuccess.pic}</a>
 										<script>
-												fillCardImg('${aSuccess.type}',
-														'${aSuccess.value}')
-											</script>
+											fillCardImg('${aSuccess.type}',
+													'${aSuccess.value}')
+										</script>
 										<div class="form-row centerContent">
 											<label class="cardImgLabel">${aSuccess.name}</label>
 											<%-- <c:out value="${aSuccess.type}" /> --%>
 										</div>
-											<c:choose>
-												<c:when test="${aSuccess.isLast}">
-													<c:out value="ca marche?" />
-													<div class="form-group col-md-12 marginBottom">
-							<input class="btn btn-primary btn-responsive btnAddSuccess"
-								type="button" value="AddChooseSucces" id="btnAddSuccess"
-								onclick="goToEdit()" />
-						</div>
-													<!-- Mets ton bouton ici frérot -->
-												</c:when>
-											</c:choose>
 									</div>
+									<c:choose>
+										<c:when test="${aSuccess.isLast}">
+											<div class="overlayMaxSuccess">
+												<div class="col-md-12 btnMaxSuccess">
+													<input class="btn btn-primary btn-responsive btnAddSuccess"
+														type="button" value="AddChooseSucces" id="btnAddSuccess"
+														onclick="goToEdit()" />
+												</div>
+											</div>
+										</c:when>
+									</c:choose>
 								</div>
 							</div>
 						</c:when>

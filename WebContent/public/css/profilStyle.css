@@ -449,6 +449,29 @@ h4.col-form-label {
 	z-index: 0;
 }
 
+.overlayMaxSuccess {
+	display: block;
+	opacity: 0;
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	text-align: center;
+	background-color: transparent !important;
+}
+
+.overlayMaxSuccess:before {
+	content: ' ';
+	display: block;
+	/* Buttons shall always be at 50% down the image's top */
+	height: 50%;
+}
+
+.card:hover .overlayMaxSuccess {
+	opacity: 1;
+	margin-top: 20%;
+	transition: 0.5s;
+}
+
 @media ( min-width : 768px) and (max-width:991px) {
 	.card {
 		width: auto;
