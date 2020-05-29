@@ -21,15 +21,15 @@ public class User {
 	String address;
 	String storeName;
 	List<Integer> list_success = new ArrayList<Integer>();
-	int favSuccess;
+	UserSuccess favSuccess;
 
 	
 
-	public int getFavSuccess() {
+	public UserSuccess getFavSuccess() {
 		return favSuccess;
 	}
 
-	public void setFavSuccess(int favSuccess) {
+	public void setFavSuccess(UserSuccess favSuccess) {
 		this.favSuccess = favSuccess;
 	}
 

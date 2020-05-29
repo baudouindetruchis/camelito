@@ -7,7 +7,7 @@
     			  nameSuccess: nameSuccess
     		  },
     		  success: function(response) {
-    		   
+    			  window.location.replace("profil.jsp");
     		  },
     		  error: function(xhr) {
     		    //Do Something to handle error

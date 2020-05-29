@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import JavaFunction.CommandsFunctions;
-import obj.Commande;
+
 import obj.User;
+import obj.UserSuccess;
 
 /**
  * Servlet implementation class SuccessForm
@@ -48,19 +48,20 @@ public class SuccessForm extends HttpServlet {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			
 			PreparedStatement getSucces = con
-					.prepareStatement("SELECT id FROM public.success WHERE success_name= '"+ successName+"'");
+					.prepareStatement("SELECT * FROM public.success WHERE success_name= '"+ successName+"'");
 			
 			ResultSet success = getSucces.executeQuery();
 			
 			success.next();
 			int idSuccess= success.getInt("id");				
 				
+			UserSuccess lastSuccess= new UserSuccess(successName, success.getString("success_type"), success.getInt("value"), success.getString("succes_pic"), true);
 			PreparedStatement updateFavSuccess = con
 					.prepareStatement("UPDATE public.details SET favsuccess='"+idSuccess +"' WHERE id_user= '"+ id+"'");
 			
 			updateFavSuccess.execute();
 			User user = (User) session.getAttribute("user");
-			user.setFavSuccess(idSuccess);
+			user.setFavSuccess(lastSuccess);
 			
 			
 			
@@ -70,9 +71,7 @@ public class SuccessForm extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// load page
-		String page = "./view/magasinList.jsp";
-		response.sendRedirect(page);
+		
 	}
 
 	/**
