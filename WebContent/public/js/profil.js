@@ -31,6 +31,22 @@ function modifyError(error) {
  
 }
 
+function titreSuccess(success) {
+	var txt = document.getElementById("higherSuccess");
+	
+	if(success=='Score supérieur à 150') {
+		txt.innerHTML = 'La légende du game';
+	}
+	if(success=='Pas moins de 50€ économisé !') {
+		txt.innerHTML = 'Le roi des thunes';
+	}
+	if(success=='Plus de 10 commandes passées !') {
+		txt.innerHTML = 'Fou de Uber Eats';
+	}
+	if(success=='') {
+		txt.hidden = true;
+	}
+}
 
 function includeIntroMonture(profilPic) {
 	if(profilPic==='../public/images/Camel4.png'){
@@ -113,7 +129,7 @@ function goToEdit() {
 		if(value!=null){
 			document.getElementById("newPromo").hidden = false;
 			document.getElementById("promo").hidden = true;
-			document.getElementById("info").hidden = false;
+//			document.getElementById("info").hidden = false;
 		}
 
 }
@@ -127,10 +143,8 @@ function goToEdit() {
 	document.getElementById("Mdp").hidden = true;
 	if(value!=null){
 		document.getElementById("newPromo").hidden = true;
-		document.getElementById("info").hidden = true;
+//		document.getElementById("info").hidden = true;
 	}
-		
-
 }
  
  function changeType() {
