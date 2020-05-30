@@ -1,13 +1,15 @@
 package obj;
 
 public class Participant {
+	int id;
 	int place;
 	String pseudo;
 	int score;
 	String favSucces;
 	int favSuccesId;
 
-	public Participant(int place, String pseudo, int score, String favSucces, int favSuccesId) {
+	public Participant(int place, String pseudo, int score, String favSucces, int favSuccesId, int id) {
+		this.id= id;
 		this.place= place;
 		this.pseudo = pseudo;
 		this.score = score;
@@ -15,6 +17,7 @@ public class Participant {
 		this.favSuccesId = favSuccesId;
 	}
 	public Participant() {
+		this.id= 0;
 		this.place= 0;
 		this.pseudo = "";
 		this.score = 0;
@@ -22,6 +25,12 @@ public class Participant {
 		this.favSuccesId = 0;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getFavSuccesId() {
 		return favSuccesId;
 	}

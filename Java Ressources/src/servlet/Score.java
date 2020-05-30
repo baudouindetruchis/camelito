@@ -106,7 +106,7 @@ public class Score extends HttpServlet {
 				}
 				
 				//create participant and a it to list
-				aParticipant = new Participant(classement, pseudo, score, favSucces, favSuccesId);
+				aParticipant = new Participant(classement, pseudo, score, favSucces, favSuccesId, user_id);
 				participantsList.add(aParticipant);
 				count++;
 			}

@@ -19,6 +19,7 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">Classement</th>
+	      <th scope="col">UserId</th>
 	      <th scope="col">Pseudo</th>
 	      <th scope="col">Score</th>
 	    </tr>
@@ -27,6 +28,7 @@
 	  <c:forEach var="part" items="${sessionScope.participantsList}">
 	     <tr style="${part.pseudo == cUsr.pseudo ? 'background-color:sandybrown' : ''}">
 		  	<td><c:out value="${part.place}"/></td>
+		  	<td><c:out value="${part.id}"/></td>
 		  	<td><c:out value="${part.pseudo}"/></td>
 		  	<td><c:out value="${part.score}"/></td>
 		  	<td><c:out value="${part.favSucces}"/></td>
