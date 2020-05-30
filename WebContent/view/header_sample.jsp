@@ -53,6 +53,18 @@
 							<li class="nav-item"><a class="nav-link" href="../ValidationLoadForm">Utilisateurs</a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="../ChatLoadAssoForm">Messagerie</a>
+							
+							<!-- <div class="dropdown">
+    <button class="dropbtn">Dropdown 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div>  -->
+							
 							</li>
 						</c:when>
 						<c:when test="${sessionScope.type=='3'}">
