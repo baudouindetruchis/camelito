@@ -43,19 +43,20 @@ public class SuccessForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		int id = (int) session.getAttribute("id");
-		String successName = request.getParameter("nameSuccess");
-		
+		int valueSuccess = Integer.parseInt(request.getParameter("valueSuccess"));
+		String typeSuccess = request.getParameter("typeSuccess");
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			
 			PreparedStatement getSucces = con
-					.prepareStatement("SELECT * FROM public.success WHERE success_name= '"+ successName+"'");
+					.prepareStatement("SELECT * FROM public.success WHERE success_type= '"+ typeSuccess+"' AND value="+valueSuccess);
 			
 			ResultSet success = getSucces.executeQuery();
 			
 			success.next();
-			int idSuccess= success.getInt("id");				
-				
-			UserSuccess lastSuccess= new UserSuccess(successName, success.getString("success_type"), success.getInt("value"), success.getString("succes_pic"), true);
+			int idSuccess= success.getInt("id");	
+			String successName = success.getString("success_name");
+			
+			UserSuccess lastSuccess= new UserSuccess(successName, typeSuccess, valueSuccess, success.getString("succes_pic"), true);
 			PreparedStatement updateFavSuccess = con
 					.prepareStatement("UPDATE public.details SET favsuccess='"+idSuccess +"' WHERE id_user= '"+ id+"'");
 			

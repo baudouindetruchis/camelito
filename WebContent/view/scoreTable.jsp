@@ -29,6 +29,8 @@
 		  	<td><c:out value="${part.place}"/></td>
 		  	<td><c:out value="${part.pseudo}"/></td>
 		  	<td><c:out value="${part.score}"/></td>
+		  	<td><c:out value="${part.favSucces}"/></td>
+		  	<td><c:out value="${part.favSuccesId}"/></td>
 	   	  </tr>
 	  </c:forEach>
 	  <!-- CONTINUER LA FONCTION AFTER10 AVEC ID ET C'EST BON -->
@@ -41,16 +43,22 @@
 		  	<td><c:out value="${sUsr.place}"></c:out></td>
 		  	<td><c:out value="${sUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${sUsr.score}"></c:out></td>
+		  	<td><c:out value="${sUsr.favSucces}"/></td>
+		  	<td><c:out value="${sUsr.favSuccesId}"/></td>
 	   	  </tr>	
 		  <tr id="after ${cUsr.place}" style="background-color:sandybrown" hidden=true>
 		  	<td><c:out value="${cUsr.place}"></c:out></td>
 		  	<td><c:out value="${cUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${cUsr.score}"></c:out></td>
+		  	<td><c:out value="${cUsr.favSucces}"/></td>
+		  	<td><c:out value="${cUsr.favSuccesId}"/></td>
 	   	  </tr>	
 		  <tr id="after2 ${cUsr.place}" hidden=true>
 		  	<td><c:out value="${pUsr.place}"></c:out></td>
 		  	<td><c:out value="${pUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${pUsr.score}"></c:out></td>
+		  	<td><c:out value="${pUsr.favSucces}"/></td>
+		  	<td><c:out value="${pUsr.favSuccesId}"/></td>
 	   	  </tr>
 	  </tbody>
 	</table>

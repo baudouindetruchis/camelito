@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import obj.Article;
 import obj.Participant;
 import obj.User;
 
@@ -108,7 +106,7 @@ public class Score extends HttpServlet {
 				}
 				
 				//create participant and a it to list
-				aParticipant = new Participant(classement, pseudo, score, favSucces);
+				aParticipant = new Participant(classement, pseudo, score, favSucces, favSuccesId);
 				participantsList.add(aParticipant);
 				count++;
 			}
@@ -128,13 +126,12 @@ public class Score extends HttpServlet {
 		session.setAttribute("currParticipant", currParticipant);
 		session.setAttribute("succParticipant", succParticipant);	
 
-		List<Participant> shortParticipantsList = participantsList.subList(0, 10);
-		session.setAttribute("participantsList", shortParticipantsList);
-
 		//blank participant used for first and last place
 		Participant blankParticipant = new Participant();
 		participantsList.add(blankParticipant);
 		participantsList.add(0, blankParticipant);
+		List<Participant> shortParticipantsList = participantsList.subList(1, 11);
+		session.setAttribute("participantsList", shortParticipantsList);
 		session.setAttribute("fullParticipantsList", participantsList);		
 	}
 

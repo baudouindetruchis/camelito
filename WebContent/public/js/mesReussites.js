@@ -1,10 +1,10 @@
-  function addFavSuccess(nameSuccess) {
+  function addFavSuccess(typeSuccess, valueSuccess) {
     	$.ajax({
     		  url: "../SuccessForm",
     		  type: "get", //send it through get method
     		  data: { 
-    		   
-    			  nameSuccess: nameSuccess
+     		     typeSuccess: typeSuccess,
+     		    valueSuccess: valueSuccess
     		  },
     		  success: function(response) {
     			  window.location.replace("profil.jsp");
