@@ -201,7 +201,7 @@
 						<div class="form-group col-md-12">
 							<input class="btn btn-primary btn-responsive btnModifier"
 								type="submit" id="btnSaveChange" value="Save Changes"
-								onclick="saveChange()" hidden />
+								onclick="saveChange()" hidden=true />
 						</div>
 						<div class="form-group col-md-12 marginBottom">
 							<input class="btn btn-primary btn-responsive btnModifier"
@@ -211,6 +211,27 @@
 					</div>
 
 				</form>
+
+				<div class="modal fade" id="myErrorForm" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog errorPopupWidth" role="document">
+						<div class="modal-content noborder">
+							<div class="modal-header text-center headpopup">
+								<h5 class="modal-title w-100 font-weight-bold titrepopup">Problème de modification d'informations personnelles</h5>
+								<!-- Bouton pour fermer le popup -->
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<!-- Intro du titre -->
+							<div class="text-center totalpopup">
+								<h5 id="intro">Vous avez rencontré une ${sessionScope.ModifyError}</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 		</div>

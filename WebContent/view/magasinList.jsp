@@ -69,7 +69,7 @@
 								</ul>
 								<div id="closeCommand"
 									class="closeOrderBtn position-relative stretched-link"
-									onclick="recupCommande('comm${cmd.store_name}', '${cmd.store_name}', '${cmd.id}')">
+									onclick="recupCommande('comm${cmd.store_name}', '${cmd.store_name}', '${cmd.id}', 'comm${store.store_name}')">
 									<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
 								</div>
 							</div>

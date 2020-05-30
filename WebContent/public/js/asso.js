@@ -18,9 +18,10 @@ function finishOrder(idComm, user_name, id) {
 }
 
 
-function recupCommande(idComm, store_name, id) {
+function recupCommande(idComm, store_name, id, idstore) {
 
 	document.getElementById(store_name).hidden = true;
+	document.getElementById(idstore).hidden = true;
 	
 	$.ajax({
 		 url: "../MagasinGetCommandFrom",
