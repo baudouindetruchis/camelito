@@ -248,7 +248,7 @@
 				</c:when> 
 
 				<c:when test="${sessionScope.type=='2' }">
-					<div id="includeReussite" class="col-md-12" hidden></div>
+					<div id="includeReussite" class="col-md-12" hidden=true></div>
 				</c:when> 
 				
 				<c:when test="${sessionScope.type=='4' }">

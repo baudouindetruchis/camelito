@@ -17,7 +17,7 @@
 <head>
 <title>Camelito - Messagerie</title>
 <script src="../public/js/header.js"></script>
-<script src="../public/js/chatpage.js"></script>
+
 
 </head>
 

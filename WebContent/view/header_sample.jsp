@@ -7,8 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+<script src="../public/js/chatpage.js"></script>
+<!-- <script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+	
 <link rel="stylesheet" type="text/css" href="../public/css/header_sample.css">
 
 
@@ -52,20 +55,15 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="../ValidationLoadForm">Utilisateurs</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="../ChatLoadAssoForm">Messagerie</a>
-							
-							<!-- <div class="dropdown">
-    <button class="dropbtn">Dropdown 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>  -->
-							
-							</li>
+							<li class="nav-item"><a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../ChatLoadAssoForm">Messagerie 
+								</a>
+								<div class="dropdown-menu menuStyle">
+									<c:forEach var="store" items="${sessionScope.listStores}">
+										<a class="dropdown-item" onclick="chooseStore('${store}')">
+											<c:out value="${store}" />
+										</a>
+									</c:forEach>
+								</div></li>
 						</c:when>
 						<c:when test="${sessionScope.type=='3'}">
 							<li class="nav-item"><a class="nav-link" href="../StockLoad">Stock</a>

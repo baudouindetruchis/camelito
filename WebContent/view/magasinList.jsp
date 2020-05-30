@@ -35,22 +35,6 @@
 
 	<div class="container">
 
-		<div class="col-md-12 text-center listMag">
-			<div class="row">
-
-				<c:forEach var="store" items="${sessionScope.listStores}">
-					<div class="col-md-4">
-						<button type="button"
-							class="btn btn-primary btn-responsive btnChat"
-							onclick="chooseStore('${store}')">
-							<c:out value="${store}" />
-						</button>
-					</div>
-				</c:forEach>
-
-			</div>
-		</div>
-
 		<div class="row">
 			<c:forEach var="cmd" items="${sessionScope.listStoresCommands}">
 				<div class="col-md-3 mobileMargin" id="comm${store.store_name}">
