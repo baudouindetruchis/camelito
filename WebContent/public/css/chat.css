@@ -1,7 +1,34 @@
-.btn {
- 
-  margin-top:200px;
+.container {
+	width: 100%;
+	margin-top: 100px;
 }
+
+
+/*  */
+/* chooseStoreTotalk.jsp */
+/*  */
+
+.btnChat {
+	margin-top: 7%;
+    background-color: #764e17 !important;
+    border: 0px solid !important;
+    height: 45px;
+    width: 50%;
+}
+
+.btnChat:hover {
+	background-color: sandybrown !important;
+	border: 0px solid;
+}
+
+.col-md-12.listMag {
+	margin-bottom: 10%;
+}
+
+/*  */
+/* chatPage.jsp */
+/*  */
+
 .msg{
 	margin-top:200px;
 }
@@ -9,3 +36,4 @@
 	margin-left:400px;
 	margin-bottom :10px;
 }
+
