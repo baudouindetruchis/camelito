@@ -11,7 +11,7 @@ function modifyError(error) {
 	if(error===''){
 		
 	}else{
-		alert(error);
+		$("#myErrorForm").modal('show');
 		$.ajax({
 			  url: "../ModifyProfilForm",
 			  type: "get", //send it through get method
@@ -30,6 +30,7 @@ function modifyError(error) {
 	}
  
 }
+
 
 function titreSuccess(success) {
 	var txt = document.getElementById("higherSuccess");

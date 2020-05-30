@@ -30,85 +30,145 @@
 </head>
 
 <body onload="includeHeaderAndCheckUser()">
-
 	<div id="includedHeader"></div>
 	<input id="checkSession" type="text" name="checkSession"
-					value="${sessionScope.type}" hidden>
-				<div class = "msg">
-				
-				<c:forEach var="msg" items="${sessionScope.listMsg}">
-		<div class= "oneMsg">
-		<c:choose>
-			<c:when test="${msg.sendByAsso && sessionScope.type == 2}">
-			<div class ="sendByUser">
-				<c:out value="id : ${msg.id}" />
-				<c:out value="txt : ${msg.text}" />
-				<c:out value="asso? : ${msg.sendByAsso}" />
-			</div>
-			</c:when>
-			
-			<c:when test="${msg.sendByAsso && sessionScope.type == 3}">
-			<div class ="sendByOther">
-				<c:out value="id : ${msg.id}" />
-				<c:out value="txt : ${msg.text}" />
-				<c:out value="asso? : ${msg.sendByAsso}" />
-			</div>
-			</c:when>
-			
-			<c:when test="${!msg.sendByAsso && sessionScope.type == 3}">
-			<div class ="sendByUser">
-				<c:out value="id : ${msg.id}" />
-				<c:out value="txt : ${msg.text}" />
-				<c:out value="asso? : ${msg.sendByAsso}" />
-			</div>
-			</c:when>
-			<c:when test="${!msg.sendByAsso && sessionScope.type == 2}">
-			<div class ="sendByOther">
-				<c:out value="id : ${msg.id}" />
-				<c:out value="txt : ${msg.text}" />
-				<c:out value="asso? : ${msg.sendByAsso}" />
-			</div>
-			</c:when>
-			
-		</c:choose>
-			
-		</div>
-		
-	</c:forEach>
-				</div>	
-					
-					
-	<div class = "btn">
+		value="${sessionScope.type}" hidden>
 	
-	<input class="form-control" type="text" id="message"
-						placeholder="Enter message" />
-	<button type="button" class="btnn" onclick="sendText()">Envoyer</button>
-			
-		<c:choose>
-			<c:when test="${sessionScope.type=='3'}">
-				<button type="button" class="btnn" onclick="sendPreEnteredtext('Commande prête!')">Commande prête!</button>
-				<button type="button" class="btnn" onclick="sendPreEnteredtext('Stocks remplis!')">Stocks remplis!</button>
-			</c:when>
-			<c:when test="${sessionScope.type=='2'}">
-				<button type="button" class="btnn" onclick="sendPreEnteredtext('Un membre arrive!')">Un membre arrive!</button>
-				<button type="button" class="btnn" onclick="sendPreEnteredtext('Nouvelle commande!')">Nouvelle commande!</button>
-			</c:when>
-		</c:choose>
-	
-	</div>				
-					
-					
-								
 	<div class="container">
-		
+	<div class="d-flex justify-content-center text-center horsContainerTitre">
+	<!-- javascript to show "Commerçant" and "Association" in both asso and commercant views + Add style to make it as the title -->
+	<c:choose>
+	<c:when test="${sessionScope.type == 2}">
+		<div class="col-md-6 user1" id="user1${msg.sendByAsso}">
+			<c:out value="Commerçant ${sessionScope.talkingToName}"/>
 		</div>
+		<div class="col-md-6 user2" id="user2${msg.sendByAsso}">
+			Association
+		</div>
+	</c:when>
+	<c:when test="${sessionScope.type == 3}">
+		<div class="col-md-6 user1" id="user1${msg.sendByAsso}">
+			Association
+		</div>
+		<div class="col-md-6 user2" id="user2${msg.sendByAsso}">
+			Moi
+		</div>
+	</c:when>
+	</c:choose>
 
+	</div>
+	</div>
 	
-	
-	
+	<div class="container containerStyle">
+		<div class="col-md-12 scrollbar" id="noScroll">
+		
+		<c:forEach var="msg" items="${sessionScope.listMsg}">
+			<div class="row">
+				
+				<div class="col-md-6 other1">
+				<c:choose>
+					<c:when test="${msg.sendByAsso && sessionScope.type == 3}">
+						<div class="sendByOther">
+							<%-- <c:out value="id : ${msg.id}" /> --%>
+							<c:out value="${msg.text}" />
+							<%-- <c:out value="asso? : ${msg.sendByAsso}" /> --%>
+						</div>
+					</c:when>
 
-<div id="includedFooter"></div>
+
+					<c:when test="${!msg.sendByAsso && sessionScope.type == 2}">
+						<div class="sendByOther">
+							<c:out value="${msg.text}" />
+						</div>
+					</c:when>
+				</c:choose>
+				</div>
+				
+				<div class="col-md-6 user1">
+				<c:choose>
+					<c:when test="${msg.sendByAsso && sessionScope.type == 2}">
+						<div class="sendByUser">
+							<c:out value="${msg.text}" />
+						</div>
+					</c:when>
+
+					<c:when test="${!msg.sendByAsso && sessionScope.type == 3}">
+						<div class="sendByUser">
+							<c:out value="${msg.text}" />
+						</div>
+					</c:when>
+				</c:choose>
+				</div>
+
+			</div>
+
+		</c:forEach>
+	</div>
+	</div>
+
+	<div class="container containerStyle2">
+		<div class="col-md-12">
+			<!-- <form onsubmit="sendText()"> -->
+			<div class="form-row d-flex justify-content-center text-center">
+				<div class="col-md-5">
+					<input class="form-control" type="text" id="message"
+						placeholder="Entrez votre message" />
+				</div>
+				<div class="col-md-1">
+					<button class="btn btn-primary btn-responsive btnChat2"
+						type="button" id="btnSend" onclick="sendText()">Envoyer</button>
+				</div>
+			</div>
+			
+			<!-- </form> -->
+			<div class="col-md-12 marginTextfield">
+				<div class="form-row d-flex justify-content-center text-center">
+					<c:choose>
+						<c:when test="${sessionScope.type=='3'}">
+							<div class="col-md-3 marginTextfield">
+								<button type="button"
+									class="btn btn-primary btn-responsive btnChat2"
+									onclick="sendPreEnteredtext('Commande prête!')">Commande
+									prête!</button>
+							</div>
+							<div class="col-md-3 marginTextfield">
+								<button type="button"
+									class="btn btn-primary btn-responsive btnChat2"
+									onclick="sendPreEnteredtext('Stocks remplis!')">Stocks
+									remplis!</button>
+							</div>
+						</c:when>
+						<c:when test="${sessionScope.type=='2'}">
+							<div class="col-md-3 marginTextfield">
+								<button type="button"
+									class="btn btn-primary btn-responsive btnChat2"
+									onclick="sendPreEnteredtext('Un membre arrive!')">Un
+									membre arrive!</button>
+							</div>
+							<div class="col-md-3 marginTextfield">
+								<button type="button"
+									class="btn btn-primary btn-responsive btnChat2"
+									onclick="sendPreEnteredtext('Nouvelle commande!')">Nouvelle
+									commande!</button>
+							</div>
+						</c:when>
+					</c:choose>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div id="includedFooter"></div>
 
 </body>
-
+<script>downScrollbar()</script>
 </html>

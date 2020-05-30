@@ -34,6 +34,7 @@
 	<div id="includedHeader"></div>
 
 	<div class="container">
+
 		<div class="row">
 			<c:forEach var="cmd" items="${sessionScope.listStoresCommands}">
 				<div class="col-md-3 mobileMargin" id="comm${store.store_name}">
@@ -58,8 +59,7 @@
 									<!-- Chaque liste d'articles -->
 									<c:forEach var="art" items="${cmd.listArticles}">
 										<div class="form-control-plaintext" id="name">
-											<li
-												class="list-group-item d-flex justify-content-between align-items-center listContent">
+											<li class="list-group-item d-flex justify-content-between align-items-center listContent">
 												<c:out value="${art.name}" /> <span
 												class="badge badge-primary badge-pill"><c:out
 														value="${art.quantity}" /></span>
@@ -69,7 +69,7 @@
 								</ul>
 								<div id="closeCommand"
 									class="closeOrderBtn position-relative stretched-link"
-									onclick="recupCommande('comm${cmd.store_name}', '${cmd.store_name}', '${cmd.id}')">
+									onclick="recupCommande('comm${cmd.store_name}', '${cmd.store_name}', '${cmd.id}', 'comm${store.store_name}')">
 									<i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i>
 								</div>
 							</div>
