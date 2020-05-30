@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>messagerie</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/messagerie.css">
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-	<link rel="stylesheet" 
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-	<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>Camelito - Messagerie</title>
+<link rel="stylesheet" type="text/css"
+	href="../public/css/messagerie.css">
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
 	
-	</script>
+</script>
 
-    <script src="../public/js/header.js"></script>
+<script src="../public/js/header.js"></script>
 </head>
 <body onload="includeHeaderAndCheckUser()">
-<div id=container>
-	<input id="checkSession" type="text" name="checkSession" value ="${sessionScope.type}" hidden>
+	<div id=container>
+		<input id="checkSession" type="text" name="checkSession"
+			value="${sessionScope.type}" hidden>
 
-	<div id="includedHeader"></div>
-    <div class="talk_con">
-        <div class="talk_show" id="words">
-            <div class="atalk"><span id="asay">A:Bonjour</span></div>
-       		<div class="btalk"><span id="bsay">B:Bonjour</span></div>   
-        </div>
-        
-        <div class="talk_short_input">
-        	<input type="button" value="Stock remplir" class="stock_rempli" id="stockrempli">
-        	<input type="button" value="Commande prête" class="commande_prete" id="commandeprete">
-        </div>
-        
-        <div class="talk_input">
-            
-            <input type="text" class="talk_word" id="talkwords">
-            <input type="button" value="envoyer" class="talk_sub" id="talksub">
-        </div>
-    </div>
-    </div>
-    <div id="includedFooter"></div>
+		<div id="includedHeader"></div>
+		<div class="talk_con">
+			<div class="talk_show" id="words">
+				<div class="atalk">
+					<span id="asay">A:Bonjour</span>
+				</div>
+				<div class="btalk">
+					<span id="bsay">B:Bonjour</span>
+				</div>
+			</div>
+
+			<div class="talk_short_input">
+				<input type="button" value="Stock remplir" class="stock_rempli"
+					id="stockrempli"> <input type="button"
+					value="Commande prête" class="commande_prete" id="commandeprete">
+			</div>
+
+			<div class="talk_input">
+
+				<input type="text" class="talk_word" id="talkwords"> <input
+					type="button" value="envoyer" class="talk_sub" id="talksub">
+			</div>
+		</div>
+	</div>
+	<div id="includedFooter"></div>
 
 </body>
 <script type="text/javascript">

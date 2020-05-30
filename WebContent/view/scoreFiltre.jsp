@@ -3,8 +3,8 @@
 <html lang="fr">
 <%@page contentType="text/html; charset=UTF-8"%>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 
 <script>
 function myFunction() {
@@ -32,22 +32,34 @@ function myFunction() {
 
 <body onload="myFunction()">
 
-<h2>Pour espionner ses potes</h2>
+	<h3>Pour espionner ses potes</h3>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a pseudo">
+	<div class="col-md-12">
+		<div class="col-md-12 text-center">
+			<input type="text" id="myInput" class="inputField" onkeyup="myFunction()"
+				placeholder="Recherche.." title="Type in a pseudo">
+		</div>
 
-	
-	<table id='filterTable' class="table table-striped" style="width: 50%">
-	  <tbody>
-	  <c:forEach var="part" items="${sessionScope.fullParticipantsList}">
-	     <tr>
-		  	<td><c:out value="${part.place}"/></td>
-		  	<td><c:out value="${part.pseudo}"/></td>
-		  	<td><c:out value="${part.score}"/></td>
-	   	  </tr>
-	  </c:forEach>
-	  </tbody>
-	</table>
-	
+
+		<table id='filterTable'
+			class="table table-striped scoreTablePrincipale">
+			<thead>
+				<tr>
+					<th scope="col">Classement</th>
+					<th scope="col">Pseudo</th>
+					<th scope="col">Score</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="part" items="${sessionScope.fullParticipantsList}">
+					<tr>
+						<td><c:out value="${part.place}" /></td>
+						<td><c:out value="${part.pseudo}" /></td>
+						<td><c:out value="${part.score}" /></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
 </body>
-

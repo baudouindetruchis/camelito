@@ -121,7 +121,7 @@
 											<div class="overlayMaxSuccess">
 												<div class="col-md-12 btnMaxSuccess">
 													<input class="btn btn-primary btn-responsive btnAddSuccess"
-														type="button" value="AddChooseSucces" id="btnAddSuccess"
+														type="button" value="Bouton secret" id="btnAddSuccess"
 														onclick="addFavSuccess('${aSuccess.name}')" />
 												</div>
 											</div>
