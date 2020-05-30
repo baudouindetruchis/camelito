@@ -349,6 +349,12 @@ img.edit {
 	}
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+	.smallPaddingBelowSecretTitle {
+		padding-bottom: 15px;
+	}
+}
+
 /*  */
 /* Page monMagasin.jsp */
 /*  */
