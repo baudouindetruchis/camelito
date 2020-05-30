@@ -387,7 +387,7 @@ public class ArticleListFunctions {
 					case "supp":
 						break;
 					default:
-						System.out.println("unkonwn action in actionTab in panier click");
+						System.out.println("unknown action in actionTab in panier click");
 						break;
 					}
 					// et update la liste
@@ -400,7 +400,7 @@ public class ArticleListFunctions {
 					} else if (newVal == -1) {
 						list_quantities.remove(idToChangeLocation);
 						list_id_articles.remove(idToChangeLocation);
-						msg = "Il est impossible de sélectionner une quatité negative";
+						msg = "Il est impossible de sélectionner une quantité negative";
 					} else {
 						// SQL to connect to the article
 						PreparedStatement pstArticle = con
@@ -411,7 +411,7 @@ public class ArticleListFunctions {
 						int theStock = rsArticle.getInt("available");
 						// si quantité supp au stock alors impossible on retourne en arrière
 						if (theStock < newVal) {
-							msg = "La quantité demandée n'est malheuresment pas en stock (diponible " + theStock + ")";
+							msg = "La quantité demandée n'est malheureusement pas en stock (disponible : " + theStock + ")";
 							list_quantities.set(idToChangeLocation, theStock);
 						}
 					}
@@ -434,7 +434,7 @@ public class ArticleListFunctions {
 						editQuantity.execute();
 					}
 				} else {
-					System.out.println("Problme de convertion de list");
+					System.out.println("Problème de convertion de list");
 				}
 			}
 		} catch (SQLException e) {
@@ -557,8 +557,8 @@ public class ArticleListFunctions {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		String msg = "Votre score augment de " + scoreCommande + " points<br>";
-		msg += "Vous avez economisé " + savings + "€ grace a Camelito";
+		String msg = "Votre score augmente de " + scoreCommande + " points<br>";
+		msg += "Vous avez économisé " + savings + "€ grâce à Camelito";
 		return msg;
 	}
 

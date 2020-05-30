@@ -43,7 +43,7 @@ function onload(){
     }
     function btnActClick(act) { 
 	    var elemTxt = document.getElementById("txtResponse");
-	    elemTxt.innerHTML = "Please wait...";
+	    elemTxt.innerHTML = "Veuillez patienter ...";
     	$.ajax({
     		  url: "../PanierClick",
     		  type: "get", //send it through get method
