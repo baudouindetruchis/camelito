@@ -9,6 +9,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	
 <script src="../public/js/chatpage.js"></script>
+<script src="../public/js/header.js"></script>
 <!-- <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 	
@@ -55,7 +56,7 @@
 							</li>
 							<li class="nav-item"><a class="nav-link" href="../ValidationLoadForm">Utilisateurs</a>
 							</li>
-							<li class="nav-item"><a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="../ChatLoadAssoForm">Messagerie 
+							<li class="nav-item"><a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">Messagerie 
 								</a>
 								<div class="dropdown-menu menuStyle">
 									<c:forEach var="store" items="${sessionScope.listStores}">

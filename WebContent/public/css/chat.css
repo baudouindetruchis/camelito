@@ -1,8 +1,119 @@
+/*  */
+/* chatPage.jsp */
+/*  */
+
 .container {
 	width: 100%;
 	margin-top: 100px;
 }
 
+.containerStyle {
+	background-color: antiquewhite !important;
+	padding: 25px !important;
+    margin-bottom: 10px !important;
+    border-radius: 30px !important;
+    margin-top: 3% !important;
+}
+
+.containerStyle2 {
+	background-color: moccasin !important;
+	padding: 25px !important;
+    margin-bottom: 70px !important;
+    border-radius: 30px !important;
+    margin-top: 0 !important;
+}
+
+.scrollbar {
+	overflow-y: auto;
+	height: 420px;
+}
+
+#noScroll::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+#noScroll::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 50, 0.1);
+}
+
+#noScroll::-webkit-scrollbar-thumb
+{
+  background: rgba(150, 50, 20, 0.5);
+}
+
+
+
+.horsContainerTitre {
+	background-color: #764e17;
+	color: white;
+	text-align: center;
+
+    margin-right: -10px !important;
+    margin-left: -10px !important;
+    line-height: 2;
+    font-size: 20px;
+    border-radius: 30px;
+}
+
+div#user1 {
+    background-color: #764e17;
+    border-right: 1px solid white;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+div#user2 {
+    background-color: #764e17;
+    border-left: 1px solid white;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.sendByUser{
+	background-color: moccasin;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: black;
+    line-height: 2;
+    width: fit-content;
+    float: right;
+    display: inline-block !important;
+}
+
+.sendByOther {
+    background-color: sandybrown;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: white;
+    line-height: 2;
+    width: fit-content;
+
+}
+
+.btnChat2 {
+    background-color: #764e17 !important;
+    border: 0px solid !important;
+}
+
+.btnChat2:hover {
+	background-color: sandybrown !important;
+	border: 0px solid;
+}
+
+.marginTextfield {
+	margin-top: 15px;
+}
 
 /*  */
 /* chooseStoreTotalk.jsp */
@@ -23,17 +134,5 @@
 
 .col-md-12.listMag {
 	margin-bottom: 10%;
-}
-
-/*  */
-/* chatPage.jsp */
-/*  */
-
-.msg{
-	margin-top:200px;
-}
-.sendByUser{
-	margin-left:400px;
-	margin-bottom :10px;
 }
 

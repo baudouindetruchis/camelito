@@ -2,7 +2,7 @@
 function sendText(){
 	var txt = document.getElementById("message").value;
 	
-	var arr = ["connard", "putain","merde", "salop", "pute", "prout","camelito c'est null", "attardé", "rien a foutre", "chier", "encul"];
+	var arr = ["connard", "putain","merde", "salop", "pute", "prout", "attardé", "rien a foutre", "chier", "encul"];
 	var vulgar = false;
 	for(let i=0; i<=4;i++){
 		if(txt.includes(arr [i]) ){
@@ -39,6 +39,10 @@ function chooseStore(talkingTo) {
 	
 }
 
+function downScrollbar() {
+	$('#noScroll').scrollTop($('#noScroll')[0].scrollHeight);
+	console.log($('#noScroll')[0].scrollHeight);
+}
 
 function sendPreEnteredtext(txt) {
 	
