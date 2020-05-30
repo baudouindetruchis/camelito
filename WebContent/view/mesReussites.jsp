@@ -122,7 +122,7 @@
 												<div class="col-md-12 btnMaxSuccess">
 													<input class="btn btn-primary btn-responsive btnAddSuccess"
 														type="button" value="Bouton secret" id="btnAddSuccess"
-														onclick="addFavSuccess('${aSuccess.name}')" />
+														onclick="addFavSuccess('${aSuccess.type}',${aSuccess.value})" />
 												</div>
 											</div>
 										</c:when>

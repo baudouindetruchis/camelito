@@ -19,6 +19,7 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">Classement</th>
+	      <th scope="col">UserId</th>
 	      <th scope="col">Pseudo</th>
 	      <th scope="col">Score</th>
 	    </tr>
@@ -27,8 +28,11 @@
 	  <c:forEach var="part" items="${sessionScope.participantsList}">
 	     <tr style="${part.pseudo == cUsr.pseudo ? 'background-color:sandybrown' : ''}">
 		  	<td><c:out value="${part.place}"/></td>
+		  	<td><c:out value="${part.id}"/></td>
 		  	<td><c:out value="${part.pseudo}"/></td>
 		  	<td><c:out value="${part.score}"/></td>
+		  	<td><c:out value="${part.favSucces}"/></td>
+		  	<td><c:out value="${part.favSuccesId}"/></td>
 	   	  </tr>
 	  </c:forEach>
 	  <!-- CONTINUER LA FONCTION AFTER10 AVEC ID ET C'EST BON -->
@@ -41,16 +45,22 @@
 		  	<td><c:out value="${sUsr.place}"></c:out></td>
 		  	<td><c:out value="${sUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${sUsr.score}"></c:out></td>
+		  	<td><c:out value="${sUsr.favSucces}"/></td>
+		  	<td><c:out value="${sUsr.favSuccesId}"/></td>
 	   	  </tr>	
 		  <tr id="after ${cUsr.place}" style="background-color:sandybrown" hidden=true>
 		  	<td><c:out value="${cUsr.place}"></c:out></td>
 		  	<td><c:out value="${cUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${cUsr.score}"></c:out></td>
+		  	<td><c:out value="${cUsr.favSucces}"/></td>
+		  	<td><c:out value="${cUsr.favSuccesId}"/></td>
 	   	  </tr>	
 		  <tr id="after2 ${cUsr.place}" hidden=true>
 		  	<td><c:out value="${pUsr.place}"></c:out></td>
 		  	<td><c:out value="${pUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${pUsr.score}"></c:out></td>
+		  	<td><c:out value="${pUsr.favSucces}"/></td>
+		  	<td><c:out value="${pUsr.favSuccesId}"/></td>
 	   	  </tr>
 	  </tbody>
 	</table>
