@@ -62,7 +62,7 @@
 						<div class="form-row">
 							<div class="col-md-12 text-center">
 
-								<div class="col-md-12">
+								<div class="col-md-12 smallPaddingBelowSecretTitle">
 									<h5 class="col-form-label" id="higherSuccess">
 										<script>
 											titreSuccess('${usr.favSuccess.name}')

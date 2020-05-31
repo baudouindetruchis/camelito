@@ -30,7 +30,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="part" items="${sessionScope.fullParticipantsList}">
-					<tr>
+					<tr style="display: none;">
 						<td><c:out value="${part.place}" /></td>
 						<td><c:out value="${part.pseudo}" /></td>
 						<td><c:out value="${part.score}" /></td>
