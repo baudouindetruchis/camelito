@@ -29,7 +29,7 @@ public static void sentTextAsso(HttpServletRequest request,Connection con, Strin
 			
 			PreparedStatement sendtext;
 			sendtext = con.prepareStatement("INSERT INTO public.messages (id_store, txt, is_send_by_asso) "
-					+ "VALUES('"+ id_store+"','"+text+ "'," +true+")");
+					+ "VALUES('"+ id_store+"','"+text.replace("'", "''''")+ "'," +true+")");
 			sendtext.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -57,4 +57,32 @@ public static void sentTextAsso(HttpServletRequest request,Connection con, Strin
 		}
 		return id_store;
 	}
+	
+public static void sentTextComm(Connection con, String text, int id_user) {
+		
+		try {
+			PreparedStatement getIdStore = con.prepareStatement("SELECT id FROM public.stores WHERE id_user='"+ id_user+"'");
+			ResultSet rsStore = getIdStore.executeQuery();
+			int  id_store=0;
+			while(rsStore.next()) {
+				id_store = rsStore.getInt("id");
+			}
+			
+			
+			PreparedStatement sendtext;
+			sendtext = con.prepareStatement("INSERT INTO public.messages (id_store, txt, is_send_by_asso) "
+					+ "VALUES('"+ id_store+"','"+text.replace("'", "''''")+ "'," +false+")");
+			sendtext.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	
 }
+
+
