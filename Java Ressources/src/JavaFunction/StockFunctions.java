@@ -31,7 +31,7 @@ public class StockFunctions {
 			// add the new article
 			PreparedStatement editQuantity = con.prepareStatement(
 					"INSERT INTO articles(id_store, description, initial_price, selling_price, available, name, pic)"
-							+ "VALUES(" + id_store + ", '" + description + "', " + real_price + ", " + selling_price
+							+ "VALUES(" + id_store + ", '" + description.replace("'", "''''") + "', " + real_price + ", " + selling_price
 							+ ", " + stock + ", '" + name + "','"+ pic + "')");
 			editQuantity.execute();
 		} catch (SQLException e) {
@@ -53,7 +53,7 @@ public class StockFunctions {
 			int stock, String pic) {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			PreparedStatement pst = con.prepareStatement(
-					"UPDATE public.articles SET description ='" + description + "', initial_price=" + real_price
+					"UPDATE public.articles SET description ='" + description.replace("'", "''''") + "', initial_price=" + real_price
 							+ ", selling_price=" + selling_price + ", available=" + stock+ ", pic='" +pic+ "' WHERE id=" + idArticle);
 			pst.execute();
 			
