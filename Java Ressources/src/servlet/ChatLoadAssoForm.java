@@ -39,7 +39,6 @@ public class ChatLoadAssoForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		String url = "jdbc:postgresql://127.0.0.1:5432/camelitoLocal";
 		String user = "postgres";
 		String psw = "123";
@@ -50,7 +49,6 @@ public class ChatLoadAssoForm extends HttpServlet {
 			
 			PreparedStatement getAllStores = con.prepareStatement("SELECT name FROM public.stores" );
 			ResultSet rsStores = getAllStores.executeQuery();
-			
 			while(rsStores.next()) {
 				String store = rsStores.getString("name");
 				listNameStores.add(store);
@@ -63,8 +61,9 @@ public class ChatLoadAssoForm extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		if(request.getParameter("footer") != "false") {
 		response.sendRedirect("./view/chooseStoreTotalk.jsp");
-		
+		}
 	}
 
 	/**

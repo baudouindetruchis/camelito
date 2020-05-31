@@ -5,6 +5,23 @@ function includeHeaderAndCheckUser()  {
 	if(session==''){
 		window.location.href = "index.jsp";
 	}
+	chargeMessagerie();
+}
+
+function chargeMessagerie() {
+	var footer=false;
+	$.ajax({
+		  url: "../ChatLoadAssoForm",
+		  type: "get", //send it through get method
+		  data: { 
+			  footer:footer
+			  },
+		  success: function(response) {
+		  },
+		  error: function(xhr) {
+		    //Do Something to handle error
+		  }
+		});
 }
 
 

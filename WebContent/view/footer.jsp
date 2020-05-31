@@ -49,10 +49,11 @@
 								<li><a href="../ClientListLoadForm">Clients</a></li>
 								<li><a href="../MagasinListLoadForm">Magasins</a></li>
 								<li><a href="../ValidationLoadForm">Utilisateurs</a></li>
+								<li><a href="../ChatLoadAssoForm">Messagerie</a></li>
 							</c:when>
 							<c:when test="${sessionScope.type=='3'}">
 								<li><a href="../StockLoad">Stock</a></li>
-								<li><a href="../MessageLoad">Messagerie</a></li>
+								<li><a href="../loadChats">Messagerie</a></li>
 								<li><a href="../MyCmdLoadFrom">Ma commande</a></li>
 							</c:when>
 						</c:choose>

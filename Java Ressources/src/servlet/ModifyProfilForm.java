@@ -66,7 +66,7 @@ public class ModifyProfilForm extends HttpServlet {
 							editPseudo.execute();
 							obj.setPseudo(pseudo);
 						}else {
-							error="Erreur sur : le pseudo";
+							error="erreur sur : <br><br>Le pseudo (ce pseudo a déjà été choisi par un autre utilisateur)";
 						}
 					}
 
@@ -77,9 +77,9 @@ public class ModifyProfilForm extends HttpServlet {
 							obj.setMail(email);
 						}else {
 							if(error!="") {
-								error= error + ", le format du mail";
+								error= error + "<br>Le format du mail (prenom.nom@exemple.com)";
 							}else {
-								error="Erreur sur : le format du mail";
+								error="erreur sur : <br><br>Le format du mail (prenom.nom@exemple.com)";
 							}
 							
 						}
@@ -101,9 +101,9 @@ public class ModifyProfilForm extends HttpServlet {
 											session.setAttribute("promo", promotionInt);
 										}else {
 											if(error!="") {
-												error= error + ", la promotion";
+												error= error + "<br>La promotion";
 											}else {
-												error= "Erreur sur : la promotion";
+												error= "erreur sur : <br><br>La promotion";
 											}
 										}
 								

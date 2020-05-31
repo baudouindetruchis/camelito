@@ -67,7 +67,7 @@ public class PanierClick extends HttpServlet {
 				session.removeAttribute("panierList");
 				session.removeAttribute("total_price");
 			} else {
-				msg += "Votre commande n'a malheuresement pas pu aboutir";
+				msg += "Votre commande n'a malheureusement pas pu aboutir";
 			}
 			break;
 		case "less":

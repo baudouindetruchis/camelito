@@ -25,6 +25,35 @@ nav a {
 	background-color: #fdeee0 !important;
 }
 
+/* Dropdown */
+
+.dropdown-menu {
+    position: absolute;
+    top: auto !important;
+    left: auto !important;
+    z-index: 1000;
+    min-width: 8rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #b67823;
+    text-align: left;
+    list-style: none;
+    background-color: #fdeee0 !important;
+    background-clip: padding-box;
+    border: 2px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+
+.dropdown-item:hover {
+	background-color: moccasin;
+}
+
+.dropdown-item:focus {
+	background-color: moccasin;
+}
+
+
 /* Navbar's hamburger button color settings */
 .navbar-toggler {
 	border-color: rgb(182, 120, 35) !important;
