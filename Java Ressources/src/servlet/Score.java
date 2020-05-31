@@ -53,59 +53,56 @@ public class Score extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void  setParticipantList(HttpSession session) {
+	private void setParticipantList(HttpSession session) {
 		List<Participant> participantsList = new ArrayList<Participant>();
 		User currentUser = (User) session.getAttribute("user");
 		int currentUserId = currentUser.getId();
-		
+
 		int indexOfUser = 0;
 		int count = 0;
-		
+
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
-			PreparedStatement getParticipant = con.prepareStatement("SELECT * FROM details WHERE score IS NOT NULL ORDER BY score DESC");
+			PreparedStatement getParticipant = con.prepareStatement("SELECT * FROM public.details JOIN public.users "
+					+ "ON details.id_user = users.id WHERE users.type != 3 ORDER BY score DESC");
 			ResultSet rsParticipant = getParticipant.executeQuery();
-			
+
 			Participant aParticipant;
 			int user_id;
 			String pseudo;
 			int score;
 			String favSucces;
 			int favSuccesId;
-						
+
 			int classement = 0;
 			int previousScore = (int) Double.MAX_VALUE;
 			while (rsParticipant.next()) {
 				user_id = rsParticipant.getInt("id_user");
 				score = rsParticipant.getInt("score");
 				favSuccesId = rsParticipant.getInt("favSuccess");
-				
-				//get pseudo
-				PreparedStatement getPseudo = con.prepareStatement("SELECT * FROM users WHERE id ="+user_id);
-				ResultSet rsPseudo = getPseudo.executeQuery();
-				rsPseudo.next();
-				pseudo = rsPseudo.getString("user_name");
-				
-				//get fav succes
-				if(favSuccesId != 0) {
-					PreparedStatement getFavSucces = con.prepareStatement("SELECT * FROM success WHERE id ="+favSuccesId);
+				pseudo = rsParticipant.getString("user_name");
+
+				// get fav succes
+				if (favSuccesId != 0) {
+					PreparedStatement getFavSucces = con
+							.prepareStatement("SELECT * FROM success WHERE id =" + favSuccesId);
 					ResultSet rsFavSucces = getFavSucces.executeQuery();
 					rsFavSucces.next();
-					favSucces = rsFavSucces.getString("success_name");					
+					favSucces = rsFavSucces.getString("success_name");
 				} else {
-					favSucces="";
+					favSucces = "";
 				}
-				
-				//handel classement
-				if(score<previousScore) {
-					previousScore=score;
-					classement=count+1;
+
+				// handel classement
+				if (score < previousScore) {
+					previousScore = score;
+					classement = count + 1;
 				}
-				
-				if(currentUserId==user_id){
-					indexOfUser=count;
+
+				if (currentUserId == user_id) {
+					indexOfUser = count;
 				}
-				
-				//create participant and a it to list
+
+				// create participant and a it to list
 				aParticipant = new Participant(classement, pseudo, score, favSucces, favSuccesId, user_id);
 				participantsList.add(aParticipant);
 				count++;
@@ -117,23 +114,23 @@ public class Score extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		//blank participant used for first and last place
+		// blank participant used for first and last place
 		Participant blankParticipant = new Participant();
 		participantsList.add(blankParticipant);
 		participantsList.add(0, blankParticipant);
 
 		// get previous and next users
-		Participant prevParticipant = participantsList.get(indexOfUser+1);
+		Participant prevParticipant = participantsList.get(indexOfUser + 1);
 		Participant currParticipant = participantsList.get(indexOfUser);
-		Participant succParticipant = participantsList.get(indexOfUser-1);
-		
+		Participant succParticipant = participantsList.get(indexOfUser - 1);
+
 		session.setAttribute("prevParticipant", prevParticipant);
 		session.setAttribute("currParticipant", currParticipant);
-		session.setAttribute("succParticipant", succParticipant);	
+		session.setAttribute("succParticipant", succParticipant);
 
 		List<Participant> shortParticipantsList = participantsList.subList(1, 11);
 		session.setAttribute("participantsList", shortParticipantsList);
-		session.setAttribute("fullParticipantsList", participantsList);		
+		session.setAttribute("fullParticipantsList", participantsList);
 	}
 
 }
