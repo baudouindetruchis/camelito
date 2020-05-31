@@ -4,7 +4,7 @@ function sendText(){
 	
 	var arr = ["connard", "putain","merde", "salop", "pute", "prout", "attardé", "rien a foutre", "chier", "encul"];
 	var vulgar = false;
-	for(let i=0; i<=4;i++){
+	for(let i=0; i<=9;i++){
 		if(txt.includes(arr [i]) ){
 			vulgar=true;
 		}
