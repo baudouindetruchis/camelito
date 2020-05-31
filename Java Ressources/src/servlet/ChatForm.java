@@ -53,7 +53,7 @@ public class ChatForm extends HttpServlet {
 			
 			try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 				if((int)session.getAttribute("type")==3) {
-					sentTextComm( con,  text,  id_user);
+					ChatFunctions.sentTextComm( con,  text,  id_user);
 				}else {
 					ChatFunctions.sentTextAsso( request, con,  text);
 				}
@@ -80,29 +80,6 @@ public class ChatForm extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public static void sentTextComm(Connection con, String text, int id_user) {
-		
-		try {
-			PreparedStatement getIdStore = con.prepareStatement("SELECT id FROM public.stores WHERE id_user='"+ id_user+"'");
-			ResultSet rsStore = getIdStore.executeQuery();
-			int  id_store=0;
-			while(rsStore.next()) {
-				id_store = rsStore.getInt("id");
-			}
-			
-			
-			PreparedStatement sendtext;
-			sendtext = con.prepareStatement("INSERT INTO public.messages (id_store, txt, is_send_by_asso) "
-					+ "VALUES('"+ id_store+"','"+text+ "'," +false+")");
-			sendtext.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-	}
 	
 	
 	
