@@ -73,17 +73,19 @@ function stockUpdate(id){
       }
     }
     
-    function fillForm(id, name, description, real_price, selling_price, stock){
+    function fillForm(id, name, description, real_price, selling_price, stock, img){
     	var modId           = document.getElementById("modId");
     	var modDescription  = document.getElementById("modDescription");
     	var modRealPrice    = document.getElementById("modRealPrice");
     	var modSellingPrice = document.getElementById("modSellingPrice");
     	var modStock        = document.getElementById("modStock");
+    	var modImg        = document.getElementById("modImg");
     	modId.value = id;
     	modDescription.value = description;
     	modRealPrice.value = real_price;
     	modSellingPrice.value = selling_price;
         modStock.value = stock;
+        modImg.value = img;
 
         var checkBox = document.getElementById("formCheck");
         checkBox.checked = false;
