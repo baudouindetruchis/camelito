@@ -11,20 +11,7 @@
 <div class="form-group">
 <div class="form-row">
 <div class="col-md-12">
-<%-- 
-	<h4>previous : </h4>
-	<c:set var="pUsr" value="${sessionScope.prevParticipant}" />
-	<c:out value="${pUsr.pseudo}"></c:out>
-	<c:out value="${pUsr.score}"></c:out>
-	<h4>you : </h4>
-	<c:set var="cUsr" value="${sessionScope.currParticipant}" />
-	<c:out value="${cUsr.pseudo}"></c:out>
-	<c:out value="${cUsr.score}"></c:out>
-	<h4>successor : </h4>
-	<c:set var="sUsr" value="${sessionScope.succParticipant}" />
-	<c:out value="${sUsr.pseudo}"></c:out>
-	<c:out value="${sUsr.score}"></c:out>
- --%>
+	<img class="rounded mx-auto d-block backgroundImg" alt="desert_decor" src="../public/images/desert.png">
 	<!-- calcul des marge pour placer le chameau au centre -->
 	<c:set var="pUsr" value="${sessionScope.prevParticipant}" />
 	<c:set var="cUsr" value="${sessionScope.currParticipant}" />
@@ -35,12 +22,12 @@
 	<c:set var="margeD" value="${coeff * (sUsr.score - cUsr.score)}" />
 	
 	
-	<div class="d-flex justify-content-center text-center" id="scorerace">
+	<div class="d-flex justify-content-center text-center colorTextSettings" id="scorerace">
 		<div style="width: 65px;"><c:out value="${pUsr.score}"/></div>
 		<div style="width: 65px; margin-left:${margeG}%; margin-right:${margeD}%;"><c:out value="${cUsr.score}"/></div> 
 		<div style="width: 65px;"><c:out value="${sUsr.score}"/></div>
 	</div>
-	<div class="d-flex justify-content-center text-center" id="userrace">
+	<div class="d-flex justify-content-center text-center colorTextSettings" id="userrace">
 		<div style="width: 65px;"><c:out value="${pUsr.pseudo}"/></div>
 		<div style="width: 65px; margin-left:${margeG}%; margin-right:${margeD}%;"><c:out value="${cUsr.pseudo}"/></div> 
 		<div style="width: 65px;"><c:out value="${sUsr.pseudo}"/></div>

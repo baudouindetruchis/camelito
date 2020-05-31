@@ -79,6 +79,22 @@
     border-bottom: 5px solid antiquewhite;
 }
 
+.backgroundImg {
+	position: absolute;
+    z-index: -5;
+    width: 92%;
+    height: 145px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    top: -25px;
+}
+
+.colorTextSettings {
+	color: #764e17;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 767px) {
 	.d-flex {
 		margin-right: 8% !important;

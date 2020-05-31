@@ -10,16 +10,16 @@ function After10(place,id) {
 		ligne3.hidden = false;
 		place11.hidden = false;
 	}
-	if (place == '12'){
+	else if (place == '12'){
 		ligne2.hidden = false;
 		ligne3.hidden = false;
 		place11.hidden = false;
 	}
-	if (place == '11') {
+	else if (place == '11') {
 		ligne3.hidden = false;
 		place11.hidden = false;
 	}
-	if (place == '10') {
+	else if (place == '10') {
 		place11.hidden = false;
 	}
 	else {
@@ -35,7 +35,6 @@ function titreSuccess(idPseudo,SuccessName) {
 	
 	if(SuccessName=='Score supérieur à 150') {
 		txt.innerHTML = 'La légende du game';
-		console.log(SuccessName)
 	}
 	if(SuccessName=='Pas moins de 50€ économisé !') {
 		txt.innerHTML = 'Le roi des thunes';
@@ -66,3 +65,4 @@ function myFunction() {
 		}       
 	}
 }
+

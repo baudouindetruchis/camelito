@@ -48,7 +48,7 @@ public class MagasinListLoadForm extends HttpServlet {
 		try (Connection con = DriverManager.getConnection(URL, USER_BDD, PSW)) {
 			
 			PreparedStatement getCommmands = con
-					.prepareStatement("SELECT id_command, id_store, list_id_articles, liste_quantities, status FROM public.commands ");
+					.prepareStatement("SELECT id_command, id_store, list_id_articles, liste_quantities, status FROM public.commands WHERE status = true ");
 			
 			ResultSet commands = getCommmands.executeQuery();
 			
