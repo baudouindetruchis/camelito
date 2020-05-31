@@ -544,6 +544,7 @@ public class ArticleListFunctions {
 		int nombreArticle = panierList.size();
 		int scoreCommande = (int) Math.round(3 + Math.sqrt(tPrice) + 2 * Math.sqrt(nombreArticle));
 		float savings = getSavingOfList(panierList);
+		System.out.println(savings);
 		user.increaseSaving(savings);
 		float new_savings = user.getSaving();
 
@@ -572,12 +573,10 @@ public class ArticleListFunctions {
 	private static float getSavingOfList(List<Article> panierList) {
 		float total_saving = (float) 0;
 		int quantity_article;
-		float saving_oneArticle;
 
 		for (Article anArt : panierList) {
 			quantity_article = anArt.getQuantity();
-			saving_oneArticle = anArt.getSelling_price() - anArt.getReal_price();
-			total_saving += quantity_article * saving_oneArticle;
+			total_saving += quantity_article * anArt.getSaving();
 		}
 		return total_saving;
 	}
@@ -628,7 +627,8 @@ public class ArticleListFunctions {
 					Article anArticle;
 					String name;
 					int id_store;
-					float price;
+					float selling_price;
+					float real_price;
 					int stock;
 					String store;
 					for (int i = 0; i < list_id_articles.length; i++) {
@@ -644,7 +644,8 @@ public class ArticleListFunctions {
 						// get data on the article
 						name = rsArticle.getString("name");
 						id_store = rsArticle.getInt("id_store");
-						price = rsArticle.getFloat("selling_price");
+						selling_price = rsArticle.getFloat("selling_price");
+						real_price = rsArticle.getFloat("initial_price");
 						stock = rsArticle.getInt("available");
 
 						// SQL to connect to a store
@@ -657,13 +658,7 @@ public class ArticleListFunctions {
 						store = rsStore.getString("name");
 
 						// create coresponding article object
-						anArticle = new Article();
-						anArticle.setId(id_article);
-						anArticle.setName(name);
-						anArticle.setStock(stock);
-						anArticle.setMagasin(store);
-						anArticle.setQuantity(quantity_article);
-						anArticle.setSelling_price(price);
+						anArticle = new Article(id_article, name, "", store, selling_price, real_price, quantity_article, stock, "");
 
 						myListArticle.add(anArticle);
 					}

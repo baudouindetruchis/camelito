@@ -154,15 +154,7 @@ public class StockFunctions {
 					pic = rsArticle.getString("pic");
 					
 					// init object
-					anArticle = new Article();
-					anArticle.setDescription(description);
-					anArticle.setId(id);
-					anArticle.setMagasin(name_store);
-					anArticle.setName(name);
-					anArticle.setReal_price(real_price);
-					anArticle.setSelling_price(selling_price);
-					anArticle.setStock(stock);
-					anArticle.setImg(pic);
+					anArticle = new Article(id, name, description, name_store, selling_price, real_price, 0, stock, pic);
 
 					stockList.add(anArticle);
 				}
