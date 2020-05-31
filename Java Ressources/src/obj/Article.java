@@ -3,18 +3,35 @@ package obj;
 import JavaFunction.UtilFunc;
 
 public class Article {
-	
+
 	int id;
 	String name;
 	String description;
 	String magasin;
-	float selling_price=0;
-	float real_price=0;
+	float selling_price = 0;
+	float real_price = 0;
 	float saving;
 	int quantity;
 	int stock;
 	String img;
 
+	public Article() {
+		
+	}
+	
+	public Article(int id, String name, String description, String magasin, float selling_price, float real_price,
+			int quantity, int stock, String img) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.magasin = magasin;
+		this.selling_price = selling_price;
+		this.real_price = real_price;
+		this.saving = real_price-selling_price;
+		this.quantity = quantity;
+		this.stock = stock;
+		this.img = img;
+	}
 
 	public float getSaving() {
 		return saving;
@@ -74,8 +91,8 @@ public class Article {
 
 	public void setSelling_price(float selling_price) {
 		this.selling_price = selling_price;
-		float s = UtilFunc.round(this.real_price-this.selling_price, 2);
-		this.saving=s;
+		float s = UtilFunc.round(this.real_price - this.selling_price, 2);
+		this.saving = s;
 	}
 
 	public float getReal_price() {
@@ -84,8 +101,8 @@ public class Article {
 
 	public void setReal_price(float real_price) {
 		this.real_price = real_price;
-		float s = UtilFunc.round(this.real_price-this.selling_price, 2);
-		this.saving=s;
+		float s = UtilFunc.round(this.real_price - this.selling_price, 2);
+		this.saving = s;
 	}
 
 	public int getQuantity() {
