@@ -117,7 +117,12 @@ public class Score extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// handel fist and last user
+		//blank participant used for first and last place
+		Participant blankParticipant = new Participant();
+		participantsList.add(blankParticipant);
+		participantsList.add(0, blankParticipant);
+
+		// get previous and next users
 		Participant prevParticipant = participantsList.get(indexOfUser+1);
 		Participant currParticipant = participantsList.get(indexOfUser);
 		Participant succParticipant = participantsList.get(indexOfUser-1);
@@ -126,10 +131,6 @@ public class Score extends HttpServlet {
 		session.setAttribute("currParticipant", currParticipant);
 		session.setAttribute("succParticipant", succParticipant);	
 
-		//blank participant used for first and last place
-		Participant blankParticipant = new Participant();
-		participantsList.add(blankParticipant);
-		participantsList.add(0, blankParticipant);
 		List<Participant> shortParticipantsList = participantsList.subList(1, 11);
 		session.setAttribute("participantsList", shortParticipantsList);
 		session.setAttribute("fullParticipantsList", participantsList);		
