@@ -97,7 +97,7 @@
 		  	<td><form>
 		  		<input id="stock-${artc.id}" type="number"  min="0" max="99" step="1" placeholder="Stock" value="${artc.stock}" onchange="stockUpdate(${artc.id})" class="field form-control">
 		  	</form></td>
-			<td><button class="btn btn-default btn-rounded mb-4 btnTable" onClick="fillForm(${artc.id}, '${artc.name}', '${artc.description}', ${artc.real_price}, ${artc.selling_price}, ${artc.stock})">Modifier</button></td>
+			<td><button class="btn btn-default btn-rounded mb-4 btnTable" onClick="fillForm(${artc.id}, '${artc.name}', '${artc.description}', ${artc.real_price}, ${artc.selling_price}, ${artc.stock}, '${artc.img}')">Modifier</button></td>
 	   	  </tr>
 	  </c:forEach>
 	  </tbody>

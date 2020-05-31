@@ -46,7 +46,7 @@
 				</div>
 				<div class="form-row">
 						<label for="pic">Image</label> 
-						<input type="text" class="form-control" id="pic" placeholder="Lien hypertext de l'image" name="pic">
+						<input type="text" class="form-control" id="modImg" placeholder="Lien hypertext de l'image" name="pic">
 					</div>
 
 				<div class="form-row" style="text-align: center">
