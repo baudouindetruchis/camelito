@@ -1,5 +1,15 @@
 body {
   font-size: small;
+  margin-left: 0 !important;
+  min-width: 300px;
+}
+
+.container {
+	width: 100%;
+}
+
+.heightPerso {
+	max-height: 480px;
 }
 
 h1 {

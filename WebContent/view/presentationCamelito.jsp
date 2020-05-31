@@ -5,7 +5,7 @@
       <meta charset="ISO-8859-1"></head>
       <body>
 
-        <div class="center_div">
+        <div class="center_div heightPerso">
           <img src="../public/images/ecommerce.jpg" class="animated_img">
             <div class="behind_center">
               <h6>Ils nous font confiance</h6>
