@@ -40,7 +40,10 @@ public class ChatForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String nameTalmingToStore = request.getParameter("talkingTo");
-		session.setAttribute("talkingToName", nameTalmingToStore);
+		if(nameTalmingToStore!= null) {
+			session.setAttribute("talkingToName", nameTalmingToStore);
+		}
+		
 		int idStoreTalkingTo=ChatFunctions.getStoreId(nameTalmingToStore);
 		if(idStoreTalkingTo!=0) {
 			session.setAttribute("talkingTo", idStoreTalkingTo);
