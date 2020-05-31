@@ -49,8 +49,8 @@ public class ModifyMagasinForm extends HttpServlet {
 				try (Connection con = DriverManager.getConnection(url, user, psw)) {
 					int id = (int) session.getAttribute("id");
 					
-					PreparedStatement editAddress = con.prepareStatement("UPDATE public.stores SET address = '"+ address +"' WHERE id_user = '"+id+"'" );
-					PreparedStatement editStoreName = con.prepareStatement("UPDATE public.stores SET name = '"+ storeName +"' WHERE id_user = '"+id+"'" );	
+					PreparedStatement editAddress = con.prepareStatement("UPDATE public.stores SET address = '"+ address.replace("'", "''''") +"' WHERE id_user = '"+id+"'" );
+					PreparedStatement editStoreName = con.prepareStatement("UPDATE public.stores SET name = '"+ storeName.replace("'", "''''") +"' WHERE id_user = '"+id+"'" );	
 					
 					if(!address.isEmpty()&& !(address== null)) {
 						editAddress.execute();
