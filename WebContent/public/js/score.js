@@ -4,22 +4,23 @@ function After10(place,id) {
 	var ligne3 = document.getElementById("after "+place+id);
 	var place11 = document.getElementById("after2 "+place)
 	
-	if (place >= '13'){
+	if (place >= 13){
 		ligne1.hidden = false;
 		ligne2.hidden = false;
 		ligne3.hidden = false;
 		place11.hidden = false;
+		console.log(place)
 	}
-	else if (place == '12'){
+	else if (place == 12){
 		ligne2.hidden = false;
 		ligne3.hidden = false;
 		place11.hidden = false;
 	}
-	else if (place == '11') {
+	else if (place == 11) {
 		ligne3.hidden = false;
 		place11.hidden = false;
 	}
-	else if (place == '10') {
+	else if (place == 10) {
 		place11.hidden = false;
 	}
 	else {

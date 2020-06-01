@@ -32,7 +32,7 @@
 		<div class="row">
 			<div class="col-md-12" id="yourScore">
 				<h2>La course aux Camelicoins</h2>
-				<c:set var="sUsr" value="${sessionScope.succParticipant}" />
+				<%-- <c:set var="sUsr" value="${sessionScope.succParticipant}" /> --%>
 				<div class="col-md-12 headerTitre" style="margin-bottom: 5%;">
 					Bienvenue sur cette course, ${usr.first_name}, c'est ici que tu vas
 					venir avec ta fidèle monture afin de concourir à la place
