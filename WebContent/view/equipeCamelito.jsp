@@ -5,7 +5,7 @@
       <meta charset="ISO-8859-1"></head>
       <body>
 
-        <div class="right_div">
+        <div class="right_div heightPerso" style="margin-bottom: 5%;">
           <img src="../public/images/hands.jpg" class="animated_img">
             <div class="behind_right">
               <h6>Notre équipe</h6>

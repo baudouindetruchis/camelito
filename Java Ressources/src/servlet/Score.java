@@ -120,9 +120,9 @@ public class Score extends HttpServlet {
 		participantsList.add(0, blankParticipant);
 
 		// get previous and next users
-		Participant prevParticipant = participantsList.get(indexOfUser + 1);
-		Participant currParticipant = participantsList.get(indexOfUser);
-		Participant succParticipant = participantsList.get(indexOfUser - 1);
+		Participant prevParticipant = participantsList.get(indexOfUser + 2);
+		Participant currParticipant = participantsList.get(indexOfUser + 1);
+		Participant succParticipant = participantsList.get(indexOfUser);
 
 		session.setAttribute("prevParticipant", prevParticipant);
 		session.setAttribute("currParticipant", currParticipant);

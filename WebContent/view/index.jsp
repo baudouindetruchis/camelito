@@ -23,6 +23,7 @@
 </head>
 
 <body onload="includeOtherPartOnLoad()">
+		<div class="container">
 		<div class="row">
 			<div class="col-lg-4">
 
@@ -55,7 +56,7 @@
 						value="Se connecter" />
 					<fieldset class="ref">
 						<a href="#" style="color: black" onclick="openForm()">S'inscrire</a><br>
-						<a href="#" style="color: black">Mot de passe oublié</a><br>
+						<!-- <a href="#" style="color: black">Mot de passe oublié</a><br> -->
 						<a href="#" style="color: black" onclick="includeFAQ()">FAQ</a>
 					</fieldset>
 				</form>
@@ -118,10 +119,11 @@
 			</div>
 
 
-			<div id="includeCamelitoInfo" class="col-lg-4"></div>
-			<div id="includeCamelitoPrez" class="col-lg-4"></div>
+			<div id="includeCamelitoInfo" class="col-lg-4 heightPerso"></div>
+			<div id="includeCamelitoPrez" class="col-lg-4 heightPerso"></div>
 			<div id="includeFAQ" class="col-lg-8"></div>
 
+		</div>
 		</div>
 
 </body>

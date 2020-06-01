@@ -48,7 +48,7 @@
 		  	<td><c:out value="${sUsr.place}"></c:out></td>
 		  	<td><c:out value="${sUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${sUsr.score}"></c:out></td>
-		  	<td id="titreSecret ${cUsr.id}${cUsr.place}"><c:out value="${sUsr.favSucces}"/></td>
+		  	<td id="titreSecret ${sUsr.id}${sUsr.place}"><c:out value="${sUsr.favSucces}"/></td>
 		  	<%-- <td><c:out value="${sUsr.favSuccesId}"/></td> --%>
 	   	  </tr>	
 		  <tr id="after ${cUsr.place}${cUsr.id}" style="background-color:sandybrown" hidden=true>
@@ -62,7 +62,7 @@
 		  	<td><c:out value="${pUsr.place}"></c:out></td>
 		  	<td><c:out value="${pUsr.pseudo}"></c:out></td>
 		  	<td><c:out value="${pUsr.score}"></c:out></td>
-		  	<td id="titreSecret ${cUsr.place}${cUsr.id}"><c:out value="${pUsr.favSucces}"/></td>
+		  	<td id="titreSecret ${pUsr.place}${pUsr.id}"><c:out value="${pUsr.favSucces}"/></td>
 		  	<%-- <td><c:out value="${pUsr.favSuccesId}"/></td> --%>
 	   	  </tr>
 	  </tbody>
